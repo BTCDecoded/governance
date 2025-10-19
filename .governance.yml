@@ -1,0 +1,16 @@
+# Meta-governance: This file defines governance for the governance repo itself
+governance_source: self
+layer: 0
+governance_level: meta
+signature_threshold: 5-of-7 + 2-of-3  # Maintainers + emergency keyholders
+review_period_days: 90
+public_comment_period_days: 30
+requires_rationale: true
+process:
+  - public_discussion_created: true
+  - comment_period_enforced: true
+  - higher_threshold_required: true
+
+
+
+

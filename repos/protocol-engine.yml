@@ -1,0 +1,13 @@
+layer: 3
+governance_level: implementation
+signature_threshold: 4-of-5
+review_period_days: 90
+dependencies:
+  - consensus-proof
+validation_requirements:
+  - must_reference_version: orange-paper@v{VERSION}
+  - equivalence_proof_required: true
+
+
+
+

@@ -1,0 +1,178 @@
+# Emergency Tier System
+#
+# Three-tiered emergency response system for critical security and network issues.
+# All tiers require activation by 5-of-7 emergency keyholders.
+
+tiers:
+  tier_1_critical:
+    name: "Critical Emergency"
+    severity: "Network-threatening"
+    
+    activation_criteria:
+      - "Inflation bug (CVE-2010-5139 class)"
+      - "Consensus fork risk (CVE-2018-17144 class)"
+      - "P2P network DoS"
+      - "Remote code execution"
+      - "Private key extraction"
+    
+    requirements:
+      review_period_days: 0
+      signature_threshold: 4-of-7
+      max_duration_days: 7
+      activation_threshold: 5-of-7
+      
+    evidence_requirements:
+      - "Proof of vulnerability (private disclosure)"
+      - "Impact analysis"
+      - "Exploit demonstration (if safe)"
+      - "Immediate mitigation plan"
+      
+    post_activation:
+      requires_post_mortem: true
+      post_mortem_deadline_days: 30
+      requires_security_audit: true
+      security_audit_deadline_days: 60
+      requires_public_disclosure: true
+      disclosure_timing: "After patch deployment"
+      
+    extension:
+      allowed: false
+      rationale: "Tier 1 issues must be resolved within 7 days or downgraded"
+  
+  tier_2_urgent:
+    name: "Urgent Security Issue"
+    severity: "Serious but not immediately network-threatening"
+    
+    activation_criteria:
+      - "Memory corruption vulnerabilities"
+      - "Privacy leaks (transaction linkage)"
+      - "Crash exploits (non-DoS)"
+      - "Privilege escalation"
+      - "Data corruption bugs"
+    
+    requirements:
+      review_period_days: 7
+      signature_threshold: 5-of-7
+      max_duration_days: 30
+      activation_threshold: 5-of-7
+      
+    evidence_requirements:
+      - "Vulnerability description"
+      - "Impact analysis"
+      - "Reproduction steps"
+      - "Mitigation plan"
+      
+    post_activation:
+      requires_post_mortem: true
+      post_mortem_deadline_days: 60
+      requires_security_audit: false
+      requires_public_disclosure: true
+      disclosure_timing: "After majority node deployment"
+      
+    extension:
+      allowed: true
+      max_extensions: 1
+      extension_duration_days: 30
+      extension_threshold: 6-of-7
+  
+  tier_3_elevated:
+    name: "Elevated Priority"
+    severity: "Important but not critical"
+    
+    activation_criteria:
+      - "Competitive response (other implementations advancing)"
+      - "Important bug fixes (non-security)"
+      - "Performance degradation issues"
+      - "Ecosystem compatibility problems"
+      - "User experience issues affecting adoption"
+    
+    requirements:
+      review_period_days: 30
+      signature_threshold: 6-of-7
+      max_duration_days: 90
+      activation_threshold: 5-of-7
+      
+    evidence_requirements:
+      - "Issue description"
+      - "Justification for emergency process"
+      - "Normal process timeline comparison"
+      - "Mitigation plan"
+      
+    post_activation:
+      requires_post_mortem: true
+      post_mortem_deadline_days: 90
+      requires_security_audit: false
+      requires_public_disclosure: false
+      disclosure_timing: "Immediate"
+      
+    extension:
+      allowed: true
+      max_extensions: 2
+      extension_duration_days: 30
+      extension_threshold: 6-of-7
+
+activation_process:
+  step_1: "Emergency keyholder submits activation request with evidence"
+  step_2: "Other emergency keyholders review and sign (5-of-7 required)"
+  step_3: "Governance App activates tier and adjusts requirements"
+  step_4: "Status checks reflect emergency parameters"
+  step_5: "PRs merged under emergency rules"
+  step_6: "Post-activation requirements tracked"
+  step_7: "Automatic expiration at max_duration unless extended"
+
+historical_examples:
+  cve_2010_5139:
+    year: 2010
+    type: "Value overflow incident"
+    description: "Allowed creation of 184 billion BTC"
+    tier_classification: "Tier 1 Critical"
+    actual_response_time: "5 hours (hard fork)"
+    notes: "Pre-governance era, demonstrates need for Tier 1"
+    
+  cve_2018_17144:
+    year: 2018
+    type: "Consensus bug allowing inflation"
+    description: "Double-spend of same input in same transaction"
+    tier_classification: "Tier 1 Critical"
+    actual_response_time: "Same day patch, 2 weeks disclosure"
+    notes: "Required immediate response, coordinated disclosure"
+    
+  bip66_consensus_fork:
+    year: 2015
+    type: "BIP66 (strict DER signatures) consensus fork"
+    description: "Invalid block accepted by non-upgraded miners"
+    tier_classification: "Tier 2 Urgent"
+    actual_response_time: "Hours to coordinate, days to resolve"
+    notes: "Not initially catastrophic but required urgent coordination"
+
+safeguards:
+  abuse_prevention:
+    - "All emergency activations logged in governance repo"
+    - "Post-mortem required for accountability"
+    - "Tier downgrades if criteria not met"
+    - "Community oversight via public disclosure"
+    
+  automatic_expiration:
+    - "No indefinite emergency modes"
+    - "Extensions require higher thresholds"
+    - "Multiple extensions discouraged"
+    
+  escalation_path:
+    - "Start with appropriate tier based on evidence"
+    - "Can escalate if situation worsens"
+    - "Cannot downgrade active emergency without resolution"
+
+notes: |
+  This system balances the need for rapid response to critical issues
+  with safeguards against abuse. Historical Bitcoin incidents demonstrate
+  that some vulnerabilities require immediate action (hours, not months).
+  
+  The tiered approach allows proportional response:
+  - Tier 1: Network survival (hours to days)
+  - Tier 2: Security issues (days to weeks)  
+  - Tier 3: Important priorities (weeks to months)
+  
+  All tiers maintain signature requirements but adjust review periods.
+  This preserves multi-signature security while enabling rapid response.
+
+

@@ -1,0 +1,48 @@
+# Emergency keyholders for crisis situations
+# Requires 5-of-7 signatures to activate emergency mode
+keyholders:
+  - github: emergency1
+    public_key: 0x04[PLACEHOLDER_64_CHAR_HEX]
+    role: security_expert
+    added: 2025-01-01
+    status: active
+  
+  - github: emergency2
+    public_key: 0x04[PLACEHOLDER_64_CHAR_HEX]
+    role: crisis_manager
+    added: 2025-01-01
+    status: active
+  
+  - github: emergency3
+    public_key: 0x04[PLACEHOLDER_64_CHAR_HEX]
+    role: legal_expert
+    added: 2025-01-01
+    status: active
+  
+  - github: emergency4
+    public_key: 0x04[PLACEHOLDER_64_CHAR_HEX]
+    role: protocol_guardian
+    added: 2025-01-01
+    status: active
+  
+  - github: emergency5
+    public_key: 0x04[PLACEHOLDER_64_CHAR_HEX]
+    role: community_representative
+    added: 2025-01-01
+    status: active
+  
+  - github: emergency6
+    public_key: 0x04[PLACEHOLDER_64_CHAR_HEX]
+    role: technical_guardian
+    added: 2025-01-01
+    status: active
+  
+  - github: emergency7
+    public_key: 0x04[PLACEHOLDER_64_CHAR_HEX]
+    role: governance_expert
+    added: 2025-01-01
+    status: active
+
+
+
+

@@ -1,0 +1,11 @@
+layer: 5
+governance_level: extension
+signature_threshold: 2-of-3
+review_period_days: 14
+module_system: true
+validation_requirements:
+  - no_consensus_impact: true
+
+
+
+

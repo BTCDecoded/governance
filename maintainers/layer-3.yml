@@ -1,0 +1,36 @@
+# Layer 3: Implementation (Protocol Engine)
+# Requires 4-of-5 signatures for changes
+maintainers:
+  - github: maintainer1
+    public_key: 0x03[PLACEHOLDER_64_CHAR_HEX]
+    role: rust_developer
+    added: 2025-01-01
+    status: active
+  
+  - github: maintainer2
+    public_key: 0x03[PLACEHOLDER_64_CHAR_HEX]
+    role: systems_engineer
+    added: 2025-01-01
+    status: active
+  
+  - github: maintainer3
+    public_key: 0x03[PLACEHOLDER_64_CHAR_HEX]
+    role: protocol_implementer
+    added: 2025-01-01
+    status: active
+  
+  - github: maintainer4
+    public_key: 0x03[PLACEHOLDER_64_CHAR_HEX]
+    role: performance_expert
+    added: 2025-01-01
+    status: active
+  
+  - github: maintainer5
+    public_key: 0x03[PLACEHOLDER_64_CHAR_HEX]
+    role: integration_specialist
+    added: 2025-01-01
+    status: active
+
+
+
+

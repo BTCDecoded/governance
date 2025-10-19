@@ -1,0 +1,30 @@
+rules:
+  - name: consensus_proof_sync
+    description: "Orange Paper and Consensus Proof must stay synchronized"
+    source_repo: orange-paper
+    source_pattern: consensus-rules/**
+    target_repo: consensus-proof
+    target_pattern: proofs/**
+    validation: corresponding_file_exists
+    bidirectional: true
+    blocking: true
+  
+  - name: protocol_engine_equivalence
+    description: "Protocol Engine must reference specific Orange Paper version"
+    source_repo: protocol-engine
+    source_pattern: consensus/**
+    target_repo: orange-paper
+    validation: references_latest_version
+    required_reference_format: "orange-paper@v{VERSION}"
+    blocking: true
+  
+  - name: reference_node_no_consensus
+    description: "Reference Node cannot modify consensus rules"
+    source_repo: reference-node
+    validation: no_consensus_modifications
+    allowed_imports_only: true
+    blocking: true
+
+
+
+

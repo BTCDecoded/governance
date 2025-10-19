@@ -1,0 +1,48 @@
+# Layer 1-2: Constitutional (Orange Paper + Consensus Proof)
+# Requires 6-of-7 signatures for changes
+maintainers:
+  - github: maintainer1
+    public_key: 0x02[PLACEHOLDER_64_CHAR_HEX]
+    role: cryptographer
+    added: 2025-01-01
+    status: active
+  
+  - github: maintainer2
+    public_key: 0x02[PLACEHOLDER_64_CHAR_HEX]
+    role: protocol_expert
+    added: 2025-01-01
+    status: active
+  
+  - github: maintainer3
+    public_key: 0x02[PLACEHOLDER_64_CHAR_HEX]
+    role: mathematician
+    added: 2025-01-01
+    status: active
+  
+  - github: maintainer4
+    public_key: 0x02[PLACEHOLDER_64_CHAR_HEX]
+    role: security_expert
+    added: 2025-01-01
+    status: active
+  
+  - github: maintainer5
+    public_key: 0x02[PLACEHOLDER_64_CHAR_HEX]
+    role: consensus_expert
+    added: 2025-01-01
+    status: active
+  
+  - github: maintainer6
+    public_key: 0x02[PLACEHOLDER_64_CHAR_HEX]
+    role: formal_verification
+    added: 2025-01-01
+    status: active
+  
+  - github: maintainer7
+    public_key: 0x02[PLACEHOLDER_64_CHAR_HEX]
+    role: protocol_architect
+    added: 2025-01-01
+    status: active
+
+
+
+

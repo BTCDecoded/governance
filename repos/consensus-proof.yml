@@ -1,0 +1,54 @@
+layer: 2
+governance_level: constitutional
+signature_threshold: 6-of-7
+review_period_days: 180
+synchronized_with:
+  - orange-paper
+cross_layer_rules:
+  - if_changed: proofs/**
+    then_require_update: orange-paper/consensus-rules/**
+    validation: corresponding_rule_exists
+    bidirectional: true
+
+consensus_rule_changes:
+  detection:
+    patterns:
+      - "proofs/**"
+      - "validation/**"
+      - "verification/**"
+  
+  repository_requirements:
+    maintainer_threshold: 6-of-7
+    review_period_days: 365
+    requires_bip_specification: true
+    requires_test_vectors: true
+    requires_security_audit: true
+    requires_equivalence_proof: true
+  
+  user_activation:
+    nature: advisory_not_mandatory
+    mechanism: optional_upgrade
+    
+    recommended_thresholds:
+      node_adoption: 75%
+      hash_power_signaling: 90%
+      economic_majority: 5_of_top_10_exchanges
+    
+    measurement:
+      method: "BIP9-style version bits or node polling"
+      period_days: 90
+      
+    timeline:
+      1_code_approved: "Maintainers approve (6-of-7)"
+      2_code_released: "Released as optional upgrade"
+      3_users_signal: "Users choose to upgrade"
+      4_activation_decision: "Based on signaling thresholds"
+    
+    clarification: |
+      Maintainers approve code for release.
+      Users decide whether to run it.
+      No amount of maintainer signatures forces network adoption.
+      This governance is ADVISORY for protocol changes.
+
+
+
