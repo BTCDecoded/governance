@@ -1,0 +1,285 @@
+# Governance Ruleset Export Template
+# This file serves as a template for exporting complete governance configurations
+# Version: 1.0
+# Format: YAML
+
+# Export metadata
+export_metadata:
+  version: "1.0"
+  ruleset_id: "btcdecoded-governance-v1"
+  ruleset_version: "1.0.0"
+  created_at: "2025-01-01T00:00:00Z"
+  exported_by: "governance-app"
+  source_repository: "BTCDecoded/governance"
+  commit_hash: "abc123def456"
+  export_tool_version: "0.1.0"
+  signature: null
+  verification_url: null
+
+# Action tiers configuration
+action_tiers:
+  tier_1_routine:
+    name: "Routine Maintenance"
+    signature_threshold: "3-of-5"
+    review_period_days: 7
+    description: "Bug fixes, documentation, performance optimizations"
+    requirements:
+      - "Non-consensus changes only"
+      - "No new features"
+      - "No breaking changes"
+
+  tier_2_features:
+    name: "Feature Changes"
+    signature_threshold: "4-of-5"
+    review_period_days: 30
+    description: "New RPC methods, P2P changes, wallet features"
+    requirements:
+      - "Must include technical specification"
+      - "Must include test coverage"
+      - "Must include documentation"
+
+  tier_3_consensus_adjacent:
+    name: "Consensus-Adjacent"
+    signature_threshold: "5-of-5"
+    review_period_days: 90
+    description: "Changes affecting consensus validation code"
+    requirements:
+      - "Economic node veto required"
+      - "Must include consensus impact analysis"
+      - "Must include security audit"
+    economic_node_veto:
+      mining_threshold: 30.0  # 30% of hashpower
+      economic_threshold: 40.0  # 40% of economic activity
+
+  tier_4_emergency:
+    name: "Emergency Actions"
+    signature_threshold: "4-of-5"
+    review_period_days: 0
+    description: "Critical security patches, network-threatening bugs"
+    requirements:
+      - "Real-time economic node oversight"
+      - "Post-mortem required"
+      - "Evidence of criticality required"
+
+  tier_5_governance:
+    name: "Governance Changes"
+    signature_threshold: "5-of-5"
+    review_period_days: 180
+    description: "Changes to governance rules themselves"
+    requirements:
+      - "Economic node signaling required"
+      - "50%+ hashpower support"
+      - "60%+ economic activity support"
+
+# Economic nodes configuration
+economic_nodes:
+  node_types:
+    mining_pool:
+      minimum_hashpower_percent: 1.0
+      weight_calculation: "hashpower_percentage"
+      qualification_requirements:
+        - "Proof of blocks mined"
+        - "Time period verification"
+        - "Network participation"
+
+    exchange:
+      minimum_holdings_btc: 10000
+      minimum_volume_usd: 100000000  # $100M daily
+      weight_calculation: "70%_holdings_30%_volume"
+      qualification_requirements:
+        - "Proof of BTC holdings"
+        - "Proof of trading volume"
+        - "Regulatory compliance"
+
+    custodian:
+      minimum_holdings_btc: 10000
+      weight_calculation: "holdings_percentage"
+      qualification_requirements:
+        - "Proof of BTC holdings"
+        - "Custodial license"
+        - "Security audit"
+
+    payment_processor:
+      minimum_volume_usd: 50000000  # $50M monthly
+      weight_calculation: "transaction_volume"
+      qualification_requirements:
+        - "Proof of transaction volume"
+        - "Payment processor license"
+        - "Compliance verification"
+
+    major_holder:
+      minimum_holdings_btc: 5000
+      weight_calculation: "holdings_percentage"
+      qualification_requirements:
+        - "Proof of BTC holdings"
+        - "Identity verification"
+        - "Long-term holding proof"
+
+  veto_thresholds:
+    mining_veto_percent: 30.0
+    economic_veto_percent: 40.0
+    grace_period_days: 30
+
+# Maintainers configuration
+maintainers:
+  layer_1_2_constitutional:
+    layer: 1
+    governance_level: "constitutional"
+    signature_threshold: "6-of-7"
+    review_period_days: 180
+    maintainers:
+      - github: "maintainer1"
+        public_key: "0335573cdcac8f622dddc6a6799050d3739b016f389b0c74f954e27c9d07797363"
+        role: "cryptographer"
+        status: "active"
+      - github: "maintainer2"
+        public_key: "0346160a24e2be28933de6dc1fedeab2e52aa21c5208b3f88c16e2f607568d40b4"
+        role: "protocol_expert"
+        status: "active"
+
+  layer_3_implementation:
+    layer: 3
+    governance_level: "implementation"
+    signature_threshold: "4-of-5"
+    review_period_days: 90
+    maintainers:
+      - github: "maintainer3"
+        public_key: "0x02[PLACEHOLDER_64_CHAR_HEX]"
+        role: "developer"
+        status: "active"
+
+# Repository configurations
+repositories:
+  orange_paper:
+    layer: 1
+    governance_level: "constitutional"
+    signature_threshold: "6-of-7"
+    review_period_days: 180
+    action_tier: 3
+    auto_classification:
+      patterns:
+        - "consensus-rules/**"
+        - "validation/**"
+        - "block-acceptance/**"
+      manual_override: true
+
+  consensus_proof:
+    layer: 2
+    governance_level: "constitutional"
+    signature_threshold: "6-of-7"
+    review_period_days: 180
+    action_tier: 3
+    auto_classification:
+      patterns:
+        - "proofs/**"
+        - "verification/**"
+      manual_override: true
+
+  protocol_engine:
+    layer: 3
+    governance_level: "implementation"
+    signature_threshold: "4-of-5"
+    review_period_days: 90
+    action_tier: 2
+    auto_classification:
+      patterns:
+        - "src/**"
+        - "examples/**"
+        - "tests/**"
+      manual_override: true
+
+# Governance fork configuration
+governance_fork:
+  fork_thresholds:
+    minimum_adoption_percentage: 50.0
+    minimum_node_count: 10
+    minimum_hashpower_percentage: 30.0
+    minimum_economic_activity_percentage: 40.0
+    grace_period_days: 30
+
+  fork_process:
+    step_1: "Export current governance configuration"
+    step_2: "Create new ruleset with version increment"
+    step_3: "Distribute to economic nodes"
+    step_4: "Track adoption metrics"
+    step_5: "Declare fork when threshold met"
+
+  adoption_tracking:
+    metrics_collection: "real_time"
+    dashboard_endpoint: "/adoption-metrics"
+    history_retention_days: 365
+    alert_thresholds:
+      adoption_rate: 25.0
+      hashpower_shift: 10.0
+      economic_shift: 15.0
+
+# Cross-layer dependencies
+cross_layer_rules:
+  - if_changed: "consensus-rules/**"
+    then_require_update: "consensus-proof/proofs/**"
+    validation: "equivalence_proof_exists"
+    error_message: "Consensus rule changes require corresponding proof updates"
+
+  - if_changed: "proofs/**"
+    then_require_update: "protocol-engine/src/**"
+    validation: "implementation_updated"
+    error_message: "Proof changes require protocol engine updates"
+
+# Emergency procedures
+emergency_procedures:
+  activation_tiers:
+    tier_1: "Critical security vulnerability"
+    tier_2: "Network stability threat"
+    tier_3: "Governance system compromise"
+
+  keyholders:
+    - name: "Emergency Keyholder 1"
+      public_key: "0x02[EMERGENCY_KEY_1]"
+      role: "security_expert"
+    - name: "Emergency Keyholder 2"
+      public_key: "0x02[EMERGENCY_KEY_2]"
+      role: "protocol_expert"
+
+  activation_process:
+    step_1: "Evidence collection and verification"
+    step_2: "Emergency keyholder signature"
+    step_3: "Immediate activation"
+    step_4: "Post-mortem within 7 days"
+
+# Validation requirements
+validation_requirements:
+  signature_verification:
+    algorithm: "secp256k1"
+    message_format: "PR #{number} in {repository}"
+    signature_format: "hex_encoded"
+
+  review_periods:
+    tier_1: 7
+    tier_2: 30
+    tier_3: 90
+    tier_4: 0
+    tier_5: 180
+
+  economic_node_verification:
+    hashpower_proof: "block_headers_and_timestamps"
+    holdings_proof: "address_signature_challenge"
+    volume_proof: "external_data_source_verification"
+
+# Monitoring and alerting
+monitoring:
+  metrics_collection:
+    - "signature_collection_rate"
+    - "review_period_compliance"
+    - "economic_node_participation"
+    - "veto_threshold_approaches"
+
+  alerting:
+    email_notifications: true
+    slack_integration: true
+    webhook_endpoints: []
+
+  dashboard:
+    adoption_metrics: "/adoption-metrics"
+    governance_status: "/governance-status"
+    economic_nodes: "/economic-nodes"
+    fork_events: "/fork-events"

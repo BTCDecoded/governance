@@ -1,21 +1,30 @@
-layer: 2
+layer: 1
 governance_level: constitutional
 signature_threshold: 6-of-7
 review_period_days: 180
 synchronized_with:
-  - orange-paper
+  - consensus-proof
+
+# Action tier classification
+action_tier: 3  # Consensus-adjacent (Tier 3)
+auto_classification:
+  patterns:
+    - "consensus-rules/**"
+    - "validation/**"
+    - "block-acceptance/**"
+  manual_override: true
 cross_layer_rules:
-  - if_changed: proofs/**
-    then_require_update: orange-paper/consensus-rules/**
-    validation: corresponding_rule_exists
-    bidirectional: true
+  - if_changed: consensus-rules/**
+    then_require_update: consensus-proof/proofs/**
+    validation: equivalence_proof_exists
+    error_message: "Consensus rule changes require corresponding proof updates"
 
 consensus_rule_changes:
   detection:
     patterns:
-      - "proofs/**"
+      - "consensus-rules/**"
       - "validation/**"
-      - "verification/**"
+      - "block-acceptance/**"
   
   repository_requirements:
     maintainer_threshold: 6-of-7

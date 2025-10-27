@@ -1,353 +1,230 @@
 # BTCDecoded Governance Scope
 
-## Executive Summary
+## Overview
 
-BTCDecoded governance is **binding** for repository access and **advisory** for protocol changes. Maintainers control what enters the official codebase, but users control what runs on the network.
+BTCDecoded governance operates on two distinct levels:
 
-This document clarifies the distinction between repository governance (what we control) and protocol governance (what we don't control).
+1. **Repository Governance** (Binding) - What we control
+2. **Protocol Governance** (Advisory) - What we influence
 
-## Domain 1: Repository Governance (Binding)
+This document clarifies the scope and limitations of BTCDecoded's governance system.
+
+## Repository Governance (Binding Authority)
 
 ### What We Control
 
-**Merge Access:**
-- Who can commit code to BTCDecoded repositories
-- When pull requests can be merged
-- What code quality standards apply
-- Release timing and versioning
+**Code Repository Access:**
+- Merge permissions to BTCDecoded repositories
+- Code quality standards and review processes
+- Release creation and versioning
+- Maintainer selection and removal
 
-**Maintainer Management:**
-- Selection and removal of maintainers
-- Maintainer roles and responsibilities
-- Access permissions
-- Emeritus status
+**Development Process:**
+- Pull request review requirements
+- Signature thresholds for different change types
+- Review periods and waiting times
+- Emergency response procedures
 
-**Release Creation:**
-- Official BTCDecoded release builds
-- Release notes and documentation
-- Distribution via BTCDecoded channels
-- Version numbering
-
-**Code Quality:**
-- Test coverage requirements
-- Documentation standards
-- Code review processes
-- CI/CD enforcement
-
-### Authority Scope
-
-These decisions are **binding within the BTCDecoded GitHub organization**. Maintainer signatures required for merge are enforced by the Governance App via GitHub status checks.
-
-### Mechanism
-
-Multi-signature governance with layer-appropriate thresholds:
-- Constitutional layers (1-2): 6-of-7 maintainers
-- Implementation layer (3): 4-of-5 maintainers
-- Application layer (4): 3-of-5 maintainers
-- Extension layer (5): 2-of-3 maintainers
-
-## Domain 2: Protocol Governance (Advisory)
+**Technical Standards:**
+- Code style and formatting requirements
+- Testing and documentation standards
+- Security audit requirements
+- Performance benchmarks
 
 ### What We Don't Control
 
 **Bitcoin Network Consensus:**
-- Consensus rule changes
-- Block validation logic
-- Transaction acceptance criteria
-- Network protocol rules
+- Bitcoin's consensus rules (immutable by design)
+- Network upgrade activation mechanisms
+- User adoption decisions
+- Miner signaling and hash power
+
+**User Sovereignty:**
+- Which software users choose to run
+- Node operator configuration choices
+- Economic decisions and market behavior
+- Fork creation and maintenance
+
+## Protocol Governance (Advisory Influence)
+
+### What We Influence
+
+**Code Quality for Consensus Changes:**
+- Maintainers can approve high-quality consensus change code
+- Provide technical specifications and audit requirements
+- Ensure mathematical correctness and security
+
+**User Education:**
+- Document the implications of proposed changes
+- Provide clear upgrade paths and migration guides
+- Explain technical trade-offs and considerations
+
+**Community Coordination:**
+- Facilitate discussion between stakeholders
+- Provide neutral technical analysis
+- Coordinate with other Bitcoin implementations
+
+### What We Cannot Do
+
+**Force Network Adoption:**
+- No amount of maintainer signatures forces users to upgrade
+- Cannot prevent users from running alternative software
+- Cannot control economic incentives or market forces
+
+**Override User Choice:**
+- Users remain sovereign over their node software
+- Economic majority determines network rules
+- Users can fork, reject, or modify any changes
+
+## Practical Examples
+
+### Example 1: Consensus Rule Change
+
+**What We Can Do (Repository Governance):**
+- Require 6-of-7 maintainer signatures for consensus code changes
+- Mandate 365-day review period for consensus changes
+- Require BIP specification, test vectors, and security audit
+- Approve high-quality code for release
+
+**What We Cannot Do (Protocol Governance):**
+- Force users to upgrade to new consensus rules
+- Control when or if the change activates on the network
+- Prevent users from running software that rejects the change
+- Override economic majority decisions
+
+**User Process:**
+1. Maintainers approve code (6-of-7 signatures, 365 days)
+2. Code released as optional upgrade
+3. Users evaluate and choose whether to run it
+4. Economic coordination determines activation
+5. Users who disagree can fork or reject
+
+### Example 2: Emergency Security Fix
+
+**What We Can Do (Repository Governance):**
+- Activate emergency tier for critical vulnerabilities
+- Reduce review period to 0 days for network-threatening bugs
+- Require 4-of-5 signatures for emergency patches
+- Coordinate with security researchers
+
+**What We Cannot Do (Protocol Governance):**
+- Force immediate network-wide adoption
+- Prevent users from running vulnerable software
+- Control how quickly users upgrade
+- Override user risk assessments
+
+**User Process:**
+1. Maintainers release emergency patch
+2. Users evaluate severity and upgrade timeline
+3. Economic coordination determines adoption speed
+4. Users who disagree can choose different responses
+
+### Example 3: New RPC Method
+
+**What We Can Do (Repository Governance):**
+- Require 4-of-5 signatures for new features
+- Mandate 30-day review period
+- Require technical specification
+- Ensure backward compatibility
+
+**What We Cannot Do (Protocol Governance):**
+- Force users to use the new RPC method
+- Control how users integrate with the new feature
+- Prevent users from implementing alternatives
+- Override user preference for different APIs
+
+## Economic Node Role
+
+Economic nodes (mining pools, exchanges, custodians) provide:
 
-**User Adoption:**
-- Whether users run BTCDecoded software
-- Which version users choose to run
-- Whether users upgrade
-- Whether users fork the code
-
-**Node Operator Choices:**
-- Configuration decisions
-- Network participation
-- Software alternatives
-- Policy settings
+**Veto Power (Repository Governance):**
+- Can veto Tier 3+ changes (consensus-adjacent, emergency, governance)
+- 30%+ hashpower or 40%+ economic activity threshold
+- Binding authority over repository merges
 
-**Miner Signaling:**
-- Hash power allocation
-- Version bit signaling
-- Block template selection
-- Fee policies
+**Advisory Input (Protocol Governance):**
+- Signal preferences for consensus changes
+- Provide economic analysis and impact assessment
+- Coordinate with user community on adoption
 
-### Authority Scope
+**Important:** Economic node vetoes affect repository access, not user choice. Users remain free to run any software they prefer.
 
-BTCDecoded maintainers have **zero enforcement power** over the Bitcoin network. We can approve code for release, but we cannot force adoption.
+## Governance Fork Capability
 
-### Mechanism
+If users disagree with maintainer decisions:
 
-**Voluntary Adoption:**
+**Repository Fork:**
+- Users can fork BTCDecoded repositories
+- Maintain their own governance rules
+- Compete for user adoption
 
-1. **Maintainers Approve**: 6-of-7 signatures on consensus-affecting code
-2. **Code Released**: Published as optional upgrade
-3. **Users Decide**: Node operators choose whether to upgrade
-4. **Network Signals**: Version bits, node counts, economic activity
-5. **Activation**: Based on user signaling thresholds (if applicable)
+**Protocol Fork:**
+- Users can create alternative Bitcoin implementations
+- Maintain different consensus rules
+- Compete in the market for adoption
 
-**Key Principle:** No amount of maintainer signatures forces network adoption. Users retain complete sovereignty.
+**Exit Strategy:**
+- Users always retain the option to exit
+- No single point of failure or control
+- Market forces determine success
 
-## Relationship Between Domains
+## Safeguards and Limitations
 
-### How They Interact
+### Built-in Safeguards
 
-```
-Repository Governance → Code Approval → Release
-                                          ↓
-                              User Choice (Advisory)
-                                          ↓
-                              Network Adoption (or Not)
-```
+**Multi-Signature Requirements:**
+- No single maintainer can make decisions
+- Higher layers require more consensus
+- Emergency procedures have time limits
 
-**Repository governance enables release. User choice determines adoption.**
+**Transparency:**
+- All governance decisions are public
+- Cryptographic audit trail of all actions
+- Community oversight and accountability
 
-### Consensus Change Example
+**User Protection:**
+- Users control their own software
+- Economic coordination prevents capture
+- Exit options always available
 
-Suppose maintainers approve a consensus rule change:
+### System Limitations
 
-**Repository Side (Binding):**
-- PR requires 6-of-7 maintainer signatures ✓
-- 365-day review period must elapse ✓
-- BIP specification must exist ✓
-- Test vectors must be comprehensive ✓
-- Security audit must pass ✓
-- Equivalence proof must be valid ✓
+**Cannot Override Bitcoin's Design:**
+- Bitcoin's consensus rules are immutable by design
+- Users are sovereign over their node software
+- Economic incentives drive adoption, not authority
 
-**Network Side (Advisory):**
-- Code released as optional upgrade
-- Users choose whether to run it
-- Network signaling measured (75% nodes, 90% hash power, economic majority)
-- Activation decision based on actual adoption
-- **Users can reject regardless of maintainer consensus**
+**Cannot Force Coordination:**
+- Cannot control user upgrade decisions
+- Cannot prevent alternative implementations
+- Cannot override market forces
 
-### What Happens If Users Reject
-
-If 6-of-7 maintainers approve a consensus change but users don't adopt:
-
-1. **Code enters repository** (repository governance binding)
-2. **Release published** (repository governance binding)
-3. **Network ignores it** (user sovereignty)
-4. **Change doesn't activate** (protocol governance advisory)
-
-Result: Maintainers approved code that users rejected. Users remain sovereign.
-
-## User Sovereignty Guarantee
-
-### Rights Users Always Retain
-
-**Right to Fork:**
-- Users can fork BTCDecoded code at any time
-- Users can fork Bitcoin itself if dissatisfied
-- No maintainer approval required
-- No governance process can prevent forks
-
-**Right to Run Alternatives:**
-- Users can run Bitcoin Core, btcd, bcoin, or any implementation
-- No obligation to use BTCDecoded software
-- Can mix and match implementations
-- Can write new implementations
-
-**Right to Reject Changes:**
-- Users can refuse to upgrade
-- Users can run older versions indefinitely
-- No forced upgrades possible
-- Network consensus determined by economic majority
-
-**Right to Propose Alternatives:**
-- Users can submit competing BIPs
-- Users can implement and release alternatives
-- Users can advocate for different approaches
-- Community discussion remains open
-
-### Historical Context: Bitcoin Governance
-
-**Bitcoin Core Precedent:**
-- Bitcoin Core has no formal governance
-- Maintainers have commit access
-- Consensus changes require broad community support
-- Users have repeatedly rejected Core proposals (e.g., SegWit2x)
-
-**Key Historical Events:**
-
-1. **SegWit2x (2017)**: Major companies and miners supported. Users rejected. Proposal cancelled.
-2. **UASF (2017)**: Users threatened fork to activate SegWit. Miners complied with user demand.
-3. **Block Size Debate (2015-2017)**: Years of debate, multiple forks (BCH, BSV), demonstrated user sovereignty.
-
-**Lesson:** Bitcoin users govern the protocol through voluntary coordination. No centralized authority can force changes.
-
-### BTCDecoded Position
-
-We adopt Bitcoin's user sovereignty model:
-
-- **Repository governance provides structure** (managing the commons)
-- **Protocol governance remains emergent** (user coordination)
-- **Maintainers propose, users dispose** (advisory nature)
-- **Economic majority decides** (market forces)
-
-## Ostrom Principles Compliance
-
-Elinor Ostrom's principles for managing common-pool resources apply to **repository governance** (the codebase), not **protocol governance** (the network).
-
-### Codebase as Common-Pool Resource
-
-**Resource:** BTCDecoded GitHub repositories and commit access
-
-**Governance Application:**
-
-1. **Clearly Defined Boundaries**: Maintainers defined, repository scope explicit
-2. **Proportional Equivalence**: Higher layers require more consensus (6-of-7 vs 2-of-3)
-3. **Collective Choice**: Maintainers participate in governance rule-making
-4. **Monitoring**: Governance App enforces rules transparently
-5. **Graduated Sanctions**: Warning system before maintainer removal
-6. **Conflict Resolution**: Meta-governance process for disputes
-7. **Minimal Recognition of Rights**: GitHub recognizes governance structure
-8. **Nested Enterprises**: Layered architecture with tier-appropriate rules
-
-**Ostrom Compliance:** We govern access to the **codebase commons**, not the **network commons**.
-
-### Network as Separate Commons
-
-**Resource:** Bitcoin network consensus rules
-
-**Governance Reality:**
-- No formal governance structure
-- Emergent coordination among users
-- Economic incentives drive behavior
-- Fork mechanism for disputes
-- User sovereignty paramount
-
-**Ostrom Limitation:** Ostrom's principles apply to managed commons with defined boundaries. Bitcoin's network has no central authority to manage it. Users self-organize.
-
-**BTCDecoded Approach:** We don't claim to govern the network. We govern our repositories and make advisory recommendations.
-
-## Comparison to Other Projects
-
-### Bitcoin Core
-
-**Repository Governance:**
-- Informal, no signature requirements
-- Maintainers have commit access
-- Review-based (ACK/NACK)
-- No enforcement mechanism
-
-**Protocol Governance:**
-- Advisory only
-- Community consensus required
-- Users retain sovereignty
-- Historical precedent strong
-
-### Ethereum
-
-**Repository Governance:**
-- Core dev teams maintain implementations
-- Informal process
-- No signature requirements
-
-**Protocol Governance:**
-- Core devs coordinate hard forks
-- EIP process for proposals
-- Community signaling (coin votes, social consensus)
-- More frequent changes than Bitcoin
-
-### BTCDecoded
-
-**Repository Governance:**
-- Formal multi-signature requirements
-- Enforcement via Governance App
-- Layer-appropriate thresholds
-- Transparent and auditable
-
-**Protocol Governance:**
-- Advisory only (like Bitcoin Core)
-- User sovereignty explicit
-- Formal signaling thresholds recommended
-- Longer review periods (365 days for consensus)
-
-**Innovation:** We formalize repository governance while maintaining advisory-only protocol governance.
-
-## Practical Implications
-
-### For Maintainers
-
-**You Control:**
-- What enters BTCDecoded repositories
-- When releases are published
-- Code quality standards
-- Development priorities
-
-**You Don't Control:**
-- Whether users adopt your code
-- Bitcoin network consensus rules
-- User configuration choices
-- Alternative implementations
-
-**Your Role:**
-- Steward the codebase
-- Review and approve quality code
-- Coordinate releases
-- Advocate for good protocol design
-- **Serve users, don't command them**
-
-### For Users
-
-**You Control:**
-- Whether to run BTCDecoded software
-- Which version to run
-- Whether to upgrade
-- Whether to fork and modify
-- Bitcoin consensus rules (via economic coordination)
-
-**You Don't Control:**
-- What enters BTCDecoded repositories (unless you're a maintainer)
-- What maintainers choose to work on
-- Release timing
-
-**Your Role:**
-- Choose software that serves your needs
-- Signal preferences through adoption
-- Participate in protocol discussions
-- Fork if dissatisfied
-- **Exercise sovereignty responsibly**
-
-### For the Ecosystem
-
-**Healthy Dynamics:**
-- Maintainers propose quality changes
-- Users evaluate and choose
-- Economic incentives align
-- Forks possible but rare
-- Coordination without coercion
-
-**Unhealthy Dynamics to Avoid:**
-- Maintainers claiming protocol authority
-- Users expecting maintainers to "fix" the network
-- Confusion between repository and protocol governance
-- Centralization of decision-making
-- Forced upgrades
+**Cannot Guarantee Adoption:**
+- Code quality doesn't guarantee user adoption
+- Technical merit doesn't ensure economic success
+- Maintainer approval doesn't force network changes
 
 ## Conclusion
 
-BTCDecoded governance is **dual-track**:
+BTCDecoded governance provides:
 
-1. **Repository Governance (Binding)**: Multi-signature control over merge access and releases
-2. **Protocol Governance (Advisory)**: User sovereignty over network adoption
+1. **High-quality code** through rigorous review processes
+2. **User education** through clear documentation and analysis
+3. **Community coordination** through transparent decision-making
+4. **Emergency response** through structured crisis management
 
-We formalize what we control (repositories) and explicitly disclaim what we don't (the network).
+But it cannot and does not attempt to:
 
-This approach:
-- Provides structure for codebase management
-- Preserves user sovereignty for protocol changes
-- Follows Ostrom's principles for the codebase commons
-- Respects Bitcoin's ethos of decentralization
-- Makes our authority explicit and limited
+1. **Control Bitcoin's consensus rules** (users remain sovereign)
+2. **Force network adoption** (economic coordination required)
+3. **Override user choice** (exit options always available)
+4. **Replace market forces** (competition drives innovation)
 
-**Maintainers serve users. Users govern Bitcoin.**
+**The fundamental principle:** We govern the codebase commons (repository access), not the network commons (Bitcoin protocol). Users govern the network through voluntary adoption and economic coordination.
 
----
+## Related Documentation
 
-*For questions about this scope distinction, see GOVERNANCE.md or open a discussion in the governance repository.*
-
-
+- [GOVERNANCE.md](GOVERNANCE.md) - Main governance process
+- [LAYER_TIER_MODEL.md](LAYER_TIER_MODEL.md) - How layers and tiers work
+- [Configuration Files](config/README.md) - Technical configuration
+- [Economic Node Guide](guides/ECONOMIC_NODE_GUIDE.md) - Economic node role

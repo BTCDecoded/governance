@@ -1,6 +1,19 @@
-# BTCDecoded Governance Configuration
+# BTCDecoded Governance System
 
 Central source of truth for governance rules across all BTCDecoded repositories.
+
+## ⚠️ ACTIVATION STATUS
+
+**Current Status: Phase 1 (Infrastructure Building)**
+
+- ✅ **Infrastructure Complete**: All core components implemented
+- ⚠️ **Not Yet Activated**: Governance rules are not enforced
+- 🔧 **Test Keys Only**: No real cryptographic enforcement
+- 📋 **Development Phase**: System is in rapid AI-assisted development
+
+**Timeline:**
+- **Phase 2 Activation**: 3-6 months (governance enforcement begins)
+- **Phase 3 Full Operation**: 12+ months (mature, stable system)
 
 ## Overview
 
@@ -13,7 +26,19 @@ This repository defines:
 
 **Key Distinction:** We govern repository access (binding) and provide guidance for protocol changes (advisory). Users remain sovereign over Bitcoin's consensus rules.
 
-## Layer Hierarchy
+## Constitutional Governance Model
+
+BTCDecoded implements a **5-tier constitutional governance system** that makes Bitcoin governance **6x harder to capture** than Bitcoin Core's current model, with **complete transparency** through cryptographic audit trails and **user-protective** mechanisms.
+
+### Action Tiers
+
+- **Tier 1: Routine Maintenance** (3-of-5, 7 days) - Bug fixes, documentation, performance
+- **Tier 2: Feature Changes** (4-of-5, 30 days) - New RPC methods, P2P changes, wallet features
+- **Tier 3: Consensus-Adjacent** (5-of-5, 90 days + economic node veto) - Changes affecting consensus validation
+- **Tier 4: Emergency Actions** (4-of-5, 0 days review period) - Critical security patches, network threats
+- **Tier 5: Governance Changes** (Special process, 180 days) - Changes to governance rules themselves
+
+### Layer Hierarchy
 
 1. **Orange Paper** (Layer 1) - Constitutional, 6-of-7, 180 days (365 for consensus)
 2. **Consensus Proof** (Layer 2) - Constitutional, 6-of-7, 180 days (365 for consensus)
@@ -21,52 +46,82 @@ This repository defines:
 4. **Reference Node** (Layer 4) - Application, 3-of-5, 60 days
 5. **Developer SDK** (Layer 5) - Extension, 2-of-3, 14 days
 
-## Emergency Tier System
+## Directory Structure
 
-Three-tiered response for critical issues:
+```
+governance/
+├── README.md (this file - navigation hub)
+├── GOVERNANCE.md (core governance process)
+├── LAYER_TIER_MODEL.md (how layers and tiers combine)
+├── SCOPE.md (repository vs protocol governance)
+├── LICENSE
+│
+├── guides/ (comprehensive guides)
+│   ├── MAINTAINER_GUIDE.md
+│   └── ECONOMIC_NODE_GUIDE.md
+│
+├── activation/ (activation process)
+│   ├── PHASE_ACTIVATION.md
+│   └── ACTIVATION_CHECKLIST.md (coming soon)
+│
+├── config/ (configuration files)
+│   ├── action-tiers.yml (tier definitions)
+│   ├── repository-layers.yml (layer definitions)
+│   ├── tier-classification-rules.yml (PR classification)
+│   ├── economic-nodes.yml
+│   ├── emergency-tiers.yml
+│   ├── governance-fork.yml
+│   ├── ruleset-export-template.yml
+│   ├── maintainers/ (by layer)
+│   └── repos/ (by repository)
+│
+├── examples/ (workflow examples)
+│   ├── consensus-change-workflow.md
+│   ├── emergency-response.md
+│   ├── tier1-routine-pr.md (coming soon)
+│   ├── tier3-consensus-adjacent.md (coming soon)
+│   └── economic-node-veto.md (coming soon)
+│
+└── architecture/ (design documentation)
+    ├── CRYPTOGRAPHIC_GOVERNANCE.md
+    ├── ECONOMIC_NODES.md
+    ├── GOVERNANCE_FORK.md
+    └── CROSS_LAYER_DEPENDENCIES.md (coming soon)
+```
 
-- **Tier 1 (Critical)**: 0 day review, 4-of-7 signatures, 7 day max (inflation bugs, consensus forks)
-- **Tier 2 (Urgent)**: 7 day review, 5-of-7 signatures, 30 day max (security issues, privacy leaks)
-- **Tier 3 (Elevated)**: 30 day review, 6-of-7 signatures, 90 day max (important priorities)
+## Quick Navigation
 
-All tiers require 5-of-7 emergency keyholders to activate. See `emergency-tiers.yml` for full specification.
+### For New Users
+- [Main Governance Process](GOVERNANCE.md) - How governance works
+- [Layer + Tier Model](LAYER_TIER_MODEL.md) - How layers and tiers combine
+- [Governance Scope](SCOPE.md) - What we control vs what we influence
+- [Maintainer Guide](guides/MAINTAINER_GUIDE.md) - If you're a maintainer
+- [Economic Node Guide](guides/ECONOMIC_NODE_GUIDE.md) - If you're an economic node
+- [Examples](examples/README.md) - See governance in action
 
-## Consensus Change Process
+### For Maintainers
+- [Maintainer Guide](guides/MAINTAINER_GUIDE.md) - Complete maintainer documentation
+- [Configuration Files](config/README.md) - How to modify configuration
+- [Activation Process](activation/README.md) - When governance will be activated
+- [Examples](examples/README.md) - Practical workflows
 
-Consensus rule changes have special requirements:
+### For Economic Nodes
+- [Economic Node Guide](guides/ECONOMIC_NODE_GUIDE.md) - Complete economic node documentation
+- [Economic Node Configuration](config/economic-nodes.yml) - Configuration details
+- [Veto Examples](examples/economic-node-veto.md) - How veto process works
+- [Activation Timeline](activation/README.md) - When to expect activation
 
-**Repository Approval (Binding):**
-- 6-of-7 maintainer signatures
-- 365-day review period (1 year)
-- BIP specification required
-- Security audit required
-- Equivalence proof required
+### For Developers
+- [Architecture Documentation](architecture/README.md) - System design
+- [Configuration Reference](config/README.md) - Technical configuration
+- [Governance App Documentation](../governance-app/README.md) - Implementation details
+- [Audit Materials](../audit-materials/README.md) - Security and audit information
 
-**User Activation (Advisory):**
-- Optional upgrade released
-- Users choose whether to adopt
-- Network signaling measured (75% nodes, 90% hashpower recommended)
-- No forced adoption—users govern Bitcoin
-
-See `SCOPE.md` for detailed explanation of repository vs. protocol governance.
-
-## Repository Structure
-
-- `repos/` - Per-repository governance rules (including consensus change detection)
-- `maintainers/` - Maintainer public keys by layer
-- `emergency-tiers.yml` - Emergency response configuration
-- `cross-layer-rules.yml` - Cross-repository validation rules
-- `warnings/` - Formal warnings (if needed)
-- `examples/` - Workflow guides and historical case studies
-- `GOVERNANCE.md` - Detailed process documentation
-- `SCOPE.md` - Repository vs. protocol governance clarification
-
-## Quick Links
-
-- **[Full Governance Process](GOVERNANCE.md)** - Detailed documentation
-- **[Scope Clarification](SCOPE.md)** - What we control vs. what users control
-- **[Consensus Change Workflow](examples/consensus-change-workflow.md)** - Step-by-step guide for protocol changes
-- **[Emergency Response](examples/emergency-response.md)** - How to activate emergency tiers
+### For Auditors
+- [Audit Materials](../audit-materials/README.md) - Complete audit documentation
+- [Architecture Documentation](architecture/README.md) - System design
+- [Security Documentation](../audit-materials/02-security/README.md) - Security details
+- [Test Coverage](../audit-materials/03-testing/README.md) - Testing information
 
 ## Key Principles
 
@@ -110,6 +165,16 @@ To propose governance changes:
 4. 90-day review + 30-day public comment period
 
 See `GOVERNANCE.md` section on Meta-Governance for details.
+
+## Related Documentation
+
+- [Audit Materials](../audit-materials/README.md) - Security and audit information
+- [Governance App](../governance-app/README.md) - Implementation details
+- [Developer SDK](../developer-sdk/README.md) - Cryptographic primitives
+- [Orange Paper](../orange-paper/README.md) - Constitutional layer
+- [Consensus Proof](../consensus-proof/README.md) - Constitutional layer
+- [Protocol Engine](../protocol-engine/README.md) - Implementation layer
+- [Reference Node](../reference-node/README.md) - Application layer
 
 
 

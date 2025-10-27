@@ -1,0 +1,128 @@
+# Action Tier Configuration
+# Defines signature requirements and review periods for different types of changes
+
+tiers:
+  tier_1_routine:
+    name: "Routine Maintenance"
+    description: "Bug fixes, documentation, performance optimizations"
+    signatures:
+      required: 3
+      total: 5
+    review_period_days: 7
+    economic_veto: false
+    emergency_override: false
+    examples:
+      - "Fix typo in documentation"
+      - "Performance optimization"
+      - "Bug fix in non-consensus code"
+      - "Code cleanup"
+
+  tier_2_features:
+    name: "Feature Changes"
+    description: "New RPC methods, P2P changes, wallet features"
+    signatures:
+      required: 4
+      total: 5
+    review_period_days: 30
+    economic_veto: false
+    emergency_override: false
+    requires_specification: true
+    examples:
+      - "New RPC method"
+      - "P2P protocol change"
+      - "Wallet feature addition"
+      - "New configuration option"
+
+  tier_3_consensus_adjacent:
+    name: "Consensus-Adjacent"
+    description: "Changes affecting consensus validation code"
+    signatures:
+      required: 5
+      total: 5
+    review_period_days: 90
+    economic_veto: true
+    emergency_override: false
+    requires_specification: true
+    requires_audit: true
+    examples:
+      - "Change to block validation logic"
+      - "Modify transaction validation"
+      - "Update consensus rules"
+      - "Change block acceptance criteria"
+
+  tier_4_emergency:
+    name: "Emergency Actions"
+    description: "Critical security patches, network-threatening bugs"
+    signatures:
+      required: 4
+      total: 5
+    review_period_days: 0
+    economic_veto: false
+    emergency_override: true
+    requires_post_mortem: true
+    examples:
+      - "Critical security vulnerability"
+      - "Network DoS fix"
+      - "Inflation bug patch"
+      - "Consensus fork prevention"
+
+  tier_5_governance:
+    name: "Governance Changes"
+    description: "Changes to governance rules themselves"
+    signatures:
+      required: 5
+      total: 5
+    review_period_days: 180
+    economic_veto: true
+    emergency_override: false
+    requires_public_comment: true
+    requires_rationale: true
+    examples:
+      - "Change signature thresholds"
+      - "Modify review periods"
+      - "Update maintainer selection process"
+      - "Change emergency procedures"
+
+# Emergency tier system (separate from action tiers)
+emergency_tiers:
+  critical:
+    name: "Critical Emergency"
+    description: "Network-threatening vulnerabilities"
+    activation_threshold: 5
+    activation_total: 7
+    review_period_days: 0
+    max_duration_days: 7
+    extensions_allowed: 0
+    examples:
+      - "Inflation bugs (CVE-2010-5139 class)"
+      - "Consensus fork risks (CVE-2018-17144 class)"
+      - "P2P network DoS vulnerabilities"
+      - "Remote code execution"
+
+  urgent:
+    name: "Urgent Security Issue"
+    description: "Serious security issues requiring quick response"
+    activation_threshold: 5
+    activation_total: 7
+    review_period_days: 7
+    max_duration_days: 30
+    extensions_allowed: 1
+    examples:
+      - "Memory corruption vulnerabilities"
+      - "Privacy leaks (transaction linkage)"
+      - "Crash exploits (non-DoS)"
+      - "Privilege escalation"
+
+  elevated:
+    name: "Elevated Priority"
+    description: "Important but not critical issues"
+    activation_threshold: 5
+    activation_total: 7
+    review_period_days: 30
+    max_duration_days: 90
+    extensions_allowed: 2
+    examples:
+      - "Competitive response (other implementations advancing)"
+      - "Important bug fixes (non-security)"
+      - "Performance degradation issues"
+      - "Ecosystem compatibility problems"

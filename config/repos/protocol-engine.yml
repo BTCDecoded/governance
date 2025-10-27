@@ -8,6 +8,15 @@ validation_requirements:
   - must_reference_version: orange-paper@v{VERSION}
   - equivalence_proof_required: true
 
+# Action tier classification
+action_tier: 2  # Features (Tier 2)
+auto_classification:
+  patterns:
+    - "src/**"
+    - "examples/**"
+    - "tests/**"
+  manual_override: true
+
 
 
 

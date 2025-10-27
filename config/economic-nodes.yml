@@ -1,0 +1,188 @@
+# Economic Node Registry and Veto System
+# Defines who qualifies as economic nodes and how veto mechanism works
+
+economic_node_types:
+  mining_pools:
+    name: "Mining Pools"
+    qualification:
+      minimum_hashpower: "1% of network"
+      measurement_period: "30-day rolling average"
+      verification: "Fully cryptographic (coinbase signatures)"
+    veto_weight: "Percentage of network hashpower"
+    verification_process:
+      - "Pool proves hashpower via coinbase signatures"
+      - "Provides list of blocks mined (with coinbase outputs)"
+      - "Signs veto message with same keys used in coinbase"
+      - "Anyone can verify on-chain (public blockchain data)"
+      - "30-day rolling average prevents gaming"
+    weight_calculation:
+      - "Count blocks mined over 30 days"
+      - "Divide by total blocks in period"
+      - "Percentage = veto power weight"
+    properties:
+      - "Fully trustless: Pure cryptographic verification"
+      - "Cannot fake hashpower (on-chain proof required)"
+      - "Weight directly proportional to network contribution"
+
+  exchanges:
+    name: "Exchanges"
+    qualification:
+      minimum_volume: "$100M daily trading volume"
+      minimum_holdings: "10,000 BTC"
+      node_requirement: "Must run BTCDecoded full node"
+    veto_weight: "Combined holdings + activity weight"
+    verification_challenges:
+      holdings: "CAN verify cryptographically"
+      volume: "CANNOT verify cryptographically"
+    verification_process:
+      holdings:
+        - "Signature challenge on claimed UTXOs"
+        - "Proves control of specific Bitcoin addresses"
+        - "Public verification (anyone can check signatures)"
+        - "Trustless verification possible"
+      volume:
+        - "Most trading is off-chain (internal databases)"
+        - "No on-chain proof of volume"
+        - "Requires trust in reported numbers"
+        - "Can use external data providers for validation"
+    weight_calculation:
+      primary_weight: "Proven holdings (70% weight)"
+      secondary_weight: "Reported activity (30% weight, trust-discounted)"
+      formula: "0.7 × holdings_percentage + 0.3 × volume_percentage"
+
+  custodians:
+    name: "Custodians"
+    qualification:
+      minimum_holdings: "10,000 BTC"
+      node_requirement: "Must run BTCDecoded full node"
+    veto_weight: "Percentage of proven holdings"
+    verification: "Same as exchanges (holdings cryptographic, activity trust-based)"
+
+  payment_processors:
+    name: "Payment Processors"
+    qualification:
+      minimum_volume: "$50M monthly BTC transactions"
+      node_requirement: "Must run BTCDecoded full node"
+    veto_weight: "Percentage of transaction volume"
+    verification: "Partially verifiable (on-chain transactions visible)"
+
+  major_holders:
+    name: "Major Holders"
+    qualification:
+      minimum_holdings: "5,000 BTC"
+      node_requirement: "Must run BTCDecoded full node"
+    veto_weight: "Percentage of proven holdings"
+    verification: "Fully cryptographic (signature challenges)"
+
+veto_mechanism:
+  description: "Economic nodes can veto Tier 3+ changes during review period"
+  applicable_tiers:
+    - "Tier 3 (Consensus-Adjacent)"
+    - "Tier 4 (Emergency) - 24-hour veto window"
+    - "Tier 5 (Governance) - signaling required"
+  veto_thresholds:
+    tier_3:
+      mining_veto: "30%+ hashpower objects"
+      economic_veto: "40%+ economic activity objects"
+      either_threshold_blocks: true
+    tier_4:
+      economic_veto: "2+ economic nodes can block within 24h"
+      real_time_oversight: true
+    tier_5:
+      mining_signaling: "50%+ hashpower support required"
+      economic_signaling: "60%+ economic activity support required"
+      both_required: true
+
+veto_signal_format:
+  required_fields:
+    - "Entity identification (registered economic node)"
+    - "Signing key (registered with governance system)"
+    - "PR identifier (what's being vetoed)"
+    - "Timestamp"
+    - "Veto weight (% hashrate or % economic activity)"
+    - "Rationale (technical concerns, must be substantive)"
+    - "Signature (cryptographic proof of veto)"
+  optional_fields:
+    - "Alternative proposal"
+    - "Technical analysis"
+    - "Risk assessment"
+
+anti_gaming_mechanisms:
+  sybil_resistance:
+    - "Economic nodes must prove qualification (can't fake)"
+    - "Hashrate measured on-chain (can't fake)"
+    - "Holdings proven via signature challenges"
+    - "Trading volume verified by multiple sources"
+  rationale_requirement:
+    - "Vetoes without substantive rationale ignored"
+    - "Must provide technical analysis, not just 'I object'"
+    - "Frivolous vetoes damage reputation"
+    - "Pattern of bad-faith vetoes → removal from registry"
+  public_accountability:
+    - "All vetoes are public and signed"
+    - "Community can scrutinize rationale"
+    - "Journalists can report on veto patterns"
+    - "Reputational cost to unjustified vetoes"
+  time_limits:
+    - "Can only veto during review window"
+    - "Cannot veto after window closes"
+    - "Cannot retroactively veto merged changes"
+
+qualification_process:
+  application:
+    - "Entity submits application with proof of qualification"
+    - "Node verification (must be running BTCDecoded)"
+    - "Signing key registration (for veto signals)"
+    - "Contact information (for coordination)"
+  verification_period: "30 days"
+  verification_checks:
+    - "Confirm proof of hashrate/volume/holdings"
+    - "Verify node is actually running and synced"
+    - "Check for conflicts of interest"
+    - "Community review of application"
+  approval:
+    - "3-of-5 maintainer approval required"
+    - "OR automatic if thresholds clearly met"
+    - "Added to economic node registry"
+  ongoing_monitoring:
+    - "Must maintain qualification thresholds"
+    - "Quarterly re-verification"
+    - "Can be removed if no longer qualified"
+    - "Can voluntarily withdraw"
+
+dispute_resolution:
+  challenge_process:
+    - "Community or other economic nodes can challenge claims"
+    - "Challenge must provide evidence (not just accusation)"
+    - "Economic node has 14 days to provide proof"
+  proof_requirements:
+    holdings: "Cryptographic signatures"
+    volume: "Third-party audit or data provider verification"
+    reputation: "Historical consistency of reporting"
+    transparency: "Detailed breakdown of claimed metrics"
+  consequences:
+    insufficient_proof:
+      - "Economic node removed from registry"
+      - "Veto power recalculated without them"
+      - "Can reapply with better verification"
+      - "Dishonest claims → permanent ban"
+    all_disputes_logged: "Transparency system"
+
+pragmatic_verification:
+  phase_1_approach: "Accept Imperfect Verification"
+  limitations_acknowledged:
+    - "Perfect verification of all economic activity is impossible"
+    - "Off-chain economic activity cannot be fully verified on-chain"
+    - "Some trust is required in reputable entities"
+    - "Cryptographic verification (holdings, hashpower) is prioritized"
+    - "Reported metrics (volume, processing) are trust-discounted"
+  improvement_over_time:
+    - "System improves as verification methods advance"
+    - "Build reputation through consistent transparency"
+    - "Work with data providers for better verification"
+    - "Iterate based on experience and available technology"
+  honest_communication:
+    - "Acknowledge limitations honestly in documentation"
+    - "Balance verification rigor with practical feasibility"
+    - "Prioritize cryptographically verifiable metrics"
+    - "Provide clear procedures for disputes"

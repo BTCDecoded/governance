@@ -1,0 +1,181 @@
+# Tier Classification Rules
+# Defines how to automatically classify PRs into action tiers
+
+classification_rules:
+  tier_1_routine:
+    name: "Routine Maintenance"
+    confidence_threshold: 0.8
+    file_patterns:
+      - "docs/**"
+      - "*.md"
+      - "tests/**"
+      - "examples/**"
+      - "benchmarks/**"
+      - "ci/**"
+      - "scripts/**"
+    keywords:
+      - "fix typo"
+      - "documentation"
+      - "performance"
+      - "optimization"
+      - "cleanup"
+      - "refactor"
+      - "style"
+      - "format"
+    exclude_patterns:
+      - "consensus/**"
+      - "validation/**"
+      - "block-acceptance/**"
+    examples:
+      - "Fix typo in README"
+      - "Improve test coverage"
+      - "Optimize memory usage"
+      - "Update documentation"
+
+  tier_2_features:
+    name: "Feature Changes"
+    confidence_threshold: 0.8
+    file_patterns:
+      - "rpc/**"
+      - "wallet/**"
+      - "p2p/**"
+      - "api/**"
+      - "cli/**"
+      - "config/**"
+    keywords:
+      - "feature"
+      - "new"
+      - "add"
+      - "implement"
+      - "rpc"
+      - "wallet"
+      - "p2p"
+      - "api"
+    require_specification: true
+    examples:
+      - "Add new RPC method"
+      - "Implement wallet feature"
+      - "Add P2P protocol extension"
+      - "New configuration option"
+
+  tier_3_consensus_adjacent:
+    name: "Consensus-Adjacent"
+    confidence_threshold: 0.9
+    file_patterns:
+      - "consensus/**"
+      - "validation/**"
+      - "block-acceptance/**"
+      - "transaction-validation/**"
+      - "script/**"
+      - "consensus-rules/**"
+    keywords:
+      - "consensus"
+      - "validation"
+      - "block"
+      - "transaction"
+      - "script"
+      - "consensus-adjacent"
+      - "CONSENSUS-ADJACENT"
+    require_specification: true
+    require_audit: true
+    require_equivalence_proof: true
+    examples:
+      - "Change block validation logic"
+      - "Modify transaction validation"
+      - "Update consensus rules"
+      - "Change script evaluation"
+
+  tier_4_emergency:
+    name: "Emergency Actions"
+    confidence_threshold: 0.95
+    keywords:
+      - "emergency"
+      - "critical"
+      - "security"
+      - "vulnerability"
+      - "CVE"
+      - "urgent"
+      - "fix"
+      - "patch"
+    file_patterns:
+      - "security/**"
+      - "emergency/**"
+    require_post_mortem: true
+    examples:
+      - "Fix critical security vulnerability"
+      - "Emergency patch for CVE-XXXX-XXXX"
+      - "Fix network DoS vulnerability"
+      - "Prevent consensus fork"
+
+  tier_5_governance:
+    name: "Governance Changes"
+    confidence_threshold: 0.9
+    file_patterns:
+      - "governance/**"
+      - "governance-app/**"
+      - "*.yml"
+      - "*.yaml"
+    keywords:
+      - "governance"
+      - "maintainer"
+      - "signature"
+      - "threshold"
+      - "review period"
+      - "emergency"
+      - "economic node"
+    require_public_comment: true
+    require_rationale: true
+    examples:
+      - "Change signature thresholds"
+      - "Update maintainer selection process"
+      - "Modify review periods"
+      - "Change emergency procedures"
+
+# Manual override commands
+manual_override:
+  commands:
+    - "/governance-tier 1"
+    - "/governance-tier 2"
+    - "/governance-tier 3"
+    - "/governance-tier 4"
+    - "/governance-tier 5"
+  permissions:
+    - "maintainers"
+    - "emergency-keyholders"
+  logging:
+    required: true
+    fields:
+      - "user"
+      - "timestamp"
+      - "reason"
+      - "previous_tier"
+      - "new_tier"
+
+# Classification confidence scoring
+confidence_scoring:
+  file_pattern_match: 0.4
+  keyword_match: 0.3
+  title_analysis: 0.2
+  description_analysis: 0.1
+  
+  # Boost factors
+  boost_factors:
+    multiple_file_matches: 0.1
+    strong_keyword_matches: 0.1
+    specification_present: 0.1
+    audit_present: 0.1
+    
+  # Penalty factors
+  penalty_factors:
+    conflicting_indicators: -0.2
+    insufficient_evidence: -0.3
+    unclear_intent: -0.1
+
+# Fallback classification
+fallback:
+  default_tier: 2  # Feature Changes
+  confidence_threshold: 0.5
+  require_manual_review: true
+  notification:
+    - "maintainers"
+    - "pr-author"

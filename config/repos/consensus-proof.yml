@@ -1,21 +1,53 @@
-layer: 1
+layer: 2
 governance_level: constitutional
 signature_threshold: 6-of-7
 review_period_days: 180
 synchronized_with:
-  - consensus-proof
+  - orange-paper
+
+verification:
+  required: true
+  tools:
+    - name: "Kani"
+      command: "cargo kani --features verify"
+      required: true
+    - name: "Proptest"
+      command: "cargo test --all-features"
+      required: true
+  ci_workflow: ".github/workflows/verify.yml"
+  blocking: true
+  override_allowed: false
+  meta_governance_required: true
+
+paths:
+  consensus_critical:
+    - "src/script.rs"
+    - "src/transaction.rs"
+    - "src/block.rs"
+    - "src/economic.rs"
+    - "src/pow.rs"
+    - "src/reorganization.rs"
+    - "src/segwit.rs"
+    - "src/taproot.rs"
+  requires_6_of_7: true
+  requires_365_days: true
+
 cross_layer_rules:
-  - if_changed: consensus-rules/**
-    then_require_update: consensus-proof/proofs/**
-    validation: equivalence_proof_exists
-    error_message: "Consensus rule changes require corresponding proof updates"
+  - if_changed: proofs/**
+    then_require_update: orange-paper/consensus-rules/**
+    validation: corresponding_rule_exists
+    bidirectional: true
+  - if_changed: src/**
+    then_require_verification: true
+    validation: kani_proofs_passed
+    blocking: true
 
 consensus_rule_changes:
   detection:
     patterns:
-      - "consensus-rules/**"
+      - "proofs/**"
       - "validation/**"
-      - "block-acceptance/**"
+      - "verification/**"
   
   repository_requirements:
     maintainer_threshold: 6-of-7

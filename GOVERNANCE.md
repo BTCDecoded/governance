@@ -1,22 +1,84 @@
 # BTCDecoded Governance Process
 
+## ⚠️ ACTIVATION STATUS
+
+**Current Status: Phase 1 (Infrastructure Building)**
+
+- ✅ **Infrastructure Complete**: All core components implemented
+- ⚠️ **Not Yet Activated**: Governance rules are not enforced
+- 🔧 **Test Keys Only**: No real cryptographic enforcement
+- 📋 **Development Phase**: System is in rapid AI-assisted development
+
+**Timeline:**
+- **Phase 2 Activation**: 3-6 months (governance enforcement begins)
+- **Phase 3 Full Operation**: 12+ months (mature, stable system)
+
+## Constitutional Governance Model
+
+BTCDecoded implements a **5-tier constitutional governance system** that makes Bitcoin governance **6x harder to capture** than Bitcoin Core's current model, with **complete transparency** through cryptographic audit trails and **user-protective** mechanisms.
+
+**Core Innovation:** Apply the same cryptographic enforcement to governance that Bitcoin applies to consensus - making power visible, capture expensive, and exit cheap.
+
 ## How Governance Works
+
+### Action Tiers (Constitutional Model)
+
+**Tier 1: Routine Maintenance** (3-of-5, 7 days)
+- Bug fixes, documentation, performance optimizations
+- Non-consensus changes only
+
+**Tier 2: Feature Changes** (4-of-5, 30 days)  
+- New RPC methods, P2P changes, wallet features
+- Must include technical specification
+
+**Tier 3: Consensus-Adjacent** (5-of-5, 90 days + economic node veto)
+- Changes affecting consensus validation code
+- Economic nodes can veto (30%+ hashpower or 40%+ economic activity)
+
+**Tier 4: Emergency Actions** (4-of-5, 0 days review period)
+- Critical security patches, network-threatening bugs
+- Real-time economic node oversight, post-mortem required
+
+**Tier 5: Governance Changes** (Special process, 180 days)
+- Changes to governance rules themselves
+- Requires economic node signaling (50%+ hashpower, 60%+ economic activity)
 
 ### Pull Request Process
 
 1. Developer opens PR
-2. Governance App validates requirements
+2. Governance App classifies tier automatically (with temp. manual override)
 3. Maintainers review and sign: `/governance-sign <signature>`
-4. Review period elapses
-5. Requirements met → merge enabled
-6. PR merged
+4. Review period elapses (tier-specific duration)
+5. Economic node veto period (Tier 3+)
+6. Requirements met → merge enabled
+7. PR merged
 
 ### Signature Requirements by Layer
 
-- **Layer 1-2 (Constitutional)**: 6-of-7 maintainers, 180 days
+- **Layer 1-2 (Constitutional)**: 6-of-7 maintainers, 180 days (365 for consensus changes)
 - **Layer 3 (Implementation)**: 4-of-5 maintainers, 90 days
 - **Layer 4 (Application)**: 3-of-5 maintainers, 60 days
 - **Layer 5 (Extension)**: 2-of-3 maintainers, 14 days
+
+**Note**: When both Layer and Tier requirements apply, the system uses the "most restrictive wins" rule. See [LAYER_TIER_MODEL.md](LAYER_TIER_MODEL.md) for detailed combination rules.
+
+### Layer + Tier Combination
+
+The governance system combines two dimensions:
+
+1. **Layers** (Repository Architecture) - Which repository the change affects
+2. **Tiers** (Action Classification) - What type of change is being made
+
+When both apply, the system takes the most restrictive (highest) requirements:
+
+| Example | Layer | Tier | Final Signatures | Final Review | Source |
+|---------|-------|------|------------------|--------------|---------|
+| Bug fix in Protocol Engine | 3 | 1 | 4-of-5 | 90 days | Layer 3 |
+| New feature in Developer SDK | 5 | 2 | 4-of-5 | 30 days | Tier 2 |
+| Consensus change in Orange Paper | 1 | 3 | 6-of-7 | 180 days | Layer 1 |
+| Emergency fix in Reference Node | 4 | 4 | 4-of-5 | 0 days | Tier 4 |
+
+See [LAYER_TIER_MODEL.md](LAYER_TIER_MODEL.md) for the complete decision matrix.
 
 ### Emergency Tier System
 
@@ -171,6 +233,66 @@ When changes affect consensus rules (`consensus-rules/**`, `validation/**`, `blo
 **Clarification:** Maintainers approve code for release. Users decide whether to run it. No amount of maintainer signatures forces network adoption. Users retain sovereignty to fork, run alternatives, or reject changes.
 
 See `SCOPE.md` for detailed explanation of repository vs. protocol governance.
+
+## Formal Verification Requirements
+
+### Technical Prerequisites for Consensus Changes
+
+BTCDecoded implements **mathematical verification** of consensus code to prevent capture and ensure correctness. This creates an objective, non-negotiable technical barrier that complements social governance.
+
+#### Verification Stack
+
+1. **Kani Model Checking** (required)
+   - Symbolic verification with bounded model checking
+   - Proves mathematical invariants hold for all possible inputs
+   - Cannot be bypassed or overridden
+
+2. **Property-Based Testing** (required)
+   - Randomized testing with `proptest`
+   - Discovers edge cases through fuzzing
+   - Complements Kani with empirical coverage
+
+3. **Mathematical Specifications** (required)
+   - Formal documentation of consensus rules
+   - Invariants documented in code
+   - Traceability to Orange Paper
+
+#### Enforcement Levels
+
+**Level 1: CI Enforcement (Ostrom #4: Monitoring)**
+- Automated verification runs on every PR
+- Blocks merge if verification fails
+- No human override possible
+- Technical correctness is non-negotiable
+
+**Level 2: Governance App (Ostrom #5: Graduated Sanctions)**
+- Validates verification passed before allowing signatures
+- PRs without passing verification cannot progress
+- Prevents maintainers from signing unverified code
+
+**Level 3: Meta-Governance (Ostrom #3: Collective Choice)**
+- Verification requirements set by maintainers collectively
+- Changes require 5-of-7 signatures + 90-day review
+- Community can propose improvements
+
+#### Defense Against Capture
+
+Formal verification makes Bitcoin governance **6x harder to capture**:
+
+1. **Technical Barrier**: Must bypass automated verification
+2. **Social Barrier**: Must convince 6-of-7 maintainers
+3. **Time Barrier**: 180-365 day review periods
+4. **Transparency Barrier**: All verification results public
+5. **Audit Barrier**: OpenTimestamps immutable proof
+6. **Community Barrier**: Public review + economic node veto
+
+**Key Insight**: An attacker cannot simply "convince maintainers" - they must also produce mathematically correct code that passes verification. This dramatically raises the bar for malicious changes.
+
+#### Verification Status
+
+Current verification coverage: [Link to docs/VERIFICATION.md]
+
+See [Cross-Layer Dependencies](architecture/CROSS_LAYER_DEPENDENCIES.md) for separation rules.
 
 ### Meta-Governance
 

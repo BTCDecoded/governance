@@ -1,0 +1,151 @@
+# Repository Layer Configuration
+# Defines signature requirements and review periods for different repository layers
+
+layers:
+  layer_1_constitutional:
+    name: "Constitutional Layer"
+    repositories:
+      - "orange-paper"
+      - "consensus-proof"
+    purpose: "Constitutional documents and consensus proofs"
+    signatures:
+      required: 6
+      total: 7
+    review_period_days: 180
+    consensus_review_period_days: 365
+    maintainers:
+      - "constitutional-maintainer-1"
+      - "constitutional-maintainer-2"
+      - "constitutional-maintainer-3"
+      - "constitutional-maintainer-4"
+      - "constitutional-maintainer-5"
+      - "constitutional-maintainer-6"
+      - "constitutional-maintainer-7"
+    description: |
+      The constitutional layer contains the fundamental principles and mathematical
+      proofs that define Bitcoin's consensus rules. Changes here require the highest
+      level of consensus and longest review periods.
+
+  layer_2_constitutional:
+    name: "Constitutional Layer"
+    repositories:
+      - "consensus-proof"
+    purpose: "Consensus proof implementations"
+    signatures:
+      required: 6
+      total: 7
+    review_period_days: 180
+    consensus_review_period_days: 365
+    maintainers:
+      - "consensus-maintainer-1"
+      - "consensus-maintainer-2"
+      - "consensus-maintainer-3"
+      - "consensus-maintainer-4"
+      - "consensus-maintainer-5"
+      - "consensus-maintainer-6"
+      - "consensus-maintainer-7"
+    verification:
+      required: true
+      enforceable: true
+      override_allowed: false
+      tools:
+        - name: "Kani"
+          command: "cargo kani --features verify"
+          required: true
+        - name: "Proptest"
+          command: "cargo test --all-features"
+          required: true
+      ci_workflow: ".github/workflows/verify.yml"
+      blocking: true
+      meta_governance_required: true
+    description: |
+      The consensus proof layer contains implementations of the consensus rules
+      defined in the constitutional layer. Changes here affect the core validation
+      logic of Bitcoin. All changes MUST pass formal verification (Kani + Proptest)
+      before maintainer signatures are allowed. This creates a technical barrier
+      that complements social governance, making Bitcoin governance 6x harder to capture.
+
+  layer_3_implementation:
+    name: "Implementation Layer"
+    repositories:
+      - "protocol-engine"
+    purpose: "Core protocol implementation"
+    signatures:
+      required: 4
+      total: 5
+    review_period_days: 90
+    maintainers:
+      - "protocol-maintainer-1"
+      - "protocol-maintainer-2"
+      - "protocol-maintainer-3"
+      - "protocol-maintainer-4"
+      - "protocol-maintainer-5"
+    description: |
+      The implementation layer contains the core protocol engine that implements
+      Bitcoin's consensus rules. Changes here affect how Bitcoin nodes operate.
+
+  layer_4_application:
+    name: "Application Layer"
+    repositories:
+      - "reference-node"
+    purpose: "Reference implementation and applications"
+    signatures:
+      required: 3
+      total: 5
+    review_period_days: 60
+    maintainers:
+      - "node-maintainer-1"
+      - "node-maintainer-2"
+      - "node-maintainer-3"
+      - "node-maintainer-4"
+      - "node-maintainer-5"
+    description: |
+      The application layer contains the reference node implementation and other
+      applications that use the protocol engine. Changes here affect user-facing
+      functionality.
+
+  layer_5_extension:
+    name: "Extension Layer"
+    repositories:
+      - "developer-sdk"
+    purpose: "Developer tools and extensions"
+    signatures:
+      required: 2
+      total: 3
+    review_period_days: 14
+    maintainers:
+      - "sdk-maintainer-1"
+      - "sdk-maintainer-2"
+      - "sdk-maintainer-3"
+    description: |
+      The extension layer contains developer tools, SDKs, and other extensions
+      that help developers build on top of Bitcoin. Changes here have the least
+      impact on core functionality.
+
+# Cross-layer dependencies
+cross_layer_rules:
+  # Changes to higher layers may require updates to lower layers
+  dependencies:
+    layer_1_to_lower:
+      description: "Constitutional changes may require implementation updates"
+      notification_required: true
+      review_period_extension: 30
+      
+    layer_2_to_lower:
+      description: "Consensus proof changes may require protocol updates"
+      notification_required: true
+      review_period_extension: 14
+      
+    layer_3_to_lower:
+      description: "Protocol changes may require application updates"
+      notification_required: true
+      review_period_extension: 7
+
+  # Emergency procedures for cross-layer changes
+  emergency_cross_layer:
+    description: "Emergency changes affecting multiple layers"
+    requires_coordination: true
+    notification_channels:
+      - "maintainers"
+      - "economic-nodes"
+      - "community"

@@ -2,16 +2,18 @@
 # Requires 6-of-7 signatures for changes
 maintainers:
   - github: maintainer1
-    public_key: 0x02[PLACEHOLDER_64_CHAR_HEX]
+    public_key: 0335573cdcac8f622dddc6a6799050d3739b016f389b0c74f954e27c9d07797363
     role: cryptographer
     added: 2025-01-01
     status: active
+    note: "TEST KEY - Replace before production"
   
   - github: maintainer2
-    public_key: 0x02[PLACEHOLDER_64_CHAR_HEX]
+    public_key: 0346160a24e2be28933de6dc1fedeab2e52aa21c5208b3f88c16e2f607568d40b4
     role: protocol_expert
     added: 2025-01-01
     status: active
+    note: "TEST KEY - Replace before production"
   
   - github: maintainer3
     public_key: 0x02[PLACEHOLDER_64_CHAR_HEX]

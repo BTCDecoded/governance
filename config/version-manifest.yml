@@ -1,0 +1,92 @@
+# Version Manifest for Orange Paper
+# This file tracks all published versions of the Orange Paper with cryptographic signatures
+# and OpenTimestamps anchoring to the Bitcoin blockchain.
+
+repository: "orange-paper"
+created_at: "2024-01-15T00:00:00Z"
+latest_version: "v1.0.0"
+manifest_hash: "sha256:placeholder_hash_will_be_computed"
+
+versions:
+  - version: "v1.0.0"
+    commit_sha: "a1b2c3d4e5f6789012345678901234567890abcd"
+    content_hash: "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    created_at: "2024-01-15T00:00:00Z"
+    signatures:
+      - maintainer_id: "maintainer1"
+        signature: "3045022100abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890022001234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+        public_key: "02abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+        signed_at: "2024-01-15T00:00:00Z"
+      - maintainer_id: "maintainer2"
+        signature: "3045022100fedcba0987654321fedcba0987654321fedcba0987654321fedcba0987654321002200fedcba0987654321fedcba0987654321fedcba0987654321fedcba0987654321"
+        public_key: "02fedcba0987654321fedcba0987654321fedcba0987654321fedcba0987654321"
+        signed_at: "2024-01-15T00:00:00Z"
+      - maintainer_id: "maintainer3"
+        signature: "3045022100a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456789002200a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890"
+        public_key: "02a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890"
+        signed_at: "2024-01-15T00:00:00Z"
+      - maintainer_id: "maintainer4"
+        signature: "3045022100b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456789002200b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890"
+        public_key: "02b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890"
+        signed_at: "2024-01-15T00:00:00Z"
+      - maintainer_id: "maintainer5"
+        signature: "3045022100c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456789002200c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890"
+        public_key: "02c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890"
+        signed_at: "2024-01-15T00:00:00Z"
+      - maintainer_id: "maintainer6"
+        signature: "3045022100d4e5f6789012345678901234567890abcdef1234567890abcdef123456789002200d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890"
+        public_key: "02d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890"
+        signed_at: "2024-01-15T00:00:00Z"
+    ots_timestamp: "bitcoin:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    is_stable: true
+    is_latest: true
+
+  - version: "v0.9.0"
+    commit_sha: "b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890"
+    content_hash: "sha256:2345678901bcdef1234567890abcdef1234567890abcdef1234567890abcdef12"
+    created_at: "2024-01-01T00:00:00Z"
+    signatures:
+      - maintainer_id: "maintainer1"
+        signature: "3045022100abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890022001234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+        public_key: "02abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+        signed_at: "2024-01-01T00:00:00Z"
+      - maintainer_id: "maintainer2"
+        signature: "3045022100fedcba0987654321fedcba0987654321fedcba0987654321fedcba0987654321002200fedcba0987654321fedcba0987654321fedcba0987654321fedcba0987654321"
+        public_key: "02fedcba0987654321fedcba0987654321fedcba0987654321fedcba0987654321"
+        signed_at: "2024-01-01T00:00:00Z"
+      - maintainer_id: "maintainer3"
+        signature: "3045022100a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456789002200a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890"
+        public_key: "02a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890"
+        signed_at: "2024-01-01T00:00:00Z"
+      - maintainer_id: "maintainer4"
+        signature: "3045022100b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456789002200b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890"
+        public_key: "02b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890"
+        signed_at: "2024-01-01T00:00:00Z"
+      - maintainer_id: "maintainer5"
+        signature: "3045022100c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456789002200c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890"
+        public_key: "02c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890"
+        signed_at: "2024-01-01T00:00:00Z"
+      - maintainer_id: "maintainer6"
+        signature: "3045022100d4e5f6789012345678901234567890abcdef1234567890abcdef123456789002200d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890"
+        public_key: "02d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890"
+        signed_at: "2024-01-01T00:00:00Z"
+    ots_timestamp: "bitcoin:2345678901bcdef1234567890abcdef1234567890abcdef1234567890abcdef12"
+    is_stable: true
+    is_latest: false
+
+# Configuration for version pinning validation
+validation_config:
+  required_reference_format: "orange-paper@v{VERSION}"
+  minimum_signatures: 6
+  allow_outdated_versions: false
+  max_version_age_days: 30
+  enforce_latest_version: true
+
+# Reference format examples:
+# // @orange-paper-version: v1.2.3
+# // @orange-paper-commit: abc123def456
+# // @orange-paper-hash: sha256:fedcba...
+
+
+
+
