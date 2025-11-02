@@ -1,0 +1,350 @@
+# Security Control Mapping
+# Maps security controls to files and governance requirements
+# Used by SecurityControlValidator to automatically determine PR requirements
+
+security_controls:
+  # Category A: Consensus Integrity Controls
+  - id: A-001
+    name: "Genesis Block Implementation"
+    category: consensus_integrity
+    priority: P0
+    description: "Proper genesis blocks for mainnet, testnet, and regtest networks"
+    files:
+      - "protocol-engine/src/lib.rs"
+      - "protocol-engine/src/network_params.rs"
+      - "consensus-proof/src/lib.rs"
+    required_signatures: 7-of-7
+    review_period_days: 180
+    requires_security_audit: true
+    requires_formal_verification: true
+    requires_cryptography_expert: false
+    economic_node_veto_enabled: true
+    additional_requirements:
+      - "Genesis block hashes must match Bitcoin Core exactly"
+      - "All test vectors from Bitcoin Core must pass"
+      - "Integration tests must validate chain from genesis"
+
+  - id: A-002
+    name: "SegWit Witness Verification"
+    category: consensus_integrity
+    priority: P1
+    description: "Complete SegWit witness data validation"
+    files:
+      - "consensus-proof/src/segwit.rs"
+      - "consensus-proof/src/block.rs"
+      - "consensus-proof/src/script.rs"
+    required_signatures: 6-of-7
+    review_period_days: 90
+    requires_security_audit: false
+    requires_formal_verification: true
+    requires_cryptography_expert: true
+    economic_node_veto_enabled: false
+
+  - id: A-003
+    name: "Taproot Support"
+    category: consensus_integrity
+    priority: P1
+    description: "P2TR output validation and key aggregation"
+    files:
+      - "consensus-proof/src/taproot.rs"
+      - "consensus-proof/src/script.rs"
+    required_signatures: 6-of-7
+    review_period_days: 90
+    requires_security_audit: false
+    requires_formal_verification: true
+    requires_cryptography_expert: true
+    economic_node_veto_enabled: false
+
+  # Category B: Cryptographic Controls
+  - id: B-001
+    name: "Maintainer Key Management"
+    category: cryptographic
+    priority: P0
+    description: "Real cryptographic keys for all maintainers, not placeholders"
+    files:
+      - "governance/config/maintainers/**/*.yml"
+      - "governance-app/src/crypto/key_management.rs"
+      - "governance-app/src/bin/sign-pr.rs"
+    required_signatures: 7-of-7
+    review_period_days: 180
+    requires_security_audit: true
+    requires_formal_verification: false
+    requires_cryptography_expert: true
+    economic_node_veto_enabled: true
+    additional_requirements:
+      - "Key generation ceremony must be documented"
+      - "All placeholder keys must be replaced"
+      - "Key backup procedures must be documented"
+
+  - id: B-002
+    name: "Emergency Signature Verification"
+    category: cryptographic
+    priority: P0
+    description: "Cryptographic verification of emergency activation signatures"
+    files:
+      - "governance-app/src/validation/emergency.rs"
+      - "governance-app/src/crypto/signatures.rs"
+    required_signatures: 6-of-7
+    review_period_days: 60
+    requires_security_audit: true
+    requires_formal_verification: false
+    requires_cryptography_expert: true
+    economic_node_veto_enabled: false
+    additional_requirements:
+      - "Must integrate with developer-sdk"
+      - "Placeholder validation must be removed"
+      - "Comprehensive signature verification tests required"
+
+  - id: B-003
+    name: "Multisig Threshold Enforcement"
+    category: cryptographic
+    priority: P1
+    description: "Proper multisig threshold validation and signature collection"
+    files:
+      - "governance-app/src/crypto/multisig.rs"
+      - "governance-app/src/validation/signatures.rs"
+    required_signatures: 5-of-7
+    review_period_days: 30
+    requires_security_audit: false
+    requires_formal_verification: true
+    requires_cryptography_expert: true
+    economic_node_veto_enabled: false
+
+  # Category C: Governance Controls
+  - id: C-001
+    name: "Database Query Implementation"
+    category: governance
+    priority: P0
+    description: "All database operations implemented, not stubs"
+    files:
+      - "governance-app/src/database/queries.rs"
+      - "governance-app/src/database/mod.rs"
+    required_signatures: 5-of-7
+    review_period_days: 30
+    requires_security_audit: false
+    requires_formal_verification: false
+    requires_cryptography_expert: false
+    economic_node_veto_enabled: false
+    additional_requirements:
+      - "All 7 stub functions must be implemented"
+      - "Proper error handling required"
+      - "SQL injection prevention verified"
+
+  - id: C-002
+    name: "Cross-layer File Verification"
+    category: governance
+    priority: P0
+    description: "File integrity verification between governance layers"
+    files:
+      - "governance-app/src/validation/cross_layer.rs"
+      - "governance-app/src/github/file_operations.rs"
+    required_signatures: 5-of-7
+    review_period_days: 30
+    requires_security_audit: false
+    requires_formal_verification: false
+    requires_cryptography_expert: false
+    economic_node_veto_enabled: false
+    additional_requirements:
+      - "File hash calculation implemented"
+      - "Placeholder warnings removed"
+      - "Integration tests passing"
+
+  - id: C-003
+    name: "Tier Classification Logic"
+    category: governance
+    priority: P1
+    description: "Complete tier classification without fallbacks"
+    files:
+      - "governance-app/src/validation/tier_classification.rs"
+    required_signatures: 4-of-7
+    review_period_days: 14
+    requires_security_audit: false
+    requires_formal_verification: false
+    requires_cryptography_expert: false
+    economic_node_veto_enabled: false
+
+  - id: C-004
+    name: "Economic Node Veto System"
+    category: governance
+    priority: P1
+    description: "Real economic node veto implementation"
+    files:
+      - "governance-app/src/economic_nodes/veto.rs"
+      - "governance-app/src/webhooks/github_integration.rs"
+    required_signatures: 4-of-7
+    review_period_days: 14
+    requires_security_audit: false
+    requires_formal_verification: false
+    requires_cryptography_expert: false
+    economic_node_veto_enabled: false
+
+  # Category D: Data Integrity Controls
+  - id: D-001
+    name: "Audit Log Hash Chain"
+    category: data_integrity
+    priority: P1
+    description: "Cryptographic hash chain for audit log integrity"
+    files:
+      - "governance-app/src/audit/verify.rs"
+      - "governance-app/src/audit/entry.rs"
+      - "governance-app/src/audit/merkle.rs"
+    required_signatures: 4-of-7
+    review_period_days: 14
+    requires_security_audit: false
+    requires_formal_verification: true
+    requires_cryptography_expert: true
+    economic_node_veto_enabled: false
+
+  - id: D-002
+    name: "OTS Timestamping"
+    category: data_integrity
+    priority: P1
+    description: "External timestamping for audit logs"
+    files:
+      - "governance-app/src/ots/anchor.rs"
+      - "governance-app/src/ots/verify.rs"
+    required_signatures: 4-of-7
+    review_period_days: 14
+    requires_security_audit: false
+    requires_formal_verification: false
+    requires_cryptography_expert: false
+    economic_node_veto_enabled: false
+
+  # Category E: Input Validation & Boundary Controls
+  - id: E-001
+    name: "GitHub Webhook Signature Verification"
+    category: input_validation
+    priority: P1
+    description: "Proper GitHub webhook signature verification"
+    files:
+      - "governance-app/src/webhooks/github.rs"
+      - "governance-app/src/webhooks/comment.rs"
+    required_signatures: 4-of-7
+    review_period_days: 14
+    requires_security_audit: false
+    requires_formal_verification: false
+    requires_cryptography_expert: true
+    economic_node_veto_enabled: false
+
+  - id: E-002
+    name: "Input Sanitization"
+    category: input_validation
+    priority: P1
+    description: "Comprehensive input validation and sanitization"
+    files:
+      - "governance-app/src/validation/**/*.rs"
+      - "governance-app/src/webhooks/**/*.rs"
+    required_signatures: 4-of-7
+    review_period_days: 14
+    requires_security_audit: false
+    requires_formal_verification: false
+    requires_cryptography_expert: false
+    economic_node_veto_enabled: false
+
+  - id: E-003
+    name: "SQL Injection Prevention"
+    category: input_validation
+    priority: P1
+    description: "Parameterized queries and SQL injection prevention"
+    files:
+      - "governance-app/src/database/**/*.rs"
+    required_signatures: 4-of-7
+    review_period_days: 14
+    requires_security_audit: false
+    requires_formal_verification: false
+    requires_cryptography_expert: false
+    economic_node_veto_enabled: false
+
+  - id: E-004
+    name: "API Rate Limiting"
+    category: input_validation
+    priority: P2
+    description: "Rate limiting on webhook and API endpoints"
+    files:
+      - "governance-app/src/main.rs"
+      - "governance-app/src/webhooks/**/*.rs"
+    required_signatures: 3-of-7
+    review_period_days: 7
+    requires_security_audit: false
+    requires_formal_verification: false
+    requires_cryptography_expert: false
+    economic_node_veto_enabled: false
+
+# Control Categories
+categories:
+  consensus_integrity:
+    name: "Consensus Integrity"
+    description: "Controls that ensure Bitcoin consensus validation is complete and secure"
+    max_priority: P0
+    
+  cryptographic:
+    name: "Cryptographic"
+    description: "Controls that handle keys, signatures, and cryptographic operations securely"
+    max_priority: P0
+    
+  governance:
+    name: "Governance"
+    description: "Controls required for governance system integrity and proper operation"
+    max_priority: P0
+    
+  data_integrity:
+    name: "Data Integrity"
+    description: "Controls that ensure data integrity, audit trails, and state synchronization"
+    max_priority: P1
+    
+  input_validation:
+    name: "Input Validation"
+    description: "Controls that validate inputs and enforce security boundaries"
+    max_priority: P1
+
+# Priority Definitions
+priorities:
+  P0:
+    name: "Critical"
+    description: "Must fix before any audit - blocks production deployment"
+    color: "red"
+    
+  P1:
+    name: "High"
+    description: "Required for meaningful audit - should fix before production"
+    color: "orange"
+    
+  P2:
+    name: "Medium"
+    description: "Should fix before audit - operational security improvements"
+    color: "yellow"
+    
+  P3:
+    name: "Low"
+    description: "Can defer - non-critical features"
+    color: "green"
+
+# File Pattern Matching Rules
+file_patterns:
+  # Consensus-critical files
+  consensus_files:
+    - "consensus-proof/**/*.rs"
+    - "protocol-engine/**/*.rs"
+    
+  # Cryptographic files
+  crypto_files:
+    - "governance-app/src/crypto/**/*.rs"
+    - "governance-app/src/validation/signatures.rs"
+    - "governance-app/src/validation/emergency.rs"
+    - "governance/config/maintainers/**/*.yml"
+    
+  # Database files
+  database_files:
+    - "governance-app/src/database/**/*.rs"
+    - "governance-app/migrations/**/*.sql"
+    
+  # Webhook files
+  webhook_files:
+    - "governance-app/src/webhooks/**/*.rs"
+    - "governance-app/src/main.rs"
+
+
+
+
+
+

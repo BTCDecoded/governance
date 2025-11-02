@@ -83,6 +83,78 @@ tiers:
       - "Update maintainer selection process"
       - "Change emergency procedures"
 
+  # Security-Specific Tiers (automatically applied based on files changed)
+  security_critical:
+    name: "Security-Critical Changes"
+    description: "Changes affecting P0 security controls (consensus integrity, cryptographic operations)"
+    signatures:
+      required: 7
+      total: 7
+    review_period_days: 180
+    economic_veto: true
+    emergency_override: false
+    requires_security_audit: true
+    requires_formal_verification: true
+    requires_cryptography_expert: true
+    requires_public_comment: true
+    requires_rationale: true
+    additional_requirements:
+      - "All affected P0 controls must be certified"
+      - "No placeholder implementations in diff"
+      - "Formal verification proofs passing"
+      - "Security audit report attached to PR"
+      - "Cryptographer approval required"
+    examples:
+      - "Genesis block implementation"
+      - "Maintainer key management"
+      - "Emergency signature verification"
+      - "Consensus rule changes"
+      - "Cryptographic library updates"
+
+  cryptographic:
+    name: "Cryptographic Operations"
+    description: "Changes to cryptographic operations, signature verification, key management"
+    signatures:
+      required: 6
+      total: 7
+    review_period_days: 90
+    economic_veto: false
+    emergency_override: false
+    requires_cryptography_expert: true
+    requires_formal_verification: true
+    additional_requirements:
+      - "Cryptographer approval required"
+      - "Test vectors from standard specifications"
+      - "Side-channel analysis performed"
+      - "Formal verification proofs passing"
+    examples:
+      - "Signature verification changes"
+      - "Key generation updates"
+      - "Multisig threshold modifications"
+      - "Cryptographic library updates"
+      - "Hash function changes"
+
+  security_enhancement:
+    name: "Security Enhancement"
+    description: "Changes affecting P1 security controls (governance, data integrity, input validation)"
+    signatures:
+      required: 5
+      total: 7
+    review_period_days: 30
+    economic_veto: false
+    emergency_override: false
+    requires_security_review: true
+    additional_requirements:
+      - "Security review by maintainer"
+      - "Comprehensive test coverage"
+      - "No placeholder implementations"
+    examples:
+      - "Database query implementation"
+      - "File verification system"
+      - "Audit log improvements"
+      - "Input validation enhancements"
+      - "Rate limiting implementation"
+
 # Emergency tier system (separate from action tiers)
 emergency_tiers:
   critical:
