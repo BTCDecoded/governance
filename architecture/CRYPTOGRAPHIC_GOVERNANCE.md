@@ -23,7 +23,7 @@ Each maintainer has a unique cryptographic keypair used for:
 - Governance rule changes
 
 **Key Requirements:**
-- Ed25519 signature scheme (same as Bitcoin's Taproot)
+- secp256k1 signature scheme (same curve as Bitcoin)
 - 256-bit private keys
 - Deterministic key derivation from seed phrases
 - Hardware security module (HSM) support for production
@@ -46,7 +46,7 @@ All signatures are verified using the following process:
 
 1. **Key Validation**: Verify the public key is in the authorized maintainer set
 2. **Message Validation**: Verify the message hash matches the expected content
-3. **Signature Validation**: Verify the cryptographic signature using Ed25519
+3. **Signature Validation**: Verify the cryptographic signature using secp256k1
 4. **Timestamp Validation**: Verify the signature timestamp is within valid range
 5. **Nonce Validation**: Verify the signature nonce prevents replay attacks
 
@@ -120,7 +120,7 @@ All governance actions are timestamped using:
   "type": "pr_approval",
   "pr_number": 123,
   "maintainer_id": "maintainer_1",
-  "signature": "ed25519_signature_hex",
+  "signature": "secp256k1_signature_hex",
   "timestamp": "2024-01-15T10:30:00Z",
   "message_hash": "sha256_hash_of_pr_content"
 }
@@ -133,7 +133,7 @@ All governance actions are timestamped using:
   "type": "maintainer_add",
   "new_maintainer": {
     "id": "maintainer_6",
-    "public_key": "ed25519_public_key_hex",
+    "public_key": "secp256k1_public_key_hex",
     "jurisdiction": "United States",
     "contact": "maintainer6@example.com"
   },
@@ -174,7 +174,7 @@ Anyone can verify governance actions by:
 
 1. **Downloading the governance registry**
 2. **Verifying maintainer public keys** against the authorized set
-3. **Checking signature validity** using Ed25519 verification
+3. **Checking signature validity** using secp256k1 verification
 4. **Validating the hash chain** for tamper evidence
 5. **Verifying timestamps** against blockchain proofs
 
@@ -246,7 +246,7 @@ Migration to post-quantum signature schemes:
 ## References
 
 - [Bitcoin Core Development Process](https://github.com/bitcoin/bitcoin/blob/master/CONTRIBUTING.md)
-- [Ed25519 Signature Scheme](https://ed25519.cr.yp.to/)
+- [secp256k1 Signature Scheme](https://en.bitcoin.it/wiki/Secp256k1)
 - [BIP39 Mnemonic Seeds](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)
 - [OpenTimestamps Protocol](https://opentimestamps.org/)
 - [Developer SDK Documentation](../developer-sdk/README.md)
