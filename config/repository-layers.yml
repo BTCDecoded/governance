@@ -6,8 +6,7 @@ layers:
     name: "Constitutional Layer"
     repositories:
       - "orange-paper"
-      - "consensus-proof"
-    purpose: "Constitutional documents and consensus proofs"
+    purpose: "Constitutional documents and mathematical specifications"
     signatures:
       required: 6
       total: 7
@@ -22,9 +21,9 @@ layers:
       - "constitutional-maintainer-6"
       - "constitutional-maintainer-7"
     description: |
-      The constitutional layer contains the fundamental principles and mathematical
-      proofs that define Bitcoin's consensus rules. Changes here require the highest
-      level of consensus and longest review periods.
+      The constitutional layer contains the Orange Paper, which provides the
+      fundamental mathematical specification of Bitcoin's consensus rules.
+      Changes here require the highest level of consensus and longest review periods.
 
   layer_2_constitutional:
     name: "Constitutional Layer"

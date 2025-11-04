@@ -15,7 +15,7 @@
 
 ## Constitutional Governance Model
 
-BTCDecoded implements a **5-tier constitutional governance system** that makes Bitcoin governance **6x harder to capture** than Bitcoin Core's current model, with **complete transparency** through cryptographic audit trails and **user-protective** mechanisms.
+Bitcoin Commons implements a **5-tier constitutional governance system** that makes Bitcoin governance **6x harder to capture** than Bitcoin Core's current model, with **complete transparency** through cryptographic audit trails and **user-protective** mechanisms.
 
 **Core Innovation:** Apply the same cryptographic enforcement to governance that Bitcoin applies to consensus - making power visible, capture expensive, and exit cheap.
 
@@ -82,7 +82,7 @@ See [LAYER_TIER_MODEL.md](LAYER_TIER_MODEL.md) for the complete decision matrix.
 
 ### Emergency Tier System
 
-BTCDecoded uses a three-tiered emergency response system for proportional handling of critical issues.
+Bitcoin Commons uses a three-tiered emergency response system for proportional handling of critical issues.
 
 #### Tier 1: Critical Emergency (Network-Threatening)
 

@@ -1,6 +1,6 @@
-# BTCDecoded Governance System
+# Bitcoin Commons Governance System
 
-Central source of truth for governance rules across all BTCDecoded repositories.
+Central source of truth for governance rules across all Bitcoin Commons repositories (managed by BTCDecoded organization).
 
 ## ⚠️ ACTIVATION STATUS
 
@@ -28,7 +28,7 @@ This repository defines:
 
 ## Constitutional Governance Model
 
-BTCDecoded implements a **5-tier constitutional governance system** that makes Bitcoin governance **6x harder to capture** than Bitcoin Core's current model, with **complete transparency** through cryptographic audit trails and **user-protective** mechanisms.
+Bitcoin Commons implements a **5-tier constitutional governance system** that makes Bitcoin governance **6x harder to capture** than Bitcoin Core's current model, with **complete transparency** through cryptographic audit trails and **user-protective** mechanisms.
 
 ### Action Tiers
 
