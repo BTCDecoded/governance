@@ -4,6 +4,8 @@ Central source of truth for governance rules across all Bitcoin Commons reposito
 
 ## ⚠️ ACTIVATION STATUS
 
+> **For verified system status**: See [SYSTEM_STATUS.md](https://github.com/BTCDecoded/.github/blob/main/SYSTEM_STATUS.md) in the BTCDecoded organization repository.
+
 **Current Status: Phase 1 (Infrastructure Building)**
 
 - ✅ **Infrastructure Complete**: All core components implemented
