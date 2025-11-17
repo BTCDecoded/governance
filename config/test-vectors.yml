@@ -1,0 +1,84 @@
+# Test Vectors for Equivalence Proof Validation
+#
+# This file defines test vectors that validate mathematical equivalence
+# between Orange Paper specifications and Consensus Proof implementations.
+#
+# Phase 1: Configuration-based test vectors with hardcoded fallback
+# Phase 2: Will require config file (no fallback)
+
+test_vectors:
+  # Block Validation Tests
+  - test_id: "block_validation_001"
+    description: "Block header validation equivalence"
+    orange_paper_section: "5.3 Block Validation"
+    consensus_proof_test: "tests/block_validation.rs::test_block_header_validation"
+    expected_result: "valid"
+    proof_type: "BehavioralEquivalence"
+
+  - test_id: "block_validation_002"
+    description: "Block connection and UTXO set update equivalence"
+    orange_paper_section: "5.3 Block Validation - ConnectBlock"
+    consensus_proof_test: "tests/block_validation.rs::test_connect_block"
+    expected_result: "valid"
+    proof_type: "BehavioralEquivalence"
+
+  # Transaction Validation Tests
+  - test_id: "tx_validation_001"
+    description: "Transaction signature validation equivalence"
+    orange_paper_section: "5.1 Transaction Validation"
+    consensus_proof_test: "tests/transaction_validation.rs::test_signature_validation"
+    expected_result: "valid"
+    proof_type: "SecurityEquivalence"
+
+  - test_id: "tx_validation_002"
+    description: "Transaction structure validation equivalence"
+    orange_paper_section: "5.1 Transaction Validation - CheckTransaction"
+    consensus_proof_test: "tests/transaction_validation.rs::test_check_transaction"
+    expected_result: "valid"
+    proof_type: "BehavioralEquivalence"
+
+  # Script Execution Tests
+  - test_id: "script_execution_001"
+    description: "Script execution equivalence"
+    orange_paper_section: "5.2 Script Execution"
+    consensus_proof_test: "tests/script_execution.rs::test_script_execution"
+    expected_result: "ExecutionResult::Success"
+    proof_type: "BehavioralEquivalence"
+
+  - test_id: "script_execution_002"
+    description: "Script verification equivalence"
+    orange_paper_section: "5.2 Script Execution - VerifyScript"
+    consensus_proof_test: "tests/script_execution.rs::test_verify_script"
+    expected_result: "valid"
+    proof_type: "SecurityEquivalence"
+
+  # Economic Model Tests
+  - test_id: "economic_model_001"
+    description: "Block subsidy calculation equivalence"
+    orange_paper_section: "6.1 Block Subsidy"
+    consensus_proof_test: "tests/economic.rs::test_get_block_subsidy"
+    expected_result: "valid"
+    proof_type: "BehavioralEquivalence"
+
+  - test_id: "economic_model_002"
+    description: "Total supply calculation equivalence"
+    orange_paper_section: "6.2 Total Supply"
+    consensus_proof_test: "tests/economic.rs::test_total_supply"
+    expected_result: "valid"
+    proof_type: "BehavioralEquivalence"
+
+  # Proof of Work Tests
+  - test_id: "pow_001"
+    description: "Proof of work verification equivalence"
+    orange_paper_section: "7.2 Block Validation - CheckProofOfWork"
+    consensus_proof_test: "tests/pow.rs::test_check_proof_of_work"
+    expected_result: "valid"
+    proof_type: "SecurityEquivalence"
+
+  - test_id: "pow_002"
+    description: "Difficulty adjustment equivalence"
+    orange_paper_section: "7.1 Difficulty Adjustment"
+    consensus_proof_test: "tests/pow.rs::test_get_next_work_required"
+    expected_result: "valid"
+    proof_type: "BehavioralEquivalence"
+

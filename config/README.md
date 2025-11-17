@@ -12,6 +12,7 @@ This directory contains all configuration files for the BTCDecoded governance sy
 - **[emergency-tiers.yml](./emergency-tiers.yml)** - Emergency action tiers
 - **[governance-fork.yml](./governance-fork.yml)** - Governance fork configuration
 - **[ruleset-export-template.yml](./ruleset-export-template.yml)** - Template for ruleset exports
+- **[test-vectors.yml](./test-vectors.yml)** - Test vectors for equivalence proof validation (Orange Paper ↔ Consensus Proof)
 
 ### Maintainer Configuration
 
@@ -50,6 +51,7 @@ The governance-app loads configuration files in the following order:
 - **economic-nodes.yml**: Used for economic node veto system
 - **maintainers/**: Used for maintainer registry and signature verification
 - **repos/**: Used for repository-specific governance rules
+- **test-vectors.yml**: Used for cross-layer equivalence proof validation (Phase 1: optional with fallback, Phase 2: required)
 
 ### Configuration Validation
 

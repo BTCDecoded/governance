@@ -10,9 +10,9 @@ security_controls:
     priority: P0
     description: "Proper genesis blocks for mainnet, testnet, and regtest networks"
     files:
-      - "protocol-engine/src/lib.rs"
-      - "protocol-engine/src/network_params.rs"
-      - "consensus-proof/src/lib.rs"
+      - "bllvm-protocol/src/lib.rs"
+      - "bllvm-protocol/src/network_params.rs"
+      - "bllvm-consensus/src/lib.rs"
     required_signatures: 7-of-7
     review_period_days: 180
     requires_security_audit: true
@@ -30,9 +30,9 @@ security_controls:
     priority: P1
     description: "Complete SegWit witness data validation"
     files:
-      - "consensus-proof/src/segwit.rs"
-      - "consensus-proof/src/block.rs"
-      - "consensus-proof/src/script.rs"
+      - "bllvm-consensus/src/segwit.rs"
+      - "bllvm-consensus/src/block.rs"
+      - "bllvm-consensus/src/script.rs"
     required_signatures: 6-of-7
     review_period_days: 90
     requires_security_audit: false
@@ -46,8 +46,8 @@ security_controls:
     priority: P1
     description: "P2TR output validation and key aggregation"
     files:
-      - "consensus-proof/src/taproot.rs"
-      - "consensus-proof/src/script.rs"
+      - "bllvm-consensus/src/taproot.rs"
+      - "bllvm-consensus/src/script.rs"
     required_signatures: 6-of-7
     review_period_days: 90
     requires_security_audit: false
@@ -91,7 +91,7 @@ security_controls:
     requires_cryptography_expert: true
     economic_node_veto_enabled: false
     additional_requirements:
-      - "Must integrate with developer-sdk"
+      - "Must integrate with bllvm-sdk"
       - "Placeholder validation must be removed"
       - "Comprehensive signature verification tests required"
 
@@ -323,8 +323,8 @@ priorities:
 file_patterns:
   # Consensus-critical files
   consensus_files:
-    - "consensus-proof/**/*.rs"
-    - "protocol-engine/**/*.rs"
+    - "bllvm-consensus/**/*.rs"
+    - "bllvm-protocol/**/*.rs"
     
   # Cryptographic files
   crypto_files:
@@ -342,6 +342,7 @@ file_patterns:
   webhook_files:
     - "governance-app/src/webhooks/**/*.rs"
     - "governance-app/src/main.rs"
+
 
 
 
