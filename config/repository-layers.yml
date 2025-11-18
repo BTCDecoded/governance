@@ -87,6 +87,7 @@ layers:
     name: "Application Layer"
     repositories:
       - "bllvm-node"
+      - "bllvm"
     purpose: "Reference implementation and applications"
     signatures:
       required: 3
