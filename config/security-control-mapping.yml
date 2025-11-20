@@ -63,8 +63,8 @@ security_controls:
     description: "Real cryptographic keys for all maintainers, not placeholders"
     files:
       - "governance/config/maintainers/**/*.yml"
-      - "governance-app/src/crypto/key_management.rs"
-      - "governance-app/src/bin/sign-pr.rs"
+      - "bllvm-commons/src/crypto/key_management.rs"
+      - "bllvm-commons/src/bin/sign-pr.rs"
     required_signatures: 7-of-7
     review_period_days: 180
     requires_security_audit: true
@@ -82,8 +82,8 @@ security_controls:
     priority: P0
     description: "Cryptographic verification of emergency activation signatures"
     files:
-      - "governance-app/src/validation/emergency.rs"
-      - "governance-app/src/crypto/signatures.rs"
+      - "bllvm-commons/src/validation/emergency.rs"
+      - "bllvm-commons/src/crypto/signatures.rs"
     required_signatures: 6-of-7
     review_period_days: 60
     requires_security_audit: true
@@ -101,8 +101,8 @@ security_controls:
     priority: P1
     description: "Proper multisig threshold validation and signature collection"
     files:
-      - "governance-app/src/crypto/multisig.rs"
-      - "governance-app/src/validation/signatures.rs"
+      - "bllvm-commons/src/crypto/multisig.rs"
+      - "bllvm-commons/src/validation/signatures.rs"
     required_signatures: 5-of-7
     review_period_days: 30
     requires_security_audit: false
@@ -117,8 +117,8 @@ security_controls:
     priority: P0
     description: "All database operations implemented, not stubs"
     files:
-      - "governance-app/src/database/queries.rs"
-      - "governance-app/src/database/mod.rs"
+      - "bllvm-commons/src/database/queries.rs"
+      - "bllvm-commons/src/database/mod.rs"
     required_signatures: 5-of-7
     review_period_days: 30
     requires_security_audit: false
@@ -136,8 +136,8 @@ security_controls:
     priority: P0
     description: "File integrity verification between governance layers"
     files:
-      - "governance-app/src/validation/cross_layer.rs"
-      - "governance-app/src/github/file_operations.rs"
+      - "bllvm-commons/src/validation/cross_layer.rs"
+      - "bllvm-commons/src/github/file_operations.rs"
     required_signatures: 5-of-7
     review_period_days: 30
     requires_security_audit: false
@@ -155,7 +155,7 @@ security_controls:
     priority: P1
     description: "Complete tier classification without fallbacks"
     files:
-      - "governance-app/src/validation/tier_classification.rs"
+      - "bllvm-commons/src/validation/tier_classification.rs"
     required_signatures: 4-of-7
     review_period_days: 14
     requires_security_audit: false
@@ -169,8 +169,8 @@ security_controls:
     priority: P1
     description: "Real economic node veto implementation"
     files:
-      - "governance-app/src/economic_nodes/veto.rs"
-      - "governance-app/src/webhooks/github_integration.rs"
+      - "bllvm-commons/src/economic_nodes/veto.rs"
+      - "bllvm-commons/src/webhooks/github_integration.rs"
     required_signatures: 4-of-7
     review_period_days: 14
     requires_security_audit: false
@@ -185,9 +185,9 @@ security_controls:
     priority: P1
     description: "Cryptographic hash chain for audit log integrity"
     files:
-      - "governance-app/src/audit/verify.rs"
-      - "governance-app/src/audit/entry.rs"
-      - "governance-app/src/audit/merkle.rs"
+      - "bllvm-commons/src/audit/verify.rs"
+      - "bllvm-commons/src/audit/entry.rs"
+      - "bllvm-commons/src/audit/merkle.rs"
     required_signatures: 4-of-7
     review_period_days: 14
     requires_security_audit: false
@@ -201,8 +201,8 @@ security_controls:
     priority: P1
     description: "External timestamping for audit logs"
     files:
-      - "governance-app/src/ots/anchor.rs"
-      - "governance-app/src/ots/verify.rs"
+      - "bllvm-commons/src/ots/anchor.rs"
+      - "bllvm-commons/src/ots/verify.rs"
     required_signatures: 4-of-7
     review_period_days: 14
     requires_security_audit: false
@@ -217,8 +217,8 @@ security_controls:
     priority: P1
     description: "Proper GitHub webhook signature verification"
     files:
-      - "governance-app/src/webhooks/github.rs"
-      - "governance-app/src/webhooks/comment.rs"
+      - "bllvm-commons/src/webhooks/github.rs"
+      - "bllvm-commons/src/webhooks/comment.rs"
     required_signatures: 4-of-7
     review_period_days: 14
     requires_security_audit: false
@@ -232,8 +232,8 @@ security_controls:
     priority: P1
     description: "Comprehensive input validation and sanitization"
     files:
-      - "governance-app/src/validation/**/*.rs"
-      - "governance-app/src/webhooks/**/*.rs"
+      - "bllvm-commons/src/validation/**/*.rs"
+      - "bllvm-commons/src/webhooks/**/*.rs"
     required_signatures: 4-of-7
     review_period_days: 14
     requires_security_audit: false
@@ -247,7 +247,7 @@ security_controls:
     priority: P1
     description: "Parameterized queries and SQL injection prevention"
     files:
-      - "governance-app/src/database/**/*.rs"
+      - "bllvm-commons/src/database/**/*.rs"
     required_signatures: 4-of-7
     review_period_days: 14
     requires_security_audit: false
@@ -261,8 +261,8 @@ security_controls:
     priority: P2
     description: "Rate limiting on webhook and API endpoints"
     files:
-      - "governance-app/src/main.rs"
-      - "governance-app/src/webhooks/**/*.rs"
+      - "bllvm-commons/src/main.rs"
+      - "bllvm-commons/src/webhooks/**/*.rs"
     required_signatures: 3-of-7
     review_period_days: 7
     requires_security_audit: false
