@@ -1,27 +1,47 @@
-# Governance Ruleset Export Template
+# Governance Ruleset Export Template - COMPREHENSIVE
 # This file serves as a template for exporting complete governance configurations
-# Version: 1.0
+# Version: 2.0 (Expanded with all governance dimensions)
 # Format: YAML
+#
+# This template includes ALL material governance dimensions that should be forkable:
+# 1. Action tiers (including security and emergency tiers)
+# 2. Economic nodes (including commons contributors, veto mechanism, adaptive governance)
+# 3. Nested multisig teams
+# 4. Governance review policy
+# 5. Repository layers
+# 6. Tier classification rules
+# 7. Emergency procedures
+# 8. Cross-layer rules
+# 9. Governance fork settings
+# 10. Validation requirements
 
 # Export metadata
 export_metadata:
-  version: "1.0"
-  ruleset_id: "btcdecoded-governance-v1"
-  ruleset_version: "1.0.0"
+  version: "2.0"
+  ruleset_id: "btcdecoded-governance-v2"
+  ruleset_version: "2.0.0"
   created_at: "2025-01-01T00:00:00Z"
   exported_by: "governance-app"
   source_repository: "BTCDecoded/governance"
   commit_hash: "abc123def456"
-  export_tool_version: "0.1.0"
+  export_tool_version: "0.2.0"
   signature: null
   verification_url: null
 
-# Action tiers configuration
+# ============================================================================
+# DIMENSION 1: ACTION TIERS
+# ============================================================================
+
 action_tiers:
+  # Standard tiers
   tier_1_routine:
     name: "Routine Maintenance"
-    signature_threshold: "3-of-5"
+    signatures:
+      required: 3
+      total: 5
     review_period_days: 7
+    economic_veto: false
+    emergency_override: false
     description: "Bug fixes, documentation, performance optimizations"
     requirements:
       - "Non-consensus changes only"
@@ -30,8 +50,13 @@ action_tiers:
 
   tier_2_features:
     name: "Feature Changes"
-    signature_threshold: "4-of-5"
+    signatures:
+      required: 4
+      total: 5
     review_period_days: 30
+    economic_veto: false
+    emergency_override: false
+    requires_specification: true
     description: "New RPC methods, P2P changes, wallet features"
     requirements:
       - "Must include technical specification"
@@ -40,21 +65,29 @@ action_tiers:
 
   tier_3_consensus_adjacent:
     name: "Consensus-Adjacent"
-    signature_threshold: "5-of-5"
+    signatures:
+      required: 5
+      total: 5
     review_period_days: 90
+    economic_veto: true
+    emergency_override: false
+    requires_specification: true
+    requires_audit: true
     description: "Changes affecting consensus validation code"
     requirements:
       - "Economic node veto required"
       - "Must include consensus impact analysis"
       - "Must include security audit"
-    economic_node_veto:
-      mining_threshold: 30.0  # 30% of hashpower
-      economic_threshold: 40.0  # 40% of economic activity
 
   tier_4_emergency:
     name: "Emergency Actions"
-    signature_threshold: "4-of-5"
+    signatures:
+      required: 4
+      total: 5
     review_period_days: 0
+    economic_veto: false
+    emergency_override: true
+    requires_post_mortem: true
     description: "Critical security patches, network-threatening bugs"
     requirements:
       - "Real-time economic node oversight"
@@ -63,64 +96,674 @@ action_tiers:
 
   tier_5_governance:
     name: "Governance Changes"
-    signature_threshold: "5-of-5"
+    signatures:
+      required: 5
+      total: 5
     review_period_days: 180
+    economic_veto: true
+    emergency_override: false
+    requires_public_comment: true
+    requires_rationale: true
     description: "Changes to governance rules themselves"
     requirements:
       - "Economic node signaling required"
       - "50%+ hashpower support"
       - "60%+ economic activity support"
 
-# Economic nodes configuration
+  # Security-specific tiers
+  security_critical:
+    name: "Security-Critical Changes"
+    signatures:
+      required: 7
+      total: 7
+    review_period_days: 180
+    economic_veto: true
+    emergency_override: false
+    requires_security_audit: true
+    requires_formal_verification: true
+    requires_cryptography_expert: true
+    requires_public_comment: true
+    requires_rationale: true
+    description: "Changes affecting P0 security controls"
+    additional_requirements:
+      - "All affected P0 controls must be certified"
+      - "No placeholder implementations in diff"
+      - "Formal verification proofs passing"
+      - "Security audit report attached to PR"
+      - "Cryptographer approval required"
+
+  cryptographic:
+    name: "Cryptographic Operations"
+    signatures:
+      required: 6
+      total: 7
+    review_period_days: 90
+    economic_veto: false
+    emergency_override: false
+    requires_cryptography_expert: true
+    requires_formal_verification: true
+    description: "Changes to cryptographic operations, signature verification, key management"
+    additional_requirements:
+      - "Cryptographer approval required"
+      - "Test vectors from standard specifications"
+      - "Side-channel analysis performed"
+      - "Formal verification proofs passing"
+
+  security_enhancement:
+    name: "Security Enhancement"
+    signatures:
+      required: 5
+      total: 7
+    review_period_days: 30
+    economic_veto: false
+    emergency_override: false
+    requires_security_review: true
+    description: "Changes affecting P1 security controls"
+    additional_requirements:
+      - "Security review by maintainer"
+      - "Comprehensive test coverage"
+      - "No placeholder implementations"
+
+# ============================================================================
+# DIMENSION 2: ECONOMIC NODES
+# ============================================================================
+
 economic_nodes:
   node_types:
-    mining_pool:
+    mining_pools:
       minimum_hashpower_percent: 1.0
+      measurement_period_days: 30
       weight_calculation: "hashpower_percentage"
       qualification_requirements:
         - "Proof of blocks mined"
         - "Time period verification"
         - "Network participation"
+      verification: "Fully cryptographic (coinbase signatures)"
 
-    exchange:
+    exchanges:
       minimum_holdings_btc: 10000
-      minimum_volume_usd: 100000000  # $100M daily
+      minimum_volume_usd: 100000000
       weight_calculation: "70%_holdings_30%_volume"
       qualification_requirements:
         - "Proof of BTC holdings"
         - "Proof of trading volume"
         - "Regulatory compliance"
+      verification:
+        holdings: "Cryptographic (signature challenges)"
+        volume: "Trust-based (external data)"
 
-    custodian:
+    custodians:
       minimum_holdings_btc: 10000
       weight_calculation: "holdings_percentage"
       qualification_requirements:
         - "Proof of BTC holdings"
         - "Custodial license"
         - "Security audit"
+      verification: "Cryptographic (signature challenges)"
 
-    payment_processor:
-      minimum_volume_usd: 50000000  # $50M monthly
+    payment_processors:
+      minimum_volume_usd: 50000000
       weight_calculation: "transaction_volume"
       qualification_requirements:
         - "Proof of transaction volume"
         - "Payment processor license"
         - "Compliance verification"
+      verification: "Partially verifiable (on-chain transactions visible)"
 
-    major_holder:
+    major_holders:
       minimum_holdings_btc: 5000
       weight_calculation: "holdings_percentage"
       qualification_requirements:
         - "Proof of BTC holdings"
         - "Identity verification"
         - "Long-term holding proof"
+      verification: "Fully cryptographic (signature challenges)"
 
-  veto_thresholds:
+    commons_contributors:
+      name: "Commons Contributors"
+      description: "Nodes that contribute to Bitcoin Commons through various revenue streams"
+      # Maintainer-configurable thresholds
+      thresholds:
+        merge_mining:
+          enabled: true
+          minimum_contribution_btc: 0.01
+          fee_percentage: 1  # Maintainer sets acceptable fee (0-100)
+          measurement_period_days: 90
+          description: "Minimum merge mining revenue contributed to Commons"
+          verification: "On-chain (coinbase signatures, secondary chain blocks)"
+        fee_forwarding:
+          enabled: true
+          minimum_contribution_btc: 0.1
+          measurement_period_days: 90
+          description: "Minimum transaction fees forwarded to Commons address"
+          verification: "On-chain (coinbase outputs to Commons address)"
+        zaps:
+          enabled: true
+          minimum_contribution_btc: 0.01
+          measurement_period_days: 90
+          description: "Minimum Lightning zap contributions to Commons"
+          verification: "Lightning (Nostr event verification, payment proofs)"
+        marketplace:
+          enabled: true
+          minimum_sales_btc: 0.01
+          measurement_period_days: 90
+          description: "Minimum module marketplace sales (BTC via BIP70)"
+          verification: "BIP70 payment records (module registry, on-chain)"
+      qualification_logic: "OR"  # OR = any threshold met, AND = all thresholds met
+      weight_calculation:
+        formula: "sqrt(total_contribution_btc / normalization_factor)"
+        normalization_factor: 1.0  # 1 BTC = 1.0 weight
+        minimum_weight: 0.01
+        contribution_types:
+          - "merge_mining_btc"
+          - "fee_forwarding_btc"
+          - "zaps_btc"
+          - "marketplace_sales_btc"
+
+  # Veto mechanism
+  veto_mechanism:
+    require_both_conditions: true  # AND logic (both mining AND economic required)
     mining_veto_percent: 30.0
     economic_veto_percent: 40.0
     grace_period_days: 30
+    sequential_enabled: true
+    sequential_phases:
+      prevention:
+        review_period_days: 30
+        maintainer_override_threshold: "6-of-7 teams"
+        description: "Prevention phase - economic nodes can block merge"
+      clean_fork:
+        review_period_days: 60
+        maintainer_override_threshold: "7-of-7 teams"
+        description: "Clean fork phase - if prevention sustained, fork occurs"
+    sustained_veto_days: 180  # If veto sustained for 180 days → fork
 
-# Maintainers configuration
+  # Adaptive governance
+  adaptive_governance:
+    enabled: true
+    phases:
+      early:
+        block_height_threshold: 0
+        economic_node_count: 10
+        commons_contributor_count: 5
+        veto_thresholds:
+          mining_percent: 20.0
+          economic_percent: 30.0
+      growth:
+        block_height_threshold: 100000
+        economic_node_count: 50
+        commons_contributor_count: 25
+        veto_thresholds:
+          mining_percent: 25.0
+          economic_percent: 35.0
+      mature:
+        block_height_threshold: 500000
+        economic_node_count: 100
+        commons_contributor_count: 50
+        veto_thresholds:
+          mining_percent: 30.0
+          economic_percent: 40.0
+    consolidation_monitoring:
+      enabled: true
+      mining_pool_threshold: 50.0  # Alert if single pool > 50%
+      economic_node_threshold: 40.0  # Alert if single node > 40%
+      adjustment_factor: 0.1  # Increase thresholds by 10% if consolidation detected
+
+# ============================================================================
+# DIMENSION 3: NESTED MULTISIG TEAMS
+# ============================================================================
+
+nested_multisig_teams:
+  # Team structure (customizable - could be 5 teams, 7 teams, 10 teams, etc.)
+  teams:
+    - id: team-1
+      name: "Constitutional Team"
+      description: "Layer 1-2 changes (Orange Paper, Consensus Proof)"
+      maintainers:
+        - github: maintainer1
+          public_key: 0335573cdcac8f622dddc6a6799050d3739b016f389b0c74f954e27c9d07797363
+          role: cryptographer
+          added: 2025-01-01
+          status: active
+        # ... all maintainers in team
+
+  # Team consensus requirements
+  team_consensus:
+    description: "Each team requires internal consensus"
+    threshold_per_team: 6  # Could be 5-of-7, 4-of-5, etc.
+    total_per_team: 7  # Could be 5, 7, 9, etc.
+
+  # Inter-team consensus requirements
+  inter_team_consensus:
+    description: "Top level requires teams consensus"
+    threshold_teams: 6  # Could be 4-of-5, 5-of-7, etc.
+    total_teams: 7  # Could be 5, 7, 9, etc.
+
+  # Tier requirements (using nested multisig)
+  tier_requirements:
+    tier_1:
+      teams_required: 4
+      maintainers_per_team: 5
+      description: "Routine maintenance"
+    tier_2:
+      teams_required: 5
+      maintainers_per_team: 6
+      description: "Feature changes"
+    tier_3:
+      teams_required: 6
+      maintainers_per_team: 6
+      description: "Consensus-adjacent"
+    tier_4:
+      teams_required: 5
+      maintainers_per_team: 5
+      description: "Emergency actions"
+    tier_5:
+      teams_required: 7
+      maintainers_per_team: 6
+      description: "Constitutional changes"
+
+  # Team membership criteria
+  membership_criteria:
+    adding_to_team:
+      team_approval: "6-of-7"
+      inter_team_approval: "4-of-7 teams"
+    removing_from_team:
+      team_approval: "6-of-7"  # excluding subject
+      inter_team_approval: "4-of-7 teams"
+
+# ============================================================================
+# DIMENSION 4: GOVERNANCE REVIEW POLICY
+# ============================================================================
+
+governance_review_policy:
+  # Policy scope
+  scope:
+    on_platform_only: true  # Off-platform activity disregarded
+    description: "Only on-platform activity related to maintainer role is considered"
+
+  # Sanction thresholds
+  sanctions:
+    private_warning:
+      threshold: "4-of-7"  # Team approval required
+      response_deadline_days: 14
+      appeal_threshold: "5-of-7"
+    public_warning:
+      threshold: "5-of-7"  # Team approval required
+      improvement_period_days: 90
+      extension_allowed: true
+      max_extension_days: 30
+      response_deadline_days: 30
+      appeal_threshold: "6-of-7"
+    removal:
+      threshold: "6-of-7"  # Team + 4-of-7 teams
+      response_deadline_days: 30
+      appeal_threshold: "5-of-7 teams"
+
+  # Time limits
+  time_limits:
+    response_deadline_days: 30
+    resolution_deadline_days: 180
+    appeal_deadline_days: 60
+    mediation_period_days: 30
+    max_extension_days: 90
+    extension_approval_threshold: "5-of-7 teams"
+
+  # Appeal process
+  appeals:
+    enabled: true
+    deadline_days: 60
+    overturn_threshold: "5-of-7 teams"
+    auto_reactivate_on_grant: true
+
+  # Mediation process
+  mediation:
+    enabled: true
+    period_days: 30
+    auto_fail_on_expiry: true
+    applies_to:
+      - "Non-security issues"
+      - "Disputes between maintainers"
+      - "Conflicts that could be resolved through discussion"
+    does_not_apply_to:
+      - "Security issues (immediate threat)"
+      - "Active attacks"
+      - "Key compromise"
+      - "Ongoing fraud or theft"
+
+  # Emergency removal
+  emergency_removal:
+    enabled: true
+    threshold: "4-of-5"  # Emergency keyholders
+    requires_formal_removal_within_days: 7
+
+# ============================================================================
+# DIMENSION 5: REPOSITORY LAYERS
+# ============================================================================
+
+repository_layers:
+  layer_1_constitutional:
+    name: "Constitutional Layer"
+    repositories:
+      - "bllvm-spec"
+    purpose: "Constitutional documents and mathematical specifications"
+    signatures:
+      required: 6
+      total: 7
+    review_period_days: 180
+    consensus_review_period_days: 365  # Special for consensus changes
+    maintainers:
+      - "constitutional-maintainer-1"
+      # ... all maintainers
+
+  layer_2_constitutional:
+    name: "Constitutional Layer"
+    repositories:
+      - "bllvm-consensus"
+    purpose: "Consensus proof implementations"
+    signatures:
+      required: 6
+      total: 7
+    review_period_days: 180
+    consensus_review_period_days: 365
+    verification:
+      required: true
+      enforceable: true
+      override_allowed: false
+      tools:
+        - name: "Kani"
+          command: "cargo kani --features verify"
+          required: true
+        - name: "Proptest"
+          command: "cargo test --all-features"
+          required: true
+      ci_workflow: ".github/workflows/verify.yml"
+      blocking: true
+
+  layer_3_implementation:
+    name: "Implementation Layer"
+    repositories:
+      - "bllvm-protocol"
+    purpose: "Core protocol implementation"
+    signatures:
+      required: 4
+      total: 5
+    review_period_days: 90
+
+  layer_4_application:
+    name: "Application Layer"
+    repositories:
+      - "bllvm-node"
+      - "bllvm"
+    purpose: "Reference implementation and applications"
+    signatures:
+      required: 3
+      total: 5
+    review_period_days: 60
+
+  layer_5_extension:
+    name: "Extension Layer"
+    repositories:
+      - "bllvm-sdk"
+    purpose: "Developer tools and extensions"
+    signatures:
+      required: 2
+      total: 3
+    review_period_days: 14
+
+# ============================================================================
+# DIMENSION 6: TIER CLASSIFICATION RULES
+# ============================================================================
+
+tier_classification:
+  classification_rules:
+    tier_1_routine:
+      confidence_threshold: 0.8
+      file_patterns:
+        - "docs/**"
+        - "*.md"
+        - "tests/**"
+      keywords:
+        - "fix typo"
+        - "documentation"
+        - "performance"
+      exclude_patterns:
+        - "consensus/**"
+        - "validation/**"
+
+    tier_2_features:
+      confidence_threshold: 0.8
+      file_patterns:
+        - "rpc/**"
+        - "wallet/**"
+        - "p2p/**"
+      keywords:
+        - "feature"
+        - "new"
+        - "add"
+      require_specification: true
+
+    tier_3_consensus_adjacent:
+      confidence_threshold: 0.9
+      file_patterns:
+        - "consensus/**"
+        - "validation/**"
+      keywords:
+        - "consensus"
+        - "validation"
+      require_specification: true
+      require_audit: true
+
+    tier_4_emergency:
+      confidence_threshold: 0.95
+      keywords:
+        - "emergency"
+        - "critical"
+        - "security"
+        - "CVE"
+      require_post_mortem: true
+
+    tier_5_governance:
+      confidence_threshold: 0.9
+      file_patterns:
+        - "governance/**"
+        - "*.yml"
+      keywords:
+        - "governance"
+        - "maintainer"
+        - "signature"
+      require_public_comment: true
+      require_rationale: true
+
+  confidence_scoring:
+    file_pattern_match: 0.4
+    keyword_match: 0.3
+    title_analysis: 0.2
+    description_analysis: 0.1
+    boost_factors:
+      multiple_file_matches: 0.1
+      strong_keyword_matches: 0.1
+      specification_present: 0.1
+      audit_present: 0.1
+    penalty_factors:
+      conflicting_indicators: -0.2
+      insufficient_evidence: -0.3
+      unclear_intent: -0.1
+
+  fallback:
+    default_tier: 2
+    confidence_threshold: 0.5
+    require_manual_review: true
+
+# ============================================================================
+# DIMENSION 7: EMERGENCY PROCEDURES
+# ============================================================================
+
+emergency_procedures:
+  emergency_tiers:
+    tier_1_critical:
+      name: "Critical Emergency"
+      activation_threshold: "5-of-7"
+      signature_threshold: "4-of-7"
+      review_period_days: 0
+      max_duration_days: 7
+      extensions_allowed: 0
+      requires_post_mortem: true
+      post_mortem_deadline_days: 30
+      requires_security_audit: true
+      requires_public_disclosure: true
+
+    tier_2_urgent:
+      name: "Urgent Security Issue"
+      activation_threshold: "5-of-7"
+      signature_threshold: "5-of-7"
+      review_period_days: 7
+      max_duration_days: 30
+      extensions_allowed: 1
+      extension_duration_days: 30
+      extension_threshold: "6-of-7"
+      requires_post_mortem: true
+      post_mortem_deadline_days: 60
+      requires_public_disclosure: true
+
+    tier_3_elevated:
+      name: "Elevated Priority"
+      activation_threshold: "5-of-7"
+      signature_threshold: "6-of-7"
+      review_period_days: 30
+      max_duration_days: 90
+      extensions_allowed: 2
+      extension_duration_days: 30
+      extension_threshold: "6-of-7"
+      requires_post_mortem: true
+      post_mortem_deadline_days: 90
+
+  activation_process:
+    step_1: "Emergency keyholder submits activation request with evidence"
+    step_2: "Other emergency keyholders review and sign (5-of-7 required)"
+    step_3: "Governance App activates tier and adjusts requirements"
+    step_4: "Status checks reflect emergency parameters"
+    step_5: "PRs merged under emergency rules"
+    step_6: "Post-activation requirements tracked"
+    step_7: "Automatic expiration at max_duration unless extended"
+
+# ============================================================================
+# DIMENSION 8: CROSS-LAYER RULES
+# ============================================================================
+
+cross_layer_rules:
+  rules:
+    - name: consensus_proof_sync
+      description: "Orange Paper and Consensus Proof must stay synchronized"
+      source_repo: orange-paper
+      source_pattern: consensus-rules/**
+      target_repo: consensus-proof
+      target_pattern: proofs/**
+      validation: corresponding_file_exists
+      bidirectional: true
+      blocking: true
+
+    - name: protocol_engine_equivalence
+      description: "Protocol Engine must reference specific Orange Paper version"
+      source_repo: protocol-engine
+      source_pattern: consensus/**
+      target_repo: orange-paper
+      validation: references_latest_version
+      required_reference_format: "orange-paper@v{VERSION}"
+      blocking: true
+
+    - name: reference_node_no_consensus
+      description: "Reference Node cannot modify consensus rules"
+      source_repo: reference-node
+      validation: no_consensus_modifications
+      allowed_imports_only: true
+      blocking: true
+
+  dependencies:
+    layer_1_to_lower:
+      description: "Constitutional changes may require implementation updates"
+      notification_required: true
+      review_period_extension: 30
+    layer_2_to_lower:
+      description: "Consensus proof changes may require protocol updates"
+      notification_required: true
+      review_period_extension: 14
+    layer_3_to_lower:
+      description: "Protocol changes may require application updates"
+      notification_required: true
+      review_period_extension: 7
+
+  emergency_cross_layer:
+    description: "Emergency changes affecting multiple layers"
+    requires_coordination: true
+    notification_channels:
+      - "maintainers"
+      - "economic-nodes"
+      - "community"
+
+# ============================================================================
+# DIMENSION 9: GOVERNANCE FORK SETTINGS
+# ============================================================================
+
+governance_fork:
+  fork_trigger_conditions:
+    tier_3_sustained_veto:
+      sustained_veto_days: 180  # Could be 90, 120, 365, etc.
+      description: "Tier 3 change with sustained economic node veto"
+    maintainer_abuse:
+      community_support_threshold: "40% economic activity"
+      description: "Maintainer abuse pattern with community support for reform"
+    irreconcilable_disagreement:
+      description: "Irreconcilable disagreement about governance direction"
+      process: "Multiple governance approaches can coexist"
+
+  fork_thresholds:
+    minimum_adoption_percentage: 50.0
+    minimum_node_count: 10
+    minimum_hashpower_percentage: 30.0
+    minimum_economic_activity_percentage: 40.0
+    grace_period_days: 30
+
+  adoption_measurement:
+    measurement_period_days: 180  # Could be 90, 365, etc.
+    combined_metric:
+      node_weight: 50.0
+      economic_weight: 50.0
+    daily_snapshots: true
+    history_retention_days: 365
+
+  resolution_scenarios:
+    clear_winner_threshold: 90.0  # Could be 80%, 95%, etc.
+    strong_majority_threshold: 60.0  # Could be 50%, 70%, etc.
+    minority_threshold: 10.0  # Could be 5%, 15%, etc.
+    sunset_period_days: 90  # Could be 30, 180, etc.
+    extended_measurement_days: 360  # If 60-90% adoption, measure for additional 180 days
+
+# ============================================================================
+# DIMENSION 10: VALIDATION REQUIREMENTS
+# ============================================================================
+
+validation_requirements:
+  signature_verification:
+    algorithm: "secp256k1"
+    message_format: "PR #{number} in {repository}"
+    signature_format: "hex_encoded"
+
+  review_periods:
+    tier_1: 7
+    tier_2: 30
+    tier_3: 90
+    tier_4: 0
+    tier_5: 180
+
+  economic_node_verification:
+    hashpower_proof: "block_headers_and_timestamps"
+    holdings_proof: "address_signature_challenge"
+    volume_proof: "external_data_source_verification"
+
+# ============================================================================
+# MAINTAINERS (by layer - for backward compatibility)
+# ============================================================================
+
 maintainers:
   layer_1_2_constitutional:
     layer: 1
@@ -131,10 +774,6 @@ maintainers:
       - github: "maintainer1"
         public_key: "0335573cdcac8f622dddc6a6799050d3739b016f389b0c74f954e27c9d07797363"
         role: "cryptographer"
-        status: "active"
-      - github: "maintainer2"
-        public_key: "0346160a24e2be28933de6dc1fedeab2e52aa21c5208b3f88c16e2f607568d40b4"
-        role: "protocol_expert"
         status: "active"
 
   layer_3_implementation:
@@ -148,7 +787,10 @@ maintainers:
         role: "developer"
         status: "active"
 
-# Repository configurations
+# ============================================================================
+# REPOSITORIES (for backward compatibility)
+# ============================================================================
+
 repositories:
   orange_paper:
     layer: 1
@@ -160,7 +802,6 @@ repositories:
       patterns:
         - "consensus-rules/**"
         - "validation/**"
-        - "block-acceptance/**"
       manual_override: true
 
   consensus_proof:
@@ -185,101 +826,5 @@ repositories:
       patterns:
         - "src/**"
         - "examples/**"
-        - "tests/**"
       manual_override: true
 
-# Governance fork configuration
-governance_fork:
-  fork_thresholds:
-    minimum_adoption_percentage: 50.0
-    minimum_node_count: 10
-    minimum_hashpower_percentage: 30.0
-    minimum_economic_activity_percentage: 40.0
-    grace_period_days: 30
-
-  fork_process:
-    step_1: "Export current governance configuration"
-    step_2: "Create new ruleset with version increment"
-    step_3: "Distribute to economic nodes"
-    step_4: "Track adoption metrics"
-    step_5: "Declare fork when threshold met"
-
-  adoption_tracking:
-    metrics_collection: "real_time"
-    dashboard_endpoint: "/adoption-metrics"
-    history_retention_days: 365
-    alert_thresholds:
-      adoption_rate: 25.0
-      hashpower_shift: 10.0
-      economic_shift: 15.0
-
-# Cross-layer dependencies
-cross_layer_rules:
-  - if_changed: "consensus-rules/**"
-    then_require_update: "consensus-proof/proofs/**"
-    validation: "equivalence_proof_exists"
-    error_message: "Consensus rule changes require corresponding proof updates"
-
-  - if_changed: "proofs/**"
-    then_require_update: "protocol-engine/src/**"
-    validation: "implementation_updated"
-    error_message: "Proof changes require protocol engine updates"
-
-# Emergency procedures
-emergency_procedures:
-  activation_tiers:
-    tier_1: "Critical security vulnerability"
-    tier_2: "Network stability threat"
-    tier_3: "Governance system compromise"
-
-  keyholders:
-    - name: "Emergency Keyholder 1"
-      public_key: "0x02[EMERGENCY_KEY_1]"
-      role: "security_expert"
-    - name: "Emergency Keyholder 2"
-      public_key: "0x02[EMERGENCY_KEY_2]"
-      role: "protocol_expert"
-
-  activation_process:
-    step_1: "Evidence collection and verification"
-    step_2: "Emergency keyholder signature"
-    step_3: "Immediate activation"
-    step_4: "Post-mortem within 7 days"
-
-# Validation requirements
-validation_requirements:
-  signature_verification:
-    algorithm: "secp256k1"
-    message_format: "PR #{number} in {repository}"
-    signature_format: "hex_encoded"
-
-  review_periods:
-    tier_1: 7
-    tier_2: 30
-    tier_3: 90
-    tier_4: 0
-    tier_5: 180
-
-  economic_node_verification:
-    hashpower_proof: "block_headers_and_timestamps"
-    holdings_proof: "address_signature_challenge"
-    volume_proof: "external_data_source_verification"
-
-# Monitoring and alerting
-monitoring:
-  metrics_collection:
-    - "signature_collection_rate"
-    - "review_period_compliance"
-    - "economic_node_participation"
-    - "veto_threshold_approaches"
-
-  alerting:
-    email_notifications: true
-    slack_integration: true
-    webhook_endpoints: []
-
-  dashboard:
-    adoption_metrics: "/adoption-metrics"
-    governance_status: "/governance-status"
-    economic_nodes: "/economic-nodes"
-    fork_events: "/fork-events"
