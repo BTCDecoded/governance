@@ -1,0 +1,209 @@
+# Governance Review Policy Configuration
+# Machine-readable configuration for maintainer governance review system
+# See GOVERNANCE_REVIEW_POLICY.md for human-readable policy documentation
+
+# Policy scope
+scope:
+  on_platform_only: true
+  description: "Only on-platform activity related to maintainer role is considered"
+  off_platform_disregarded: true
+
+# Sanction thresholds
+sanctions:
+  private_warning:
+    threshold: "4-of-7"  # Team approval required
+    response_deadline_days: 14
+    appeal_threshold: "5-of-7"
+    description: "Minor violations or first offense of moderate severity"
+    consequence: "Private warning, opportunity to correct behavior"
+    logged_publicly: false
+
+  public_warning:
+    threshold: "5-of-7"  # Team approval required
+    improvement_period_days: 90
+    extension_allowed: true
+    max_extension_days: 30
+    extension_approval_threshold: "4-of-7"
+    response_deadline_days: 30
+    appeal_threshold: "6-of-7"
+    description: "Moderate violations, pattern of minor violations, or failure to correct after private warning"
+    consequence: "Public warning, 90-day improvement period, potential restrictions"
+    logged_publicly: true
+    warning_directory: "governance/warnings/"
+
+  removal:
+    threshold: "6-of-7"  # Team approval (excluding subject)
+    inter_team_threshold: "4-of-7 teams"  # Additional requirement for removal
+    response_deadline_days: 30
+    appeal_threshold: "5-of-7 teams"
+    description: "Serious violations, failure to correct after warnings, or immediate security threat"
+    consequence: "Removal from team, key deactivated"
+    all_documentation_public: true
+
+# Time limits
+time_limits:
+  response_deadline_days: 30
+  resolution_deadline_days: 180
+  appeal_deadline_days: 60
+  mediation_period_days: 30
+  max_extension_days: 90
+  extension_approval_threshold: "5-of-7 teams"
+  
+  # Emergency cases
+  emergency_initial_action_days: 7
+  
+  # Warnings
+  improvement_period_days: 90
+  improvement_extension_days: 30
+  improvement_extension_approval: "4-of-7"
+
+# Appeal process
+appeals:
+  enabled: true
+  deadline_days: 60
+  overturn_threshold: "5-of-7 teams"
+  auto_reactivate_on_grant: true
+  description: "Subject can appeal through normal process"
+
+# Mediation process
+mediation:
+  enabled: true
+  period_days: 30
+  auto_fail_on_expiry: true
+  applies_to:
+    - "Non-security issues"
+    - "Disputes between maintainers"
+    - "Conflicts that could be resolved through discussion"
+  does_not_apply_to:
+    - "Security issues (immediate threat)"
+    - "Active attacks"
+    - "Key compromise"
+    - "Ongoing fraud or theft"
+  facilitator: "Neutral maintainer (if available)"
+  resolution_outcomes:
+    - "If resolved: Issue closed"
+    - "If not resolved: Proceeds to normal process"
+
+# Emergency removal
+emergency_removal:
+  enabled: true
+  threshold: "4-of-5"  # Emergency keyholders
+  requires_formal_removal_within_days: 7
+  grounds:
+    - "Key compromise (immediate security risk)"
+    - "Gross violations (immediate security threat)"
+    - "Active attack on the system"
+  definition_gross_violations:
+    - "Active attack on the system"
+    - "Ongoing fraud or theft"
+    - "Immediate key compromise risk"
+    - "Malicious code that could cause immediate harm"
+  not_gross_violations:
+    - "Disagreements or conflicts"
+    - "Policy violations without immediate threat"
+    - "Non-security issues"
+
+# Reporting
+reporting:
+  who_can_report:
+    - "Any maintainer"
+    - "Any contributor (via maintainer)"
+    - "Community members (via maintainer)"
+  how_to_report:
+    - "Create GitHub issue in governance repository"
+    - "Document the violation with evidence"
+    - "Include links, screenshots, or other proof"
+    - "Maintainer reviews and processes"
+  protection_for_reporters:
+    retaliation_grounds_for_removal: true
+    false_report_consequences: "Grounds for warning or removal"
+    privacy_respected: true
+    public_choice: "Reporters can choose to be public"
+
+# Evaluation criteria
+evaluation_criteria:
+  factors:
+    - "Severity: How serious is the violation?"
+    - "Pattern: Is this a pattern or isolated incident?"
+    - "Impact: What is the impact on the system or community?"
+    - "Intent: Was this intentional or accidental?"
+    - "Response: How has the subject responded?"
+    - "History: Previous warnings or sanctions?"
+  documentation_requirements:
+    - "All evidence must be publicly documented in governance repository"
+    - "Links, screenshots, or other proof must be provided"
+    - "Evaluation rationale must be documented"
+    - "Subject maintainer must be notified and given opportunity to respond"
+    - "All decisions must be transparent"
+
+# Safeguards
+safeguards:
+  prevents_abuse:
+    - "High threshold: 6-of-7 team + 4-of-7 teams for removal"
+    - "Graduated sanctions: Warnings before removal"
+    - "Transparency: All evidence and evaluation public"
+    - "Appeal rights: 60-day appeal period, higher threshold to overturn"
+    - "Response period: 30 days for subject to respond"
+    - "Time limits: Cases must resolve within 180 days"
+    - "Mediation: Conflict resolution before removal (non-security)"
+  what_prevents:
+    - "Personal vendettas (requires evidence, high threshold)"
+    - "Frivolous removals (graduated sanctions, high threshold)"
+    - "Secret removals (public documentation)"
+    - "Retaliation (immediate removal for retaliation)"
+    - "False reports (consequences for false reports)"
+    - "Indefinite cases (time limits)"
+  protections:
+    - "Whistleblower protection: Retaliation is immediate grounds for removal"
+    - "False report consequences: False/malicious reports are grounds for warning or removal"
+    - "Privacy: Reporters' privacy respected (unless they choose to be public)"
+    - "Due process: Response periods, appeals, mediation"
+
+# Rehabilitation
+rehabilitation:
+  reapplication_process:
+    enabled: true
+    wait_period_years: 2
+    approval_threshold: "6-of-7 team + 4-of-7 teams"
+    same_as_new_maintainer: true  # Same process as new maintainer (probation, etc.)
+  conditions:
+    - "Must address original violations"
+    - "Must demonstrate understanding of what went wrong"
+    - "Must show evidence of change"
+    - "Must meet all normal maintainer requirements"
+  not_eligible_for:
+    - "Removed for security issues (key compromise, active attack)"
+    - "Removed for ongoing fraud or theft"
+    - "Removed for malicious code submission"
+
+# Case types
+case_types:
+  - "abuse"
+  - "harassment"
+  - "conflict_of_interest"
+  - "gross_misconduct"
+  - "repeated_technical_errors"
+  - "key_sharing"
+  - "unauthorized_access"
+  - "malicious_code"
+  - "collusion"
+  - "security_violation"
+
+# Severity levels
+severity_levels:
+  - "minor"
+  - "moderate"
+  - "serious"
+  - "gross_misconduct"
+
+# Status values
+status_values:
+  - "open"
+  - "under_review"
+  - "mediation"
+  - "warning_issued"
+  - "removed"
+  - "appealed"
+  - "resolved"
+  - "dismissed"
+
