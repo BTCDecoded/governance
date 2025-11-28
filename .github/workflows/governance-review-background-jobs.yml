@@ -1,0 +1,109 @@
+name: Governance Review Background Jobs
+
+on:
+  schedule:
+    # Run every 6 hours to check for expired cases, time limits, appeals, mediations
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  check-expired-cases:
+    name: Check Expired Cases
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      
+      - name: Check Expired Cases
+        run: |
+          cargo run --bin governance-review-check-expired \
+            -- --check-cases
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  check-expired-time-limits:
+    name: Check Expired Time Limits
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      
+      - name: Check Expired Time Limits
+        run: |
+          cargo run --bin governance-review-check-expired \
+            -- --check-time-limits
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  check-expired-appeals:
+    name: Check Expired Appeals
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      
+      - name: Check Expired Appeals
+        run: |
+          cargo run --bin governance-review-check-expired \
+            -- --check-appeals
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  check-expired-mediations:
+    name: Check Expired Mediations
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      
+      - name: Check Expired Mediations
+        run: |
+          cargo run --bin governance-review-check-expired \
+            -- --check-mediations
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  notify-approaching-deadlines:
+    name: Notify Approaching Deadlines
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      
+      - name: Notify Approaching Deadlines
+        run: |
+          cargo run --bin governance-review-check-expired \
+            -- --notify-deadlines
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
