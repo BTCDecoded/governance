@@ -1,0 +1,86 @@
+# Commons Contributor Economic Node Qualification Thresholds
+# Maintainer-Configurable Thresholds
+#
+# This file defines the minimum thresholds that Commons contributors must meet
+# to qualify as economic nodes. Maintainers can adjust these thresholds via
+# governance process (Tier 5: Governance Changes).
+#
+# All thresholds are measured over a rolling measurement period (default: 90 days).
+# Qualification uses OR logic by default (any threshold met qualifies), but can
+# be changed to AND logic (all thresholds must be met).
+
+commons_contributor_thresholds:
+  # Measurement period for qualification (rolling window)
+  # Uses rolling window: sum of contributions within the period
+  # Note: This is a rolling window (sum), not a rolling average (mean)
+  measurement_period_days: 90
+  
+  # Qualification logic: "OR" = any threshold met qualifies, "AND" = all thresholds must be met
+  qualification_logic: "OR"
+  
+  # Contribution type thresholds (in BTC over measurement period)
+  merge_mining:
+    enabled: true
+    minimum_contribution_btc: 0.01  # Minimum merge mining contribution (1% of rewards)
+    description: "Minimum merge mining revenue contributed to Commons"
+    verification: "On-chain (coinbase signatures, secondary chain blocks)"
+    
+  fee_forwarding:
+    enabled: true
+    minimum_contribution_btc: 0.1  # Minimum fee forwarding contribution
+    description: "Minimum transaction fees forwarded to Commons address"
+    verification: "On-chain (coinbase outputs to Commons address)"
+    
+  zaps:
+    enabled: true
+    minimum_contribution_btc: 0.01  # Minimum zap contributions
+    description: "Minimum Lightning zap contributions to Commons"
+    verification: "Lightning (Nostr event verification, payment proofs)"
+    
+  # Marketplace module sales (priced in BTC via BIP70 payments)
+  marketplace:
+    enabled: true
+    minimum_contribution_btc: 0.01  # Minimum module marketplace sales (BTC)
+    description: "Minimum module marketplace revenue (BIP70 payments in BTC)"
+    verification: "BIP70 payment records (module registry, on-chain)"
+    # Note: BIP70 payments are in satoshis (BTC), no USD conversion needed
+
+# Weight calculation configuration
+weight_calculation:
+  formula: "sqrt(total_contribution_btc / normalization_factor)"
+  normalization_factor: 1.0  # 1 BTC = 1.0 weight
+  minimum_weight: 0.01  # Minimum weight to qualify (prevents dust)
+  
+  # Note: All contributions are in BTC - no USD conversion needed!
+  # This uses pure BTC calculation (already implemented in weight_calculator.rs)
+  # No price fetching required - Bitcoin-native approach
+  
+  # Contribution types included in total (all in BTC)
+  contribution_types:
+    - "merge_mining_btc"
+    - "fee_forwarding_btc"
+    - "zaps_btc"
+    - "marketplace_sales_btc"  # BIP70 payments (native BTC)
+  
+  # Total calculation: sum of all contribution types
+  total_calculation: "sum(all_contribution_types)"
+
+# Maintainer configuration notes
+maintainer_notes: |
+  These thresholds are set by maintainers via Tier 5 governance process.
+  
+  To change thresholds:
+  1. Update this file in governance/config/
+  2. Submit PR with Tier 5 classification (Governance Changes)
+  3. Requires 5-of-7 maintainer signatures + 2-of-3 emergency keyholders
+  4. Requires 180-day review period
+  5. Requires economic node signaling (50%+ hashpower, 60%+ economic activity)
+  
+  Rationale for thresholds:
+  - Lower thresholds = more inclusive, more economic nodes
+  - Higher thresholds = more exclusive, fewer but larger economic nodes
+  - Balance between inclusivity and quality of participation
+  
+  Current defaults are conservative to encourage participation while maintaining
+  meaningful economic commitment.
+

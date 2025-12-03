@@ -33,7 +33,7 @@ Bitcoin Commons implements a **5-tier constitutional governance system** that ma
 
 **Tier 3: Consensus-Adjacent** (5-of-5, 90 days + economic node veto)
 - Changes affecting consensus validation code
-- Economic nodes can veto (30%+ hashpower or 40%+ economic activity)
+- Economic nodes can veto (30%+ hashpower AND 40%+ economic activity)
 
 **Tier 4: Emergency Actions** (4-of-5, 0 days review period)
 - Critical security patches, network-threatening bugs
@@ -46,12 +46,20 @@ Bitcoin Commons implements a **5-tier constitutional governance system** that ma
 ### Pull Request Process
 
 1. Developer opens PR
+   - **Code**: `blvm-commons/src/webhooks/pull_request.rs:handle_pull_request()`
 2. Governance App classifies tier automatically (with temp. manual override)
+   - **Code**: `blvm-commons/src/validation/tier_classification.rs:classify_tier()`
 3. Maintainers review and sign: `/governance-sign <signature>`
+   - **Code**: `blvm-commons/src/webhooks/comment.rs:handle_governance_sign()`
 4. Review period elapses (tier-specific duration)
+   - **Code**: `blvm-commons/src/validation/review_period.rs:check_review_period()`
 5. Economic node veto period (Tier 3+)
+   - **Code**: `blvm-commons/src/economic_nodes/veto.rs:check_veto_threshold()`
 6. Requirements met → merge enabled
+   - **Code**: `blvm-commons/src/enforcement/merge_block.rs:should_block_merge()`
 7. PR merged
+
+**See [HOW_TO.md](HOW_TO.md) for detailed step-by-step instructions.**
 
 ### Signature Requirements by Layer
 
@@ -73,10 +81,10 @@ When both apply, the system takes the most restrictive (highest) requirements:
 
 | Example | Layer | Tier | Final Signatures | Final Review | Source |
 |---------|-------|------|------------------|--------------|---------|
-| Bug fix in Protocol Engine | 3 | 1 | 4-of-5 | 90 days | Layer 3 |
-| New feature in Developer SDK | 5 | 2 | 4-of-5 | 30 days | Tier 2 |
-| Consensus change in Orange Paper | 1 | 3 | 6-of-7 | 180 days | Layer 1 |
-| Emergency fix in Reference Node | 4 | 4 | 4-of-5 | 0 days | Tier 4 |
+| Bug fix in blvm-protocol | 3 | 1 | 4-of-5 | 90 days | Layer 3 |
+| New feature in blvm-sdk | 5 | 2 | 4-of-5 | 30 days | Tier 2 |
+| Consensus change in blvm-spec | 1 | 3 | 6-of-7 | 180 days | Layer 1 |
+| Emergency fix in blvm-node | 4 | 4 | 4-of-5 | 0 days | Tier 4 |
 
 See [LAYER_TIER_MODEL.md](LAYER_TIER_MODEL.md) for the complete decision matrix.
 
@@ -314,7 +322,7 @@ Changes to governance rules themselves require:
 - 6-of-7 vote (excluding subject maintainer)
 - Formal warning logged in `warnings/` directory
 - 14-day notice period
-- Reasons: inactivity (6+ months), misconduct, competence concerns
+- Reasons: inactivity (6+ months), code of conduct violations **on-platform only** (off-platform activity disregarded), competence concerns
 
 **Rotation:**
 - Maintainers may voluntarily step down with 30-day notice

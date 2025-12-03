@@ -297,3 +297,7 @@ These determine when the system transitions between **Early → Growth → Matur
 
 All variables are forkable and can be customized in alternative governance rulesets.
 
+
+
+
+

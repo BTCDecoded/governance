@@ -62,7 +62,6 @@ adoption_measurement:
       mining_pools: "Weighted by hashpower"
       exchanges: "Weighted by trading volume"
       custodians: "Weighted by holdings"
-      payment_processors: "Weighted by transaction volume"
   combined_metric:
     node_weight: "50% weight: Node count"
     economic_weight: "50% weight: Economic activity"

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Cryptographic Layer Synchronization system ensures that the Orange Paper (Layer 1) and Consensus Proof (Layer 2) repositories remain cryptographically synchronized. This prevents consensus rule divergence and maintains the integrity of Bitcoin's governance model.
+The Cryptographic Layer Synchronization system ensures that blvm-spec (Layer 1) and blvm-consensus (Layer 2) repositories remain cryptographically synchronized. This prevents consensus rule divergence and maintains the integrity of Bitcoin's governance model.
 
 ## Architecture
 
@@ -35,14 +35,14 @@ The system implements three complementary layers of cryptographic verification:
 
 ### Purpose
 
-Ensures that changes to Orange Paper files have corresponding updates in Consensus Proof files through cryptographic hash verification.
+Ensures that changes to blvm-spec files have corresponding updates in blvm-consensus files through cryptographic hash verification.
 
 ### Implementation
 
 - **File Hashing**: SHA256 hash of file contents
 - **Directory Hashing**: Merkle tree hash of directory structures
-- **Correspondence Mapping**: Maps Orange Paper files to Consensus Proof files
-- **Bidirectional Sync**: Checks both Orange Paper → Consensus Proof and Consensus Proof → Orange Paper
+- **Correspondence Mapping**: Maps blvm-spec files to blvm-consensus files
+- **Bidirectional Sync**: Checks both blvm-spec → blvm-consensus and blvm-consensus → blvm-spec
 
 ### Key Functions
 
@@ -84,11 +84,11 @@ consensus-rules/difficulty-adjustment.md → proofs/difficulty-adjustment.rs
 
 ### Purpose
 
-Ensures that Consensus Proof implementations reference specific, cryptographically verified Orange Paper versions.
+Ensures that blvm-consensus implementations reference specific, cryptographically verified blvm-spec versions.
 
 ### Implementation
 
-- **Version Manifest**: Cryptographically signed manifest of Orange Paper versions
+- **Version Manifest**: Cryptographically signed manifest of blvm-spec versions
 - **Reference Parsing**: Extracts version references from code comments
 - **Signature Verification**: Verifies 6-of-7 maintainer signatures
 - **Version Validation**: Ensures references point to valid, stable versions
@@ -96,8 +96,8 @@ Ensures that Consensus Proof implementations reference specific, cryptographical
 ### Version Reference Format
 
 ```rust
-// In Consensus Proof code:
-// @orange-paper-version: v1.2.3
+// In blvm-consensus code:
+// @blvm-spec-version: v1.2.3
 // @orange-paper-commit: abc123def456
 // @orange-paper-hash: sha256:fedcba...
 ```
@@ -129,7 +129,7 @@ manifest_hash: sha256:test_manifest_hash
 
 ### Purpose
 
-Validates that Consensus Proof implementations mathematically match Orange Paper specifications through test vector validation.
+Validates that blvm-consensus implementations mathematically match blvm-spec specifications through test vector validation.
 
 ### Implementation
 
@@ -204,7 +204,7 @@ PRs are blocked from merging until all cross-layer checks pass:
 ```yaml
 rules:
   - name: consensus_proof_sync
-    description: "Orange Paper and Consensus Proof must stay synchronized"
+    description: "blvm-spec and blvm-consensus must stay synchronized"
     source_repo: orange-paper
     source_pattern: consensus-rules/**
     target_repo: consensus-proof
@@ -251,8 +251,8 @@ cross_layer_rules:
 
 ### Making Synchronized Changes
 
-1. **Update Orange Paper**: Make changes to consensus rules
-2. **Update Consensus Proof**: Make corresponding changes to proofs
+1. **Update blvm-spec**: Make changes to consensus rules
+2. **Update blvm-consensus**: Make corresponding changes to proofs
 3. **Update Version References**: Ensure version references are current
 4. **Run Tests**: Verify equivalence tests pass
 5. **Submit PR**: Cross-layer validation will verify synchronization
@@ -262,10 +262,10 @@ cross_layer_rules:
 #### Content Hash Mismatch
 
 ```
-❌ Cross-Layer Sync: Missing Consensus Proof updates for 1 files: consensus-rules/block-validation.md
+❌ Cross-Layer Sync: Missing blvm-consensus updates for 1 files: consensus-rules/block-validation.md
 ```
 
-**Solution**: Update the corresponding Consensus Proof file
+**Solution**: Update the corresponding blvm-consensus file
 
 #### Version Pinning Failure
 
@@ -273,7 +273,7 @@ cross_layer_rules:
 ❌ Version Pinning: 1 invalid references found
 ```
 
-**Solution**: Update version references to point to valid Orange Paper versions
+**Solution**: Update version references to point to valid blvm-spec versions
 
 #### Equivalence Proof Failure
 
@@ -324,13 +324,6 @@ cross_layer_rules:
 2. **AI-Powered Equivalence**: AI verification of mathematical equivalence
 3. **Real-Time Monitoring**: Dashboard showing synchronization status
 4. **Historical Analysis**: Track synchronization compliance over time
-
-### Research Areas
-
-1. **Zero-Knowledge Proofs**: ZK proofs for equivalence verification
-2. **Merkle Tree Optimization**: More efficient Merkle tree structures
-3. **Distributed Validation**: Decentralized validation mechanisms
-4. **Quantum Resistance**: Post-quantum cryptographic primitives
 
 ## Conclusion
 

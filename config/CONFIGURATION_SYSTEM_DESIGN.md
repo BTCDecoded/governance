@@ -14,7 +14,7 @@ The Bitcoin Commons configuration system provides a unified, type-safe interface
 
 #### 1. `ConfigRegistry`
 - **Purpose**: Database-backed registry of all governance-controlled config parameters
-- **Location**: `bllvm-commons/src/governance/config_registry.rs`
+- **Location**: `blvm-commons/src/governance/config_registry.rs`
 - **Features**:
   - Stores config keys, values, categories, tier requirements
   - Tracks change proposals and approvals
@@ -23,7 +23,7 @@ The Bitcoin Commons configuration system provides a unified, type-safe interface
 
 #### 2. `ConfigReader`
 - **Purpose**: Unified interface for reading config values with caching
-- **Location**: `bllvm-commons/src/governance/config_reader.rs`
+- **Location**: `blvm-commons/src/governance/config_reader.rs`
 - **Features**:
   - Type-safe accessors (`get_i32()`, `get_f64()`, `get_bool()`, `get_string()`)
   - In-memory caching (5-minute TTL)
@@ -32,7 +32,7 @@ The Bitcoin Commons configuration system provides a unified, type-safe interface
 
 #### 3. `ConfigDefaults`
 - **Purpose**: Initializes all governance variables with sensible defaults
-- **Location**: `bllvm-commons/src/governance/config_defaults.rs`
+- **Location**: `blvm-commons/src/governance/config_defaults.rs`
 - **Features**:
   - Registers 87+ forkable governance variables
   - Aligned with growth plan (Phase 1 → Phase 2 → Phase 3)
@@ -261,4 +261,8 @@ The configuration system provides:
 - ✅ **Extensible**: Easy to add new config parameters
 
 This system makes all governance variables truly forkable and adjustable at runtime through proper governance processes.
+
+
+
+
 

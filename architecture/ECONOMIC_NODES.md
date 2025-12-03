@@ -2,263 +2,157 @@
 
 ## Overview
 
-Economic nodes represent the economic interests of Bitcoin users and provide a veto mechanism for consensus-adjacent changes. This system ensures that governance decisions align with the economic incentives of Bitcoin's stakeholders.
-
-## Purpose
-
-Economic nodes serve as a **user protection mechanism** by:
-- Representing mining pools, exchanges, and custodians
-- Providing veto power over consensus-adjacent changes
-- Ensuring governance decisions consider economic impact
-- Maintaining alignment with Bitcoin's economic incentives
+Economic nodes represent economic interests of Bitcoin users and provide veto mechanism for consensus-adjacent changes, ensuring governance decisions align with Bitcoin's economic incentives.
 
 ## Node Types
 
-### Mining Pools
-
-**Qualification Criteria:**
-- Minimum 1% of network hash rate
-- Publicly verifiable hash rate
-- Established operational history (6+ months)
-- Transparent fee structure
-
-**Responsibilities:**
-- Monitor consensus-adjacent changes
-- Vote on economic impact
-- Maintain operational transparency
-- Report hash rate changes
-
-### Exchanges
-
-**Qualification Criteria:**
-- Minimum $100M daily trading volume
-- Established operational history (12+ months)
-- Regulatory compliance in jurisdiction
-- Transparent trading practices
-
-**Responsibilities:**
-- Assess market impact of changes
-- Vote on user experience impact
-- Maintain trading transparency
-- Report volume changes
-
-### Custodians
-
-**Qualification Criteria:**
-- Minimum $1B assets under custody
-- Established operational history (24+ months)
-- Regulatory compliance in jurisdiction
-- Insurance and security audits
-
-**Responsibilities:**
-- Assess custody impact of changes
-- Vote on security implications
-- Maintain custody transparency
-- Report asset changes
+| Type | Qualification Criteria | Responsibilities |
+|------|----------------------|------------------|
+| **Mining Pools** | ≥1% network hash rate, 6+ months operational, verifiable hash rate | Monitor consensus-adjacent changes, vote on economic impact |
+| **Exchanges** | ≥100 BTC daily volume (on-chain verifiable), ≥10,000 BTC holdings | Assess market impact, vote on user experience impact |
+| **Custodians** | ≥$1B assets under custody, 24+ months operational, security audits | Assess custody impact, vote on security implications |
 
 ## Registration Process
 
-### Application
+**Trust-minimized, automatic activation based on cryptographic proofs.**
 
-1. **Submit Application**: Complete registration form with:
-   - Organization details
-   - Qualification evidence
-   - Contact information
-   - Public keys for signing
+### Traditional Economic Nodes (Mining Pools, Exchanges, Custodians, Major Holders)
 
-2. **Verification**: Maintainers verify:
-   - Qualification criteria
-   - Operational history
-   - Regulatory compliance
-   - Technical capabilities
+| Step | Process | Verification |
+|------|---------|--------------|
+| **1. Submit Registration** | Entity submits: public key, qualification proof, contact info | Self-service, no approval needed |
+| **2. Cryptographic Verification** | System verifies on-chain proofs automatically | Mining pools: coinbase signatures<br>Holdings: signature challenges |
+| **3. Auto-Activation** | If proofs verify → status = `active` immediately | No maintainer approval required |
+| **4. Weight Calculation** | System calculates veto weight from verified proofs | Automatic, based on on-chain data |
 
-3. **Approval**: Requires 4-of-5 maintainer signatures
-4. **Onboarding**: Technical setup and key distribution
+**Code**: ```70:131:blvm-commons/src/economic_nodes/registry.rs```
 
-### Ongoing Requirements
+### Commons Contributors (Automatic Registration)
 
-- **Quarterly Reports**: Operational status and metrics
-- **Annual Renewal**: Re-verification of qualifications
-- **Incident Reporting**: Security or operational issues
-- **Transparency**: Public disclosure of relevant metrics
+**Current State**: Contributions are tracked automatically, but registration is manual.
+
+**Proposed**: Automatic registration when contributions meet thresholds.
+
+| Step | Process | Status |
+|------|---------|--------|
+| **1. Contribution Detected** | System automatically tracks merge mining, fee forwarding, zaps | ✅ Implemented |
+| **2. Threshold Check** | System checks if 90-day contributions meet minimums | ✅ **Implemented** |
+| **3. Proof Generation** | System auto-generates proof from tracked contribution data | ✅ **Implemented** |
+| **4. Auto-Registration** | System automatically registers if thresholds met | ✅ **Implemented** |
+| **5. Auto-Activation** | If proofs verify → status = `active` immediately | ✅ Implemented |
+
+**Code**:
+- Contribution Tracking: ```1:219:blvm-commons/src/governance/contributions.rs```
+- Zap Tracking: ```1:281:blvm-commons/src/nostr/zap_tracker.rs```
+- Auto-Registration: ```1:498:blvm-commons/src/economic_nodes/auto_registration.rs```
+- Registration: ```70:131:blvm-commons/src/economic_nodes/registry.rs```
+
+**Usage**: Call `CommonsContributorAutoRegistrar::check_and_register()` after recording contributions to automatically register qualified contributors.
+
+**Details**: See [Commons Contributor Automatic Registration](./COMMONS_CONTRIBUTOR_REGISTRATION.md)
+
+### Cryptographic Proof Requirements
+
+| Node Type | Proof Type | Verification Method |
+|----------|-----------|---------------------|
+| **Mining Pools** | Coinbase signatures, block hashes | On-chain verification of mined blocks |
+| **Exchanges/Custodians** | Holdings signature challenge | Cryptographic proof of address control |
+| **Commons Contributors** | Merge mining blocks, fee forwarding txs, zap events, BIP70 payments | On-chain verification of contributions |
+
+**Code**: ```220:320:blvm-commons/src/economic_nodes/registry.rs```
+
+**Ongoing Requirements**: Nodes must maintain qualification thresholds. System automatically verifies on-chain proofs during weight recalculation.
+
+**Detailed Proof Requirements**: See [Cryptographic Proofs](./CRYPTOGRAPHIC_PROOFS.md) for complete proof structures by entity type.
 
 ## Veto Mechanism
 
 ### Veto Power
 
-Economic nodes can veto **Tier 3 (Consensus-Adjacent)** changes by:
-- Submitting veto signals within 30 days
-- Requiring 60% of registered nodes to veto
-- Providing justification for veto decision
-- Maintaining public veto registry
+Economic nodes can veto **Tier 3+** changes by submitting veto signals within review period. Veto requires threshold to be met (see below).
 
 ### Veto Process
 
-1. **Change Notification**: 30-day notice of consensus-adjacent change
-2. **Analysis Period**: 15 days for economic impact assessment
-3. **Veto Window**: 15 days for veto signal submission
-4. **Threshold Check**: Count veto signals against threshold
-5. **Decision**: Block change if veto threshold met
+1. Change notification (30-day notice for Tier 3)
+2. Analysis period (15 days for economic impact assessment)
+3. Veto window (15 days for signal submission)
+4. Threshold check (count signals against threshold)
+5. Decision (block if threshold met)
 
-### Veto Signals
+**Code**: ```113:379:blvm-commons/src/economic_nodes/veto.rs```
 
-```json
-{
-  "type": "veto_signal",
-  "node_id": "mining_pool_1",
-  "node_type": "mining_pool",
-  "change_id": "pr_123_consensus_adjacent",
-  "veto_reason": "Economic impact on mining profitability",
-  "justification": "Detailed analysis of impact...",
-  "signature": "ed25519_signature_hex",
-  "timestamp": "2024-01-15T10:30:00Z"
-}
-```
+## Weight Calculation and Caps
 
-## Node Registry
+### Mining Pool Weights
 
-### Registry Structure
+| Phase | Cap | Example |
+|-------|-----|---------|
+| Early | 10% | 35% hashpower → 0.10 weight (capped) |
+| Growth | 20% | 25% hashpower → 0.20 weight (capped) |
+| Mature | 10% | 35% hashpower → 0.10 weight (capped) |
 
-```json
-{
-  "version": "2024-01",
-  "timestamp": "2024-01-15T10:30:00Z",
-  "nodes": [
-    {
-      "id": "mining_pool_1",
-      "type": "mining_pool",
-      "name": "Example Mining Pool",
-      "jurisdiction": "United States",
-      "qualification_metrics": {
-        "hash_rate_percentage": 2.5,
-        "operational_months": 18,
-        "transparency_score": 0.95
-      },
-      "public_key": "ed25519_public_key_hex",
-      "contact": "contact@example.com",
-      "status": "active",
-      "registered_at": "2023-07-15T10:30:00Z",
-      "last_verified": "2024-01-15T10:30:00Z"
-    }
-  ],
-  "thresholds": {
-    "veto_threshold": 0.6,
-    "minimum_nodes": 10,
-    "quorum_required": true
-  }
-}
-```
+**Code**: ```343:363:blvm-commons/src/economic_nodes/registry.rs```
 
-### Registry Updates
+### Other Economic Node Weights
 
-- **Monthly Updates**: New registrations and status changes
-- **Quarterly Reviews**: Qualification re-verification
-- **Annual Renewals**: Complete re-registration process
-- **Emergency Updates**: Immediate status changes
+| Type | Formula | Cap |
+|------|---------|-----|
+| Exchanges | `0.7 × (holdings/10K) + 0.3 × (volume/100)` | 1.0 |
+| Custodians | `(holdings/10K)` | 1.0 |
+| Major Holders | `(holdings/5K)` | 1.0 |
 
 ## Veto Thresholds
 
-### Current Thresholds
+| Tier | Mining Threshold | Economic Threshold | Logic |
+|------|------------------|---------------------|-------|
+| 3 | 30%+ | 40%+ | AND (both required) |
+| 4 | 25%+ | 35%+ | AND (both required) |
+| 5 | 50%+ | 60%+ | AND (both required) |
 
-- **Minimum Nodes**: 10 active economic nodes
-- **Veto Threshold**: 60% of active nodes must veto
-- **Quorum Required**: 80% of nodes must participate
-- **Time Window**: 30 days for veto signal submission
+### Adaptive Thresholds
+
+Thresholds adjust automatically based on:
+- **Governance Phase**: Early/Growth/Mature (block height, node count, contributor count)
+- **Consolidation Metrics**: If top pool > 30%, mining threshold increases by 50%
+
+**Code**: 
+- Phase: ```157:181:blvm-commons/src/governance/phase_calculator.rs```
+- Consolidation: ```140:177:blvm-commons/src/economic_nodes/consolidation.rs```
 
 ### Threshold Adjustment
 
-Thresholds can be adjusted through:
-- **Governance Process**: Tier 5 change (6-of-7 maintainers)
-- **Economic Analysis**: Impact assessment required
-- **Community Input**: 90-day public comment period
-- **Gradual Changes**: Phased implementation over 6 months
-
-## Monitoring and Compliance
-
-### Node Monitoring
-
-- **Hash Rate Tracking**: For mining pools
-- **Trading Volume**: For exchanges
-- **Custody Assets**: For custodians
-- **Operational Status**: Uptime and availability
-- **Transparency Metrics**: Public disclosure compliance
-
-### Compliance Enforcement
-
-- **Warning System**: Automated alerts for non-compliance
-- **Grace Periods**: 30 days to address issues
-- **Suspension**: Temporary removal for non-compliance
-- **Revocation**: Permanent removal for serious violations
+Manual adjustments require Tier 5 change (5-of-5 maintainers), economic analysis, and 90-day public comment period.
 
 ## Integration with Governance
 
 ### Pull Request Processing
 
-1. **Tier Classification**: Identify consensus-adjacent changes
-2. **Node Notification**: Alert all economic nodes
-3. **Analysis Period**: 15 days for impact assessment
-4. **Veto Window**: 15 days for veto signal submission
-5. **Decision**: Block or allow based on veto threshold
+1. Tier classification (identify consensus-adjacent changes)
+2. Node notification (alert all economic nodes)
+3. Analysis period (15 days for impact assessment)
+4. Veto window (15 days for signal submission)
+5. Decision (block or allow based on veto threshold)
+
+**Code**: ```19:131:blvm-commons/src/enforcement/merge_block.rs```
 
 ### Status Reporting
 
-Economic node status is reported in:
-- **GitHub Status Checks**: Veto status on PRs
-- **Nostr Events**: Real-time status updates
-- **Monthly Registries**: Comprehensive status reports
-- **Audit Logs**: Complete veto history
+Economic node status reported in: GitHub status checks, Nostr events, monthly registries, audit logs.
 
 ## Security Considerations
 
-### Node Security
+| Aspect | Requirements |
+|--------|--------------|
+| **Node Security** | Hardware security modules, multi-factor authentication, incident response, regular audits |
+| **Veto Security** | Cryptographic signature verification, replay protection (nonces), timestamp validation, multiple independent verifications |
 
-- **Key Management**: Hardware security modules for signing keys
-- **Access Control**: Multi-factor authentication for systems
-- **Incident Response**: Rapid response to security issues
-- **Audit Requirements**: Regular security audits
-
-### Veto Security
-
-- **Signature Verification**: All veto signals cryptographically verified
-- **Replay Protection**: Nonces prevent replay attacks
-- **Timestamp Validation**: Prevent old veto signals
-- **Threshold Verification**: Multiple independent verifications
+**Code**: ```33:111:blvm-commons/src/economic_nodes/veto.rs```
 
 ## Economic Incentives
 
-### Alignment Mechanisms
-
-- **Stake Requirements**: Significant economic stake required
-- **Transparency Incentives**: Better transparency = more influence
-- **Long-term Thinking**: Annual renewal encourages stability
-- **Reputation System**: Good behavior increases influence
-
-### Disincentives
-
-- **Veto Abuse**: Excessive vetoes reduce influence
-- **Non-compliance**: Violations result in suspension
-- **Poor Performance**: Inactive nodes lose status
-- **Reputation Damage**: Public disclosure of violations
-
-## Future Enhancements
-
-### Advanced Features
-
-- **Delegated Voting**: Allow users to delegate veto power
-- **Weighted Voting**: Influence based on economic stake
-- **Cross-Protocol**: Extend to other Bitcoin protocols
-- **Automated Analysis**: AI-assisted impact assessment
-
-### Integration Improvements
-
-- **Real-time Updates**: Instant veto signal processing
-- **Mobile Apps**: Mobile interfaces for node management
-- **API Access**: Programmatic access to veto data
-- **Analytics Dashboard**: Comprehensive veto analytics
-
-## References
-
-- [Economic Node Guide](../guides/ECONOMIC_NODE_GUIDE.md)
-- [Economic Node Configuration](../config/economic-nodes.yml)
-- [Veto Examples](../examples/economic-node-veto.md)
-- [Maintainer Guide](../guides/MAINTAINER_GUIDE.md)
+| Alignment Mechanisms | Disincentives |
+|---------------------|---------------|
+| Significant economic stake required | Excessive vetoes reduce influence |
+| Better transparency = more influence | Violations result in suspension |
+| Annual renewal encourages stability | Inactive nodes lose status |
+| Good behavior increases influence | Public disclosure of violations |

@@ -22,7 +22,7 @@ The system has:
 - (and similar for tiers 2-5)
 
 **Actually Used (Hardcoded):**
-- `bllvm-commons/src/validation/threshold.rs`:
+- `blvm-commons/src/validation/threshold.rs`:
   - `get_tier_threshold()`: Hardcoded match statement
   - `get_tier_review_period()`: Hardcoded match statement
   - `get_threshold_for_layer()`: Hardcoded match statement
@@ -43,7 +43,7 @@ The system has:
 - `signaling_tier_5_economic_percent` = 60.0
 
 **Actually Used (Hardcoded):**
-- `bllvm-commons/src/economic_nodes/veto.rs:292`:
+- `blvm-commons/src/economic_nodes/veto.rs:292`:
   ```rust
   match tier {
       3 => (30.0, 40.0, 90u32),   // Hardcoded!
@@ -65,7 +65,7 @@ The system has:
 - (and similar for Growth/Mature phases)
 
 **Actually Used (Hardcoded):**
-- `bllvm-commons/src/governance/phase_calculator.rs`:
+- `blvm-commons/src/governance/phase_calculator.rs`:
   - `determine_phase_by_height()`: `if height < 50_000`
   - `determine_phase_by_nodes()`: `if count < 10`
   - `determine_phase_by_contributors()`: `if count < 10`
@@ -83,7 +83,7 @@ The system has:
 - (and similar for tiers 2-3)
 
 **Actually Used (Hardcoded):**
-- `bllvm-commons/src/validation/emergency.rs`:
+- `blvm-commons/src/validation/emergency.rs`:
   - `review_period_days()`: Hardcoded match
   - `signature_threshold()`: Hardcoded match
   - `max_duration_days()`: Hardcoded match
@@ -104,7 +104,7 @@ The system has:
 
 **Actually Used:**
 - **YAML Config**: `governance/config/commons-contributor-thresholds.yml` (loaded via `CommonsContributorThresholdsConfig`)
-- **Hardcoded Fallback**: `bllvm-commons/src/economic_nodes/types.rs:92-95`
+- **Hardcoded Fallback**: `blvm-commons/src/economic_nodes/types.rs:92-95`
 - **NOT using Config Registry**: System reads from YAML, not config registry
 
 **Impact**: Thresholds can be changed via YAML, but not via governance-controlled config registry. Two separate systems.
@@ -120,7 +120,7 @@ The system has:
 - (and similar for layers 3-5)
 
 **Actually Used (Hardcoded):**
-- `bllvm-commons/src/validation/threshold.rs`:
+- `blvm-commons/src/validation/threshold.rs`:
   - `get_threshold_for_layer()`: Hardcoded match
   - `get_review_period_for_layer()`: Hardcoded match
 
@@ -185,28 +185,28 @@ This allows:
 
 ## Files That Need Updates
 
-1. **`bllvm-commons/src/validation/threshold.rs`**
+1. **`blvm-commons/src/validation/threshold.rs`**
    - Replace `get_tier_threshold()` with config registry read
    - Replace `get_tier_review_period()` with config registry read
    - Replace `get_threshold_for_layer()` with config registry read
    - Replace `get_review_period_for_layer()` with config registry read
 
-2. **`bllvm-commons/src/economic_nodes/veto.rs`**
+2. **`blvm-commons/src/economic_nodes/veto.rs`**
    - Replace hardcoded veto thresholds (line 292) with config registry read
 
-3. **`bllvm-commons/src/governance/phase_calculator.rs`**
+3. **`blvm-commons/src/governance/phase_calculator.rs`**
    - Replace hardcoded phase boundaries with config registry read
    - Pass `ConfigRegistry` to `GovernancePhaseCalculator`
 
-4. **`bllvm-commons/src/validation/emergency.rs`**
+4. **`blvm-commons/src/validation/emergency.rs`**
    - Replace hardcoded emergency thresholds with config registry read
    - Pass `ConfigRegistry` to `EmergencyTier` methods
 
-5. **`bllvm-commons/src/economic_nodes/registry.rs`**
+5. **`blvm-commons/src/economic_nodes/registry.rs`**
    - Add support for reading Commons contributor thresholds from Config Registry
    - Keep YAML as fallback
 
-6. **`bllvm-commons/src/governance/config_registry.rs`**
+6. **`blvm-commons/src/governance/config_registry.rs`**
    - Add helper methods for type-safe value retrieval:
      - `get_i32()`, `get_f64()`, `get_string()`, `get_bool()`
    - Add caching layer for performance
@@ -239,4 +239,8 @@ After implementation:
 **Current State**: Configuration system is **incomplete** - defaults are registered but not used.
 
 **Required**: Complete the integration so all forkable governance variables are actually forkable at runtime via Tier 5 governance, not just registered in a database that nothing reads from.
+
+
+
+
 

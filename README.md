@@ -7,20 +7,16 @@ Central source of truth for governance rules across all Bitcoin Commons reposito
 > **For verified system status**: See [SYSTEM_STATUS.md](https://github.com/BTCDecoded/.github/blob/main/SYSTEM_STATUS.md) in the BTCDecoded organization repository.
 
 **Current Status: Phase 1 (Infrastructure Building)**
+- ✅ Infrastructure Complete: All core components implemented
+- ⚠️ Not Yet Activated: Governance rules are not enforced
+- 🔧 Test Keys Only: No real cryptographic enforcement
+- 📋 Development Phase: System is in rapid AI-assisted development
 
-- ✅ **Infrastructure Complete**: All core components implemented
-- ⚠️ **Not Yet Activated**: Governance rules are not enforced
-- 🔧 **Test Keys Only**: No real cryptographic enforcement
-- 📋 **Development Phase**: System is in rapid AI-assisted development
-
-**Timeline:**
-- **Phase 2 Activation**: 3-6 months (governance enforcement begins)
-- **Phase 3 Full Operation**: 12+ months (mature, stable system)
+**Timeline:** Phase 2 Activation: 3-6 months | Phase 3 Full Operation: 12+ months
 
 ## Overview
 
 This repository defines:
-
 1. **Repository Governance** (Binding): Who can merge what, and when
 2. **Protocol Governance** (Advisory): User signaling for consensus changes
 3. **Emergency Response**: Three-tiered system for critical issues
@@ -30,7 +26,7 @@ This repository defines:
 
 ## Constitutional Governance Model
 
-Bitcoin Commons implements a **5-tier constitutional governance system** that makes Bitcoin governance **6x harder to capture** than Bitcoin Core's current model, with **complete transparency** through cryptographic audit trails and **user-protective** mechanisms.
+Bitcoin Commons implements a **5-tier constitutional governance system** with complete transparency through cryptographic audit trails and user-protective mechanisms.
 
 ### Action Tiers
 
@@ -42,141 +38,42 @@ Bitcoin Commons implements a **5-tier constitutional governance system** that ma
 
 ### Layer Hierarchy
 
-1. **Orange Paper** (Layer 1) - Constitutional, 6-of-7, 180 days (365 for consensus)
-2. **Consensus Proof** (Layer 2) - Constitutional, 6-of-7, 180 days (365 for consensus)
-3. **Protocol Engine** (Layer 3) - Implementation, 4-of-5, 90 days
-4. **Reference Node** (Layer 4) - Application, 3-of-5, 60 days
-5. **Developer SDK** (Layer 5) - Extension, 2-of-3, 14 days
+| Layer | Repository | Signatures | Review Period |
+|-------|------------|------------|---------------|
+| 1 | [blvm-spec](../blvm-spec/README.md) | 6-of-7 | 180 days (365 for consensus) |
+| 2 | [blvm-consensus](../blvm-consensus/README.md) | 6-of-7 | 180 days (365 for consensus) |
+| 3 | [blvm-protocol](../blvm-protocol/README.md) | 4-of-5 | 90 days |
+| 4 | [blvm-node](../blvm-node/README.md) / [bllvm](../bllvm/README.md) | 3-of-5 | 60 days |
+| 5 | [blvm-sdk](../blvm-sdk/README.md) | 2-of-3 | 14 days |
 
-## Directory Structure
+### Power Distribution Mechanisms
 
-```
-governance/
-├── README.md (this file - navigation hub)
-├── GOVERNANCE.md (core governance process)
-├── LAYER_TIER_MODEL.md (how layers and tiers combine)
-├── SCOPE.md (repository vs protocol governance)
-├── LICENSE
-│
-├── guides/ (comprehensive guides)
-│   ├── MAINTAINER_GUIDE.md
-│   └── ECONOMIC_NODE_GUIDE.md
-│
-├── activation/ (activation process)
-│   ├── PHASE_ACTIVATION.md
-│   └── ACTIVATION_CHECKLIST.md (coming soon)
-│
-├── config/ (configuration files)
-│   ├── action-tiers.yml (tier definitions)
-│   ├── repository-layers.yml (layer definitions)
-│   ├── tier-classification-rules.yml (PR classification)
-│   ├── economic-nodes.yml
-│   ├── emergency-tiers.yml
-│   ├── governance-fork.yml
-│   ├── ruleset-export-template.yml
-│   ├── maintainers/ (by layer)
-│   └── repos/ (by repository)
-│
-├── examples/ (workflow examples)
-│   ├── consensus-change-workflow.md
-│   ├── emergency-response.md
-│   ├── tier1-routine-pr.md (coming soon)
-│   ├── tier3-consensus-adjacent.md (coming soon)
-│   └── economic-node-veto.md (coming soon)
-│
-└── architecture/ (design documentation)
-    ├── CRYPTOGRAPHIC_GOVERNANCE.md
-    ├── ECONOMIC_NODES.md
-    ├── GOVERNANCE_FORK.md
-    └── CROSS_LAYER_DEPENDENCIES.md (coming soon)
-```
+- **Mining Pool Weight Caps**: Phase-based limits (10-20% per pool) prevent single-pool dominance
+- **Commons Contributor Caps**: 5% of total system weight per entity, with quadratic weighting `√(contribution_btc)`
+- **Veto AND Logic**: Tier 3+ requires both mining AND economic thresholds (30%+ hashpower AND 40%+ economic activity)
+- **Adaptive Thresholds**: Veto thresholds adjust automatically based on governance phase and consolidation metrics
+- **Cooling-Off Periods**: Large contributions (≥0.1 BTC) require 30-day delay before counting toward voting weight
 
-## Quick Navigation
+See [Power Balancing Mechanisms](../docs/GOVERNANCE_BALANCING_MECHANISMS.md) for technical details.
 
-### For New Users
-- [Main Governance Process](GOVERNANCE.md) - How governance works
-- [Layer + Tier Model](LAYER_TIER_MODEL.md) - How layers and tiers combine
-- [Governance Scope](SCOPE.md) - What we control vs what we influence
-- [Maintainer Guide](guides/MAINTAINER_GUIDE.md) - If you're a maintainer
-- [Economic Node Guide](guides/ECONOMIC_NODE_GUIDE.md) - If you're an economic node
-- [Examples](examples/README.md) - See governance in action
+## Documentation
 
-### For Maintainers
-- [Maintainer Guide](guides/MAINTAINER_GUIDE.md) - Complete maintainer documentation
-- [Configuration Files](config/README.md) - How to modify configuration
-- [Activation Process](activation/README.md) - When governance will be activated
-- [Examples](examples/README.md) - Practical workflows
+### Quick Reference
+- [GETTING_STARTED.md](GETTING_STARTED.md) - Quick orientation
+- [QUICK_REFERENCE.md](QUICK_REFERENCE.md) - Lookup tables and commands
+- [HOW_TO.md](HOW_TO.md) - Task instructions
+- [DECISION_TREES.md](DECISION_TREES.md) - Decision flows
 
-### For Economic Nodes
-- [Economic Node Guide](guides/ECONOMIC_NODE_GUIDE.md) - Complete economic node documentation
-- [Economic Node Configuration](config/economic-nodes.yml) - Configuration details
-- [Veto Examples](examples/economic-node-veto.md) - How veto process works
-- [Activation Timeline](activation/README.md) - When to expect activation
+### Core Documentation
+- [GOVERNANCE.md](GOVERNANCE.md) - Main governance process
+- [LAYER_TIER_MODEL.md](LAYER_TIER_MODEL.md) - How layers and tiers combine
+- [SCOPE.md](SCOPE.md) - Repository vs protocol governance
 
-### For Developers
-- [Architecture Documentation](architecture/README.md) - System design
-- [Configuration Reference](config/README.md) - Technical configuration
-- [Governance App Documentation](../governance-app/README.md) - Implementation details
+### Guides
+- [guides/MAINTAINER_GUIDE.md](guides/MAINTAINER_GUIDE.md) - Maintainer guide
+- [guides/ECONOMIC_NODE_GUIDE.md](guides/ECONOMIC_NODE_GUIDE.md) - Economic node guide
+- [guides/ONBOARDING.md](guides/ONBOARDING.md) - New maintainer onboarding
+
+### Related Repositories
+- [blvm-commons](../blvm-commons/README.md) - Governance enforcement application
 - [Audit Materials](../audit-materials/README.md) - Security and audit information
-
-### For Auditors
-- [Audit Materials](../audit-materials/README.md) - Complete audit documentation
-- [Architecture Documentation](architecture/README.md) - System design
-- [Security Documentation](../audit-materials/02-security/README.md) - Security details
-- [Test Coverage](../audit-materials/03-testing/README.md) - Testing information
-
-## Key Principles
-
-1. **Dual-Track Governance**: Repository (binding) + Protocol (advisory)
-2. **User Sovereignty**: No forced network upgrades
-3. **Proportional Response**: Emergency tiers match threat severity
-4. **Transparency**: All governance events logged and auditable
-5. **Ostrom Compliance**: Managing the codebase commons properly
-
-## For Maintainers
-
-Your role:
-- Steward the codebase (binding authority)
-- Review and approve quality code
-- Coordinate releases
-- Advocate for good protocol design
-- **Serve users, don't command them**
-
-You control: Repository merges, releases, code quality
-You don't control: Network adoption, user choices, Bitcoin consensus
-
-## For Users
-
-Your role:
-- Choose software that serves your needs
-- Signal preferences through adoption
-- Participate in protocol discussions
-- Fork if dissatisfied
-- **Exercise sovereignty responsibly**
-
-You control: What software you run, Bitcoin consensus rules (via economic coordination)
-You don't control: What maintainers work on, release timing
-
-## Contributing
-
-To propose governance changes:
-
-1. Open discussion in this repository
-2. Build consensus among maintainers and community
-3. Submit PR (requires 5-of-7 maintainers + 2-of-3 emergency keyholders)
-4. 90-day review + 30-day public comment period
-
-See `GOVERNANCE.md` section on Meta-Governance for details.
-
-## Related Documentation
-
-- [Audit Materials](../audit-materials/README.md) - Security and audit information
-- [Governance App](../governance-app/README.md) - Implementation details
-- [Developer SDK](../developer-sdk/README.md) - Cryptographic primitives
-- [Orange Paper](../orange-paper/README.md) - Constitutional layer
-- [Consensus Proof](../consensus-proof/README.md) - Constitutional layer
-- [Protocol Engine](../protocol-engine/README.md) - Implementation layer
-- [Reference Node](../reference-node/README.md) - Application layer
-
-
-

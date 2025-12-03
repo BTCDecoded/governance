@@ -27,13 +27,13 @@ economic_node_types:
   exchanges:
     name: "Exchanges"
     qualification:
-      minimum_volume: "$100M daily trading volume"
+      minimum_volume: "100 BTC daily trading volume (on-chain verifiable)"
       minimum_holdings: "10,000 BTC"
       node_requirement: "Must run BTCDecoded full node"
     veto_weight: "Combined holdings + activity weight"
-    verification_challenges:
-      holdings: "CAN verify cryptographically"
-      volume: "CANNOT verify cryptographically"
+    verification:
+      holdings: "Cryptographic signature challenge (proves address control)"
+      volume: "On-chain transaction verification (BTC volume from transaction hashes)"
     verification_process:
       holdings:
         - "Signature challenge on claimed UTXOs"
@@ -41,13 +41,13 @@ economic_node_types:
         - "Public verification (anyone can check signatures)"
         - "Trustless verification possible"
       volume:
-        - "Most trading is off-chain (internal databases)"
-        - "No on-chain proof of volume"
-        - "Requires trust in reported numbers"
-        - "Can use external data providers for validation"
+        - "On-chain BTC transaction volume"
+        - "Transaction hashes provided for verification"
+        - "System verifies transactions exist on-chain"
+        - "Fully trustless verification (no USD conversion needed)"
     weight_calculation:
       primary_weight: "Proven holdings (70% weight)"
-      secondary_weight: "Reported activity (30% weight, trust-discounted)"
+      secondary_weight: "On-chain BTC volume (30% weight, fully verifiable)"
       formula: "0.7 × holdings_percentage + 0.3 × volume_percentage"
 
   custodians:
@@ -58,14 +58,6 @@ economic_node_types:
     veto_weight: "Percentage of proven holdings"
     verification: "Same as exchanges (holdings cryptographic, activity trust-based)"
 
-  payment_processors:
-    name: "Payment Processors"
-    qualification:
-      minimum_volume: "$50M monthly BTC transactions"
-      node_requirement: "Must run BTCDecoded full node"
-    veto_weight: "Percentage of transaction volume"
-    verification: "Partially verifiable (on-chain transactions visible)"
-
   major_holders:
     name: "Major Holders"
     qualification:
@@ -74,24 +66,119 @@ economic_node_types:
     veto_weight: "Percentage of proven holdings"
     verification: "Fully cryptographic (signature challenges)"
 
+  commons_contributors:
+    name: "Commons Contributors"
+    description: "Nodes that contribute to Bitcoin Commons through various revenue streams"
+    qualification:
+      # Maintainer-configurable thresholds (set by maintainers via governance)
+      # All thresholds are in BTC over measurement period
+      minimum_merge_mining_btc: 0.01  # Minimum merge mining contribution (90-day period)
+      minimum_fee_forwarding_btc: 0.1  # Minimum fee forwarding contribution (90-day period)
+      minimum_zap_quantity_btc: 0.01  # Minimum zap contributions (90-day period)
+      minimum_marketplace_sales_btc: 0.01  # Minimum module marketplace sales (90-day period, BTC via BIP70)
+      # Note: All contributions are in BTC - no USD conversion needed
+      measurement_period_days: 90  # Rolling window for qualification
+      # Any one of these thresholds can qualify a node
+      qualification_logic: "OR"  # OR = any threshold met, AND = all thresholds met
+    veto_weight: "Quadratic weighting: sqrt(total_contribution_btc)"
+    verification:
+      merge_mining: "On-chain (coinbase signatures, secondary chain blocks)"
+      fee_forwarding: "On-chain (coinbase outputs to Commons address)"
+      zaps: "Lightning (Nostr event verification, payment proofs)"
+      marketplace_sales: "BIP70 payment records (module registry, on-chain)"
+    weight_calculation:
+      formula: "sqrt(total_contribution_btc / normalization_factor)"
+      normalization_factor: 1.0  # 1 BTC = 1.0 weight
+      contribution_types:
+        - "merge_mining_btc"
+        - "fee_forwarding_btc"
+        - "zaps_btc"
+        - "marketplace_sales_btc"  # BIP70 payments (native BTC, no conversion)
+        # Note: treasury_sales_btc and service_sales_btc excluded until systems are implemented
+      total_calculation: "sum(all_contribution_types)"
+    properties:
+      - "Fair qualification: Anyone contributing qualifies"
+      - "Quadratic weighting prevents whale dominance"
+      - "Multiple contribution types supported"
+      - "Maintainer-configurable thresholds"
+
 veto_mechanism:
   description: "Economic nodes can veto Tier 3+ changes during review period"
+  design: "Sequential two-phase mechanism (prevention first, clean fork if necessary)"
   applicable_tiers:
     - "Tier 3 (Consensus-Adjacent)"
     - "Tier 4 (Emergency) - 24-hour veto window"
     - "Tier 5 (Governance) - signaling required"
+  
+  # Sequential Veto Mechanism
+  sequential_design:
+    phase_1_prevention:
+      description: "Prevention through consensus building (primary goal)"
+      duration: "90-day review period"
+      goal: "Resolve disagreement, avoid fork"
+      process:
+        - "30%+40% NAY signals → Temporary block initiated"
+        - "Maintainers receive clear signal: 'significant opposition exists'"
+        - "Encourages revision, addressing concerns, building broader support"
+        - "Most vetoes should resolve via consensus (Phase 1)"
+    
+    phase_2_fork_enablement:
+      description: "Clean fork enablement (fallback)"
+      trigger: "If maintainers proceed after 90-day review"
+      process:
+        - "Minority has used time to prepare"
+        - "Infrastructure coordination completed"
+        - "Fork executes cleanly (not chaotic surprise)"
+        - "Market validates which chain survives"
+      outcome: "Only genuine irreconcilable differences reach Phase 2"
+  
   veto_thresholds:
     tier_3:
       mining_veto: "30%+ hashpower objects"
       economic_veto: "40%+ economic activity objects"
-      either_threshold_blocks: true
+      logic: "AND"  # Both required (prevents single-group veto)
+      review_period_days: 90
+      maintainer_override: true  # Can override after review period
+      description: "Requires coordination between miners AND economic nodes"
+    
     tier_4:
-      economic_veto: "2+ economic nodes can block within 24h"
+      mining_veto: "25%+ hashpower objects"
+      economic_veto: "35%+ economic activity objects"
+      logic: "AND"  # Both required
+      review_period_days: 0  # 24-hour window
+      maintainer_override: true
       real_time_oversight: true
+      description: "Emergency actions require fast coordination"
+    
     tier_5:
       mining_signaling: "50%+ hashpower support required"
       economic_signaling: "60%+ economic activity support required"
-      both_required: true
+      logic: "AND"  # Both required for support (stricter than veto)
+      review_period_days: 180
+      maintainer_override: false  # Cannot override constitutional changes
+      description: "Constitutional changes require broad support, not just lack of opposition"
+  
+  resolution_paths:
+    path_a_consensus:
+      scenario: "Maintainers address concerns, opposition drops below threshold"
+      outcome: "Veto lifted automatically, change proceeds with broader support, fork avoided"
+      preferred: true
+    
+    path_b_override:
+      scenario: "90 days elapsed, opposition maintains >30%+40%, maintainers override"
+      maintainer_options:
+        - "Withdraw change (acknowledge opposition is right)"
+        - "Override veto and proceed (maintain technical judgment)"
+      if_override:
+        - "Maintainers can force merge after 90 days"
+        - "Economic nodes expected to fork"
+        - "Both chains proceed"
+        - "Market decides winner"
+      outcome: "Clean fork coordination, both sides prepared"
+    
+    path_c_dissolution:
+      scenario: "During 90-day window, opposition drops below threshold"
+      outcome: "Veto lifted automatically, concerns addressed through discussion"
 
 veto_signal_format:
   required_fields:
@@ -129,25 +216,24 @@ anti_gaming_mechanisms:
     - "Cannot retroactively veto merged changes"
 
 qualification_process:
-  application:
-    - "Entity submits application with proof of qualification"
-    - "Node verification (must be running BTCDecoded)"
-    - "Signing key registration (for veto signals)"
-    - "Contact information (for coordination)"
-  verification_period: "30 days"
-  verification_checks:
-    - "Confirm proof of hashrate/volume/holdings"
-    - "Verify node is actually running and synced"
-    - "Check for conflicts of interest"
-    - "Community review of application"
-  approval:
-    - "3-of-5 maintainer approval required"
-    - "OR automatic if thresholds clearly met"
-    - "Added to economic node registry"
+  registration:
+    - "Entity submits registration with cryptographic proof"
+    - "System verifies cryptographic proofs automatically (trust-minimized)"
+    - "Auto-activation if proofs verify (no maintainer approval)"
+    - "Public key registration (for veto signals)"
+  verification_method:
+    mining_pools: "On-chain coinbase signature verification"
+    holdings: "Cryptographic signature challenge (proves address control)"
+    commons_contributors: "On-chain proof verification (merge mining, fee forwarding, zaps, BIP70)"
+    volume: "Trust-discounted (cannot be fully verified cryptographically)"
+  auto_activation:
+    - "If cryptographic proofs verify → status = 'active' immediately"
+    - "No maintainer approval required"
+    - "Baked into system (algorithmic, not manual)"
   ongoing_monitoring:
     - "Must maintain qualification thresholds"
-    - "Quarterly re-verification"
-    - "Can be removed if no longer qualified"
+    - "Automatic verification during weight recalculation"
+    - "Can be suspended if proofs no longer verify"
     - "Can voluntarily withdraw"
 
 dispute_resolution:

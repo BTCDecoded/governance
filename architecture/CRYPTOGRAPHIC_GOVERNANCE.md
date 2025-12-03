@@ -2,7 +2,7 @@
 
 ## Overview
 
-The BTCDecoded governance system applies the same cryptographic enforcement to governance that Bitcoin applies to consensus. This document details the cryptographic primitives, signature schemes, and verification mechanisms that ensure governance integrity.
+The Bitcoin Commons governance applies the same cryptographic enforcement to governance that Bitcoin applies to consensus. All governance actions require cryptographic proof, multiple maintainers must sign critical actions, and all signatures are publicly verifiable.
 
 ## Core Principles
 
@@ -16,21 +16,11 @@ The BTCDecoded governance system applies the same cryptographic enforcement to g
 
 ### Maintainer Signatures
 
-Each maintainer has a unique cryptographic keypair used for:
-- Approving pull requests
-- Adding/removing other maintainers
-- Emergency actions
-- Governance rule changes
+Each maintainer has unique cryptographic keypair for: approving pull requests, adding/removing maintainers, emergency actions, governance rule changes.
 
-**Key Requirements:**
-- secp256k1 signature scheme (same curve as Bitcoin)
-- 256-bit private keys
-- Deterministic key derivation from seed phrases
-- Hardware security module (HSM) support for production
+**Key Requirements**: secp256k1 signature scheme (same curve as Bitcoin), 256-bit private keys, deterministic key derivation from seed phrases, HSM support for production.
 
 ### Multisig Thresholds
-
-Different governance actions require different signature thresholds:
 
 | Action Type | Required Signatures | Total Maintainers | Time Lock |
 |-------------|-------------------|------------------|-----------|
@@ -42,74 +32,49 @@ Different governance actions require different signature thresholds:
 
 ### Signature Verification
 
-All signatures are verified using the following process:
+1. Key validation (verify public key in authorized maintainer set)
+2. Message validation (verify message hash matches expected content)
+3. Signature validation (verify cryptographic signature using secp256k1)
+4. Timestamp validation (verify signature timestamp within valid range)
+5. Nonce validation (verify signature nonce prevents replay attacks)
 
-1. **Key Validation**: Verify the public key is in the authorized maintainer set
-2. **Message Validation**: Verify the message hash matches the expected content
-3. **Signature Validation**: Verify the cryptographic signature using secp256k1
-4. **Timestamp Validation**: Verify the signature timestamp is within valid range
-5. **Nonce Validation**: Verify the signature nonce prevents replay attacks
+**Code**: ```blvm-commons/src/validation/signatures.rs```
 
 ## Key Management
 
 ### Key Generation
 
-Maintainer keys are generated using:
-- Cryptographically secure random number generation
-- BIP39 mnemonic seed phrases (24 words)
-- BIP32 hierarchical deterministic key derivation
-- BIP44 coin type for governance keys
+Maintainer keys generated using: cryptographically secure random number generation, BIP39 mnemonic seed phrases (24 words), BIP32 hierarchical deterministic key derivation, BIP44 coin type for governance keys.
 
 ### Key Storage
 
-**Development/Testing:**
-- Keys stored in encrypted configuration files
-- Password-protected with strong passphrases
-- Separate key files for each maintainer
-
-**Production:**
-- Hardware security modules (HSMs) for key storage
-- Air-gapped key generation and signing
-- Multi-party computation for key ceremonies
-- Regular key rotation schedules
+| Environment | Storage Method |
+|-------------|----------------|
+| **Development/Testing** | Encrypted configuration files, password-protected, separate key files per maintainer |
+| **Production** | Hardware security modules (HSMs), air-gapped key generation, multi-party computation, regular rotation |
 
 ### Key Rotation
 
-Keys are rotated:
-- Every 6 months for routine maintainers
-- Every 3 months for emergency keyholders
-- Immediately upon suspected compromise
-- Before major governance changes
+Keys rotated: every 6 months (routine maintainers), every 3 months (emergency keyholders), immediately upon suspected compromise, before major governance changes.
 
 ## Cryptographic Audit Trail
 
 ### Hash Chain
 
-All governance actions are recorded in a tamper-evident hash chain:
-
+All governance actions recorded in tamper-evident hash chain:
 ```
 Action 1: hash1 = SHA256(action1_data + previous_hash)
 Action 2: hash2 = SHA256(action2_data + hash1)
 Action 3: hash3 = SHA256(action3_data + hash2)
-...
 ```
 
 ### Merkle Trees
 
-Monthly governance registries use Merkle trees for efficient verification:
-
-- Root hash anchored to Bitcoin blockchain via OpenTimestamps
-- Individual action proofs can be verified without full registry
-- Tamper detection through hash mismatch
-- Efficient synchronization of governance state
+Monthly governance registries use Merkle trees: root hash anchored to Bitcoin blockchain via OpenTimestamps, individual action proofs verifiable without full registry, tamper detection through hash mismatch, efficient synchronization.
 
 ### Timestamping
 
-All governance actions are timestamped using:
-- OpenTimestamps for Bitcoin blockchain anchoring
-- Multiple timestamping services for redundancy
-- Regular anchoring (monthly) of governance state
-- Public verification of timestamp proofs
+All governance actions timestamped using: OpenTimestamps for Bitcoin blockchain anchoring, multiple timestamping services for redundancy, regular anchoring (monthly) of governance state, public verification of timestamp proofs.
 
 ## Signature Formats
 
@@ -131,18 +96,9 @@ All governance actions are timestamped using:
 ```json
 {
   "type": "maintainer_add",
-  "new_maintainer": {
-    "id": "maintainer_6",
-    "public_key": "secp256k1_public_key_hex",
-    "jurisdiction": "United States",
-    "contact": "maintainer6@example.com"
-  },
+  "new_maintainer": { "id": "maintainer_6", "public_key": "secp256k1_public_key_hex", "jurisdiction": "United States" },
   "approving_maintainers": ["maintainer_1", "maintainer_2", "maintainer_3"],
-  "signatures": {
-    "maintainer_1": "ed25519_signature_hex",
-    "maintainer_2": "ed25519_signature_hex",
-    "maintainer_3": "ed25519_signature_hex"
-  },
+  "signatures": { "maintainer_1": "ed25519_signature_hex", ... },
   "timestamp": "2024-01-15T10:30:00Z"
 }
 ```
@@ -156,12 +112,7 @@ All governance actions are timestamped using:
   "pr_number": 456,
   "reason": "Critical security vulnerability",
   "emergency_keyholders": ["emergency_1", "emergency_2", "emergency_3", "emergency_4"],
-  "signatures": {
-    "emergency_1": "ed25519_signature_hex",
-    "emergency_2": "ed25519_signature_hex",
-    "emergency_3": "ed25519_signature_hex",
-    "emergency_4": "ed25519_signature_hex"
-  },
+  "signatures": { "emergency_1": "ed25519_signature_hex", ... },
   "timestamp": "2024-01-15T10:30:00Z"
 }
 ```
@@ -170,48 +121,37 @@ All governance actions are timestamped using:
 
 ### Public Verification
 
-Anyone can verify governance actions by:
-
-1. **Downloading the governance registry**
-2. **Verifying maintainer public keys** against the authorized set
-3. **Checking signature validity** using secp256k1 verification
-4. **Validating the hash chain** for tamper evidence
-5. **Verifying timestamps** against blockchain proofs
+Anyone can verify by: downloading governance registry, verifying maintainer public keys, checking signature validity (secp256k1), validating hash chain, verifying timestamps against blockchain proofs.
 
 ### Automated Verification
 
-The governance-app automatically verifies:
-- All incoming signatures on pull requests
-- Maintainer key validity
-- Signature threshold compliance
-- Time lock requirements
-- Hash chain integrity
+Governance-app automatically verifies: incoming signatures on pull requests, maintainer key validity, signature threshold compliance, time lock requirements, hash chain integrity.
+
+**Code**: ```blvm-commons/src/validation/signatures.rs```
 
 ## Security Considerations
 
-### Attack Vectors
-
-1. **Key Compromise**: Mitigated by multisig and key rotation
-2. **Replay Attacks**: Prevented by nonces and timestamps
-3. **Man-in-the-Middle**: Prevented by signature verification
-4. **Insider Threats**: Mitigated by transparency and multiple maintainers
-5. **Quantum Attacks**: Future migration to post-quantum cryptography planned
+| Attack Vector | Mitigation |
+|---------------|------------|
+| **Key Compromise** | Multisig and key rotation |
+| **Replay Attacks** | Nonces and timestamps |
+| **Man-in-the-Middle** | Signature verification |
+| **Insider Threats** | Transparency and multiple maintainers |
+| **Quantum Attacks** | Future migration to post-quantum cryptography |
 
 ### Defense Mechanisms
 
-1. **Multisig Requirements**: No single maintainer can act alone
-2. **Time Locks**: Prevent rushed decisions
-3. **Transparency**: All actions are publicly auditable
-4. **Economic Node Veto**: Additional layer of protection
-5. **Governance Fork**: Users can choose different rulesets
+1. Multisig requirements (no single maintainer can act alone)
+2. Time locks (prevent rushed decisions)
+3. Transparency (all actions publicly auditable)
+4. Economic node veto (additional layer of protection)
+5. Governance fork (users can choose different rulesets)
 
 ## Implementation Details
 
 ### Developer SDK
 
-The cryptographic primitives are implemented in the developer-sdk:
-
-- `KeyManager`: Key generation, storage, and rotation
+- `KeyManager`: Key generation, storage, rotation
 - `SignatureManager`: Signing and verification
 - `HashChain`: Tamper-evident logging
 - `MerkleTree`: Efficient verification structures
@@ -219,34 +159,6 @@ The cryptographic primitives are implemented in the developer-sdk:
 
 ### Governance App Integration
 
-The governance-app uses these primitives for:
-- PR signature verification
-- Maintainer management
-- Emergency response
-- Audit log maintenance
-- Registry generation
+Governance-app uses these primitives for: PR signature verification, maintainer management, emergency response, audit log maintenance, registry generation.
 
-## Future Enhancements
-
-### Post-Quantum Cryptography
-
-Migration to post-quantum signature schemes:
-- Dilithium for signatures
-- Kyber for key encapsulation
-- Gradual migration strategy
-- Backward compatibility during transition
-
-### Advanced Features
-
-- Zero-knowledge proofs for privacy-preserving governance
-- Threshold signatures for improved efficiency
-- Cross-chain governance for multi-protocol coordination
-- Formal verification of governance rules
-
-## References
-
-- [Bitcoin Core Development Process](https://github.com/bitcoin/bitcoin/blob/master/CONTRIBUTING.md)
-- [secp256k1 Signature Scheme](https://en.bitcoin.it/wiki/Secp256k1)
-- [BIP39 Mnemonic Seeds](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)
-- [OpenTimestamps Protocol](https://opentimestamps.org/)
-- [Developer SDK Documentation](../developer-sdk/README.md)
+**Code**: ```blvm-commons/src/crypto/```

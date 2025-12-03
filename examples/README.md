@@ -25,43 +25,10 @@ This directory contains practical examples of how the BTCDecoded governance syst
 - **Cross-Layer Dependencies**: How changes affect multiple layers
 - **Governance Fork**: How governance forks are initiated and managed
 
-## Using Examples
+## Examples
 
-Each example includes:
-- **Step-by-step process**
-- **Required signatures and timing**
-- **Economic node participation**
-- **GitHub integration details**
-- **Common pitfalls and solutions**
-
-## Quick Links
-
-- [Main Governance Process](../GOVERNANCE.md)
-- [Maintainer Guide](../guides/MAINTAINER_GUIDE.md)
-- [Economic Node Guide](../guides/ECONOMIC_NODE_GUIDE.md)
-- [Configuration Files](../config/README.md)
-
-## For New Users
-
-Start with these examples to understand the system:
-1. [Tier 1 Routine PR](./tier1-routine-pr.md) - Simplest case
-2. [Economic Node Veto](./economic-node-veto.md) - Economic participation
-3. [Consensus Change Workflow](./consensus-change-workflow.md) - Complex case
-4. [Emergency Response](./emergency-response.md) - Crisis management
-
-## For Maintainers
-
-- Review examples before participating
-- Understand signature requirements
-- Know timing constraints
-- Practice with test environment
-
-## For Economic Nodes
-
-- Understand veto process
-- Know when to participate
-- Understand signature requirements
-- Monitor for relevant changes
+- [Consensus Change Workflow](./consensus-change-workflow.md) - Full consensus change process
+- [Emergency Response](./emergency-response.md) - Emergency procedures
 
 
 
