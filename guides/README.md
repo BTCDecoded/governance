@@ -5,7 +5,6 @@ This directory contains comprehensive guides for different stakeholders in the B
 ## Available Guides
 
 - **[MAINTAINER_GUIDE.md](./MAINTAINER_GUIDE.md)** - Complete guide for maintainers on how to participate in governance
-- **[ECONOMIC_NODE_GUIDE.md](./ECONOMIC_NODE_GUIDE.md)** - Guide for economic nodes on registration and veto participation
 
 ## Quick Links
 
@@ -19,7 +18,6 @@ This directory contains comprehensive guides for different stakeholders in the B
 If you're new to the BTCDecoded governance system, start with:
 1. [Main Governance Process](../GOVERNANCE.md) - Overview of how governance works
 2. [Maintainer Guide](./MAINTAINER_GUIDE.md) - If you're a maintainer
-3. [Economic Node Guide](./ECONOMIC_NODE_GUIDE.md) - If you're an economic node
 4. [Examples](../examples/README.md) - See governance in action
 
 ## Related Documentation

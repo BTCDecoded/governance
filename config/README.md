@@ -8,7 +8,6 @@ This directory contains all configuration files for the BTCDecoded governance sy
 
 - **[action-tiers.yml](./action-tiers.yml)** - Defines the 5-tier governance model
 - **[cross-layer-rules.yml](./cross-layer-rules.yml)** - Rules for cross-layer dependencies
-- **[economic-nodes.yml](./economic-nodes.yml)** - Economic node configuration
 - **[emergency-tiers.yml](./emergency-tiers.yml)** - Emergency action tiers
 - **[governance-fork.yml](./governance-fork.yml)** - Governance fork configuration
 - **[ruleset-export-template.yml](./ruleset-export-template.yml)** - Template for ruleset exports
@@ -48,7 +47,6 @@ The governance-app loads configuration files in the following order:
 - **action-tiers.yml**: Used for PR tier classification and signature requirements
 - **repository-layers.yml**: Used for layer-specific requirements and maintainer counts
 - **tier-classification-rules.yml**: Used for automatic PR tier detection
-- **economic-nodes.yml**: Used for economic node veto system
 - **maintainers/**: Used for maintainer registry and signature verification
 - **repos/**: Used for repository-specific governance rules
 - **test-vectors.yml**: Used for cross-layer equivalence proof validation (Phase 1: optional with fallback, Phase 2: required)
@@ -101,7 +99,6 @@ All configuration files are validated against schemas:
 
 - [Main Governance Process](../GOVERNANCE.md)
 - [Maintainer Guide](../guides/MAINTAINER_GUIDE.md)
-- [Economic Node Guide](../guides/ECONOMIC_NODE_GUIDE.md)
 - [Examples](../examples/README.md)
 
 ## For Developers

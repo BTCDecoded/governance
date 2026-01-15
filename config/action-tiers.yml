@@ -9,7 +9,6 @@ tiers:
       required: 3
       total: 5
     review_period_days: 7
-    economic_veto: false
     emergency_override: false
     examples:
       - "Fix typo in documentation"
@@ -24,7 +23,6 @@ tiers:
       required: 4
       total: 5
     review_period_days: 30
-    economic_veto: false
     emergency_override: false
     requires_specification: true
     examples:
@@ -40,7 +38,6 @@ tiers:
       required: 5
       total: 5
     review_period_days: 90
-    economic_veto: true
     emergency_override: false
     requires_specification: true
     requires_audit: true
@@ -57,7 +54,6 @@ tiers:
       required: 4
       total: 5
     review_period_days: 0
-    economic_veto: false
     emergency_override: true
     requires_post_mortem: true
     examples:
@@ -73,7 +69,6 @@ tiers:
       required: 5
       total: 5
     review_period_days: 180
-    economic_veto: true
     emergency_override: false
     requires_public_comment: true
     requires_rationale: true
@@ -91,7 +86,6 @@ tiers:
       required: 7
       total: 7
     review_period_days: 180
-    economic_veto: true
     emergency_override: false
     requires_security_audit: true
     requires_formal_verification: true
@@ -118,7 +112,6 @@ tiers:
       required: 6
       total: 7
     review_period_days: 90
-    economic_veto: false
     emergency_override: false
     requires_cryptography_expert: true
     requires_formal_verification: true
@@ -141,7 +134,6 @@ tiers:
       required: 5
       total: 7
     review_period_days: 30
-    economic_veto: false
     emergency_override: false
     requires_security_review: true
     additional_requirements:

@@ -147,5 +147,4 @@ cross_layer_rules:
     requires_coordination: true
     notification_channels:
       - "maintainers"
-      - "economic-nodes"
       - "community"

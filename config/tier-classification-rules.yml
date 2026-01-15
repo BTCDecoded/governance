@@ -122,7 +122,6 @@ classification_rules:
       - "threshold"
       - "review period"
       - "emergency"
-      - "economic node"
     require_public_comment: true
     require_rationale: true
     examples:
