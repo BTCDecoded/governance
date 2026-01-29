@@ -318,6 +318,9 @@ Changes to governance rules themselves require:
 - 30-day community comment period
 - Must demonstrate technical competence and alignment with Bitcoin principles
 
+**Contributor Progression:**
+See [CONTRIBUTOR_GUIDE.md](CONTRIBUTOR_GUIDE.md) for possible paths from contributor to maintainer. These are documented options, not rigid requirements. Merit-based selection emerges naturally through contributions.
+
 **Removing Maintainers:**
 - 6-of-7 vote (excluding subject maintainer)
 - Formal warning logged in `warnings/` directory
