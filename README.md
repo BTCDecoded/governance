@@ -12,7 +12,7 @@ Central source of truth for governance rules across all Bitcoin Commons reposito
 - 🔧 Test Keys Only: No real cryptographic enforcement
 - 📋 Development Phase: System is in rapid AI-assisted development
 
-**Timeline:** Phase 2 Activation: 3-6 months | Phase 3 Full Operation: 12+ months
+**Timeline:** Phase 2 Activation: Governance enforcement begins | Phase 3 Full Operation: Mature, stable system
 
 ## Overview
 
@@ -32,7 +32,7 @@ Bitcoin Commons implements a **5-tier constitutional governance system** with co
 
 - **Tier 1: Routine Maintenance** (3-of-5, 7 days) - Bug fixes, documentation, performance
 - **Tier 2: Feature Changes** (4-of-5, 30 days) - New RPC methods, P2P changes, wallet features
-- **Tier 3: Consensus-Adjacent** (5-of-5, 90 days + economic node veto) - Changes affecting consensus validation
+- **Tier 3: Consensus-Adjacent** (5-of-5, 90 days) - Changes affecting consensus validation
 - **Tier 4: Emergency Actions** (4-of-5, 0 days review period) - Critical security patches, network threats
 - **Tier 5: Governance Changes** (Special process, 180 days) - Changes to governance rules themselves
 
@@ -43,18 +43,8 @@ Bitcoin Commons implements a **5-tier constitutional governance system** with co
 | 1 | [blvm-spec](../blvm-spec/README.md) | 6-of-7 | 180 days (365 for consensus) |
 | 2 | [blvm-consensus](../blvm-consensus/README.md) | 6-of-7 | 180 days (365 for consensus) |
 | 3 | [blvm-protocol](../blvm-protocol/README.md) | 4-of-5 | 90 days |
-| 4 | [blvm-node](../blvm-node/README.md) / [bllvm](../bllvm/README.md) | 3-of-5 | 60 days |
+| 4 | [blvm-node](../blvm-node/README.md) / [blvm](../blvm/README.md) | 3-of-5 | 60 days |
 | 5 | [blvm-sdk](../blvm-sdk/README.md) | 2-of-3 | 14 days |
-
-### Power Distribution Mechanisms
-
-- **Mining Pool Weight Caps**: Phase-based limits (10-20% per pool) prevent single-pool dominance
-- **Commons Contributor Caps**: 5% of total system weight per entity, with quadratic weighting `√(contribution_btc)`
-- **Veto AND Logic**: Tier 3+ requires both mining AND economic thresholds (30%+ hashpower AND 40%+ economic activity)
-- **Adaptive Thresholds**: Veto thresholds adjust automatically based on governance phase and consolidation metrics
-- **Cooling-Off Periods**: Large contributions (≥0.1 BTC) require 30-day delay before counting toward voting weight
-
-See [Power Balancing Mechanisms](../docs/GOVERNANCE_BALANCING_MECHANISMS.md) for technical details.
 
 ## Documentation
 
