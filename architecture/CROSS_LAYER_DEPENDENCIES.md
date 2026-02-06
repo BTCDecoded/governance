@@ -11,7 +11,7 @@ Layered architecture where different layers have different responsibilities. Hig
 | 1 | blvm-spec | Fundamental Bitcoin principles | 6-of-7, 180d (365d consensus) | None (foundational) |
 | 2 | blvm-consensus | Mathematical proofs and consensus validation | 6-of-7, 180d (365d consensus) | Layer 1 |
 | 3 | blvm-protocol | Bitcoin protocol implementation | 4-of-5, 90d | Layers 1-2 |
-| 4 | blvm-node / bllvm | Complete Bitcoin node implementation | 3-of-5, 60d | Layers 1-3 |
+| 4 | blvm-node / blvm | Complete Bitcoin node implementation | 3-of-5, 60d | Layers 1-3 |
 | 5 | blvm-sdk | Developer tools and libraries | 2-of-3, 14d | Layers 1-4 |
 
 ## Dependency Rules

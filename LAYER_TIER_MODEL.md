@@ -11,20 +11,20 @@ Dual-dimensional governance combining **Layers** (repository architecture) and *
 | 1 | blvm-spec | Constitutional | 6-of-7 | 180 days |
 | 2 | blvm-consensus | Constitutional | 6-of-7 | 180 days |
 | 3 | blvm-protocol | Implementation | 4-of-5 | 90 days |
-| 4 | blvm-node / bllvm | Application | 3-of-5 | 60 days |
+| 4 | blvm-node / blvm | Application | 3-of-5 | 60 days |
 | 5 | blvm-sdk | Extension | 2-of-3 | 14 days |
 
 **Note:** For consensus rule changes, Layer 1-2 require 365 days review period.
 
 ## Tier System
 
-| Tier | Type | Signatures | Review Period | Economic Veto |
-|------|------|------------|---------------|---------------|
-| 1 | Routine Maintenance | 3-of-5 | 7 days | No |
-| 2 | Feature Changes | 4-of-5 | 30 days | No |
-| 3 | Consensus-Adjacent | 5-of-5 | 90 days | Yes |
-| 4 | Emergency Actions | 4-of-5 | 0 days | No |
-| 5 | Governance Changes | 5-of-5 | 180 days | Yes |
+| Tier | Type | Signatures | Review Period |
+|------|------|------------|---------------|
+| 1 | Routine Maintenance | 3-of-5 | 7 days |
+| 2 | Feature Changes | 4-of-5 | 30 days |
+| 3 | Consensus-Adjacent | 5-of-5 | 90 days |
+| 4 | Emergency Actions | 4-of-5 | 0 days |
+| 5 | Governance Changes | 5-of-5 | 180 days |
 
 ## Combination Rules
 
@@ -66,10 +66,6 @@ When both apply, system takes **most restrictive** (highest) requirements:
 | New feature in blvm-sdk | 5 (2-of-3, 14d) | 2 (4-of-5, 30d) | 4-of-5, 30d | Tier 2 |
 | Consensus change in blvm-spec | 1 (6-of-7, 180d) | 3 (5-of-5, 90d) | 6-of-7, 180d | Layer 1 |
 | Emergency fix in blvm-node | 4 (3-of-5, 60d) | 4 (4-of-5, 0d) | 4-of-5, 0d | Tier 4 |
-
-## Economic Veto Requirements
-
-Economic node vetoes required for **Tier 3+** (any layer). Thresholds: Tier 3 (30%+ hashpower AND 40%+ economic), Tier 4 (25%+ AND 35%+), Tier 5 (50%+ AND 60%+).
 
 ## Implementation
 

@@ -435,7 +435,7 @@ repository_layers:
   layer_1_constitutional:
     name: "Constitutional Layer"
     repositories:
-      - "bllvm-spec"
+      - "blvm-spec"
     purpose: "Constitutional documents and mathematical specifications"
     signatures:
       required: 6
@@ -449,7 +449,7 @@ repository_layers:
   layer_2_constitutional:
     name: "Constitutional Layer"
     repositories:
-      - "bllvm-consensus"
+      - "blvm-consensus"
     purpose: "Consensus proof implementations"
     signatures:
       required: 6
@@ -473,7 +473,7 @@ repository_layers:
   layer_3_implementation:
     name: "Implementation Layer"
     repositories:
-      - "bllvm-protocol"
+      - "blvm-protocol"
     purpose: "Core protocol implementation"
     signatures:
       required: 4
@@ -483,8 +483,8 @@ repository_layers:
   layer_4_application:
     name: "Application Layer"
     repositories:
-      - "bllvm-node"
-      - "bllvm"
+      - "blvm-node"
+      - "blvm"
     purpose: "Reference implementation and applications"
     signatures:
       required: 3
@@ -494,7 +494,7 @@ repository_layers:
   layer_5_extension:
     name: "Extension Layer"
     repositories:
-      - "bllvm-sdk"
+      - "blvm-sdk"
     purpose: "Developer tools and extensions"
     signatures:
       required: 2
