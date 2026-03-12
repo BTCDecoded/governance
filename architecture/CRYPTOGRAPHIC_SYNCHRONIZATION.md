@@ -98,8 +98,8 @@ Ensures that blvm-consensus implementations reference specific, cryptographicall
 ```rust
 // In blvm-consensus code:
 // @blvm-spec-version: v1.2.3
-// @orange-paper-commit: abc123def456
-// @orange-paper-hash: sha256:fedcba...
+// @blvm-spec-commit: abc123def456
+// @blvm-spec-hash: sha256:fedcba...
 ```
 
 ### Version Manifest Structure
@@ -205,9 +205,9 @@ PRs are blocked from merging until all cross-layer checks pass:
 rules:
   - name: consensus_proof_sync
     description: "blvm-spec and blvm-consensus must stay synchronized"
-    source_repo: orange-paper
+    source_repo: blvm-spec
     source_pattern: consensus-rules/**
-    target_repo: consensus-proof
+    target_repo: blvm-consensus
     target_pattern: proofs/**
     validation: corresponding_file_exists
     bidirectional: true
@@ -217,16 +217,16 @@ rules:
 ### Repository Configuration
 
 ```yaml
-# orange-paper.yml
+# blvm-spec.yml
 layer: 1
 governance_level: constitutional
 signature_threshold: 6-of-7
 review_period_days: 180
 synchronized_with:
-  - consensus-proof
+  - blvm-consensus
 cross_layer_rules:
   - if_changed: consensus-rules/**
-    then_require_update: consensus-proof/proofs/**
+    then_require_update: blvm-consensus/proofs/**
     validation: equivalence_proof_exists
     error_message: "Consensus rule changes require corresponding proof updates"
 ```

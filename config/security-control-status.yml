@@ -91,7 +91,7 @@ controls:
     blocks_production: true
     last_verified: null
     verified_by: []
-    evidence: "TODO: Implement actual cryptographic verification using developer-sdk"
+    evidence: "TODO: Implement actual cryptographic verification using blvm-sdk"
     target_completion: "2025-01-20"
     assigned_to: "@dev"
     dependencies: ["B-001"]

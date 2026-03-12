@@ -250,15 +250,15 @@ BTCDecoded implements **mathematical verification** of consensus code to prevent
 
 #### Verification Stack
 
-1. **Kani Model Checking** (required)
-   - Symbolic verification with bounded model checking
-   - Proves mathematical invariants hold for all possible inputs
+1. **blvm-spec-lock Formal Verification** (required)
+   - Z3-based verification of `#[spec_locked]` functions
+   - Proves mathematical invariants against Orange Paper specifications
    - Cannot be bypassed or overridden
 
 2. **Property-Based Testing** (required)
    - Randomized testing with `proptest`
    - Discovers edge cases through fuzzing
-   - Complements Kani with empirical coverage
+   - Complements spec-lock with empirical coverage
 
 3. **Mathematical Specifications** (required)
    - Formal documentation of consensus rules

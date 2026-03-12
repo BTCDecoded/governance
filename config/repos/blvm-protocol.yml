@@ -3,9 +3,9 @@ governance_level: implementation
 signature_threshold: 4-of-5
 review_period_days: 90
 dependencies:
-  - consensus-proof
+  - blvm-consensus
 validation_requirements:
-  - must_reference_version: orange-paper@v{VERSION}
+  - must_reference_version: blvm-spec@v{VERSION}
   - equivalence_proof_required: true
 
 # Action tier classification

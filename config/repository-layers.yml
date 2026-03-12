@@ -48,8 +48,8 @@ layers:
       enforceable: true
       override_allowed: false
       tools:
-        - name: "Kani"
-          command: "cargo kani --features verify"
+        - name: "blvm-spec-lock"
+          command: "cargo spec-lock verify"
           required: true
         - name: "Proptest"
           command: "cargo test --all-features"
@@ -60,7 +60,7 @@ layers:
     description: |
       The consensus proof layer contains implementations of the consensus rules
       defined in the constitutional layer. Changes here affect the core validation
-      logic of Bitcoin. All changes MUST pass formal verification (Kani + Proptest)
+      logic of Bitcoin. All changes MUST pass formal verification (blvm-spec-lock + Proptest)
       before maintainer signatures are allowed. This creates a technical barrier
       that complements social governance, making Bitcoin governance 6x harder to capture.
 

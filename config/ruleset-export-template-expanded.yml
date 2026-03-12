@@ -461,8 +461,8 @@ repository_layers:
       enforceable: true
       override_allowed: false
       tools:
-        - name: "Kani"
-          command: "cargo kani --features verify"
+        - name: "blvm-spec-lock"
+          command: "cargo spec-lock verify --crate-path ."
           required: true
         - name: "Proptest"
           command: "cargo test --all-features"
@@ -645,9 +645,9 @@ cross_layer_rules:
   rules:
     - name: consensus_proof_sync
       description: "Orange Paper and Consensus Proof must stay synchronized"
-      source_repo: orange-paper
+      source_repo: blvm-spec
       source_pattern: consensus-rules/**
-      target_repo: consensus-proof
+      target_repo: blvm-consensus
       target_pattern: proofs/**
       validation: corresponding_file_exists
       bidirectional: true
@@ -655,16 +655,16 @@ cross_layer_rules:
 
     - name: protocol_engine_equivalence
       description: "Protocol Engine must reference specific Orange Paper version"
-      source_repo: protocol-engine
+      source_repo: blvm-protocol
       source_pattern: consensus/**
-      target_repo: orange-paper
+      target_repo: blvm-spec
       validation: references_latest_version
-      required_reference_format: "orange-paper@v{VERSION}"
+      required_reference_format: "blvm-spec@v{VERSION}"
       blocking: true
 
     - name: reference_node_no_consensus
       description: "Reference Node cannot modify consensus rules"
-      source_repo: reference-node
+      source_repo: blvm-node
       validation: no_consensus_modifications
       allowed_imports_only: true
       blocking: true

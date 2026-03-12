@@ -14,7 +14,7 @@
 **⚠️ DO NOT GENERATE REAL KEYS UNTIL PHASE 2 ACTIVATION**
 
 ```bash
-# Generate new keypair using developer-sdk
+# Generate new keypair using blvm-sdk
 cargo run --bin generate-keypair -- --output maintainer-keys.json
 ```
 

@@ -16,19 +16,19 @@ This directory contains all configuration files for the BTCDecoded governance sy
 ### Maintainer Configuration
 
 - **[maintainers/](./maintainers/)** - Maintainer definitions by layer
-  - `layer-1-2.yml` - Constitutional layers (orange-paper, consensus-proof)
-  - `layer-3.yml` - Implementation layer (protocol-engine)
-  - `layer-4.yml` - Application layer (reference-node)
+  - `layer-1-2.yml` - Constitutional layers (blvm-spec, blvm-consensus)
+  - `layer-3.yml` - Implementation layer (blvm-protocol)
+  - `layer-4.yml` - Application layer (blvm-node)
   - `emergency.yml` - Emergency keyholders
 
 ### Repository Configuration
 
 - **[repos/](./repos/)** - Repository-specific configuration
-  - `orange-paper.yml` - Layer 1 configuration
-  - `consensus-proof.yml` - Layer 2 configuration
-  - `protocol-engine.yml` - Layer 3 configuration
-  - `reference-node.yml` - Layer 4 configuration
-  - `developer-sdk.yml` - Layer 5 configuration
+  - `blvm-spec.yml` - Layer 1 configuration
+  - `blvm-consensus.yml` - Layer 2 configuration
+  - `blvm-protocol.yml` - Layer 3 configuration
+  - `blvm-node.yml` - Layer 4 configuration
+  - `blvm-sdk.yml` - Layer 5 configuration
 
 ## Governance App Integration
 

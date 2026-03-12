@@ -30,8 +30,8 @@ Commons Contributors are now automatically registered as economic nodes when the
 
 **Merge Mining**:
 ```rust
-use bllvm_commons::economic_nodes::auto_registration::CommonsContributorAutoRegistrar;
-use bllvm_commons::economic_nodes::registry::EconomicNodeRegistry;
+use blvm_commons::economic_nodes::auto_registration::CommonsContributorAutoRegistrar;
+use blvm_commons::economic_nodes::registry::EconomicNodeRegistry;
 use std::sync::Arc;
 
 // After recording merge mining contribution

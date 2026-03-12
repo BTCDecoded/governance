@@ -15,7 +15,7 @@ Recommended layout:
     - verify-artifacts.tar.gz.ots (OpenTimestamps receipt)
 
 Process:
-1. Create verification bundle from `consensus-proof/verify-artifacts/`.
+1. Create verification bundle from `blvm-consensus/verify-artifacts/`.
 2. Hash bundle and binaries; record in TXT files.
 3. Collect N-of-M signatures.
 4. Commit to this directory or attach to the GitHub Release.
