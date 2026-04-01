@@ -47,7 +47,7 @@ The BTCDecoded governance system is being activated in phases:
 - **Maintainers**: Review [Maintainer Guide](../guides/MAINTAINER_GUIDE.md)
 - **Economic Nodes**: Review [Economic Node Guide](../guides/ECONOMIC_NODE_GUIDE.md)
 - **Developers**: Review [Architecture Documentation](../architecture/README.md)
-- **Auditors**: Review [Audit Materials](../../audit-materials/README.md)
+- **Auditors**: Audit materials are maintained outside this repository (see `architecture/README.md`)
 
 
 

@@ -37,7 +37,7 @@ The BTCDecoded governance system implements a **5-tier constitutional governance
 
 - Review [Cryptographic Governance](./CRYPTOGRAPHIC_GOVERNANCE.md) for core concepts
 - Review [Governance Fork](./GOVERNANCE_FORK.md) for fork mechanism
-- Review [Audit Materials](../../audit-materials/README.md) for security details
+- Audit materials: maintained outside this repository (not linked here to avoid broken paths in clones)
 
 ## For Architects
 
@@ -48,7 +48,7 @@ The BTCDecoded governance system implements a **5-tier constitutional governance
 
 ## For Auditors
 
-- Review [Audit Materials](../../audit-materials/README.md)
+- Audit materials: see note under **For Developers** above
 - Focus on cryptographic design
 - Review threat model
 - Understand key management

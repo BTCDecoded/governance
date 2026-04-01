@@ -281,4 +281,4 @@ Enforce compliance through:
 - [Server Authorization Configuration](../config/server-authorization.yml)
 - [Emergency Procedures](../examples/emergency-response.md)
 - [Maintainer Guide](../guides/MAINTAINER_GUIDE.md)
-- [Security Guide](../../governance-app/SECURITY.md)
+- [Security Guide](../SECURITY.md)
