@@ -26,7 +26,7 @@ This repository defines:
 
 ## Constitutional Governance Model
 
-Bitcoin Commons implements a **5-tier constitutional governance system** with complete transparency through cryptographic audit trails and user-protective mechanisms.
+Bitcoin Commons implements a **5-tier constitutional governance system** with complete transparency through cryptographic audit trails and user-protective mechanisms. That system operates under the [Bitcoin Commons Compact](COMPACT.md).
 
 ### Action Tiers
 
@@ -55,6 +55,7 @@ Bitcoin Commons implements a **5-tier constitutional governance system** with co
 - [DECISION_TREES.md](DECISION_TREES.md) - Decision flows
 
 ### Core Documentation
+- [COMPACT.md](COMPACT.md) - Bitcoin Commons Compact
 - [GOVERNANCE.md](GOVERNANCE.md) - Main governance process
 - [LAYER_TIER_MODEL.md](LAYER_TIER_MODEL.md) - How layers and tiers combine
 - [SCOPE.md](SCOPE.md) - Repository vs protocol governance
@@ -66,4 +67,5 @@ Bitcoin Commons implements a **5-tier constitutional governance system** with co
 
 ### Related Repositories
 - [blvm-commons](../blvm-commons/README.md) - Governance enforcement application
+- [blvm-docs](https://github.com/BTCDecoded/blvm-docs) - Unified mdBook site: [docs.thebitcoincommons.org](https://docs.thebitcoincommons.org/)
 - [Audit Materials](../audit-materials/README.md) - Security and audit information
