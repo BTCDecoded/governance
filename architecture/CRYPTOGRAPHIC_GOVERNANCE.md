@@ -144,8 +144,7 @@ Governance-app automatically verifies: incoming signatures on pull requests, mai
 1. Multisig requirements (no single maintainer can act alone)
 2. Time locks (prevent rushed decisions)
 3. Transparency (all actions publicly auditable)
-4. Economic node veto (additional layer of protection)
-5. Governance fork (users can choose different rulesets)
+4. Governance fork (users can choose different rulesets)
 
 ## Implementation Details
 

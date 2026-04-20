@@ -33,17 +33,7 @@ BTCDecoded governance operates on two levels: **Repository Governance** (binding
 | Emergency Security Fix | Activate emergency tier, 0-day review, 4-of-5 signatures | Force immediate adoption, prevent running vulnerable software |
 | New RPC Method | Require 4-of-5 signatures, 30-day review, technical spec | Force users to use it, control integration, prevent alternatives |
 
-**User Process**: Maintainers approve code → Code released as optional upgrade → Users evaluate and choose → Economic coordination determines adoption → Users can fork or reject
-
-## Economic Node Role
-
-| Function | Scope | Impact |
-|----------|-------|--------|
-| Veto Power | Tier 3+ changes (consensus-adjacent, emergency, governance) | Binding authority over repository merges |
-| Thresholds | 30%+ hashpower AND 40%+ economic activity (Tier 3) | Blocks PR merge |
-| Advisory Input | Signal preferences, provide economic analysis | Influences but doesn't force adoption |
-
-**Important**: Economic node vetoes affect repository access, not user choice. Users remain free to run any software.
+**User Process**: Maintainers approve code → Code released as optional upgrade → Users evaluate and choose → Market and operator coordination determines adoption → Users can fork or reject
 
 ## Fork Capability
 

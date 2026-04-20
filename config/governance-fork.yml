@@ -53,14 +53,9 @@ adoption_measurement:
       - "Count nodes signaling ruleset A"
       - "Count nodes signaling ruleset B"
       - "Geographic distribution tracked"
-    economic_activity:
-      mining_pools: "Weighted by hashpower"
-      exchanges: "Weighted by trading volume"
-      custodians: "Weighted by holdings"
-  combined_metric:
-    node_weight: "50% weight: Node count"
-    economic_weight: "50% weight: Economic activity"
-    purpose: "Provides balanced view of adoption"
+  primary_metric:
+    node_and_operator_signals: "100% weight: Node adoption and operator-reported ruleset choice"
+    purpose: "Observable network alignment with a governance track"
   transparency:
     - "Transparent public dashboard"
     - "Real-time adoption statistics"

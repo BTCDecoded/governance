@@ -32,31 +32,7 @@ The system has:
 
 ---
 
-### 2. Economic Node Veto Thresholds
-
-**Registered in Config Registry:**
-- `veto_tier_3_mining_percent` = 30.0
-- `veto_tier_3_economic_percent` = 40.0
-- `veto_tier_4_mining_percent` = 25.0
-- `veto_tier_4_economic_percent` = 35.0
-- `signaling_tier_5_mining_percent` = 50.0
-- `signaling_tier_5_economic_percent` = 60.0
-
-**Actually Used (Hardcoded):**
-- `blvm-commons/src/economic_nodes/veto.rs:292`:
-  ```rust
-  match tier {
-      3 => (30.0, 40.0, 90u32),   // Hardcoded!
-      4 => (25.0, 35.0, 0u32),    // Hardcoded!
-      5 => (50.0, 60.0, 180u32),  // Hardcoded!
-  }
-  ```
-
-**Impact**: Veto thresholds cannot be adjusted via governance.
-
----
-
-### 3. Governance Phase Thresholds
+### 2. Governance Phase Thresholds
 
 **Registered in Config Registry:**
 - `phase_early_max_blocks` = 50,000
@@ -74,7 +50,7 @@ The system has:
 
 ---
 
-### 4. Emergency Tier Thresholds
+### 3. Emergency Tier Thresholds
 
 **Registered in Config Registry:**
 - `emergency_tier_1_activation_threshold` = "5-of-7"
@@ -93,7 +69,7 @@ The system has:
 
 ---
 
-### 5. Commons Contributor Thresholds
+### 4. Commons Contributor Thresholds
 
 **Registered in Config Registry:**
 - `commons_contributor_min_merge_mining_btc` = 0.01
@@ -103,15 +79,14 @@ The system has:
 - `commons_contributor_measurement_period_days` = 90
 
 **Actually Used:**
-- **YAML Config**: `governance/config/commons-contributor-thresholds.yml` (loaded via `CommonsContributorThresholdsConfig`)
-- **Hardcoded Fallback**: `blvm-commons/src/economic_nodes/types.rs:92-95`
-- **NOT using Config Registry**: System reads from YAML, not config registry
+- **YAML Config**: `governance/config/commons-contributor-thresholds.yml` (human reference; optional loader support varies by branch)
+- **NOT using Config Registry uniformly**: Contributor metrics may not flow through `config_registry` the same way as tier thresholds.
 
-**Impact**: Thresholds can be changed via YAML, but not via governance-controlled config registry. Two separate systems.
+**Impact**: Thresholds can be edited in YAML for documentation; runtime behavior depends on whether your fork loads them—**they do not replace maintainer merge rules**.
 
 ---
 
-### 6. Repository Layer Thresholds
+### 5. Repository Layer Thresholds
 
 **Registered in Config Registry:**
 - `layer_1_2_signatures_required` = 6
@@ -134,7 +109,7 @@ The configuration system was designed with two separate approaches:
 
 1. **Config Registry** (newer, governance-controlled): Variables registered in database, require Tier 5 approval to change
 2. **YAML Config** (older, file-based): Commons contributor thresholds loaded from YAML files
-3. **Hardcoded Values** (legacy): Everything else is hardcoded in match statements
+3. **Hardcoded values in source**: Tier and emergency defaults still embedded in match statements in places
 
 **None of the code actually reads from the config registry!**
 
@@ -153,10 +128,9 @@ Create a helper module that:
 
 Replace hardcoded values with config registry reads:
 1. `ThresholdValidator` → Read tier/layer thresholds from registry
-2. `VetoManager` → Read veto thresholds from registry
-3. `GovernancePhaseCalculator` → Read phase boundaries from registry
-4. `EmergencyTier` → Read emergency thresholds from registry
-5. `CommonsContributorThresholds` → Support both YAML and config registry
+2. `GovernancePhaseCalculator` → Read phase boundaries from registry
+3. `EmergencyTier` → Read emergency thresholds from registry
+4. `CommonsContributorThresholds` (if used) → Support both YAML and config registry
 
 ### Phase 3: Unify Commons Contributor Thresholds
 
@@ -191,22 +165,15 @@ This allows:
    - Replace `get_threshold_for_layer()` with config registry read
    - Replace `get_review_period_for_layer()` with config registry read
 
-2. **`blvm-commons/src/economic_nodes/veto.rs`**
-   - Replace hardcoded veto thresholds (line 292) with config registry read
-
-3. **`blvm-commons/src/governance/phase_calculator.rs`**
+2. **`blvm-commons/src/governance/phase_calculator.rs`**
    - Replace hardcoded phase boundaries with config registry read
    - Pass `ConfigRegistry` to `GovernancePhaseCalculator`
 
-4. **`blvm-commons/src/validation/emergency.rs`**
+3. **`blvm-commons/src/validation/emergency.rs`**
    - Replace hardcoded emergency thresholds with config registry read
    - Pass `ConfigRegistry` to `EmergencyTier` methods
 
-5. **`blvm-commons/src/economic_nodes/registry.rs`**
-   - Add support for reading Commons contributor thresholds from Config Registry
-   - Keep YAML as fallback
-
-6. **`blvm-commons/src/governance/config_registry.rs`**
+4. **`blvm-commons/src/governance/config_registry.rs`**
    - Add helper methods for type-safe value retrieval:
      - `get_i32()`, `get_f64()`, `get_string()`, `get_bool()`
    - Add caching layer for performance
@@ -216,10 +183,9 @@ This allows:
 ## Implementation Priority
 
 1. **High Priority**: Create config registry reader helper
-2. **High Priority**: Update veto thresholds (critical for governance)
-3. **Medium Priority**: Update tier/layer thresholds
-4. **Medium Priority**: Update phase calculator
-5. **Low Priority**: Unify Commons contributor thresholds (YAML works for now)
+2. **Medium Priority**: Update tier/layer thresholds
+3. **Medium Priority**: Update phase calculator
+4. **Low Priority**: Unify Commons contributor thresholds (YAML works for now)
 
 ---
 

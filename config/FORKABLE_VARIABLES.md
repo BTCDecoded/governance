@@ -9,12 +9,12 @@ All variables listed here are registered in the `governance_config_registry` tab
 ## Default Values Rationale
 
 Default values are set conservatively for **Phase 1 (Infrastructure Building)** and are appropriate for:
-- Early adoption (fewer economic nodes)
+- Early adoption (smaller maintainer surface)
 - Conservative security posture
 - Gradual growth trajectory
 
 As the system matures through Phase 2 → Phase 3, these values can be adjusted via Tier 5 governance to reflect:
-- Increased economic node participation
+- Broader maintainer and community experience
 - Mature ecosystem dynamics
 - Optimized thresholds based on real-world experience
 
@@ -41,7 +41,7 @@ As the system matures through Phase 2 → Phase 3, these values can be adjusted 
 - **`tier_3_signatures_total`**: `5`
 - **`tier_3_review_period_days`**: `90`
 
-**Rationale**: Unanimous approval required, 90-day review period, economic node veto applies.
+**Rationale**: Unanimous approval required, 90-day review period, highest scrutiny for consensus-adjacent work.
 
 ### Tier 4: Emergency Actions
 - **`tier_4_signatures_required`**: `4` (out of 5)
@@ -59,30 +59,7 @@ As the system matures through Phase 2 → Phase 3, these values can be adjusted 
 
 ---
 
-## 2. Economic Node Veto Thresholds
-
-### Tier 3 Veto Thresholds
-- **`veto_tier_3_mining_percent`**: `30.0%`
-- **`veto_tier_3_economic_percent`**: `40.0%`
-
-**Rationale**: Requires coordination between miners AND economic nodes (AND logic). Prevents single-group veto.
-
-### Tier 4 Veto Thresholds (Emergency)
-- **`veto_tier_4_mining_percent`**: `25.0%`
-- **`veto_tier_4_economic_percent`**: `35.0%`
-- **`veto_tier_4_window_hours`**: `24`
-
-**Rationale**: Lower thresholds for emergency actions, but shorter window (24 hours).
-
-### Tier 5 Signaling Thresholds
-- **`signaling_tier_5_mining_percent`**: `50.0%`
-- **`signaling_tier_5_economic_percent`**: `60.0%`
-
-**Rationale**: Governance changes require active support (not just lack of opposition). Higher thresholds than veto.
-
----
-
-## 3. Commons Contributor Thresholds
+## 2. Commons Contributor Thresholds
 
 ### Measurement Period
 - **`commons_contributor_measurement_period_days`**: `90`
@@ -110,7 +87,7 @@ As the system matures through Phase 2 → Phase 3, these values can be adjusted 
 
 ---
 
-## 4. Governance Phase Calculation Thresholds
+## 3. Governance Phase Calculation Thresholds
 
 These determine when the system transitions between **Early → Growth → Mature** phases.
 
@@ -140,7 +117,7 @@ These determine when the system transitions between **Early → Growth → Matur
 
 ---
 
-## 5. Repository Layer Thresholds
+## 4. Repository Layer Thresholds
 
 ### Layer 1-2: Constitutional (Orange Paper, Consensus Proof)
 - **`layer_1_2_signatures_required`**: `6` (out of 7)
@@ -172,7 +149,7 @@ These determine when the system transitions between **Early → Growth → Matur
 
 ---
 
-## 6. Emergency Tier Thresholds
+## 5. Emergency Tier Thresholds
 
 ### Emergency Tier 1: Critical
 - **`emergency_tier_1_activation_threshold`**: `"5-of-7"` (emergency keyholders)
@@ -201,7 +178,7 @@ These determine when the system transitions between **Early → Growth → Matur
 
 ---
 
-## 7. Governance Review Policy Thresholds
+## 6. Governance Review Policy Thresholds
 
 ### Sanction Thresholds
 - **`governance_review_private_warning_threshold`**: `"4-of-7"`
@@ -227,22 +204,20 @@ These determine when the system transitions between **Early → Growth → Matur
 
 ---
 
-## 8. Feature Flags
+## 7. Feature Flags
 
 ### Core Features
 - **`feature_governance_enforcement`**: `false` (Phase 1 default, activates in Phase 2)
 - **`feature_p2p_governance`**: `true`
-- **`feature_economic_node_veto`**: `true`
-- **`feature_commons_contributor_auto_registration`**: `true`
+- **`feature_commons_contributor_auto_registration`**: `false` or `true` (metrics only unless you ship extra enforcement)
 - **`feature_governance_fork`**: `true`
-- **`feature_merkle_veto_proofs`**: `true`
-- **`feature_privacy_preserving_votes`**: `true`
+- Optional Merkle / privacy flags: names vary by deployment (see `blvm-commons` for live keys)
 
-**Rationale**: Most features enabled by default, but governance enforcement disabled until Phase 2 activation.
+**Rationale**: Enable enforcement only when ready; optional features stay subordinate to maintainer PR policy.
 
 ---
 
-## 9. Network & Security Configuration
+## 8. Network & Security Configuration
 
 - **`network_default`**: `"mainnet"`
 - **`security_audit_required_tier_3`**: `true`
@@ -262,21 +237,21 @@ These determine when the system transitions between **Early → Growth → Matur
 ### Phase 2 (3-6 months): Governance Activation
 - **Expected Changes**:
   - Enable `feature_governance_enforcement = true`
-  - Adjust thresholds based on initial economic node participation
+  - Adjust maintainer and review thresholds based on operational experience
   - Fine-tune Commons contributor thresholds based on actual contribution patterns
 
 ### Phase 3 (12+ months): Full Operation
 - **Expected Changes**:
   - Optimize thresholds based on real-world experience
   - Adjust phase calculation thresholds if growth differs from projections
-  - Refine veto thresholds based on actual coordination patterns
+  - Refine tier and emergency policy based on actual coordination patterns
 
 ---
 
 ## How to Change These Values
 
 1. **Propose Change**: Use `ConfigRegistry::propose_change()` or create Tier 5 PR
-2. **Governance Approval**: Requires Tier 5 process (180-day review, 5-of-5 maintainers, 50%+ hashpower + 60%+ economic activity support)
+2. **Governance Approval**: Requires Tier 5 process (per current maintainer policy)
 3. **Activation**: Change is activated when Tier 5 PR is merged
 4. **Audit Trail**: All changes recorded in `governance_config_history` table
 
@@ -286,7 +261,6 @@ These determine when the system transitions between **Early → Growth → Matur
 
 **~80+ forkable governance variables** covering:
 - Action tier thresholds (15 variables)
-- Economic node veto thresholds (7 variables)
 - Commons contributor thresholds (8 variables)
 - Governance phase thresholds (11 variables)
 - Repository layer thresholds (9 variables)

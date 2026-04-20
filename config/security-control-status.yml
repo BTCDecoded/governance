@@ -154,7 +154,7 @@ controls:
     dependencies: []
     
   C-004:
-    name: "Economic Node Veto System"
+    name: "Tier and threshold enforcement"
     category: governance
     priority: P1
     state: placeholder
@@ -308,7 +308,7 @@ next_actions:
     
   this_month:
     - "Implement Taproot support (A-003)"
-    - "Complete economic node veto (C-004)"
+    - "Align tier/threshold enforcement with current code paths (C-004)"
     - "Add OTS timestamping (D-002)"
 
 

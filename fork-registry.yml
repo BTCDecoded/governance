@@ -17,7 +17,6 @@
 # - tier2_review: Review period in days
 # - tier3: Signature threshold
 # - tier3_review: Review period in days
-# - tier3_veto: Economic node veto threshold (%)
 # - verified: true/false (set to true after verification)
 # - created_at: ISO 8601 date (YYYY-MM-DD)
 
@@ -35,7 +34,6 @@ forks:
     tier2_review: 30
     tier3: "5-of-5"
     tier3_review: 90
-    tier3_veto: 30
     verified: true
     created_at: "2024-01-01"
     
@@ -52,7 +50,6 @@ forks:
     tier2_review: 60
     tier3: "6-of-7"
     tier3_review: 180
-    tier3_veto: 25
     verified: false
     created_at: "2024-01-15"
     
@@ -69,13 +66,12 @@ forks:
     tier2_review: 14
     tier3: "4-of-5"
     tier3_review: 60
-    tier3_veto: 35
     verified: false
     created_at: "2024-01-15"
     
   - id: community
     name: Community-Driven
-    description: Lower economic node veto threshold. Gives more power to network participants.
+    description: Emphasis on maintainer review and community-visible governance discussion.
     forked_from: default
     created_by: BTCDecoded
     github: null
@@ -86,7 +82,5 @@ forks:
     tier2_review: 30
     tier3: "5-of-5"
     tier3_review: 90
-    tier3_veto: 20
     verified: false
     created_at: "2024-01-15"
-

@@ -73,7 +73,6 @@ let config = Arc::new(ConfigReader::new(registry.clone()));
 
 // Read a value
 let review_period = config.get_i32("tier_3_review_period_days", 90).await?;
-let veto_threshold = config.get_f64("veto_tier_3_mining_percent", 30.0).await?;
 let enabled = config.get_bool("feature_governance_enforcement", false).await?;
 ```
 
@@ -83,10 +82,7 @@ let enabled = config.get_bool("feature_governance_enforcement", false).await?;
 // Get tier signatures
 let (required, total) = config.get_tier_signatures(3).await?;
 
-// Get veto thresholds
-let (mining, economic) = config.get_veto_thresholds(3).await?;
-
-// Get Commons contributor threshold (with YAML fallback)
+// Get Commons contributor threshold (with YAML fallback) when contributor metrics are enabled
 let threshold = config.get_commons_contributor_threshold("merge_mining").await?;
 ```
 
@@ -108,34 +104,29 @@ let review = validator.get_tier_review_period(3).await?;
 - Review periods (days)
 - **Example**: `tier_3_signatures_required = 5`
 
-### 2. Economic Node Veto Thresholds
-- Mining hashpower percentages
-- Economic activity percentages
-- **Example**: `veto_tier_3_mining_percent = 30.0`
-
-### 3. Commons Contributor Thresholds
+### 2. Commons Contributor Thresholds
 - Minimum contribution amounts (BTC)
 - Measurement periods (days)
 - **Example**: `commons_contributor_min_merge_mining_btc = 0.01`
 
-### 4. Governance Phase Thresholds
+### 3. Governance Phase Thresholds
 - Block height boundaries
-- Economic node count boundaries
+- Optional operator / participation milestones (advisory, if used)
 - Contributor count boundaries
 - **Example**: `phase_early_max_blocks = 50000`
 
-### 5. Repository Layer Thresholds
+### 4. Repository Layer Thresholds
 - Signature requirements per layer
 - Review periods per layer
 - **Example**: `layer_1_2_signatures_required = 6`
 
-### 6. Emergency Tier Thresholds
+### 5. Emergency Tier Thresholds
 - Activation thresholds
 - Signature thresholds
 - Duration limits
 - **Example**: `emergency_tier_1_max_duration_days = 7`
 
-### 7. Feature Flags
+### 6. Feature Flags
 - Enable/disable features
 - **Example**: `feature_governance_enforcement = false`
 
@@ -148,9 +139,8 @@ let review = validator.get_tier_review_period(3).await?;
    - Links to Tier 5 PR
 
 2. **Governance Approval**: Tier 5 process
-   - 180-day review period
-   - 5-of-5 maintainer signatures
-   - 50%+ hashpower + 60%+ economic activity support
+   - Extended review period per policy
+   - Maintainer signature requirements per policy
 
 3. **Activation**: When Tier 5 PR is merged
    - `handle_pr_merged()` detects Tier 5 PR
@@ -172,7 +162,6 @@ let review = validator.get_tier_review_period(3).await?;
 
 ### Phase 2: Integration (Next)
 - Update `ThresholdValidator` to use ConfigReader
-- Update `VetoManager` to use ConfigReader
 - Update `GovernancePhaseCalculator` to use ConfigReader
 - Update `EmergencyTier` to use ConfigReader
 

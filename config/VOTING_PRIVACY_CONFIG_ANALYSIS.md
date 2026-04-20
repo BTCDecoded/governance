@@ -3,7 +3,7 @@
 ## Current State
 
 The voting privacy system currently has:
-- ✅ **2 feature flags**: `feature_merkle_veto_proofs` and `feature_privacy_preserving_votes`
+- ✅ **2 feature flags** (exact names vary by branch): Merkle proof support for signals, and privacy-preserving votes
 - ❌ **No configurable parameters** for privacy mechanisms
 
 ## Hardcoded Values That Could Be Configurable
@@ -94,7 +94,7 @@ Add all potential privacy configuration options.
 
 ## Conclusion
 
-**Current system is sufficient** for voting privacy. The feature flags (`feature_merkle_veto_proofs` and `feature_privacy_preserving_votes`) provide enough control.
+**Current system is sufficient** for voting privacy. The feature flags for Merkle proofs and privacy-preserving votes provide enough control where implemented.
 
 **If needed later**, we could add:
 - `voting_require_privacy_preserving` - Make privacy mandatory for certain tiers

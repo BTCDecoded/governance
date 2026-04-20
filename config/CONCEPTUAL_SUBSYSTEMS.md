@@ -16,23 +16,19 @@ Each tier/layer has the same 3 variables:
 - `signatures_total` (M)
 - `review_period_days`
 
-## 2. Economic Node Veto System
-**7 variables** → **1 subsystem**
+## 2. Merge authorization (maintainer multisig)
 
-**Concept**: "What percentage of mining/economic activity is needed to veto or support changes?"
+**Concept**: "What signatures and review windows apply before a PR may merge?"
 
-Variables:
-- Tier 3 veto thresholds (mining + economic)
-- Tier 4 veto thresholds (emergency)
-- Tier 5 signaling thresholds (support required)
-- Emergency window timing
+Enforcement follows **tier and layer** rules (and emergency procedures when applicable). **What the running code enforces** is authoritative—see `blvm-commons` validation.
 
 ## 3. Commons Contributor Qualification System
 **8 variables** → **1 subsystem**
 
-**Concept**: "What makes someone a Commons contributor and how much weight do they have?"
+**Concept**: "What makes someone a Commons contributor for **reporting / recognition**, and how is weight computed?"
 
-Variables:
+Variables (reference; not a merge gate by default):
+
 - Minimum contribution thresholds (4 types: merge mining, fee forwarding, zaps, marketplace)
 - Measurement period
 - Qualification logic (OR/AND)
@@ -45,7 +41,7 @@ Variables:
 
 Variables:
 - Block height boundaries
-- Economic node count boundaries
+- Optional operator / participation milestones (documentation only unless wired in product)
 - Contributor count boundaries
 
 ## 5. Emergency Response System
@@ -76,12 +72,11 @@ Variables:
 
 Simple boolean toggles for:
 - Governance enforcement
-- P2P governance
-- Economic nodes
-- Contribution tracking
-- Auto-registration
-- Veto system
-- Fork system
+- P2P governance announcements (if used)
+- Contribution tracking (analytics)
+- Governance fork tooling (if used)
+
+(Exact flag names vary by deployment; confirm behavior in `blvm-commons` for your branch.)
 
 ## 8. Network & Security Settings
 **3 variables** → **1 subsystem**
@@ -93,12 +88,11 @@ Variables:
 - Formal verification requirements
 - Security audit requirements
 
-## 9. Privacy-Preserving Voting System
-**0 explicit variables** (uses existing veto system)
+## 9. Privacy-preserving signaling (optional / protocol-level)
 
-**Concept**: "How do economic nodes vote privately?"
+**Concept**: Soft-fork and adoption discussions may use privacy-preserving signaling **outside** repository merge rules.
 
-This system uses BIP32 key derivation and Merkle proofs but doesn't add new config variables - it uses the existing veto thresholds.
+That work is **not** the same as maintainer PR signatures. Config variables here, if any, should be documented per deployment.
 
 ---
 
@@ -107,14 +101,14 @@ This system uses BIP32 key derivation and Merkle proofs but doesn't add new conf
 | Conceptual Subsystem | Individual Variables | Description |
 |---------------------|---------------------|-------------|
 | 1. Signature & Review Requirements | 24 | Approval requirements for tiers/layers |
-| 2. Economic Node Veto | 7 | Veto/support thresholds |
+| 2. Merge authorization | — | Tier/layer + emergency; aligns with §1 |
 | 3. Commons Contributor Qualification | 8 | Contributor thresholds and weights |
 | 4. Governance Phase Transitions | 11 | Phase boundaries |
 | 5. Emergency Response | 10 | Emergency tier configuration |
 | 6. Governance Review Policy | 10 | Maintainer review process |
 | 7. Feature Flags | 7 | Feature toggles |
 | 8. Network & Security | 3 | Basic settings |
-| 9. Privacy-Preserving Voting | 0 | Uses veto system |
+| 9. Privacy-preserving signaling | 0+ | Optional; not merge gate |
 | **TOTAL** | **87** | **9 conceptual subsystems** |
 
 ---
@@ -125,14 +119,13 @@ While there are **87 individual variables**, they represent only **9 conceptual 
 
 The real governance "dials" are:
 1. **Approval Requirements** (signatures + review periods)
-2. **Veto Power** (mining + economic thresholds)
-3. **Contributor Qualification** (contribution thresholds)
-4. **Phase Transitions** (maturity boundaries)
-5. **Emergency Response** (emergency tier limits)
-6. **Review Process** (maintainer sanctions)
-7. **Feature Toggles** (what's enabled)
-8. **Security Settings** (verification/audit requirements)
-9. **Privacy Mechanisms** (voting privacy)
+2. **Contributor metrics** (optional reporting thresholds)
+3. **Phase Transitions** (maturity boundaries, if used)
+4. **Emergency Response** (emergency tier limits)
+5. **Review Process** (maintainer sanctions)
+6. **Feature Toggles** (what's enabled in a given deployment)
+7. **Security Settings** (verification/audit requirements)
+8. **Protocol-level signaling** (separate from merge authorization)
 
 Each subsystem can be adjusted independently via Tier 5 governance, but they work together to form the complete governance model.
 

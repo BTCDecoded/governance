@@ -51,7 +51,6 @@ Include the following information:
 #### High (P1)
 - Maintainer key management issues
 - Review period bypasses
-- Economic node veto bypasses
 - Configuration parsing vulnerabilities
 - Access control issues
 
@@ -84,7 +83,6 @@ Include the following information:
 - Rules must be tamper-evident
 - No unauthorized rule changes
 - Emergency procedures must be secure
-- Economic node system must be protected
 
 ### Testing Requirements
 

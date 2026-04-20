@@ -18,7 +18,6 @@ security_controls:
     requires_security_audit: true
     requires_formal_verification: true
     requires_cryptography_expert: false
-    economic_node_veto_enabled: true
     additional_requirements:
       - "Genesis block hashes must match Bitcoin Core exactly"
       - "All test vectors from Bitcoin Core must pass"
@@ -38,7 +37,6 @@ security_controls:
     requires_security_audit: false
     requires_formal_verification: true
     requires_cryptography_expert: true
-    economic_node_veto_enabled: false
 
   - id: A-003
     name: "Taproot Support"
@@ -53,7 +51,6 @@ security_controls:
     requires_security_audit: false
     requires_formal_verification: true
     requires_cryptography_expert: true
-    economic_node_veto_enabled: false
 
   # Category B: Cryptographic Controls
   - id: B-001
@@ -70,7 +67,6 @@ security_controls:
     requires_security_audit: true
     requires_formal_verification: false
     requires_cryptography_expert: true
-    economic_node_veto_enabled: true
     additional_requirements:
       - "Key generation ceremony must be documented"
       - "All placeholder keys must be replaced"
@@ -89,7 +85,6 @@ security_controls:
     requires_security_audit: true
     requires_formal_verification: false
     requires_cryptography_expert: true
-    economic_node_veto_enabled: false
     additional_requirements:
       - "Must integrate with blvm-sdk"
       - "Placeholder validation must be removed"
@@ -108,7 +103,6 @@ security_controls:
     requires_security_audit: false
     requires_formal_verification: true
     requires_cryptography_expert: true
-    economic_node_veto_enabled: false
 
   # Category C: Governance Controls
   - id: C-001
@@ -124,7 +118,6 @@ security_controls:
     requires_security_audit: false
     requires_formal_verification: false
     requires_cryptography_expert: false
-    economic_node_veto_enabled: false
     additional_requirements:
       - "All 7 stub functions must be implemented"
       - "Proper error handling required"
@@ -143,7 +136,6 @@ security_controls:
     requires_security_audit: false
     requires_formal_verification: false
     requires_cryptography_expert: false
-    economic_node_veto_enabled: false
     additional_requirements:
       - "File hash calculation implemented"
       - "Placeholder warnings removed"
@@ -161,22 +153,21 @@ security_controls:
     requires_security_audit: false
     requires_formal_verification: false
     requires_cryptography_expert: false
-    economic_node_veto_enabled: false
 
   - id: C-004
-    name: "Economic Node Veto System"
+    name: "Tier and threshold enforcement"
     category: governance
     priority: P1
-    description: "Real economic node veto implementation"
+    description: "Maintainer multisig thresholds and review periods"
     files:
-      - "blvm-commons/src/economic_nodes/veto.rs"
+      - "blvm-commons/src/validation/threshold.rs"
+      - "blvm-commons/src/validation/tier_classification.rs"
       - "blvm-commons/src/webhooks/github_integration.rs"
     required_signatures: 4-of-7
     review_period_days: 14
     requires_security_audit: false
     requires_formal_verification: false
     requires_cryptography_expert: false
-    economic_node_veto_enabled: false
 
   # Category D: Data Integrity Controls
   - id: D-001
@@ -193,7 +184,6 @@ security_controls:
     requires_security_audit: false
     requires_formal_verification: true
     requires_cryptography_expert: true
-    economic_node_veto_enabled: false
 
   - id: D-002
     name: "OTS Timestamping"
@@ -208,7 +198,6 @@ security_controls:
     requires_security_audit: false
     requires_formal_verification: false
     requires_cryptography_expert: false
-    economic_node_veto_enabled: false
 
   # Category E: Input Validation & Boundary Controls
   - id: E-001
@@ -224,7 +213,6 @@ security_controls:
     requires_security_audit: false
     requires_formal_verification: false
     requires_cryptography_expert: true
-    economic_node_veto_enabled: false
 
   - id: E-002
     name: "Input Sanitization"
@@ -239,7 +227,6 @@ security_controls:
     requires_security_audit: false
     requires_formal_verification: false
     requires_cryptography_expert: false
-    economic_node_veto_enabled: false
 
   - id: E-003
     name: "SQL Injection Prevention"
@@ -253,7 +240,6 @@ security_controls:
     requires_security_audit: false
     requires_formal_verification: false
     requires_cryptography_expert: false
-    economic_node_veto_enabled: false
 
   - id: E-004
     name: "API Rate Limiting"
@@ -268,7 +254,6 @@ security_controls:
     requires_security_audit: false
     requires_formal_verification: false
     requires_cryptography_expert: false
-    economic_node_veto_enabled: false
 
 # Control Categories
 categories:

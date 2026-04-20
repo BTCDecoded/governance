@@ -36,26 +36,7 @@ This document lists all 87+ governance variables and their default values as reg
 
 ---
 
-## 2. ECONOMIC NODE VETO THRESHOLDS (7 variables)
-
-### Tier 3 Veto Thresholds
-- **`veto_tier_3_mining_percent`**: `30.0` (30% hashpower required)
-- **`veto_tier_3_economic_percent`**: `40.0` (40% economic activity required)
-
-### Tier 4 Veto Thresholds (Emergency)
-- **`veto_tier_4_mining_percent`**: `25.0` (25% hashpower required)
-- **`veto_tier_4_economic_percent`**: `35.0` (35% economic activity required)
-
-### Tier 5 Signaling Thresholds
-- **`signaling_tier_5_mining_percent`**: `50.0` (50% hashpower required for support)
-- **`signaling_tier_5_economic_percent`**: `60.0` (60% economic activity required for support)
-
-### Tier 4 Window
-- **`veto_tier_4_window_hours`**: `24` (24-hour window for emergency tier)
-
----
-
-## 3. COMMONS CONTRIBUTOR THRESHOLDS (8 variables)
+## 2. COMMONS CONTRIBUTOR THRESHOLDS (8 variables)
 
 ### Minimum Contribution Amounts (BTC)
 - **`commons_contributor_min_merge_mining_btc`**: `0.01` (0.01 BTC)
@@ -75,29 +56,29 @@ This document lists all 87+ governance variables and their default values as reg
 
 ---
 
-## 4. GOVERNANCE PHASE THRESHOLDS (11 variables)
+## 3. GOVERNANCE PHASE THRESHOLDS (11 variables)
 
 ### Early Phase Boundaries
 - **`phase_early_max_blocks`**: `50000` (50,000 blocks)
-- **`phase_early_max_nodes`**: `10` (10 economic nodes)
+- **`phase_early_max_nodes`**: `10` (optional milestone: active operators / nodes — advisory)
 - **`phase_early_max_contributors`**: `10` (10 Commons contributors)
 
 ### Growth Phase Boundaries
 - **`phase_growth_min_blocks`**: `50000` (50,000 blocks)
 - **`phase_growth_max_blocks`**: `200000` (200,000 blocks)
-- **`phase_growth_min_nodes`**: `10` (10 economic nodes)
-- **`phase_growth_max_nodes`**: `30` (30 economic nodes)
+- **`phase_growth_min_nodes`**: `10` (advisory milestone)
+- **`phase_growth_max_nodes`**: `30` (advisory milestone)
 - **`phase_growth_min_contributors`**: `10` (10 Commons contributors)
 - **`phase_growth_max_contributors`**: `100` (100 Commons contributors)
 
 ### Mature Phase Boundaries
 - **`phase_mature_min_blocks`**: `200000` (200,000 blocks)
-- **`phase_mature_min_nodes`**: `30` (30 economic nodes)
+- **`phase_mature_min_nodes`**: `30` (advisory milestone)
 - **`phase_mature_min_contributors`**: `100` (100 Commons contributors)
 
 ---
 
-## 5. REPOSITORY LAYER THRESHOLDS (9 variables)
+## 4. REPOSITORY LAYER THRESHOLDS (9 variables)
 
 ### Layer 1 & 2 (Constitutional Layers)
 - **`layer_1_2_signatures_required`**: `6` (out of 7)
@@ -121,7 +102,7 @@ This document lists all 87+ governance variables and their default values as reg
 
 ---
 
-## 6. EMERGENCY TIER THRESHOLDS (10 variables)
+## 5. EMERGENCY TIER THRESHOLDS (10 variables)
 
 ### Emergency Tier 1: Critical
 - **`emergency_tier_1_activation_threshold`**: `"5-of-7"` (5 of 7 emergency keyholders)
@@ -144,7 +125,7 @@ This document lists all 87+ governance variables and their default values as reg
 
 ---
 
-## 7. GOVERNANCE REVIEW POLICY (10 variables)
+## 6. GOVERNANCE REVIEW POLICY (10 variables)
 
 ### Sanction Thresholds
 - **`governance_review_private_warning_threshold`**: `3` (3 violations)
@@ -164,19 +145,17 @@ This document lists all 87+ governance variables and their default values as reg
 
 ---
 
-## 8. FEATURE FLAGS (7 variables)
+## 7. FEATURE FLAGS (7 variables)
 
 - **`feature_governance_enforcement`**: `false` (disabled in Phase 1, enable in Phase 2)
 - **`feature_p2p_governance`**: `true` (P2P governance enabled)
-- **`feature_economic_nodes`**: `true` (Economic node system enabled)
-- **`feature_contribution_tracking`**: `true` (Contribution tracking enabled)
-- **`feature_auto_registration`**: `false` (Auto-registration disabled initially)
-- **`feature_veto_system`**: `true` (Veto system enabled)
+- **`feature_contribution_tracking`**: `true` (Contribution tracking enabled — analytics only unless you add separate enforcement)
+- **`feature_auto_registration`**: `false` (Auto-registration disabled initially — if ever enabled, must not bypass maintainer rules)
 - **`feature_fork_system`**: `true` (Fork system enabled)
 
 ---
 
-## 9. NETWORK & SECURITY (3 variables)
+## 8. NETWORK & SECURITY (3 variables)
 
 - **`network_default`**: `"mainnet"` (Default Bitcoin network)
 - **`security_require_formal_verification_layer_2`**: `true` (Require formal verification for Layer 2)
@@ -189,7 +168,6 @@ This document lists all 87+ governance variables and their default values as reg
 | Category | Variables | Description |
 |----------|-----------|-------------|
 | Action Tier Thresholds | 15 | Signature requirements and review periods for Tiers 1-5 |
-| Economic Node Veto Thresholds | 7 | Mining and economic activity percentages for veto/support |
 | Commons Contributor Thresholds | 8 | Minimum contributions, measurement periods, weight calculation |
 | Governance Phase Thresholds | 11 | Block height, node count, contributor count boundaries |
 | Repository Layer Thresholds | 9 | Signature requirements and review periods for Layers 1-5 |
@@ -197,7 +175,7 @@ This document lists all 87+ governance variables and their default values as reg
 | Governance Review Policy | 10 | Sanction thresholds, time limits, appeal processes |
 | Feature Flags | 7 | Core feature toggles |
 | Network & Security | 3 | Default network, security requirements |
-| **TOTAL** | **87** | **All forkable governance variables** |
+| **TOTAL** | **~80** | **Forkable governance variables (count varies by registry version)** |
 
 ---
 
@@ -206,19 +184,19 @@ This document lists all 87+ governance variables and their default values as reg
 ### Phase 1 (Current) - Conservative Defaults
 - **Signature Requirements**: High (5-of-5 for Tier 3+, 6-of-7 for Layers 1-2)
 - **Review Periods**: Long (90-180 days for Tier 3-5)
-- **Veto Thresholds**: Moderate (30%+40% for Tier 3)
+- **Merge gate**: Maintainer thresholds only in current enforcement
 - **Commons Contributors**: Low thresholds (0.01 BTC) to encourage participation
 - **Feature Flags**: Governance enforcement disabled initially
 
 ### Alignment with Growth Plan
-- **Early Phase**: < 50K blocks, < 10 nodes, < 10 contributors
-- **Growth Phase**: 50K-200K blocks, 10-30 nodes, 10-100 contributors
-- **Mature Phase**: 200K+ blocks, 30+ nodes, 100+ contributors
+- **Early Phase**: < 50K blocks, < 10 operator milestone (advisory), < 10 contributors
+- **Growth Phase**: 50K-200K blocks, 10-30 operator milestone (advisory), 10-100 contributors
+- **Mature Phase**: 200K+ blocks, 30+ operator milestone (advisory), 100+ contributors
 
 ### Security Focus
 - High signature requirements prevent single points of failure
 - Long review periods allow thorough deliberation
-- Multiple veto mechanisms (mining + economic) require coordination
+- Maintainer-only merge authorization keeps a single clear merge gate
 - Emergency tiers have strict activation requirements (5-of-7 keyholders)
 
 ---
@@ -229,7 +207,7 @@ All default values can be changed via Tier 5 governance:
 
 1. **Propose Change**: Use `ConfigRegistry::propose_change()`
 2. **Create Tier 5 PR**: Link change to PR
-3. **Governance Approval**: 180 days, 5-of-5 maintainers, 50%+ hashpower + 60%+ economic
+3. **Governance Approval**: Per Tier 5 maintainer policy in effect
 4. **Activation**: Automatic on PR merge
 5. **Effect**: New value takes effect immediately
 
@@ -245,7 +223,7 @@ All default values can be changed via Tier 5 governance:
 
 ---
 
-**For detailed information about each variable, see `FORKABLE_VARIABLES.md`**
+**For narrative on forkable parameters, see `FORKABLE_VARIABLES.md` and the live YAML under `config/`.**
 
 
 

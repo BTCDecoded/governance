@@ -41,7 +41,7 @@ consensus_rule_changes:
     recommended_thresholds:
       node_adoption: 75%
       hash_power_signaling: 90%
-      economic_majority: 5_of_top_10_exchanges
+      exchange_signaling: 5_of_top_10_exchanges
     
     measurement:
       method: "BIP9-style version bits or node polling"

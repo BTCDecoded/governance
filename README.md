@@ -62,7 +62,6 @@ Bitcoin Commons implements a **5-tier constitutional governance system** with co
 
 ### Guides
 - [guides/MAINTAINER_GUIDE.md](guides/MAINTAINER_GUIDE.md) - Maintainer guide
-- [guides/ECONOMIC_NODE_GUIDE.md](guides/ECONOMIC_NODE_GUIDE.md) - Economic node guide
 - [guides/ONBOARDING.md](guides/ONBOARDING.md) - New maintainer onboarding
 
 ### Related Repositories

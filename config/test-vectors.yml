@@ -52,15 +52,15 @@ test_vectors:
     expected_result: "valid"
     proof_type: "SecurityEquivalence"
 
-  # Economic Model Tests
-  - test_id: "economic_model_001"
+  # Subsidy / supply model tests
+  - test_id: "subsidy_model_001"
     description: "Block subsidy calculation equivalence"
     orange_paper_section: "6.1 Block Subsidy"
     consensus_proof_test: "tests/economic.rs::test_get_block_subsidy"
     expected_result: "valid"
     proof_type: "BehavioralEquivalence"
 
-  - test_id: "economic_model_002"
+  - test_id: "subsidy_model_002"
     description: "Total supply calculation equivalence"
     orange_paper_section: "6.2 Total Supply"
     consensus_proof_test: "tests/economic.rs::test_total_supply"

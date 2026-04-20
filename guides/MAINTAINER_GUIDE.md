@@ -73,15 +73,17 @@ cargo run --bin override-tier -- --pr 123 --tier 4 --rationale "Emergency securi
 
 ### Tier Requirements
 
-| Tier | Signatures | Review Period | Economic Veto |
-|------|------------|---------------|---------------|
-| 1 (Routine) | 3-of-5 | 7 days | No |
-| 2 (Feature) | 4-of-5 | 30 days | No |
-| 3 (Consensus-Adjacent) | 5-of-5 | 90 days | Yes (30%+ hashpower AND 40%+ economic) |
-| 4 (Emergency) | 4-of-5 | 0 days | No |
-| 5 (Governance) | 5-of-5 | 180 days | Yes (50%+ hashpower AND 60%+ economic) |
+Merges are gated by **maintainer multisig** and **review periods**.
 
-**Code**: ```63:125:blvm-commons/src/validation/threshold.rs```
+| Tier | Signatures | Review Period | Notes |
+|------|------------|---------------|-------|
+| 1 (Routine) | 3-of-5 | 7 days | Non-consensus changes |
+| 2 (Feature) | 4-of-5 | 30 days | Features and protocol-adjacent work |
+| 3 (Consensus-Adjacent) | 5-of-5 | 90 days | Stricter bar; consensus impact analysis |
+| 4 (Emergency) | 4-of-5 | 0 days | Post-mortem required |
+| 5 (Governance) | 5-of-5 | 180 days | Changes to governance rules; maximum scrutiny |
+
+**Code**: ```63:147:blvm-commons/src/validation/threshold.rs```
 
 ## Emergency Procedures
 
@@ -90,8 +92,7 @@ cargo run --bin override-tier -- --pr 123 --tier 4 --rationale "Emergency securi
 1. Automatic classification as Tier 4
 2. Immediate notification to all maintainers
 3. 4-of-5 signatures required within 24 hours
-4. Economic node oversight
-5. Post-mortem required within 30 days
+4. Post-mortem required within 30 days
 
 ### Emergency Extension
 
@@ -100,29 +101,9 @@ cargo run --bin override-tier -- --pr 123 --tier 4 --rationale "Emergency securi
 cargo run --bin extend-emergency -- --pr 123 --days 7 --rationale "Additional time needed"
 ```
 
-## Economic Node Interaction
-
-### Veto Signals
-
-Economic nodes can submit: **Veto** (block PR), **Support** (support PR), **Abstain** (neutral).
-
-### Veto Thresholds
-
-| Tier | Mining Threshold | Economic Threshold | Logic |
-|------|------------------|---------------------|-------|
-| 3 | 30%+ | 40%+ | AND (both required) |
-| 4 | 25%+ | 35%+ | AND (both required) |
-| 5 | 50%+ | 60%+ | AND (both required) |
-
-**Code**: ```113:379:blvm-commons/src/economic_nodes/veto.rs```
-
-### Veto Response
-
-If veto active: PR blocked, status updated, maintainers notified, PR cannot merge until resolved.
-
 ## Governance Changes (Tier 5)
 
-Requires: 180-day review period, economic node signaling (50%+ hashpower, 60%+ economic activity), special process, fork capability.
+Requires: 180-day review period, maintainer unanimity per tier rules, public rationale, and documented handling of community feedback where applicable. Optional ecosystem or miner **discussion** may inform maintainers but does not replace signatures.
 
 ## Monitoring and Alerts
 
@@ -138,7 +119,7 @@ cargo run --bin system-status
 
 ### Alerts
 
-System sends alerts for: signature requirements, expiring review periods, veto signals, system issues.
+System sends alerts for: signature requirements, expiring review periods, and system issues.
 
 ## Best Practices
 
@@ -157,7 +138,6 @@ System sends alerts for: signature requirements, expiring review periods, veto s
 | Signature not recognized | Check key format and permissions |
 | PR not classified | Verify file changes and content |
 | Status not updating | Check webhook delivery and permissions |
-| Veto not clearing | Verify economic node signals |
 
 ### Debug Commands
 
@@ -167,9 +147,6 @@ cargo run --bin debug-classification -- --pr 123
 
 # Debug signature verification
 cargo run --bin debug-signature -- --signature <signature>
-
-# Debug veto status
-cargo run --bin debug-veto -- --pr 123
 ```
 
 ## Security Considerations

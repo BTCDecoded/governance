@@ -8,7 +8,7 @@
 
 | Phase | Status | Duration | Timeline | Key Activities |
 |-------|--------|----------|----------|---------------|
-| **Phase 1: Infrastructure Building** | ✅ COMPLETED | 3-6 months | Dec 2024 - Mar 2025 | Core infrastructure, economic node registry, GitHub integration, testing, documentation |
+| **Phase 1: Infrastructure Building** | ✅ COMPLETED | 3-6 months | Dec 2024 - Mar 2025 | Core infrastructure, maintainer GitHub integration, testing, documentation |
 | **Phase 2: Governance Activation** | 🚧 PLANNED | 3-6 months | Mar 2025 - Sep 2025 | Real cryptographic keys, production deployment, security audit, community validation |
 | **Phase 3: Full Operation** | 📋 PLANNED | 12+ months | Sep 2025 - Sep 2026+ | Mature system, battle-tested, full adoption, advanced features |
 
@@ -17,7 +17,7 @@
 | Complete | Not Active |
 |----------|------------|
 | Core infrastructure and database schema | Real cryptographic enforcement |
-| Economic node registry and veto system | Production key management |
+| Tier classification and maintainer workflows | Production key management |
 | Governance fork export and adoption tracking | Security audit completion |
 | GitHub status check integration | Community validation |
 | Comprehensive testing suite | |
@@ -28,7 +28,7 @@
 | Category | Requirements |
 |----------|-------------|
 | **Security** | Security audit, penetration testing, code review, vulnerability assessment |
-| **Community** | Community feedback, economic node input, maintainer input, academic review |
+| **Community** | Community feedback, maintainer input, academic review |
 | **Technical** | Production testing, performance optimization, monitoring setup, backup procedures |
 | **Legal** | Legal review, regulatory compliance, liability assessment, professional insurance |
 
@@ -39,7 +39,7 @@
 | **1. Security Audit** | 2-3 months | Mar - May 2025 | Audit firm selection, scope definition, execution, remediation, report |
 | **2. Community Validation** | 1-2 months | May - Jun 2025 | Community outreach, feedback collection, model refinement, documentation updates |
 | **3. Production Deployment** | 1-2 months | Jun - Jul 2025 | Production environment, key management, monitoring, testing, go live |
-| **4. Community Adoption** | 2-3 months | Jul - Sep 2025 | Maintainer onboarding, economic node registration, monitoring, stabilization |
+| **4. Community Adoption** | 2-3 months | Jul - Sep 2025 | Maintainer onboarding, monitoring, stabilization |
 
 ## Phase 3 Development
 
@@ -55,7 +55,7 @@
 |-------|-------|------------|
 | **Phase 1** | Development risk, documentation risk, community risk | Code quality, comprehensive testing, community engagement |
 | **Phase 2** | Security risk, adoption risk, technical risk, legal risk | Multiple audits, penetration testing, community engagement, legal review |
-| **Phase 3** | Governance risk, technical risk, community risk, economic risk | Transparency, monitoring, community support, backup procedures |
+| **Phase 3** | Governance risk, technical risk, community risk | Transparency, monitoring, community support, backup procedures |
 
 ## Success Metrics
 

@@ -1,9 +1,8 @@
-# Commons Contributor Economic Node Qualification Thresholds
-# Maintainer-Configurable Thresholds
-#
-# This file defines the minimum thresholds that Commons contributors must meet
-# to qualify as economic nodes. Maintainers can adjust these thresholds via
-# governance process (Tier 5: Governance Changes).
+# Commons contributor contribution thresholds (reference)
+# Maintainer-configurable values for documenting minimum BTC-denominated
+# contribution levels used for reporting, analytics, or grants — not for a
+# an extra merge gate. Repository merges are governed by maintainer multisig
+# and tier rules (see GOVERNANCE.md).
 #
 # All thresholds are measured over a rolling measurement period (default: 90 days).
 # Qualification uses OR logic by default (any threshold met qualifies), but can
@@ -67,20 +66,13 @@ weight_calculation:
 
 # Maintainer configuration notes
 maintainer_notes: |
-  These thresholds are set by maintainers via Tier 5 governance process.
-  
-  To change thresholds:
+  These thresholds describe optional reporting and recognition criteria.
+  To change them:
   1. Update this file in governance/config/
-  2. Submit PR with Tier 5 classification (Governance Changes)
-  3. Requires 5-of-7 maintainer signatures + 2-of-3 emergency keyholders
-  4. Requires 180-day review period
-  5. Requires economic node signaling (50%+ hashpower, 60%+ economic activity)
+  2. Submit PR with appropriate tier classification (often Tier 5 for governance config)
+  3. Follow maintainer signature and review requirements in effect for your repo
   
   Rationale for thresholds:
-  - Lower thresholds = more inclusive, more economic nodes
-  - Higher thresholds = more exclusive, fewer but larger economic nodes
-  - Balance between inclusivity and quality of participation
-  
-  Current defaults are conservative to encourage participation while maintaining
-  meaningful economic commitment.
-
+  - Lower thresholds = more inclusive participation in metrics
+  - Higher thresholds = stricter recognition tiers
+  - Balance between inclusivity and meaningful contribution levels

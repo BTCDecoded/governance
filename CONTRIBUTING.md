@@ -126,7 +126,7 @@ For changes to governance rules themselves (Tier 5):
 2. **Consensus building** - Build consensus among maintainers
 3. **Special process** - Follow meta-governance procedures
 4. **Extended review** - 180-day review period
-5. **Economic node input** - Economic nodes may veto
+5. **Community visibility** - Major governance changes benefit from broad maintainer alignment and documented rationale
 
 ## Getting Help
 

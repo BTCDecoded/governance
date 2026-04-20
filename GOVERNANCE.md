@@ -31,17 +31,17 @@ Bitcoin Commons implements a **5-tier constitutional governance system** that ma
 - New RPC methods, P2P changes, wallet features
 - Must include technical specification
 
-**Tier 3: Consensus-Adjacent** (5-of-5, 90 days + economic node veto)
+**Tier 3: Consensus-Adjacent** (5-of-5, 90 days)
 - Changes affecting consensus validation code
-- Economic nodes can veto (30%+ hashpower AND 40%+ economic activity)
+- Consensus impact analysis and security audit expectations
 
 **Tier 4: Emergency Actions** (4-of-5, 0 days review period)
 - Critical security patches, network-threatening bugs
-- Real-time economic node oversight, post-mortem required
+- Maintainer coordination, post-mortem required
 
 **Tier 5: Governance Changes** (Special process, 180 days)
 - Changes to governance rules themselves
-- Requires economic node signaling (50%+ hashpower, 60%+ economic activity)
+- Extended public comment and maintainer unanimity per policy
 
 ### Pull Request Process
 
@@ -53,11 +53,9 @@ Bitcoin Commons implements a **5-tier constitutional governance system** that ma
    - **Code**: `blvm-commons/src/webhooks/comment.rs:handle_governance_sign()`
 4. Review period elapses (tier-specific duration)
    - **Code**: `blvm-commons/src/validation/review_period.rs:check_review_period()`
-5. Economic node veto period (Tier 3+)
-   - **Code**: `blvm-commons/src/economic_nodes/veto.rs:check_veto_threshold()`
-6. Requirements met → merge enabled
+5. Requirements met → merge enabled
    - **Code**: `blvm-commons/src/enforcement/merge_block.rs:should_block_merge()`
-7. PR merged
+6. PR merged
 
 **See [HOW_TO.md](HOW_TO.md) for detailed step-by-step instructions.**
 
@@ -292,7 +290,7 @@ Formal verification makes Bitcoin governance **6x harder to capture**:
 3. **Time Barrier**: 180-365 day review periods
 4. **Transparency Barrier**: All verification results public
 5. **Audit Barrier**: OpenTimestamps immutable proof
-6. **Community Barrier**: Public review + economic node veto
+6. **Community Barrier**: Public review and transparent process
 
 **Key Insight**: An attacker cannot simply "convince maintainers" - they must also produce mathematically correct code that passes verification. This dramatically raises the bar for malicious changes.
 

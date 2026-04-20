@@ -5,15 +5,14 @@
 #
 # This template includes ALL material governance dimensions that should be forkable:
 # 1. Action tiers (including security and emergency tiers)
-# 2. Economic nodes (including commons contributors, veto mechanism, adaptive governance)
-# 3. Nested multisig teams
-# 4. Governance review policy
-# 5. Repository layers
-# 6. Tier classification rules
-# 7. Emergency procedures
-# 8. Cross-layer rules
-# 9. Governance fork settings
-# 10. Validation requirements
+# 2. Nested multisig teams
+# 3. Governance review policy
+# 4. Repository layers
+# 5. Tier classification rules
+# 6. Emergency procedures
+# 7. Cross-layer rules
+# 8. Governance fork settings
+# 9. Validation requirements
 
 # Export metadata
 export_metadata:
@@ -40,7 +39,6 @@ action_tiers:
       required: 3
       total: 5
     review_period_days: 7
-    economic_veto: false
     emergency_override: false
     description: "Bug fixes, documentation, performance optimizations"
     requirements:
@@ -54,7 +52,6 @@ action_tiers:
       required: 4
       total: 5
     review_period_days: 30
-    economic_veto: false
     emergency_override: false
     requires_specification: true
     description: "New RPC methods, P2P changes, wallet features"
@@ -69,13 +66,12 @@ action_tiers:
       required: 5
       total: 5
     review_period_days: 90
-    economic_veto: true
     emergency_override: false
     requires_specification: true
     requires_audit: true
     description: "Changes affecting consensus validation code"
     requirements:
-      - "Economic node veto required"
+      - "Maintainer 5-of-5 and extended review"
       - "Must include consensus impact analysis"
       - "Must include security audit"
 
@@ -85,12 +81,11 @@ action_tiers:
       required: 4
       total: 5
     review_period_days: 0
-    economic_veto: false
     emergency_override: true
     requires_post_mortem: true
     description: "Critical security patches, network-threatening bugs"
     requirements:
-      - "Real-time economic node oversight"
+      - "Maintainer coordination and rapid signatures"
       - "Post-mortem required"
       - "Evidence of criticality required"
 
@@ -100,15 +95,13 @@ action_tiers:
       required: 5
       total: 5
     review_period_days: 180
-    economic_veto: true
     emergency_override: false
     requires_public_comment: true
     requires_rationale: true
     description: "Changes to governance rules themselves"
     requirements:
-      - "Economic node signaling required"
-      - "50%+ hashpower support"
-      - "60%+ economic activity support"
+      - "Extended public comment and documented rationale"
+      - "Optional ecosystem/miner feedback may inform maintainers (non-binding)"
 
   # Security-specific tiers
   security_critical:
@@ -117,7 +110,6 @@ action_tiers:
       required: 7
       total: 7
     review_period_days: 180
-    economic_veto: true
     emergency_override: false
     requires_security_audit: true
     requires_formal_verification: true
@@ -138,7 +130,6 @@ action_tiers:
       required: 6
       total: 7
     review_period_days: 90
-    economic_veto: false
     emergency_override: false
     requires_cryptography_expert: true
     requires_formal_verification: true
@@ -155,7 +146,6 @@ action_tiers:
       required: 5
       total: 7
     review_period_days: 30
-    economic_veto: false
     emergency_override: false
     requires_security_review: true
     description: "Changes affecting P1 security controls"
@@ -165,143 +155,7 @@ action_tiers:
       - "No placeholder implementations"
 
 # ============================================================================
-# DIMENSION 2: ECONOMIC NODES
-# ============================================================================
-
-economic_nodes:
-  node_types:
-    mining_pools:
-      minimum_hashpower_percent: 1.0
-      measurement_period_days: 30
-      weight_calculation: "hashpower_percentage"
-      qualification_requirements:
-        - "Proof of blocks mined"
-        - "Time period verification"
-        - "Network participation"
-      verification: "Fully cryptographic (coinbase signatures)"
-
-    exchanges:
-      minimum_holdings_btc: 10000
-      minimum_volume_btc: 100.0  # 100 BTC daily volume (on-chain verifiable)
-      weight_calculation: "70%_holdings_30%_volume"
-      qualification_requirements:
-        - "Proof of BTC holdings"
-        - "Proof of trading volume"
-        - "Regulatory compliance"
-      verification:
-        holdings: "Cryptographic (signature challenges)"
-        volume: "Trust-based (external data)"
-
-    custodians:
-      minimum_holdings_btc: 10000
-      weight_calculation: "holdings_percentage"
-      qualification_requirements:
-        - "Proof of BTC holdings"
-        - "Custodial license"
-        - "Security audit"
-      verification: "Cryptographic (signature challenges)"
-
-    major_holders:
-      minimum_holdings_btc: 5000
-      weight_calculation: "holdings_percentage"
-      qualification_requirements:
-        - "Proof of BTC holdings"
-        - "Identity verification"
-        - "Long-term holding proof"
-      verification: "Fully cryptographic (signature challenges)"
-
-    commons_contributors:
-      name: "Commons Contributors"
-      description: "Nodes that contribute to Bitcoin Commons through various revenue streams"
-      # Maintainer-configurable thresholds
-      thresholds:
-        merge_mining:
-          enabled: true
-          minimum_contribution_btc: 0.01
-          fee_percentage: 1  # Maintainer sets acceptable fee (0-100)
-          measurement_period_days: 90
-          description: "Minimum merge mining revenue contributed to Commons"
-          verification: "On-chain (coinbase signatures, secondary chain blocks)"
-        fee_forwarding:
-          enabled: true
-          minimum_contribution_btc: 0.1
-          measurement_period_days: 90
-          description: "Minimum transaction fees forwarded to Commons address"
-          verification: "On-chain (coinbase outputs to Commons address)"
-        zaps:
-          enabled: true
-          minimum_contribution_btc: 0.01
-          measurement_period_days: 90
-          description: "Minimum Lightning zap contributions to Commons"
-          verification: "Lightning (Nostr event verification, payment proofs)"
-        marketplace:
-          enabled: true
-          minimum_sales_btc: 0.01
-          measurement_period_days: 90
-          description: "Minimum module marketplace sales (BTC via BIP70)"
-          verification: "BIP70 payment records (module registry, on-chain)"
-      qualification_logic: "OR"  # OR = any threshold met, AND = all thresholds met
-      weight_calculation:
-        formula: "sqrt(total_contribution_btc / normalization_factor)"
-        normalization_factor: 1.0  # 1 BTC = 1.0 weight
-        minimum_weight: 0.01
-        contribution_types:
-          - "merge_mining_btc"
-          - "fee_forwarding_btc"
-          - "zaps_btc"
-          - "marketplace_sales_btc"
-
-  # Veto mechanism
-  veto_mechanism:
-    require_both_conditions: true  # AND logic (both mining AND economic required)
-    mining_veto_percent: 30.0
-    economic_veto_percent: 40.0
-    grace_period_days: 30
-    sequential_enabled: true
-    sequential_phases:
-      prevention:
-        review_period_days: 30
-        maintainer_override_threshold: "6-of-7 teams"
-        description: "Prevention phase - economic nodes can block merge"
-      clean_fork:
-        review_period_days: 60
-        maintainer_override_threshold: "7-of-7 teams"
-        description: "Clean fork phase - if prevention sustained, fork occurs"
-    sustained_veto_days: 180  # If veto sustained for 180 days → fork
-
-  # Adaptive governance
-  adaptive_governance:
-    enabled: true
-    phases:
-      early:
-        block_height_threshold: 0
-        economic_node_count: 10
-        commons_contributor_count: 5
-        veto_thresholds:
-          mining_percent: 20.0
-          economic_percent: 30.0
-      growth:
-        block_height_threshold: 100000
-        economic_node_count: 50
-        commons_contributor_count: 25
-        veto_thresholds:
-          mining_percent: 25.0
-          economic_percent: 35.0
-      mature:
-        block_height_threshold: 500000
-        economic_node_count: 100
-        commons_contributor_count: 50
-        veto_thresholds:
-          mining_percent: 30.0
-          economic_percent: 40.0
-    consolidation_monitoring:
-      enabled: true
-      mining_pool_threshold: 50.0  # Alert if single pool > 50%
-      economic_node_threshold: 40.0  # Alert if single node > 40%
-      adjustment_factor: 0.1  # Increase thresholds by 10% if consolidation detected
-
-# ============================================================================
-# DIMENSION 3: NESTED MULTISIG TEAMS
+# DIMENSION 2: NESTED MULTISIG TEAMS
 # ============================================================================
 
 nested_multisig_teams:
@@ -363,7 +217,7 @@ nested_multisig_teams:
       inter_team_approval: "4-of-7 teams"
 
 # ============================================================================
-# DIMENSION 4: GOVERNANCE REVIEW POLICY
+# DIMENSION 3: GOVERNANCE REVIEW POLICY
 # ============================================================================
 
 governance_review_policy:
@@ -428,7 +282,7 @@ governance_review_policy:
     requires_formal_removal_within_days: 7
 
 # ============================================================================
-# DIMENSION 5: REPOSITORY LAYERS
+# DIMENSION 4: REPOSITORY LAYERS
 # ============================================================================
 
 repository_layers:
@@ -502,7 +356,7 @@ repository_layers:
     review_period_days: 14
 
 # ============================================================================
-# DIMENSION 6: TIER CLASSIFICATION RULES
+# DIMENSION 5: TIER CLASSIFICATION RULES
 # ============================================================================
 
 tier_classification:
@@ -586,7 +440,7 @@ tier_classification:
     require_manual_review: true
 
 # ============================================================================
-# DIMENSION 7: EMERGENCY PROCEDURES
+# DIMENSION 6: EMERGENCY PROCEDURES
 # ============================================================================
 
 emergency_procedures:
@@ -638,7 +492,7 @@ emergency_procedures:
     step_7: "Automatic expiration at max_duration unless extended"
 
 # ============================================================================
-# DIMENSION 8: CROSS-LAYER RULES
+# DIMENSION 7: CROSS-LAYER RULES
 # ============================================================================
 
 cross_layer_rules:
@@ -688,20 +542,19 @@ cross_layer_rules:
     requires_coordination: true
     notification_channels:
       - "maintainers"
-      - "economic-nodes"
       - "community"
 
 # ============================================================================
-# DIMENSION 9: GOVERNANCE FORK SETTINGS
+# DIMENSION 8: GOVERNANCE FORK SETTINGS
 # ============================================================================
 
 governance_fork:
   fork_trigger_conditions:
-    tier_3_sustained_veto:
-      sustained_veto_days: 180  # Could be 90, 120, 365, etc.
-      description: "Tier 3 change with sustained economic node veto"
+    tier_3_sustained_objection:
+      sustained_objection_days: 180  # Could be 90, 120, 365, etc.
+      description: "Sustained maintainer or community objection to a Tier 3 ruleset track"
     maintainer_abuse:
-      community_support_threshold: "40% economic activity"
+      community_support_threshold: "documented supermajority of active contributors"
       description: "Maintainer abuse pattern with community support for reform"
     irreconcilable_disagreement:
       description: "Irreconcilable disagreement about governance direction"
@@ -711,14 +564,12 @@ governance_fork:
     minimum_adoption_percentage: 50.0
     minimum_node_count: 10
     minimum_hashpower_percentage: 30.0
-    minimum_economic_activity_percentage: 40.0
     grace_period_days: 30
 
   adoption_measurement:
     measurement_period_days: 180  # Could be 90, 365, etc.
-    combined_metric:
-      node_weight: 50.0
-      economic_weight: 50.0
+    primary_metric:
+      node_and_operator_weight: 100.0
     daily_snapshots: true
     history_retention_days: 365
 
@@ -730,7 +581,7 @@ governance_fork:
     extended_measurement_days: 360  # If 60-90% adoption, measure for additional 180 days
 
 # ============================================================================
-# DIMENSION 10: VALIDATION REQUIREMENTS
+# DIMENSION 9: VALIDATION REQUIREMENTS
 # ============================================================================
 
 validation_requirements:
@@ -745,11 +596,6 @@ validation_requirements:
     tier_3: 90
     tier_4: 0
     tier_5: 180
-
-  economic_node_verification:
-    hashpower_proof: "block_headers_and_timestamps"
-    holdings_proof: "address_signature_challenge"
-    volume_proof: "external_data_source_verification"
 
 # ============================================================================
 # MAINTAINERS (by layer - for backward compatibility)
