@@ -40,11 +40,11 @@ Bitcoin Commons implements a **5-tier constitutional governance system** with co
 
 | Layer | Repository | Signatures | Review Period |
 |-------|------------|------------|---------------|
-| 1 | [blvm-spec](../blvm-spec/README.md) | 6-of-7 | 180 days (365 for consensus) |
-| 2 | [blvm-consensus](../blvm-consensus/README.md) | 6-of-7 | 180 days (365 for consensus) |
-| 3 | [blvm-protocol](../blvm-protocol/README.md) | 4-of-5 | 90 days |
-| 4 | [blvm-node](../blvm-node/README.md) / [blvm](../blvm/README.md) | 3-of-5 | 60 days |
-| 5 | [blvm-sdk](../blvm-sdk/README.md) | 2-of-3 | 14 days |
+| 1 | [blvm-spec](https://github.com/BTCDecoded/blvm-spec) | 6-of-7 | 180 days (365 for consensus) |
+| 2 | [blvm-consensus](https://github.com/BTCDecoded/blvm-consensus) | 6-of-7 | 180 days (365 for consensus) |
+| 3 | [blvm-protocol](https://github.com/BTCDecoded/blvm-protocol) | 4-of-5 | 90 days |
+| 4 | [blvm-node](https://github.com/BTCDecoded/blvm-node) / [blvm](https://github.com/BTCDecoded/blvm) | 3-of-5 | 60 days |
+| 5 | [blvm-sdk](https://github.com/BTCDecoded/blvm-sdk) | 2-of-3 | 14 days |
 
 ## Documentation
 
@@ -65,6 +65,6 @@ Bitcoin Commons implements a **5-tier constitutional governance system** with co
 - [guides/ONBOARDING.md](guides/ONBOARDING.md) - New maintainer onboarding
 
 ### Related Repositories
-- [blvm-commons](../blvm-commons/README.md) - Governance enforcement application
+- [blvm-commons](https://github.com/BTCDecoded/blvm-commons) - Governance enforcement application
 - [blvm-docs](https://github.com/BTCDecoded/blvm-docs) - Unified mdBook site: [docs.thebitcoincommons.org](https://docs.thebitcoincommons.org/)
-- [Audit Materials](../audit-materials/README.md) - Security and audit information
+- **Audit materials** — see security and disclosure policy in this repo (`SECURITY.md`, `guides/`) and organization-wide [SECURITY.md](https://github.com/BTCDecoded/.github/blob/main/SECURITY.md) where applicable
