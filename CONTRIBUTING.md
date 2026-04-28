@@ -130,7 +130,7 @@ For changes to governance rules themselves (Tier 5):
 
 ## Getting Help
 
-- **Documentation**: Check GOVERNANCE.md and guides/
+- **Documentation**: [GOVERNANCE.md](GOVERNANCE.md), **[REVIEW_EXPECTATIONS.md](REVIEW_EXPECTATIONS.md)** and **[guides/REVIEW_INTELLIGENCE.md](guides/REVIEW_INTELLIGENCE.md)** (review norms), and [guides/](guides/) generally
 - **Issues**: Search existing issues or create new ones
 - **Discussions**: Use GitHub Discussions for questions
 - **Security**: See [SECURITY.md](SECURITY.md)

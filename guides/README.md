@@ -5,6 +5,8 @@ This directory contains comprehensive guides for different stakeholders in the B
 ## Available Guides
 
 - **[MAINTAINER_GUIDE.md](./MAINTAINER_GUIDE.md)** - Complete guide for maintainers on how to participate in governance
+- **[REVIEW_INTELLIGENCE.md](./REVIEW_INTELLIGENCE.md)** - Operating document for AI-assisted Bitcoin implementation review (alternative vs Core fork taxonomy, flag structure, relationship to the Compact and Orange Paper)
+- **[ONBOARDING.md](./ONBOARDING.md)** - New maintainer onboarding
 
 ## Quick Links
 

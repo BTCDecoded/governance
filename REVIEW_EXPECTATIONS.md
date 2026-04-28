@@ -1,5 +1,7 @@
 # Review Expectations
 
+**Related:** For the **AI / automated “review intelligence”** operating framework (flags, tiers, implementation taxonomy, Compact alignment), see **[guides/REVIEW_INTELLIGENCE.md](guides/REVIEW_INTELLIGENCE.md)**. This file covers **human maintainer** review expectations only.
+
 ## Overview
 
 This document describes **expected** review practices for maintainers. These are **guidelines**, not enforced requirements. Review quality emerges naturally through merit, community feedback, and the challenge mechanism.

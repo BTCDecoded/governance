@@ -25,6 +25,7 @@ A common progression through technical contributions:
    - Provide constructive feedback
    - Help maintain code quality
    - Demonstrate understanding of codebase and Bitcoin principles
+   - See **[REVIEW_EXPECTATIONS.md](REVIEW_EXPECTATIONS.md)** (human maintainer expectations) and **[guides/REVIEW_INTELLIGENCE.md](guides/REVIEW_INTELLIGENCE.md)** (AI-assisted review doctrine for Bitcoin implementations; optional reading for deep context on alternative vs Core-fork standards)
 
 3. **Maintainer** (formal role)
    - Cryptographically sign PRs for approval
@@ -236,6 +237,8 @@ If you have questions about contributing or becoming a maintainer:
 ## See Also
 
 - [GOVERNANCE.md](GOVERNANCE.md) - Complete governance model and process
+- [REVIEW_EXPECTATIONS.md](REVIEW_EXPECTATIONS.md) — Human maintainer review expectations
+- [guides/REVIEW_INTELLIGENCE.md](guides/REVIEW_INTELLIGENCE.md) — AI-assisted Bitcoin implementation review (operating document)
 - [Contributing (BLVM docs)](https://docs.thebitcoincommons.org/development/contributing.html) — Technical contribution guide
 - [LAYER_TIER_MODEL.md](LAYER_TIER_MODEL.md) - Understanding governance tiers
 - [HOW_TO.md](HOW_TO.md) - Step-by-step governance instructions

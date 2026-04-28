@@ -4,6 +4,8 @@
 
 Only **on-platform activity** related to a maintainer's role in Bitcoin Commons governance is considered for governance review. Off-platform activity is explicitly disregarded.
 
+**Related:** Automated or AI-assisted *code review* norms for Bitcoin Commons implementations (alternative vs Core fork, consensus flags, Compact alignment) live in **[guides/REVIEW_INTELLIGENCE.md](../../guides/REVIEW_INTELLIGENCE.md)**. That document is distinct from this policy, which covers maintainer conduct review only.
+
 ---
 
 ## Definitions
