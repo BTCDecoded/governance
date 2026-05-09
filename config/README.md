@@ -32,11 +32,11 @@ This directory contains all configuration files for the BTCDecoded governance sy
 
 ## Governance App Integration
 
-The governance-app loads and uses these configuration files to enforce governance rules. The app automatically loads configuration from this directory and validates it on startup.
+The governance enforcement application (**[`blvm-commons`](https://github.com/BTCDecoded/blvm-commons)**) loads and uses these configuration files to enforce governance rules when deployed. It loads configuration from the paths documented in that project and validates on startup.
 
 ### Configuration Loading
 
-The governance-app loads configuration files in the following order:
+The application loads configuration files in the following order:
 1. **Default Configuration**: Built-in default values
 2. **File Configuration**: Configuration files from this directory
 3. **Environment Variables**: Environment variable overrides
@@ -53,7 +53,7 @@ The governance-app loads configuration files in the following order:
 
 ### Configuration Validation
 
-The governance-app validates all configuration files on startup:
+The enforcement application validates all configuration files on startup:
 - YAML syntax validation
 - Required field validation
 - Type checking
@@ -77,7 +77,7 @@ If configuration files are invalid or missing:
 2. **Create a PR with your changes**
 3. **Follow the governance process** (see [GOVERNANCE.md](../GOVERNANCE.md))
 4. **Test changes in development first**
-5. **Verify governance-app can load the configuration**
+5. **Verify [`blvm-commons`](https://github.com/BTCDecoded/blvm-commons) can load the configuration**
 
 ### Validation
 

@@ -6,8 +6,8 @@ This directory contains practical examples of how the BTCDecoded governance syst
 
 - **[consensus-change-workflow.md](./consensus-change-workflow.md)** - Complete workflow for consensus-adjacent changes
 - **[emergency-response.md](./emergency-response.md)** - Emergency response procedures
-- **[tier1-routine-pr.md](./tier1-routine-pr.md)** - Example Tier 1 routine maintenance PR (coming soon)
-- **[tier3-consensus-adjacent.md](./tier3-consensus-adjacent.md)** - Example Tier 3 consensus-adjacent PR (coming soon)
+- **[tier1-routine-pr.md](./tier1-routine-pr.md)** - Example Tier 1 routine maintenance PR
+- **[tier3-consensus-adjacent.md](./tier3-consensus-adjacent.md)** - Example Tier 3 consensus-adjacent PR
 
 ## Example Categories
 

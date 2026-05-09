@@ -1,64 +1,25 @@
-# Cross-Layer Dependencies
+# Cross-layer dependencies
 
-## Overview
+Bitcoin Commons is organized in layers (consensus, protocol, node, SDK, governance tooling). Changes in one layer often constrain or require updates in others.
 
-Layered architecture where different layers have different responsibilities. Higher layers can depend on lower layers, but not vice versa. No circular dependencies allowed.
+## Principles
 
-## Layer Hierarchy
+- **Consensus immutability**: consensus code paths are the highest-risk surface; dependents must not weaken or diverge from specified behavior without an explicit governance-backed change process.
+- **Explicit interfaces**: protocol and node layers should expose stable, documented boundaries so governance and tooling can reason about compatibility.
+- **Order of rollout**: upgrades that affect wire format or validation typically require coordinated releases (libraries, nodes, optional apps).
 
-| Layer | Repository | Purpose | Authority | Dependencies |
-|-------|------------|---------|-----------|--------------|
-| 1 | blvm-spec | Fundamental Bitcoin principles | 6-of-7, 180d (365d consensus) | None (foundational) |
-| 2 | blvm-consensus | Mathematical proofs and consensus validation | 6-of-7, 180d (365d consensus) | Layer 1 |
-| 3 | blvm-protocol | Bitcoin protocol implementation | 4-of-5, 90d | Layers 1-2 |
-| 4 | blvm-node / blvm | Complete Bitcoin node implementation | 3-of-5, 60d | Layers 1-3 |
-| 5 | blvm-sdk | Developer tools and libraries | 2-of-3, 14d | Layers 1-4 |
+## Typical dependency graph (logical)
 
-## Dependency Rules
+```text
+consensus → protocol → node → SDK / applications → governance enforcement
+```
 
-| Rule | Description |
-|------|-------------|
-| **Upward Dependencies** | Higher layers can depend on lower layers (Layer 5 → 1-4, Layer 4 → 1-3, etc.) |
-| **Downward Dependencies** | Lower layers cannot depend on higher layers (Layer 1 cannot depend on 2-5) |
-| **Circular Dependencies** | No circular dependencies allowed between any layers |
+Not every change propagates through all layers; the graph is a guideline for impact analysis.
 
-## Cross-Layer Change Process
+## When changing code
 
-### Impact Analysis
+- Identify **which tier** the change falls under in your governance model.
+- List **consumers**: crates, binaries, and external integrations affected.
+- Plan **verification**: tests, compatibility matrices, and monitoring for the rollout.
 
-Before making changes, analyze: direct dependencies, transitive dependencies, breaking changes, migration path.
-
-### Change Coordination
-
-1. Notification (notify all dependent layers)
-2. Impact assessment (dependent layers assess impact)
-3. Migration planning (plan migration for dependent layers)
-4. Staged rollout (implement in dependency order)
-5. Verification (verify all dependent layers work correctly)
-
-### Rollback Procedures
-
-1. Dependency check (identify all dependent layers)
-2. Rollback order (roll back in reverse dependency order)
-3. Verification (verify each layer after rollback)
-4. Communication (notify all affected layers)
-
-## Examples
-
-| Scenario | Impact | Change Process |
-|----------|--------|----------------|
-| Consensus rule change in blvm-spec | Layers 2-5 must update | Layer 1 (6-of-7, 180d) → Layer 2 (6-of-7, 180d) → Layer 3 (4-of-5, 90d) → Layer 4 (3-of-5, 60d) → Layer 5 (2-of-3, 14d) |
-| New RPC method in blvm-node | Layer 5 must update | Layer 4 (3-of-5, 60d) → Layer 5 (2-of-3, 14d) |
-| Breaking change in blvm-protocol | Layers 4-5 must update | Layer 3 (4-of-5, 90d) → Layer 4 (3-of-5, 60d) → Layer 5 (2-of-3, 14d) |
-
-## Dependency Validation
-
-### Automated Validation
-
-Governance-app validates by: building dependency graph, detecting circular dependencies, analyzing impact of proposed changes, suggesting migration paths.
-
-### Manual Validation
-
-Maintainers validate by: reviewing code for dependencies, assessing impact on dependent layers, testing changes with dependent layers, documenting dependency changes.
-
-**Code**: ```blvm-commons/src/validation/cross_layer.rs```
+For cryptographic governance basics, see [CRYPTOGRAPHIC_GOVERNANCE.md](./CRYPTOGRAPHIC_GOVERNANCE.md). For fork semantics, see [GOVERNANCE_FORK.md](./GOVERNANCE_FORK.md).

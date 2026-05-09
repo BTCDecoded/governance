@@ -5,7 +5,7 @@ This directory contains documentation about the activation process for the BTCDe
 ## Available Documents
 
 - **[PHASE_ACTIVATION.md](./PHASE_ACTIVATION.md)** - Detailed phase-by-phase activation plan
-- **[ACTIVATION_CHECKLIST.md](./ACTIVATION_CHECKLIST.md)** - Practical checklist for activation (coming soon)
+- **[ACTIVATION_CHECKLIST.md](./ACTIVATION_CHECKLIST.md)** - Practical checklist for activation
 
 ## Activation Overview
 

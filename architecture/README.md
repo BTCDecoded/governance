@@ -6,11 +6,11 @@ This directory contains detailed architectural documentation for the BTCDecoded 
 
 - **[CRYPTOGRAPHIC_GOVERNANCE.md](./CRYPTOGRAPHIC_GOVERNANCE.md)** - Core cryptographic governance concepts
 - **[GOVERNANCE_FORK.md](./GOVERNANCE_FORK.md)** - Governance fork mechanism design
-- **[CROSS_LAYER_DEPENDENCIES.md](./CROSS_LAYER_DEPENDENCIES.md)** - Cross-layer dependency management (coming soon)
+- **[CROSS_LAYER_DEPENDENCIES.md](./CROSS_LAYER_DEPENDENCIES.md)** - Cross-layer dependency management
 
 ## Architecture Overview
 
-The BTCDecoded governance system implements a **5-tier constitutional governance model** that makes Bitcoin governance **6x harder to capture** than Bitcoin Core's current model.
+The BTCDecoded governance system implements a **5-tier constitutional governance model** intended to **raise the bar for capture resistance** compared to informal maintainer-only processes.
 
 ### Core Principles
 
