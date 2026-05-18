@@ -7,6 +7,8 @@ This directory contains all configuration files for the BTCDecoded governance sy
 ### Core Configuration
 
 - **[action-tiers.yml](./action-tiers.yml)** - Defines the 5-tier governance model
+
+- **[docs/ACTION_TIERS.md](../docs/ACTION_TIERS.md)** - PR action tiers (YAML + narrative; separate from emergency tiers)
 - **[cross-layer-rules.yml](./cross-layer-rules.yml)** - Rules for cross-layer dependencies
 - **[emergency-tiers.yml](./emergency-tiers.yml)** - Emergency action tiers
 - **[governance-fork.yml](./governance-fork.yml)** - Governance fork configuration

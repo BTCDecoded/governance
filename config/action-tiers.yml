@@ -147,46 +147,6 @@ tiers:
       - "Input validation enhancements"
       - "Rate limiting implementation"
 
-# Emergency tier system (separate from action tiers)
-emergency_tiers:
-  critical:
-    name: "Critical Emergency"
-    description: "Network-threatening vulnerabilities"
-    activation_threshold: 5
-    activation_total: 7
-    review_period_days: 0
-    max_duration_days: 7
-    extensions_allowed: 0
-    examples:
-      - "Inflation bugs (CVE-2010-5139 class)"
-      - "Consensus fork risks (CVE-2018-17144 class)"
-      - "P2P network DoS vulnerabilities"
-      - "Remote code execution"
 
-  urgent:
-    name: "Urgent Security Issue"
-    description: "Serious security issues requiring quick response"
-    activation_threshold: 5
-    activation_total: 7
-    review_period_days: 7
-    max_duration_days: 30
-    extensions_allowed: 1
-    examples:
-      - "Memory corruption vulnerabilities"
-      - "Privacy leaks (transaction linkage)"
-      - "Crash exploits (non-DoS)"
-      - "Privilege escalation"
-
-  elevated:
-    name: "Elevated Priority"
-    description: "Important but not critical issues"
-    activation_threshold: 5
-    activation_total: 7
-    review_period_days: 30
-    max_duration_days: 90
-    extensions_allowed: 2
-    examples:
-      - "Competitive response (other implementations advancing)"
-      - "Important bug fixes (non-security)"
-      - "Performance degradation issues"
-      - "Ecosystem compatibility problems"
+# Emergency classes: config/emergency-tiers.yml (not duplicated here).
+# PR action tier narrative: docs/ACTION_TIERS.md
