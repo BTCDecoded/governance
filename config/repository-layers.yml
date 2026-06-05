@@ -54,7 +54,7 @@ layers:
         - name: "Proptest"
           command: "cargo test --all-features"
           required: true
-      ci_workflow: ".github/workflows/verify.yml"
+      ci_workflow: ".github/workflows/ci.yml"
       blocking: true
       meta_governance_required: true
     description: |

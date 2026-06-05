@@ -1,0 +1,63 @@
+# Machine-checkable hints for CI: PR/Issue bodies vs guides/REVIEW_INTELLIGENCE.md
+# Human source of truth: guides/REVIEW_INTELLIGENCE.md
+version: 1
+
+reference:
+  doc_path: guides/REVIEW_INTELLIGENCE.md
+  canonical_url: https://github.com/BTCDecoded/governance/blob/main/guides/REVIEW_INTELLIGENCE.md
+
+# Optional: skip gate for automation accounts (login names).
+ignore_actor_logins:
+  - dependabot[bot]
+  - github-actions[bot]
+
+pull_request:
+  # When every changed file matches one of these globs, use lightweight_rules (e.g. registry-only PRs).
+  lightweight_paths_globs:
+    - implementations-registry.yml
+    - IMPLEMENTATIONS_REGISTRY.md
+    - .github/pull_request_template.md
+
+  default_rules:
+    min_body_chars: 80
+    require_doc_reference: true
+    # Case-insensitive substring match on full PR title + body.
+    doc_reference_substrings:
+      - REVIEW_INTELLIGENCE
+      - guides/review_intelligence
+      - review intelligence
+      - bitcoin commons review intelligence
+    # Implementation taxonomy (Part II) required only if any changed file matches taxonomy_paths_globs.
+    taxonomy_paths_globs:
+      - "*.rs"
+      - "**/*.rs"
+      - "*.cpp"
+      - "**/*.cpp"
+      - "*.c"
+      - "**/*.c"
+      - "*.h"
+      - "**/*.h"
+      - "Cargo.toml"
+      - "**/Cargo.toml"
+      - "CMakeLists.txt"
+      - "**/CMakeLists.txt"
+    taxonomy_substrings_any:
+      - "true alternative"
+      - "core fork"
+      - "false alternative"
+
+  lightweight_rules:
+    min_body_chars: 40
+    require_doc_reference: false
+    taxonomy_paths_globs: []
+    taxonomy_substrings_any: []
+
+issue:
+  min_body_chars: 25
+  require_doc_reference: true
+  doc_reference_substrings:
+    - REVIEW_INTELLIGENCE
+    - guides/review_intelligence
+    - review intelligence
+    - bitcoin commons review intelligence
+  require_implementation_taxonomy: false

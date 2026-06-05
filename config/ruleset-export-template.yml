@@ -321,7 +321,7 @@ repository_layers:
         - name: "Proptest"
           command: "cargo test --all-features"
           required: true
-      ci_workflow: ".github/workflows/verify.yml"
+      ci_workflow: ".github/workflows/ci.yml"
       blocking: true
 
   layer_3_implementation:

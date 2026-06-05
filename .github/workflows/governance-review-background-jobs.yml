@@ -11,7 +11,7 @@ jobs:
     name: Check Expired Cases
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       
       - name: Setup Rust
         uses: actions-rs/toolchain@v1
@@ -31,7 +31,7 @@ jobs:
     name: Check Expired Time Limits
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       
       - name: Setup Rust
         uses: actions-rs/toolchain@v1
@@ -51,7 +51,7 @@ jobs:
     name: Check Expired Appeals
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       
       - name: Setup Rust
         uses: actions-rs/toolchain@v1
@@ -71,7 +71,7 @@ jobs:
     name: Check Expired Mediations
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       
       - name: Setup Rust
         uses: actions-rs/toolchain@v1
@@ -91,7 +91,7 @@ jobs:
     name: Notify Approaching Deadlines
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       
       - name: Setup Rust
         uses: actions-rs/toolchain@v1

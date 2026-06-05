@@ -8,13 +8,17 @@ synchronized_with:
 verification:
   required: true
   tools:
-    - name: "blvm-spec-lock"
-      command: "cargo spec-lock verify --crate-path ."
+    - name: "blvm-spec-lock verify"
+      # Merged **`F_*`** registry (static + Z3 SAT smoke) + **`#[spec_locked]`** rows when **`--spec-path`** is set; **`formula_registry`** is nested in **`spec_lock_verify.json`**. Separate **`check-formulas`** / **`verify-formulas`** are optional for local debugging only.
+      command: "cargo spec-lock verify --crate-path . --spec-path ../blvm-spec/PROTOCOL.md ../blvm-spec/ARCHITECTURE.md --format human --timeout 120 --json-out spec_lock_verify.json"
+      required: true
+    - name: "blvm-spec-lock check-drift"
+      command: "cargo spec-lock check-drift --crate-path ."
       required: true
     - name: "Proptest"
       command: "cargo test --all-features"
       required: true
-  ci_workflow: ".github/workflows/verify.yml"
+  ci_workflow: ".github/workflows/ci.yml"
   blocking: true
   override_allowed: false
   meta_governance_required: true
