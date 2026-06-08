@@ -1,9 +1,10 @@
 name: Governance Review Background Jobs
 
 on:
-  schedule:
-    # Run every 6 hours to check for expired cases, time limits, appeals, mediations
-    - cron: '0 */6 * * *'
+  # schedule disabled — background checks run via workflow_dispatch only.
+  # schedule:
+  #   # Run every 6 hours to check for expired cases, time limits, appeals, mediations
+  #   - cron: '0 */6 * * *'
   workflow_dispatch: # Allow manual triggering
 
 jobs:
