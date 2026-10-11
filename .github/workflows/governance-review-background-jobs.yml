@@ -10,7 +10,7 @@ on:
 jobs:
   check-expired-cases:
     name: Check Expired Cases
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, builds]
     steps:
       - uses: actions/checkout@v6
       
@@ -30,7 +30,7 @@ jobs:
 
   check-expired-time-limits:
     name: Check Expired Time Limits
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, builds]
     steps:
       - uses: actions/checkout@v6
       
@@ -50,7 +50,7 @@ jobs:
 
   check-expired-appeals:
     name: Check Expired Appeals
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, builds]
     steps:
       - uses: actions/checkout@v6
       
@@ -70,7 +70,7 @@ jobs:
 
   check-expired-mediations:
     name: Check Expired Mediations
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, builds]
     steps:
       - uses: actions/checkout@v6
       
@@ -90,7 +90,7 @@ jobs:
 
   notify-approaching-deadlines:
     name: Notify Approaching Deadlines
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, builds]
     steps:
       - uses: actions/checkout@v6
       
