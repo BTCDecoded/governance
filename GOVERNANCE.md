@@ -342,7 +342,7 @@ BTCDecoded governance follows Elinor Ostrom's principles for managing common-poo
 7. **Minimal Recognition of Rights**: GitHub org recognizes this governance structure
 8. **Nested Enterprises**: Layered architecture with appropriate rules per layer
 
-**Note:** We govern the *codebase commons* (repository access), not the *network commons* (Bitcoin protocol). Users govern the network through voluntary adoption.
+**Note:** The app posts a `governance/merge` status. It does not control repository merge access, and it does not govern the *network commons* (Bitcoin protocol). Users govern the network through voluntary adoption.
 
 
 

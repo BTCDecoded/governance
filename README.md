@@ -17,12 +17,12 @@ Central source of truth for governance rules across all Bitcoin Commons reposito
 ## Overview
 
 This repository defines:
-1. **Repository Governance** (Binding): Who can merge what, and when
+1. **Repository Governance**: Posts a `governance/merge` status. It does not decide who can merge.
 2. **Protocol Governance** (Advisory): User signaling for consensus changes
 3. **Emergency Response**: Three-tiered system for critical issues
 4. **Maintainer Lifecycle**: Selection, removal, and rotation processes
 
-**Key Distinction:** We govern repository access (binding) and provide guidance for protocol changes (advisory). Users remain sovereign over Bitcoin's consensus rules.
+**Key Distinction:** The app posts a `governance/merge` status and does not control repository merge access. Protocol guidance is advisory. Users remain sovereign over Bitcoin's consensus rules.
 
 ## Constitutional Governance Model
 

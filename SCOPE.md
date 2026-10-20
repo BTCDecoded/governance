@@ -2,13 +2,13 @@
 
 ## Overview
 
-BTCDecoded governance operates on two levels: **Repository Governance** (binding) and **Protocol Governance** (advisory).
+BTCDecoded governance operates on two levels: **Repository Governance** (a `governance/merge` status) and **Protocol Governance** (advisory).
 
-## Repository Governance (Binding)
+## Repository Governance (a status post)
 
 | What We Control | What We Don't Control |
 |-----------------|----------------------|
-| Merge permissions to BTCDecoded repositories | Bitcoin's consensus rules (immutable) |
+| A `governance/merge` commit status. `can_merge_pull_request` only reads GitHub's `mergeable` flag. | Bitcoin's consensus rules (immutable) |
 | Code quality standards and review processes | Network upgrade activation mechanisms |
 | Release creation and versioning | User adoption decisions |
 | Maintainer selection and removal | Miner signaling and hash power |
@@ -52,4 +52,4 @@ Users can:
 
 ## Fundamental Principle
 
-We govern the **codebase commons** (repository access), not the **network commons** (Bitcoin protocol). Users govern the network through voluntary adoption and economic coordination.
+The app posts a `governance/merge` status. It does not control repository merge access, and it does not govern the **network commons** (Bitcoin protocol). Users govern the network through voluntary adoption and economic coordination.
