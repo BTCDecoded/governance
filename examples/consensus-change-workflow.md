@@ -20,15 +20,12 @@
 
 ### Phase 2: Pull Request (Repository Approval)
 
-**Duration:** 365 days minimum
+**Duration:** `get_review_period_for_layer` returns 180 days for layers 1 and 2. It does not return 365.
 
-**Requirements:**
-- 6-of-7 maintainer signatures
-- 365-day review period
-- BIP specification approved
-- Test vectors comprehensive
-- Security audit passed
-- Equivalence proof validated
+**Requirements the merge path actually reads:**
+- A count of stored signature rows against the 6-of-7 table
+- That 180-day review flag
+- The webhook posts `governance/merge`. It does not check a BIP, test vectors, a security audit, or an equivalence proof.
 
 **Steps:**
 
@@ -39,7 +36,7 @@
 
 2. **Governance App Validation**
    - Detects consensus rule change: ```blvm-commons/src/validation/tier_classification.rs:classify_tier()```
-   - Applies 365-day review: ```blvm-commons/src/validation/threshold.rs:get_review_period_for_layer()```
+   - Review period used: ```blvm-commons/src/validation/threshold.rs:get_review_period_for_layer()``` returns 180 for layers 1 and 2, not 365
    - Requires 6-of-7 threshold: ```blvm-commons/src/validation/threshold.rs:get_threshold_for_layer()```
    - Checks required artifacts: ```blvm-commons/src/validation/security_controls.rs:check_required_artifacts()```
 
@@ -49,22 +46,22 @@
 4. **Community Review** (Public)
    - Open to all developers and users, GitHub PR comments, mailing list discussion, independent implementations encouraged
 
-5. **Security Audit** (Required)
-   - Professional security firm review, vulnerability assessment, report published, issues addressed before merge
+5. **Security Audit** (not a merge check)
+   - The merge function does not read an audit report. `verify_security_property` searches for the substrings `break_consensus`, `validate`, and `bypass_security`.
 
 6. **Maintainer Signatures**
    - Each maintainer signs when satisfied: `/governance-sign <signature>`
    - Signature includes PR hash, BIP number, timestamp
-   - Cryptographically verified
+   - `check_signatures` counts stored signature rows. It does not verify signature bytes.
 
 7. **Review Period Elapses**
-   - 365 days from PR opening (cannot be shortened, even with emergency mode)
+   - The threshold function's layer 1-2 period is 180 days. If `emergency_mode` is passed true, that same function returns 30 for every layer. The webhook passes false.
 
-8. **Merge Enabled**
-   - All requirements met (signatures + time)
-   - Code enters BTCDecoded repository
+8. **Status posted**
+   - `should_block_merge` turns the two flags into a `governance/merge` status
+   - That status does not enable the merge. Branch protection leaves `enforce_admins` false, and a failed protection update still returns success.
 
-**At This Point:** Repository approval complete. Code is officially BTCDecoded consensus rules.
+**At this point:** A status may have been posted. That does not make the change a network consensus rule, and it does not by itself merge the pull request.
 
 ### Phase 3: Release (Optional Upgrade Available)
 
@@ -111,10 +108,10 @@
 | 0 | Community discussion begins |
 | 3 | BIP drafted and submitted |
 | 6 | Security audit planned |
-| 9 | Pull request opened (365-day clock starts) |
+| 9 | Pull request opened (coded review is 180 days, not a 365-day clock) |
 | 12 | Security audit completed |
 | 15 | Maintainer signatures accumulate |
-| 21 | All signatures received (6-of-7), 365 days elapsed, merge enabled |
+| 21 | Signature rows may meet 6-of-7. That posts a status. It does not enable the merge, and the review function does not measure 365 days. |
 | 22 | Merged, integrated into blvm-node |
 | 24 | Release published |
 | 25-27 | User evaluation period |
@@ -142,8 +139,8 @@
 | Can maintainers force a consensus change? | No. Maintainers control repository merge access, not network adoption. |
 | What if maintainers approve a change users reject? | Change enters BTCDecoded code but doesn't activate on network. Unused code. |
 | What if users want a change maintainers reject? | Users can fork BTCDecoded, use alternative implementations, or coordinate UASF. |
-| Why 365 days for consensus changes? | Bitcoin's $2T network demands extreme caution. Allows thorough review, verification, ecosystem preparation, user education. |
-| Can emergency mode bypass 365-day review? | No. Emergency mode doesn't apply to consensus changes. Consensus changes require long timelines by design. |
+| Why does the prose say 365 days for consensus changes? | `get_review_period_for_layer` returns 180 for layers 1 and 2. The only 365 in `blvm-commons` is a key lifetime. |
+| Can emergency mode bypass the coded review? | The webhook passes `emergency_mode: false`. If that flag is true, `get_review_period_for_layer` returns 30 for every layer, including 1 and 2. |
 | What about emergency bug fixes in consensus code? | Critical bugs use emergency tiers (0-30 days) but still require multi-signature approval. These restore *intended* consensus rules, not change them. |
 | How is this different from Bitcoin Core? | Bitcoin Core has no formal governance. BTCDecoded formalizes repository governance with multi-signature requirements but maintains advisory-only relationship with network. |
 

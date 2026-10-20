@@ -29,7 +29,7 @@ BTCDecoded governance operates on two levels: **Repository Governance** (binding
 
 | Scenario | Repository Governance (Can Do) | Protocol Governance (Cannot Do) |
 |----------|-------------------------------|--------------------------------|
-| Consensus Rule Change | Require 6-of-7 signatures, 365-day review, BIP spec, audit | Force users to upgrade, control activation, prevent forks |
+| Consensus Rule Change | Count stored signatures against a 6-of-7 table and post a status. The coded review is 180 days, not 365. The merge path does not require a BIP or an audit. | Force users to upgrade, control activation, prevent forks |
 | Emergency Security Fix | Activate emergency tier, 0-day review, 4-of-5 signatures | Force immediate adoption, prevent running vulnerable software |
 | New RPC Method | Require 4-of-5 signatures, 30-day review, technical spec | Force users to use it, control integration, prevent alternatives |
 

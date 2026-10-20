@@ -40,8 +40,8 @@ Bitcoin Commons implements a **5-tier constitutional governance system** with co
 
 | Layer | Repository | Signatures | Review Period |
 |-------|------------|------------|---------------|
-| 1 | [blvm-spec](https://github.com/BTCDecoded/blvm-spec) | 6-of-7 | 180 days (365 for consensus) |
-| 2 | [blvm-consensus](https://github.com/BTCDecoded/blvm-consensus) | 6-of-7 | 180 days (365 for consensus) |
+| 1 | [blvm-spec](https://github.com/BTCDecoded/blvm-spec) | 6-of-7 | 180 days. The review function does not return 365. |
+| 2 | [blvm-consensus](https://github.com/BTCDecoded/blvm-consensus) | 6-of-7 | 180 days. The review function does not return 365. |
 | 3 | [blvm-protocol](https://github.com/BTCDecoded/blvm-protocol) | 4-of-5 | 90 days |
 | 4 | [blvm-node](https://github.com/BTCDecoded/blvm-node) / [blvm](https://github.com/BTCDecoded/blvm) | 3-of-5 | 60 days |
 | 5 | [blvm-sdk](https://github.com/BTCDecoded/blvm-sdk) | 2-of-3 | 14 days |

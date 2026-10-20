@@ -61,7 +61,7 @@ Bitcoin Commons writes a **5-tier signature schedule**. That schedule is not a m
 
 ### Signature Requirements by Layer
 
-- **Layer 1-2 (Constitutional)**: 6-of-7 maintainers, 180 days (365 for consensus changes)
+- **Layer 1-2 (Constitutional)**: 6-of-7 maintainers, 180 days. The review-period function does not add 365 days for consensus changes.
 - **Layer 3 (Implementation)**: 4-of-5 maintainers, 90 days
 - **Layer 4 (Application)**: 3-of-5 maintainers, 60 days
 - **Layer 5 (Extension)**: 2-of-3 maintainers, 14 days
@@ -212,9 +212,10 @@ See `emergency-tiers.yml` for complete configuration.
 
 When changes affect consensus rules (`consensus-rules/**`, `validation/**`, `block-acceptance/**`):
 
-**Repository Requirements (Binding):**
-- 6-of-7 maintainer signatures
-- 365 day review period
+**Written numbers, not a merge stop:**
+- Layers 1 and 2 are coded as 6-of-7 and 180 days. No review-period function returns 365. The only 365 in this crate is a key lifetime.
+- `check_signatures` counts stored signature rows. It does not verify signature bytes.
+- The webhook posts `governance/merge`. `set_required_status_checks` sets `enforce_admins` to false and still returns success when the protection update fails.
 
 `should_block_merge` receives only `review_period_met`, `signatures_met`, and `emergency_mode`. It does not check for a BIP, test vectors, or a security audit. `verify_security_property` searches the implementation string for `break_consensus`, `validate`, or `bypass_security`. That is not a security audit.
 
