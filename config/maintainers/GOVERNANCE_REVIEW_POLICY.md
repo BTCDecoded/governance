@@ -179,17 +179,17 @@ Governance review cases are handled through a graduated sanction system, providi
 ### Time Limits
 
 **Case Resolution:**
-- Cases must be resolved within 180 days
-- Extensions require 5-of-7 team approval
-- Emergency cases: 7 days for initial action
+- `create_case` sets `resolution_deadline` to now plus `RESOLUTION_DEADLINE_DAYS` (180).
+- `extend_time_limit` stores one `extension_approved_by` id and rejects a date past the original deadline plus `MAX_EXTENSION_DAYS` (90). It does not count a team. Nothing calls it.
+- `get_tier_review_period` returns 7 for tier 1 and 0 for tier 4. That is not a 7-day emergency case limit.
 
 **Appeals:**
-- Appeals must be resolved within 90 days
-- Extensions require 5-of-7 teams approval
+- `submit_appeal` sets the deadline to the earlier of `APPEAL_DEADLINE_DAYS` (60) and the case resolution deadline. It is not 90 days.
+- `extend_time_limit` does not count teams. Nothing calls it.
 
 **Warnings:**
-- Improvement periods: 90 days
-- Can be extended once by 30 days with 4-of-7 team approval
+- `issue_public_warning` sets `improvement_deadline` to now plus `IMPROVEMENT_PERIOD_DAYS` (90). Nothing calls it.
+- `IMPROVEMENT_EXTENSION_DAYS` is 30 and nothing reads it. `src` has no 4-of-7 extension count.
 
 ---
 
