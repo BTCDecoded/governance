@@ -139,8 +139,8 @@ There is no soft-fork or hard-fork outcome in this path. A signature count does 
 |---------------|-----------------|-----------|
 | Start with discussion, not code | Review rigorously (extreme scrutiny) | Participate early (comment, test, provide feedback) |
 | Document thoroughly (BIP, test vectors, rationale) | Communicate clearly (explain decisions, maintain transparency) | Evaluate independently (read BIPs, don't defer to authority) |
-| Engage critics (opposition feedback improves proposals) | Serve users, not preferences (advisory role, humility essential) | Exercise sovereignty (upgrade when convinced, fork if necessary) |
-| Think long-term (permanent changes, 10+ year implications) | | Coordinate carefully (network effects matter, avoid accidental splits) |
+| Engage critics (opposition feedback improves proposals) | Serve users, not preferences (advisory role, humility essential) | A public GitHub fork is a GitHub feature. `execute_fork` is private. There is no user-activated soft fork coordinator. |
+| A change here is not a permanent consensus rule. `perform_fork_transition` replaces the in-process governance ruleset. | | See `calculate_adoption_metrics` for the adoption ratio. |
 
 ## Conclusion
 
