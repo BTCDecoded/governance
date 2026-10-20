@@ -85,9 +85,8 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 **Process:**
 
 **Step 1: Concern Raised**
-- Any maintainer creates issue in governance repo
-- Documents problems with evidence
-- Issue is public and transparent
+- `/governance-review-case` calls `create_case`, which inserts a SQLite row. The handler returns JSON.
+- `create_case_issue` returns an error and has no caller. It does not open a GitHub issue.
 
 **Step 2: Response Period**
 - `remove_maintainer` does not read `RESPONSE_DEADLINE_DAYS`. `CASE_TYPES` has no removal type.
