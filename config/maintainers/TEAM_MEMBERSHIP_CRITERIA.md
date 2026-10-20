@@ -354,7 +354,7 @@ The source has no temporary-leave status. `load_teams_for_nested_multisig` retur
 **Automated Checks:**
 - Verifies team approval thresholds
 - Does not track probation. `src` has no probation field. `Maintainer` stores `github_username`, `public_key`, `layer`, and `active`.
-- Monitors participation levels
+- Does not measure participation. `update_participation_weights` stores `0.0` for the contribution and both weights. The pull-request webhook does not read them.
 - Does not enforce a key-rotation schedule. `auto_rotation` is never read, `key_manager` starts with an empty `rotation_policies` list, and `rotate_key` runs only from that binary. The timer in `src/main.rs` rotates the audit log file.
 
 **Manual Override:**
