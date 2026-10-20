@@ -2,7 +2,7 @@
 
 ## Overview
 
-Team membership in the nested multisig structure (7 teams × 7 maintainers) follows a rigorous approval and revocation process to ensure maintainer quality, diversity, and accountability.
+Team membership is not a 7-by-7 roster. `get_tier_requirements` returns `(4, 5)` for tier 1, `(5, 6)` for tier 2, `(6, 6)` for tier 3, `(5, 5)` for tier 4, and `(7, 6)` for tier 5. Those numbers are teams required and signatures required per team. `maintainers/teams.yml` is not in this repository, so `load_teams_for_nested_multisig` returns an empty list.
 
 **Important Principle**: Only **on-platform activity** related to the maintainer's role in Bitcoin Commons governance is considered for governance review. Off-platform activity (personal life, other projects, social media, etc.) is explicitly disregarded.
 
