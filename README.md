@@ -30,6 +30,8 @@ Bitcoin Commons implements a **5-tier constitutional governance system** with co
 
 ### Action Tiers
 
+These are the tier-only numbers in `get_tier_threshold` and `get_tier_review_period`. The webhook calls `get_combined_requirements`, which takes the max of the stored layer and the tier.
+
 - **Tier 1: Routine Maintenance** (3-of-5, 7 days) - Bug fixes, documentation, performance
 - **Tier 2: Feature Changes** (4-of-5, 30 days) - New RPC methods, P2P changes, wallet features
 - **Tier 3: Consensus-Adjacent** (5-of-5, 90 days) - Changes affecting consensus validation
