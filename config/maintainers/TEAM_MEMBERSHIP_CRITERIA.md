@@ -108,9 +108,9 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 - The tests are the only caller.
 
 **Step 5: Appeal Period**
-- 60-day appeal period after removal
-- Subject can present new evidence
-- Requires **5-of-7 teams to overturn** (higher threshold)
+- `submit_appeal` and `review_appeal` have no caller. The expired-check binary only calls `check_expired_appeals`.
+- The unused `submit_appeal` sets the deadline to the earlier of 60 days from submission and the case resolution deadline. It does not start 60 days after removal.
+- The unused `review_appeal` compares a caller-supplied integer with `APPEAL_OVERTURN_THRESHOLD` (5). It does not count teams.
 
 **Step 6: Final Removal**
 - After appeal period (or if appeal denied)
