@@ -9,7 +9,7 @@ BTCDecoded governance operates on two levels: **Repository Governance** (a `gove
 | What We Control | What We Don't Control |
 |-----------------|----------------------|
 | A `governance/merge` commit status. `can_merge_pull_request` only reads GitHub's `mergeable` flag. | Bitcoin's consensus rules (immutable) |
-| Code quality standards and review processes | Network upgrade activation mechanisms |
+| The webhook posts a review-period status and a signature status. It does not call `check_verification_status`. | Network upgrade activation mechanisms |
 | Release creation and versioning | User adoption decisions |
 | `RemovalManager::remove_maintainer` sets `maintainers.active` false in SQLite when the caller supplies enough approval ids. Production code does not call it, and it does not change GitHub membership. There is no selection function. | Miner signaling and hash power |
 | `required_pull_request_reviews` is null. `check_signatures` counts stored signature rows and posts a status. | Which software users choose to run |
