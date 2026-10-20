@@ -82,12 +82,12 @@
 **Steps:**
 1. Node operators evaluate (review BIP, read audit, test in dev environments, assess risks/benefits)
 2. Voluntary upgrade (operators choose independently, economic incentives influence choice)
-3. Signaling measurement (BIP9-style version bits or node polling)
-   - Metrics: Node adoption %, hash power signaling %, economic activity (exchanges, wallets)
-   - Recommended thresholds: 75% node adoption, 90% hash power, economic majority
+3. Stored adoption weights, not BIP9 signaling
+   - `calculate_adoption_metrics` divides weights in the `fork_decisions` table by the sum of weights in that same table. A row with `node_type` `mining_pool` is counted as the hashpower weight.
+   - Default `ForkThresholds` are 50% adoption weight, 10 nodes, 30% mining-pool weight, and 40% other weight. They are not 75% of nodes or 90% of network hash power.
 4. Community discussion (ongoing debate, user feedback, bug reports, coordination)
 
-**At This Point:** Network signaling indicates support level. Users remain in control.
+**At this point:** The fork table may contain stored weights. That is not a measurement of Bitcoin network signaling.
 
 ### Phase 5: Activation Decision (User Sovereignty)
 
