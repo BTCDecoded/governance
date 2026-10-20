@@ -32,29 +32,10 @@ There is no team-approval step for a new maintainer. `maintainers/teams.yml` is 
 
 ### 1.4 Approval Criteria
 
-**Technical Competence:**
-- Demonstrated expertise in team's focus area
-- Code contributions or reviews showing competence
-- Understanding of Bitcoin protocol and Commons architecture
-- Ability to review and sign PRs responsibly
+`sign-pr` prints an `INSERT INTO maintainers` statement with `github_username`, `public_key`, `layer`, `active`, and `last_updated`. `src` has no expertise, sovereignty, jurisdiction, organization, or timezone check on that insert.
 
-**Alignment with Bitcoin Principles:**
-- Commitment to user sovereignty
-- Understanding of "exit over voice" philosophy
-- Alignment with cryptographic governance
-- No conflicts of interest
-
-**Diversity Considerations:**
-- Geographic distribution (multi-jurisdictional)
-- Role diversity (different expertise areas)
-- Employment diversity (no single organization dominates)
-- Timezone coverage (enables responsive reviews)
-
-**Team Fit:**
-- Expertise matches team's focus area
-- Can contribute meaningfully to team's work
-- Compatible with team's working style
-- Adds value to team composition
+- `conflict_of_interest` is a `CASE_TYPES` name. The insert does not read it.
+- `Maintainer` has no team field, so there is no team-fit check.
 
 ---
 
