@@ -210,9 +210,8 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 - The 40.0 defaults elsewhere are `ForkThresholds::minimum_economic_activity_percentage` and a test merge percentage. They do not count employers on a team.
 
 **Timezone Coverage:**
-- Teams should span multiple timezones
-- Enables responsive reviews (24-hour coverage)
-- Prevents timezone-based bottlenecks
+- `Maintainer` has no timezone field. `src` has no 24-hour coverage check.
+- The timezone calls in `src` convert timestamps to UTC. They do not place maintainers in timezones.
 
 ### 5.2 Team Size Management
 
