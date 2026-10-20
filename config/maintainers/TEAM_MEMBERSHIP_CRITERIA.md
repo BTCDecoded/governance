@@ -381,7 +381,7 @@ The source has no temporary-leave status. `load_teams_for_nested_multisig` retur
 Team membership follows a rigorous but fair process:
 
 **Approval**: There is no team-approval threshold. `sign-pr` prints an `INSERT INTO maintainers` statement. The 6 and 4 counts are `REMOVAL_TEAM_THRESHOLD` and `REMOVAL_TEAMS_THRESHOLD`, and `remove_maintainer` is called from tests.
-**Revocation**: High threshold (6-of-7 excluding subject) prevents abuse
+**Revocation**: `remove_maintainer` counts a caller-supplied list against `REMOVAL_TEAM_THRESHOLD` (6) and a caller-supplied team count against `REMOVAL_TEAMS_THRESHOLD` (4). It does not exclude the subject. The tests are the only caller.
 **Transparency**: All actions publicly documented and verifiable
 **Accountability**: Clear criteria and processes for all decisions
 
