@@ -382,7 +382,7 @@ Team membership follows a rigorous but fair process:
 
 **Approval**: There is no team-approval threshold. `sign-pr` prints an `INSERT INTO maintainers` statement. The 6 and 4 counts are `REMOVAL_TEAM_THRESHOLD` and `REMOVAL_TEAMS_THRESHOLD`, and `remove_maintainer` is called from tests.
 **Revocation**: `remove_maintainer` counts a caller-supplied list against `REMOVAL_TEAM_THRESHOLD` (6) and a caller-supplied team count against `REMOVAL_TEAMS_THRESHOLD` (4). It does not exclude the subject. The tests are the only caller.
-**Transparency**: All actions publicly documented and verifiable
+**Transparency**: A verified `/governance-sign` stores a row in `governance_events`. The HTTP routes do not publish that row. The audit log default path is `/var/lib/governance/audit-log.jsonl`. `NostrConfig::default` and `config/app.toml` set Nostr `enabled` to false.
 **Accountability**: Clear criteria and processes for all decisions
 
 The nested multisig structure ensures that team membership decisions require broad consensus, preventing capture while maintaining flexibility for legitimate changes.
