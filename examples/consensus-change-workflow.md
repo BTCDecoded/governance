@@ -111,17 +111,13 @@ There is no soft-fork or hard-fork outcome in this path. A signature count does 
 | 12 | Security audit completed |
 | 15 | Maintainer signatures accumulate |
 | 21 | Signature rows may meet 6-of-7. That posts a status. It does not enable the merge, and the review function does not measure 365 days. |
-| 22 | Merged, integrated into blvm-node |
-| 24 | Release published |
-| 25-27 | User evaluation period |
-| 28-30 | Node upgrade phase (90-day signaling) |
-| 33 | Sufficient support achieved |
-| 36 | Activation date set by community |
-| 39 | Network-wide activation |
+| 22 | A status may have been posted. The app does not merge the pull request. |
+| 24 | A release is a separate publish step. This table does not perform it. |
+| 28-39 | There is no coded network-activation clock. `perform_fork_transition` only replaces the in-process governance ruleset. |
 
-**Total:** ~39 months (3.25 years) from discussion to activation
+**Total:** This table is not a clock the code runs.
 
-**Why so long?** Bitcoin's $2T network cap demands extreme caution. Consensus changes are permanent and irreversible.
+**Why the old 39-month figure was here:** It was a story about network activation. The layer 1-2 review value in `get_review_period_for_layer` is 180 days. The fork path does not wait 39 months, and it does not activate consensus rules.
 
 ## Historical Comparisons
 
