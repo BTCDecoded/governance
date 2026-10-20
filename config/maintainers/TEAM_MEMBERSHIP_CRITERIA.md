@@ -227,24 +227,13 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 
 ## Part 6: Approval Thresholds Summary
 
-### Adding Maintainer to Team
-- **Team Approval**: 6-of-7 from proposed team (86%)
-- **Inter-Team Approval**: 4-of-7 teams (57%)
-- **Total Consensus**: ~49% of all maintainers
+These rows are not separate votes in the source.
 
-### Removing Maintainer from Team
-- **Voluntary**: 3-of-7 from team (43%)
-- **Performance-Based**: 6-of-7 from team (excluding subject) + 4-of-7 teams
-- **Emergency**: 4-of-5 emergency keyholders
-
-### Team Transfer
-- **Release from Current Team**: 5-of-7 (71%)
-- **Acceptance to New Team**: 6-of-7 (86%)
-- **Inter-Team Approval**: 4-of-7 teams (57%)
-
-### Key Rotation
-- **Scheduled**: 3-of-7 from team (43%)
-- **Emergency**: 4-of-5 emergency keyholders
+- Adding a maintainer: `sign-pr` prints an `INSERT INTO maintainers` statement. `src` has no 6-of-7 team vote and no 49% consensus check.
+- Removing a maintainer: `remove_maintainer` counts a caller-supplied list against `REMOVAL_TEAM_THRESHOLD` (6) and a caller-supplied team count against `REMOVAL_TEAMS_THRESHOLD` (4). It does not exclude the subject. The tests are the only caller. `src` has no 3-of-7 count.
+- Emergency removal: `emergency_remove` returns unless the caller passes at least 4 ids. Nothing in `src/webhooks`, `src/main.rs`, or the tests calls it.
+- Team transfer: `src` has no transfer path.
+- Key rotation: `rotate_key` runs from the `key_manager` binary and does not take a team-approval count. `src` has no 3-of-7 count.
 
 ---
 
