@@ -8,7 +8,7 @@
 
 | Phase | Status | Duration | Timeline | Key Activities |
 |-------|--------|----------|----------|---------------|
-| **Phase 1: Infrastructure Building** | ✅ COMPLETED | 3-6 months | Dec 2024 - Mar 2025 | Core infrastructure, maintainer GitHub integration, testing, documentation |
+| **Phase 1: Infrastructure Building** | Not complete. `stamp()` writes a `MOCK_OTS_PROOF` string. | 3-6 months | Dec 2024 - Mar 2025 | Core infrastructure, maintainer GitHub integration, testing, documentation |
 | **Phase 2: Governance Activation** | 🚧 PLANNED | 3-6 months | Mar 2025 - Sep 2025 | Real cryptographic keys, production deployment, security audit, community validation |
 | **Phase 3: Full Operation** | 📋 PLANNED | 12+ months | Sep 2025 - Sep 2026+ | Mature system, battle-tested, full adoption, advanced features |
 
@@ -16,7 +16,7 @@
 
 | Complete | Not Active |
 |----------|------------|
-| Core infrastructure and database schema | Real cryptographic enforcement |
+| `stamp()` writes a `MOCK_OTS_PROOF` string. The comment says a production implementation should post the hash to a calendar server. | Real cryptographic enforcement |
 | Tier classification and maintainer workflows | Production key management |
 | Governance fork export and adoption tracking | Security audit completion |
 | GitHub status check integration | Community validation |
