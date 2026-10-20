@@ -166,22 +166,15 @@ Governance review cases are handled through a graduated sanction system, providi
 ### Conflict Resolution/Mediation
 
 **When Mediation Applies:**
-- Non-security issues
-- Disputes between maintainers
-- Conflicts that could be resolved through discussion
+- `start_mediation` takes a case id and an optional mediator id. It does not read the case type. Nothing calls it.
 
 **Process:**
-1. Either party requests mediation
-2. 30-day mediation period
-3. Neutral maintainer facilitates (if available)
-4. If resolved: Issue closed
-5. If not resolved: Proceeds to normal process
+- It sets `mediation_deadline` to now plus `MEDIATION_PERIOD_DAYS` (30) and sets the case status to `mediation`.
+- `resolve_mediation` sets the case status to `resolved`. It does not close a GitHub issue. Nothing calls it.
+- `fail_mediation` sets the case status to `under_review`. The expired-check binary reaches it only through `check_expired_mediations`.
 
 **Mediation Does NOT Apply To:**
-- Security issues (immediate threat)
-- Active attacks
-- Key compromise
-- Ongoing fraud or theft
+- `start_mediation` does not reject a security case, an attack, a key compromise, or fraud. `src` has no fraud string.
 
 ### Time Limits
 
