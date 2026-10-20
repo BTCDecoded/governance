@@ -365,9 +365,9 @@ The source has no temporary-leave status. `load_teams_for_nested_multisig` retur
 ### 9.2 Configuration Files
 
 **Team Membership:**
-- `governance/config/maintainers/teams.yml` - Team structure and members
-- `governance/warnings/` - Formal warnings directory
-- `governance/maintainers/emeritus.yml` - Emeritus maintainers
+- `maintainers/teams.yml` is not in this repository. `load_teams_for_nested_multisig` returns an empty list when that file is missing.
+- `warnings/` contains `.gitkeep` only. `create_warning_file` returns a filename and does not write a file. Nothing calls it.
+- There is no `maintainers/emeritus.yml`. `src` has no emeritus string.
 
 **Changes Require:**
 - PR to governance repository
