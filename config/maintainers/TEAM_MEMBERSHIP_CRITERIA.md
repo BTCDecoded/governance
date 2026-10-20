@@ -93,9 +93,8 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 - Issue is public and transparent
 
 **Step 2: Response Period**
-- Subject maintainer has 30 days to respond
-- Can address concerns or provide explanation
-- Community can comment
+- `remove_maintainer` does not read `RESPONSE_DEADLINE_DAYS`. `CASE_TYPES` has no removal type.
+- `create_case` sets that 30-day deadline for a governance review case, not for this removal step.
 
 **Step 3: Formal Warning (Optional)**
 - The 4-count is `issue_private_warning`, which inserts a SQLite row and is called from tests. It does not write `governance/warnings/`.
