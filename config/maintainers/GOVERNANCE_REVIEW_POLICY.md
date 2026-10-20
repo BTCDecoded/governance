@@ -279,25 +279,9 @@ Governance review cases are handled through a graduated sanction system, providi
 
 ### Valid On-Platform Review Cases
 
-**Example 1: Abuse in PR Review**
-- Maintainer uses abusive language in PR comments
-- Harasses other maintainers in governance discussions
-- **Action**: Level 1 (private warning) for first offense, Level 2 (public warning) for pattern, Level 3 (removal) for serious/repeated
-
-**Example 2: Malicious Code**
-- Maintainer submits code with intentional vulnerabilities
-- Attempts to bypass security checks
-- **Action**: Level 3 (removal) - immediate security threat
-
-**Example 3: Collusion**
-- Maintainers coordinate to sign bad PRs
-- Attempt to bypass governance thresholds
-- **Action**: Level 3 (removal) - serious governance violation
-
-**Example 4: Repeated Technical Errors**
-- Maintainer makes 4 critical errors in 6 months
-- Despite warnings, continues to make errors
-- **Action**: Level 2 (public warning) then Level 3 (removal) if no improvement
+- `abuse`, `harassment`, `malicious_code`, `collusion`, and `technical_errors` are `CASE_TYPES` names. `create_case` stores the caller-supplied type.
+- `issue_private_warning` is called from tests. `issue_public_warning` has no caller. `remove_maintainer` does not read the case type.
+- `src/governance_review` has no six-month error count.
 
 ### Invalid Off-Platform (Disregarded)
 
