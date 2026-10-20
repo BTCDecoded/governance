@@ -352,7 +352,7 @@ The source has no temporary-leave status. `load_teams_for_nested_multisig` retur
 ### 9.1 Governance App Integration
 
 **Automated Checks:**
-- Verifies team approval thresholds
+- Does not verify team approval thresholds. The pull-request webhook counts stored signatures with `check_signatures` against `get_combined_requirements`. `verify_nested_multisig` is reached only from `verify_multisig_threshold`, which the tests call.
 - Does not track probation. `src` has no probation field. `Maintainer` stores `github_username`, `public_key`, `layer`, and `active`.
 - Does not measure participation. `update_participation_weights` stores `0.0` for the contribution and both weights. The pull-request webhook does not read them.
 - Does not enforce a key-rotation schedule. `auto_rotation` is never read, `key_manager` starts with an empty `rotation_policies` list, and `rotate_key` runs only from that binary. The timer in `src/main.rs` rotates the audit log file.
