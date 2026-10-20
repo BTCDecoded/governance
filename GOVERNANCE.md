@@ -15,7 +15,7 @@
 
 ## Constitutional Governance Model
 
-Bitcoin Commons implements a **5-tier constitutional governance system** that makes Bitcoin governance **6x harder to capture** than Bitcoin Core's current model, with **complete transparency** through cryptographic audit trails and **user-protective** mechanisms.
+Bitcoin Commons writes a **5-tier signature schedule**. That schedule is not a measured capture multiplier, and merge enforcement is off.
 
 **Core Innovation:** Apply the same cryptographic enforcement to governance that Bitcoin applies to consensus - making power visible, capture expensive, and exit cheap.
 
@@ -281,16 +281,16 @@ BTCDecoded checks annotated consensus functions with Z3 in CI. That job can be s
 
 #### Defense Against Capture
 
-Formal verification makes Bitcoin governance **6x harder to capture**:
+The six items below are design notes. They are not a measured capture multiplier.
 
-1. **Technical Barrier**: Must bypass automated verification
-2. **Social Barrier**: Must convince 6-of-7 maintainers
-3. **Time Barrier**: 180-365 day review periods
-4. **Transparency Barrier**: All verification results public
-5. **Audit Barrier**: OpenTimestamps immutable proof
-6. **Community Barrier**: Public review and transparent process
+1. **Verification**: Z3 runs on annotated functions unless the commit message skips the job. A passing job is not the mutation gate.
+2. **Signatures**: The written schedule names several keyholders. The GitHub App does not block a merge.
+3. **Time**: The YAML names review periods. Those periods are not a live gate.
+4. **Public output**: The verify job can upload its JSON when it runs.
+5. **OpenTimestamps**: not a step in consensus CI.
+6. **Readers**: The rules are published. Publishing them is not enforcement.
 
-**Key Insight**: An attacker cannot simply "convince maintainers" - they must also produce mathematically correct code that passes verification. This dramatically raises the bar for malicious changes.
+Skipping the verify job, or changing a function the mutation gate does not cover, is not stopped by this list.
 
 #### Verification Status
 
