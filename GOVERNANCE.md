@@ -218,7 +218,8 @@ When changes affect consensus rules (`consensus-rules/**`, `validation/**`, `blo
 - BIP specification required
 - Comprehensive test vectors required
 - Security audit required
-- Equivalence proof required (mathematical correctness)
+
+An equivalence proof is not a merge requirement. `verify_behavioral_equivalence` returns success when `expected_result` is non-empty, and the comment says that check is simulated.
 
 **User Activation (Advisory Only):**
 
