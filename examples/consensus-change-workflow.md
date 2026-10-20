@@ -18,7 +18,7 @@
 5. An equivalence proof is not a merge check. `verify_behavioral_equivalence` returns success when `expected_result` is non-empty, and the comment says the check is simulated. It does not prove mathematical correctness.
 6. Security audit planning (identify auditors, define scope, budget, timeline, disclosure plan)
 
-### Phase 2: Pull Request (Repository Approval)
+### Phase 2: Pull Request (status post, not repository approval)
 
 **Duration:** `get_review_period_for_layer` returns 180 days for layers 1 and 2. It does not return 365.
 
@@ -155,8 +155,6 @@
 
 ## Conclusion
 
-BTCDecoded governance provides structure for repository management while preserving user sovereignty for protocol changes.
+The app posts a `governance/merge` status. That status is not repository approval, and it is not network adoption.
 
-**Repository approval ≠ Network adoption**
-
-Maintainers propose. Users dispose.
+Maintainers can sign a message of the form `PR #{number} in {repo}`. Users decide whether to run a binary.
