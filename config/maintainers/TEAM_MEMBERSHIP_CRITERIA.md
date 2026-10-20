@@ -12,19 +12,10 @@ Team membership is not a 7-by-7 roster. `get_tier_requirements` returns `(4, 5)`
 
 ### 1.1 Nomination Process
 
-**Who Can Nominate:**
-- Any existing maintainer from any team
-- Self-nomination allowed (with team endorsement)
+`src` has no nomination string. The comment commands are `/governance-tier-override`, `/governance-review-case`, `/governance-sign`, and `/governance-challenge`.
 
-**Nomination Requirements:**
-- GitHub issue created in governance repository
-- Must document:
-  - Candidate's background and expertise
-  - Contributions to Bitcoin Commons or Bitcoin ecosystem
-  - Technical competence demonstration
-  - Alignment with Bitcoin principles
-  - Reason for nomination
-  - Proposed team assignment
+- `/governance-review-case` calls `create_case` for a registered maintainer. It does not open a GitHub issue.
+- `sign-pr` prints an `INSERT INTO maintainers` statement. It does not record a nomination.
 
 ### 1.2 Probation Period
 
