@@ -50,9 +50,9 @@
    - The merge function does not read an audit report. `verify_security_property` searches for the substrings `break_consensus`, `validate`, and `bypass_security`.
 
 6. **Maintainer Signatures**
-   - Each maintainer signs when satisfied: `/governance-sign <signature>`
-   - Signature includes PR hash, BIP number, timestamp
-   - `check_signatures` counts stored signature rows. It does not verify signature bytes.
+   - The comment command is `/governance-sign <signature>`, with an optional quoted reason.
+   - The signed message is `PR #{number} in {repo}`. It does not include a commit hash, a BIP number, or a timestamp.
+   - `verify_governance_signature` checks that signature against the maintainer key before the row is stored. A missing GitHub review is logged and does not block. `check_signatures` later counts the stored rows.
 
 7. **Review Period Elapses**
    - The threshold function's layer 1-2 period is 180 days. If `emergency_mode` is passed true, that same function returns 30 for every layer. The webhook passes false.
