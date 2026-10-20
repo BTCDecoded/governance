@@ -22,7 +22,7 @@ BTCDecoded governance operates on two levels: **Repository Governance** (a `gove
 |-------------------|-------------------|
 | The webhook posts a review-period status and a signature count. It does not score code quality. | Force network adoption (no amount of signatures forces upgrades) |
 | User education (documentation, upgrade paths, trade-offs) | Prevent users from running alternative software |
-| Community coordination (facilitate discussion, technical analysis) | Control economic incentives or market forces |
+| Nostr is off in `config/app.toml` and in `NostrConfig::default`. The pull-request webhook does not run a technical analysis. | Control economic incentives or market forces |
 | | Override user choice (users remain sovereign) |
 
 ## Examples
