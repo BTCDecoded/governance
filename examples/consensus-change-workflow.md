@@ -16,7 +16,7 @@
 3. Write BIP specification (draft BIP, include motivation/specification/rationale, submit to bitcoin-dev)
 4. Create test vectors (comprehensive test cases, edge cases, reference implementations)
 5. An equivalence proof is not a merge check. `verify_behavioral_equivalence` returns success when `expected_result` is non-empty, and the comment says the check is simulated. It does not prove mathematical correctness.
-6. Security audit planning (identify auditors, define scope, budget, timeline, disclosure plan)
+6. A security audit is not a merge check. `get_tier_requirements` can include the text "Security audit report attached to PR". The merge webhook does not read that list. `EmergencyTier::Critical` sets `requires_security_audit` and a 60-day deadline, and production source does not call that module.
 
 ### Phase 2: Pull Request (status post, not repository approval)
 
@@ -100,9 +100,9 @@ There is no soft-fork or hard-fork outcome in this path. A signature count does 
 |-------|----------|
 | 0 | Community discussion begins |
 | 3 | BIP drafted and submitted |
-| 6 | Security audit planned |
+| 6 | No audit is scheduled by this crate. |
 | 9 | Pull request opened (coded review is 180 days, not a 365-day clock) |
-| 12 | Security audit completed |
+| 12 | No audit is marked complete. The merge path does not read an audit report. |
 | 15 | Maintainer signatures accumulate |
 | 21 | Signature rows may meet 6-of-7. That posts a status. It does not enable the merge, and the review function does not measure 365 days. |
 | 22 | A status may have been posted. The app does not merge the pull request. |
