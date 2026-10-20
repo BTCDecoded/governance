@@ -155,13 +155,13 @@ Governance review cases are handled through a graduated sanction system, providi
 
 ### On-Platform Review Process
 
-1. **Report**: Issue created in governance repository
-2. **Initial Review**: Team members determine severity (4-of-7 for warning, 6-of-7 for removal)
-3. **Response**: Subject has 30 days to respond
-4. **Mediation** (if non-security): Optional 30-day mediation period for conflicts
-5. **Evaluation**: Team evaluates against code of conduct and this policy
-6. **Sanction**: Warning or removal based on severity
-7. **Appeal**: Subject can appeal through normal process
+1. **Report**: `/governance-review-case` calls `create_case`, which inserts a SQLite row. `create_case_issue` returns an error and has no caller.
+2. **Initial Review**: The comment passes the caller's `severity` string. `issue_private_warning` counts a list against 4 and is called from tests. `remove_maintainer` counts a list against 6 and a team count against 4. Neither counts a team of 7.
+3. **Response**: `create_case` sets `response_deadline` to now plus `RESPONSE_DEADLINE_DAYS` (30).
+4. **Mediation**: `start_mediation` sets a deadline of `MEDIATION_PERIOD_DAYS` (30). Nothing calls it. The expired-check binary only calls `check_expired_mediations`.
+5. **Evaluation**: `src` has no code-of-conduct string. `create_case` stores the caller-supplied `case_type` and `severity`.
+6. **Sanction**: `issue_public_warning` has no caller. `remove_maintainer` is called from tests. Neither function reads `severity`.
+7. **Appeal**: `submit_appeal` and `review_appeal` have no caller.
 
 ### Conflict Resolution/Mediation
 
