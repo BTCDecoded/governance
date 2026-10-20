@@ -20,7 +20,7 @@ BTCDecoded governance operates on two levels: **Repository Governance** (a `gove
 
 | What We Influence | What We Cannot Do |
 |-------------------|-------------------|
-| Code quality for consensus changes (approve high-quality code) | Force network adoption (no amount of signatures forces upgrades) |
+| The webhook posts a review-period status and a signature count. It does not score code quality. | Force network adoption (no amount of signatures forces upgrades) |
 | User education (documentation, upgrade paths, trade-offs) | Prevent users from running alternative software |
 | Community coordination (facilitate discussion, technical analysis) | Control economic incentives or market forces |
 | | Override user choice (users remain sovereign) |
