@@ -218,19 +218,10 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 
 ### 5.2 Team Size Management
 
-**Minimum Team Size**: 5 maintainers (for 6-of-7 threshold)
-**Maximum Team Size**: 7 maintainers (standard)
-**Optimal Team Size**: 7 maintainers (allows for 1 absence)
-
-**Team Expansion:**
-- Can expand beyond 7 if needed (with governance approval)
-- Requires **5-of-7 teams to approve** expansion
-- Thresholds adjust proportionally
-
-**Team Reduction:**
-- If team falls below 5, must recruit within 90 days
-- Can merge teams if both below minimum
-- Requires **6-of-7 teams to approve** merger
+**Minimum Team Size**: `Maintainer` has no team field. `src` has no team-size, expansion, or merger path.
+**Maximum Team Size**: There is no maximum of 7. `maintainers/teams.yml` is not in this repository.
+**Team Expansion**: `src` has no expansion approval. The 5-counts are `PUBLIC_WARNING_THRESHOLD` and `APPEAL_OVERTURN_THRESHOLD`.
+**Team Reduction**: `src` has no 90-day recruiting rule and no merger vote. `IMPROVEMENT_PERIOD_DAYS` is 90 on `issue_public_warning`, which has no caller.
 
 ---
 
