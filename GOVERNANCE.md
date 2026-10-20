@@ -215,9 +215,8 @@ When changes affect consensus rules (`consensus-rules/**`, `validation/**`, `blo
 **Repository Requirements (Binding):**
 - 6-of-7 maintainer signatures
 - 365 day review period
-- BIP specification required
-- Comprehensive test vectors required
-- Security audit required
+
+`should_block_merge` receives only `review_period_met`, `signatures_met`, and `emergency_mode`. It does not check for a BIP, test vectors, or a security audit. `verify_security_property` searches the implementation string for `break_consensus`, `validate`, or `bypass_security`. That is not a security audit.
 
 An equivalence proof is not a merge requirement. `verify_behavioral_equivalence` returns success when `expected_result` is non-empty, and the comment says that check is simulated.
 
