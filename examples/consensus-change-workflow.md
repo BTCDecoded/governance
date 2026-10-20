@@ -63,15 +63,9 @@
 
 **At this point:** A status may have been posted. That does not make the change a network consensus rule, and it does not by itself merge the pull request.
 
-### Phase 3: Release (Optional Upgrade Available)
+### Phase 3: Not a release step
 
-**Steps:**
-1. Integration testing (merge into blvm-node, test with real-world scenarios, verify backward compatibility)
-2. Release build (compile binaries, create release notes, document new consensus rules)
-3. Release announcement (publish on website, post to bitcoin-dev, social media)
-4. Optional upgrade available (users can download, no forced upgrades, old versions remain available)
-
-**At This Point:** Code is available. Users begin evaluating.
+The governance crate does not merge a pull request into `blvm-node`, compile release binaries, or publish an announcement. A `governance/merge` status does not make code available for download.
 
 ### Phase 4: User Signaling (Advisory)
 
