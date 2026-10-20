@@ -89,17 +89,16 @@
 
 **At this point:** The fork table may contain stored weights. That is not a measurement of Bitcoin network signaling.
 
-### Phase 5: Activation Decision (User Sovereignty)
+### Phase 5: In-process ruleset swap
 
-**Nature:** Users decide, not maintainers.
+**Nature:** `perform_fork_transition` updates the ruleset held by this process. It is not a user vote and not a network activation.
 
-| Outcome | Description | Result |
-|---------|-------------|--------|
-| **Soft Fork** | Sufficient support, economic majority, miners signal | Consensus rules change network-wide, backward compatible |
-| **Hard Fork** | Contentious change, no clear majority, competing visions | Users choose chain, markets decide value, both chains may survive |
-| **Rejection** | Insufficient support, economic majority opposes, miners don't signal | Network continues with old rules, maintainer-approved code unused |
+| Outcome | What the code does |
+|---------|--------------------|
+| Thresholds met | `perform_fork_transition` replaces `current_ruleset` in the process with another governance ruleset. It does not change Bitcoin consensus rules, and it does not read miner signals. |
+| Thresholds not met | The current ruleset stays. A maintainer signature does not put code into the repository. |
 
-**Key Point:** No amount of maintainer signatures forces adoption. Users govern Bitcoin.
+There is no soft-fork or hard-fork outcome in this path. A signature count does not activate a network consensus change.
 
 ## Example Timeline
 
