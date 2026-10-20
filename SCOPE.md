@@ -40,7 +40,7 @@ BTCDecoded governance operates on two levels: **Repository Governance** (a `gove
 Users can:
 - **Repository Fork**: Fork BTCDecoded repositories, maintain own governance rules
 - **Protocol Fork**: Create alternative implementations, maintain different consensus rules
-- **Exit Strategy**: Always retain option to exit, no single point of failure
+- **Exit Strategy**: Users can stop running a binary. `set_required_status_checks` sends `enforce_admins: false`, so an admin bypass remains.
 
 ## Safeguards and Limitations
 
