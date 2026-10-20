@@ -125,10 +125,9 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 - Network-threatening actions
 
 **Process:**
-- Emergency keyholders can immediately deactivate key
-- Requires **4-of-5 emergency keyholders**
-- Formal removal process follows within 7 days
-- Subject can appeal through normal process
+- `emergency_remove` returns unless the caller passes at least 4 ids. It does not check that those ids are emergency keyholders, and it does not check a set of 5.
+- Nothing in `src/webhooks`, `src/main.rs`, or the tests calls `emergency_remove`.
+- `src` has no 7-day follow-up. `submit_appeal` has no caller.
 
 **Note**: Off-platform activity (personal life, other projects, social media, etc.) is **explicitly disregarded** for governance review. Only on-platform activity related to the maintainer's role in Bitcoin Commons governance is considered. If violations relate to key holder duties, they will manifest on-platform (missing funds, invalid signatures, security breaches).
 
