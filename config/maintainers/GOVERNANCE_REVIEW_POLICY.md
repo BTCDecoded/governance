@@ -197,20 +197,13 @@ Governance review cases are handled through a graduated sanction system, providi
 
 ### For All Review Cases
 
-1. **Severity**: How serious is the violation?
-2. **Pattern**: Is this a pattern or isolated incident?
-3. **Impact**: What is the impact on the system or community?
-4. **Intent**: Was this intentional or accidental?
-5. **Response**: How has the subject responded?
-6. **History**: Previous warnings or sanctions?
+`create_case` stores the caller-supplied `case_type`, `severity`, `description`, and `evidence`. `src` has no pattern, impact, intent, or history check.
 
 ### Documentation Requirements
 
-- All evidence must be publicly documented in governance repository
-- Links, screenshots, or other proof must be provided
-- Evaluation rationale must be documented
-- Subject maintainer must be notified and given opportunity to respond
-- All decisions must be transparent
+- `create_case` stores `evidence` in SQLite. `create_case_issue` returns an error and has no caller.
+- `create_case` sets `response_deadline` to now plus `RESPONSE_DEADLINE_DAYS` (30). `notify_case_deadline` posts a comment only when `github_issue_number` is already set.
+- The HTTP routes do not publish the case row.
 
 ---
 
