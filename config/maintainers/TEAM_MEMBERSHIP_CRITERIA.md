@@ -323,7 +323,7 @@ Team membership in the nested multisig structure (7 teams × 7 maintainers) foll
 **Cryptographic Proof:**
 - All approvals signed cryptographically
 - Signatures publicly verifiable
-- Immutable audit log
+- The audit logger appends a local JSONL file and links each entry to the previous hash. `rotate` renames that file. The module comment says the log is tamper-evident.
 - `stamp()` writes a `MOCK_OTS_PROOF` string. `OtsConfig::default` sets `enabled: false`.
 
 ### 7.3 Community Oversight
