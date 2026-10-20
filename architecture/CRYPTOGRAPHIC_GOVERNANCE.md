@@ -6,7 +6,7 @@ The written design uses signatures on governance actions. That enforcement is no
 
 ## Core Principles
 
-1. **Cryptographic Enforcement**: All governance actions require cryptographic proof
+1. **Signatures**: The design asks for a signature on a governance action. The app does not require one before a merge.
 2. **Multisig Security**: Multiple maintainers must sign critical actions
 3. **Transparency**: All signatures and actions are publicly verifiable
 4. **Tamper Evidence**: Any attempt to modify governance state is detectable
