@@ -18,7 +18,7 @@ Central source of truth for governance rules across all Bitcoin Commons reposito
 
 This repository defines:
 1. **Repository Governance**: Posts a `governance/merge` status. It does not decide who can merge.
-2. **Protocol Governance** (Advisory): User signaling for consensus changes
+2. **Protocol governance**: `track_adoption` stores a caller-supplied `weight` in `fork_decisions`. `get_network_totals` sums that same table. It does not read a user signal for a consensus change.
 3. **Emergency response**: `EmergencyTier` has a written three-tier schedule. The pull-request webhook passes `emergency_mode: false`. Production code outside that module does not call `EmergencyTier`.
 4. **Maintainer lifecycle**: There is no selection function. `RemovalManager` is constructed only in tests. `key_manager` rotates key records. It does not change GitHub membership.
 
