@@ -228,25 +228,18 @@ Governance review cases are handled through a graduated sanction system, providi
 ## Emergency Removal
 
 **Grounds:**
-- Key compromise (immediate security risk)
-- Gross violations (immediate security threat)
-- Active attack on the system
+- `emergency_remove` stores the caller-supplied `reason` and writes `security_violation`. It does not classify key compromise, an attack, or fraud.
+- `src/governance_review` has no attack string and no fraud string.
 
 **Process:**
-- Emergency keyholders (4-of-5) can immediately deactivate key
-- Formal removal process follows within 7 days
-- Subject can appeal through normal process
+- It returns unless the caller passes at least 4 ids. It does not check that those ids are emergency keyholders, and it does not check a set of 5.
+- Nothing calls it. `src` has no 7-day follow-up. `submit_appeal` has no caller.
 
 **Definition of Gross Violations:**
-- Active attack on the system
-- Ongoing fraud or theft
-- Immediate key compromise risk
-- Malicious code that could cause immediate harm
+- `malicious_code` is a `CASE_TYPES` name. `emergency_remove` does not read it.
 
 **Not Gross Violations:**
-- Disagreements or conflicts
-- Policy violations without immediate threat
-- Non-security issues
+- `emergency_remove` does not read the case type, so it does not reject a disagreement or a non-security case.
 
 ---
 
