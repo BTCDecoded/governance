@@ -103,10 +103,9 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 - `create_warning_file` returns a filename and does not write a file. Nothing calls it. `warnings/` contains `.gitkeep` only.
 
 **Step 4: Removal Vote**
-- PR to remove from `maintainers/teams.yml`
-- Requires **6-of-7 approval from team** (excluding subject maintainer)
-- Requires **4-of-7 teams to approve** (inter-team consensus)
-- High threshold prevents frivolous removals
+- `maintainers/teams.yml` is not in this repository.
+- `remove_maintainer` counts a caller-supplied list against `REMOVAL_TEAM_THRESHOLD` (6) and a caller-supplied team count against `REMOVAL_TEAMS_THRESHOLD` (4). It does not exclude the subject.
+- The tests are the only caller.
 
 **Step 5: Appeal Period**
 - 60-day appeal period after removal
