@@ -31,7 +31,7 @@ BTCDecoded governance operates on two levels: **Repository Governance** (a `gove
 |----------|-------------------------------|--------------------------------|
 | Consensus Rule Change | Count stored signatures against a 6-of-7 table and post a status. The coded review is 180 days, not 365. The merge path does not require a BIP or an audit. | Force users to upgrade, control activation, prevent forks |
 | Emergency Security Fix | The merge path passes `emergency_mode: false`. `EmergencyTier::Critical` is a written 0-day, 4-of-7 schedule. Production code does not call it, and it is not 4-of-5. | Force immediate adoption, prevent running vulnerable software |
-| New RPC Method | Require 4-of-5 signatures, 30-day review, technical spec | Force users to use it, control integration, prevent alternatives |
+| New RPC Method | `rpc/**` is a tier-2 pattern. The webhook uses `get_combined_requirements`, which takes the max of the stored layer and that tier. Tier 2 alone is 4-of-5 and 30 days. `require_specification` is set on the rule and is not read. | Force users to use it, control integration, prevent alternatives |
 
 **User Process**: Maintainers approve code → Code released as optional upgrade → Users evaluate and choose → Market and operator coordination determines adoption → Users can fork or reject
 
