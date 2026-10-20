@@ -100,11 +100,9 @@ Governance review cases are handled through a graduated sanction system, providi
 **Trigger:** Minor violations or first offense of moderate severity.
 
 **Process:**
-1. Any maintainer reports issue
-2. Team members review (4-of-7 team approval)
-3. Private written warning issued
-4. Subject has 14 days to respond
-5. Warning logged privately (not public)
+- `issue_private_warning` compares `approvals.len()` with `PRIVATE_WARNING_THRESHOLD` (4). It does not count a team of 7.
+- It inserts a SQLite row in `governance_review_warnings`. It does not write a warning file. The tests are the only caller.
+- `src` has no 14-day response on that function.
 
 **Consequence:** Private warning, opportunity to correct behavior.
 
