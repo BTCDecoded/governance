@@ -17,7 +17,7 @@
 
 Bitcoin Commons writes a **5-tier signature schedule**. That schedule is not a measured capture multiplier, and merge enforcement is off.
 
-**Core Innovation:** Apply the same cryptographic enforcement to governance that Bitcoin applies to consensus - making power visible, capture expensive, and exit cheap.
+**Core innovation:** The design is public signatures and cheap exit. That enforcement is not on.
 
 ## How Governance Works
 
