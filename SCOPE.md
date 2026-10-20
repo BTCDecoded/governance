@@ -47,7 +47,7 @@ Users can:
 | Safeguards | Limitations |
 |------------|-------------|
 | Multi-signature requirements (no single maintainer control) | Cannot override Bitcoin's design (consensus immutable) |
-| Transparency (public decisions, cryptographic audit trail) | Cannot force coordination (no control over user upgrades) |
+| `stamp()` writes a `MOCK_OTS_PROOF` string. `verify_proof_format` accepts that prefix and rejects other proofs. | Cannot force coordination (no control over user upgrades) |
 | User protection (users control software, exit options available) | Cannot guarantee adoption (code quality ≠ user adoption) |
 
 ## Fundamental Principle
