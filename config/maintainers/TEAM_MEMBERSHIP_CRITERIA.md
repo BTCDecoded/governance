@@ -31,18 +31,9 @@ Team membership is not a 7-by-7 roster. `get_tier_requirements` returns `(4, 5)`
 **Duration**: The source has no probation period. `/governance-sign` verifies a signature for a registered maintainer. It does not check a 90-day probation flag.
 
 **Requirements During Probation:**
-- A registered maintainer is not blocked from signing for 90 days.
-- Must demonstrate:
-  - Technical competence through code reviews
-  - Understanding of governance process
-  - Active participation
-  - Alignment with team's focus area
-
-**Probation Evaluation:**
-- Reviewed by team members
-- Must receive positive feedback from 4-of-7 team members
-- Can be extended by 30 days if needed
-- Can be terminated early if concerns arise
+- `src` has no probation field, so there is no demonstration list, team review, or early termination.
+- The 4-count is `PRIVATE_WARNING_THRESHOLD`. `issue_private_warning` compares it with a caller-supplied list. That is not probation feedback.
+- `IMPROVEMENT_EXTENSION_DAYS` is 30 and has no caller.
 
 ### 1.3 Approval Process
 
