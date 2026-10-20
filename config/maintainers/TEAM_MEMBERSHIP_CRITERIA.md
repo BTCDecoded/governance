@@ -4,7 +4,7 @@
 
 Team membership is not a 7-by-7 roster. `get_tier_requirements` returns `(4, 5)` for tier 1, `(5, 6)` for tier 2, `(6, 6)` for tier 3, `(5, 5)` for tier 4, and `(7, 6)` for tier 5. Those numbers are teams required and signatures required per team. `maintainers/teams.yml` is not in this repository, so `load_teams_for_nested_multisig` returns an empty list.
 
-**Important Principle**: Only **on-platform activity** related to the maintainer's role in Bitcoin Commons governance is considered for governance review. Off-platform activity (personal life, other projects, social media, etc.) is explicitly disregarded.
+**Important Principle**: `create_case` returns if `on_platform` is false. `/governance-review-case` always passes `true`. It does not classify personal life, other projects, or social media.
 
 ---
 
@@ -95,7 +95,7 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 - Nothing in `src/webhooks`, `src/main.rs`, or the tests calls `emergency_remove`.
 - `src` has no 7-day follow-up. `submit_appeal` has no caller.
 
-**Note**: Off-platform activity (personal life, other projects, social media, etc.) is **explicitly disregarded** for governance review. Only on-platform activity related to the maintainer's role in Bitcoin Commons governance is considered. If violations relate to key holder duties, they will manifest on-platform (missing funds, invalid signatures, security breaches).
+**Note**: `src` has no missing-funds string. `create_case` does not inspect a signature or a breach.
 
 ---
 
