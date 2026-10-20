@@ -67,11 +67,11 @@
 
 The governance crate does not merge a pull request into `blvm-node`, compile release binaries, or publish an announcement. A `governance/merge` status does not make code available for download.
 
-### Phase 4: User Signaling (Advisory)
+### Phase 4: Fork-detector grace period
 
-**Duration:** 90+ days (measurement period)
+**Duration:** The fork detector's default grace period is 30 days, not 90. After that interval from the last detection, `check_time_based_triggers` can execute pending forks. It is not a 90-day measurement of user signaling.
 
-**Nature:** Advisory, not mandatory. Maintainers cannot force adoption.
+**Nature:** That timer is inside the governance process. It is not an advisory window, and it does not measure Bitcoin network adoption.
 
 **Steps:**
 1. Node operators evaluate (review BIP, read audit, test in dev environments, assess risks/benefits)
