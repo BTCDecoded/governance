@@ -210,27 +210,18 @@ Governance review cases are handled through a graduated sanction system, providi
 ## Safeguards
 
 **Prevents Abuse:**
-- High threshold: 6-of-7 team + 4-of-7 teams for removal
-- Graduated sanctions: Warnings before removal
-- Transparency: All evidence and evaluation public
-- Appeal rights: 60-day appeal period, higher threshold to overturn
-- Response period: 30 days for subject to respond
-- Time limits: Cases must resolve within 180 days
-- Mediation: Conflict resolution before removal (non-security)
+- `remove_maintainer` counts a caller-supplied list against 6 and a caller-supplied team count against 4. It does not read a prior warning. The tests are the only caller.
+- `create_case` stores evidence in SQLite and sets a 30-day response deadline and a 180-day resolution deadline. The HTTP routes do not publish the row.
+- `submit_appeal` sets a 60-day deadline and has no caller. `review_appeal` compares a caller-supplied integer with 5. That is not a higher team threshold.
+- `start_mediation` has no caller. `remove_maintainer` does not call it.
 
 **What This Prevents:**
-- Personal vendettas (requires evidence, high threshold)
-- Frivolous removals (graduated sanctions, high threshold)
-- Secret removals (public documentation)
-- Retaliation (immediate removal for retaliation)
-- False reports (consequences for false reports)
-- Indefinite cases (time limits)
+- `src` has no vendetta string. `remove_maintainer` does not require evidence.
+- `confirm_retaliation` and `report_false_report` have no caller. A false-report row stores `sanction_applied` as `none`.
 
 **Protections:**
-- Whistleblower protection: Retaliation is immediate grounds for removal
-- False report consequences: False/malicious reports are grounds for warning or removal
-- Privacy: Reporters' privacy respected (unless they choose to be public)
-- Due process: Response periods, appeals, mediation
+- `report_retaliation` inserts an open row. Nothing calls it.
+- `src` has no privacy check. The case row stores `reporter_maintainer_id`.
 
 ---
 
