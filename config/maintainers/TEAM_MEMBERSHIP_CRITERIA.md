@@ -321,7 +321,7 @@ Team membership in the nested multisig structure (7 teams × 7 maintainers) foll
 ### 7.2 Audit Trail
 
 **Cryptographic Proof:**
-- All approvals signed cryptographically
+- A `pull_request_review` is stored by `handle_review_event` with the GitHub review state. That handler does not verify a signature.
 - Signatures publicly verifiable
 - The audit logger appends a local JSONL file and links each entry to the previous hash. `rotate` renames that file. The module comment says the log is tamper-evident.
 - `stamp()` writes a `MOCK_OTS_PROOF` string. `OtsConfig::default` sets `enabled: false`.
