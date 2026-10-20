@@ -149,9 +149,9 @@ Governance review cases are handled through a graduated sanction system, providi
 - `create_case_issue` returns an error and has no caller. It does not open a GitHub issue.
 
 **Protection for Reporters:**
-- Retaliation against reporters is immediate grounds for removal
-- False/malicious reports are grounds for warning or removal
-- Reporters' privacy respected (unless they choose to be public)
+- `report_retaliation` inserts a row with status `open`. `confirm_retaliation` sets `active` to false if the caller passes at least 4 ids. Nothing calls either function.
+- `report_false_report` inserts a row with `sanction_applied` set to `none`. It does not warn or remove. Nothing calls it.
+- `src` has no privacy check. The case row stores `reporter_maintainer_id`.
 
 ### On-Platform Review Process
 
