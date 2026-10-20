@@ -46,7 +46,7 @@ Users can:
 
 | Safeguards | Limitations |
 |------------|-------------|
-| Multi-signature requirements (no single maintainer control) | Cannot override Bitcoin's design (consensus immutable) |
+| `set_required_status_checks` sends `enforce_admins: false` and `required_pull_request_reviews: null`. A failed protection update still returns success. | Cannot override Bitcoin's design (consensus immutable) |
 | `stamp()` writes a `MOCK_OTS_PROOF` string. `verify_proof_format` accepts that prefix and rejects other proofs. | Cannot force coordination (no control over user upgrades) |
 | User protection (users control software, exit options available) | Cannot guarantee adoption (code quality ≠ user adoption) |
 
