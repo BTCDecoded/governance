@@ -343,17 +343,7 @@ The source has no emeritus status. `Maintainer` stores `active`. There is no `ma
 
 ### 8.2 Temporary Leave
 
-**Process:**
-- Maintainer requests temporary leave
-- Status set to "on_leave" in teams.yml
-- Key remains active but maintainer not expected to sign
-- Team can operate with reduced size temporarily
-- Maximum leave: 180 days (then must return or step down)
-
-**Approval:**
-- Requires **3-of-7 team approval**
-- Can be extended once by 90 days
-- After extension, must return or step down
+The source has no temporary-leave status. `load_teams_for_nested_multisig` returns an empty list when `maintainers/teams.yml` is missing, and the loaded maintainer record keeps `github` and `public_key`. It does not read `on_leave` or a 180-day limit.
 
 ---
 
