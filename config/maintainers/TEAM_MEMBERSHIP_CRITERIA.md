@@ -98,11 +98,9 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 - Community can comment
 
 **Step 3: Formal Warning (Optional)**
-- If concerns are minor, formal warning issued
-- Requires **4-of-7 vote from team**
-- Warning logged in `governance/warnings/` directory
-- Publicly visible
-- 90-day improvement period
+- The 4-count is `issue_private_warning`, which inserts a SQLite row and is called from tests. It does not write `governance/warnings/`.
+- `issue_public_warning` requires 5 caller-supplied ids and sets `IMPROVEMENT_PERIOD_DAYS` (90). Nothing calls it.
+- `create_warning_file` returns a filename and does not write a file. Nothing calls it. `warnings/` contains `.gitkeep` only.
 
 **Step 4: Removal Vote**
 - PR to remove from `maintainers/teams.yml`
