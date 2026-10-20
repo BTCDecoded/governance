@@ -324,7 +324,7 @@ Team membership in the nested multisig structure (7 teams × 7 maintainers) foll
 - All approvals signed cryptographically
 - Signatures publicly verifiable
 - Immutable audit log
-- OpenTimestamps for timestamping
+- `stamp()` writes a `MOCK_OTS_PROOF` string. `OtsConfig::default` sets `enabled: false`.
 
 ### 7.3 Community Oversight
 
