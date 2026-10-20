@@ -339,20 +339,7 @@ Team membership in the nested multisig structure (7 teams × 7 maintainers) foll
 
 ### 8.1 Emeritus Status
 
-**Available For:**
-- Maintainers who voluntarily step down
-- Maintainers removed for inactivity (not violations)
-- Maintainers transitioning to advisory role
-
-**Benefits:**
-- Can still review PRs (no signing authority)
-- Access to maintainer discussions
-- Recognition for past contributions
-
-**Process:**
-- Maintainer requests emeritus status
-- Requires **3-of-7 team approval**
-- Status documented in `maintainers/emeritus.yml`
+The source has no emeritus status. `Maintainer` stores `active`. There is no `maintainers/emeritus.yml`. `/governance-sign` does not check an emeritus role.
 
 ### 8.2 Temporary Leave
 
