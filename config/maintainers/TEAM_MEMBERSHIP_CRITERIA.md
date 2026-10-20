@@ -147,11 +147,8 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 ### 3.2 Team Transfer
 
 **Process:**
-- Maintainer requests transfer to different team
-- Requires **5-of-7 approval from current team** (release)
-- Requires **6-of-7 approval from new team** (acceptance)
-- Requires **4-of-7 teams to approve** (inter-team coordination)
-- Ensures smooth transition
+- `src` has no transfer path. `Maintainer` stores `layer` and `active`. It does not store a team.
+- `maintainers/teams.yml` is not in this repository.
 
 **Grounds for Transfer:**
 - Expertise better matches different team
