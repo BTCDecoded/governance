@@ -70,11 +70,11 @@ Action 3: hash3 = SHA256(action3_data + hash2)
 
 ### Merkle Trees
 
-Monthly governance registries use Merkle trees: root hash anchored to Bitcoin blockchain via OpenTimestamps, individual action proofs verifiable without full registry, tamper detection through hash mismatch, efficient synchronization.
+`anchor_registry` calls `stamp()` and then logs that the registry was anchored to Bitcoin. `OtsConfig::default` sets `enabled: false`. Without the `opentimestamps` feature, `main` does not start that task.
 
 ### Timestamping
 
-All governance actions timestamped using: OpenTimestamps for Bitcoin blockchain anchoring, multiple timestamping services for redundancy, regular anchoring (monthly) of governance state, public verification of timestamp proofs.
+`stamp()` writes a `MOCK_OTS_PROOF` string. The anchor path calls it once. It does not submit the hash to a calendar server, and it does not call a second timestamping service.
 
 ## Signature Formats
 
