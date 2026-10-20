@@ -7,7 +7,7 @@ Central source of truth for governance rules across all Bitcoin Commons reposito
 > **For verified system status**: See [SYSTEM_STATUS.md](https://github.com/BTCDecoded/.github/blob/main/SYSTEM_STATUS.md) in the BTCDecoded organization repository.
 
 **Current Status: Phase 1 (Infrastructure Building)**
-- ✅ Infrastructure Complete: All core components implemented
+- Infrastructure is not complete. `stamp()` writes a `MOCK_OTS_PROOF` string. The comment says a production implementation should post the hash to a calendar server.
 - ⚠️ Not Yet Activated: Governance rules are not enforced
 - 🔧 Test keys in `config/maintainers/layer-1-2.yml` are labeled `TEST KEY` or `PLACEHOLDER`. `/governance-sign` calls `verify_governance_signature` before `add_signature`. A failed check is not stored. That check does not change branch protection.
 - 📋 Development Phase: System is in rapid AI-assisted development
