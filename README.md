@@ -36,7 +36,7 @@ These are the tier-only numbers in `get_tier_threshold` and `get_tier_review_per
 - **Tier 2: Feature Changes** (4-of-5, 30 days) - New RPC methods, P2P changes, wallet features
 - **Tier 3: Consensus-Adjacent** (5-of-5, 90 days) - Changes affecting consensus validation
 - **Tier 4: Emergency Actions** (4-of-5, 0 days review period) - Critical security patches, network threats
-- **Tier 5: Governance Changes** (Special process, 180 days) - Changes to governance rules themselves
+- **Tier 5: Governance Changes** (`get_tier_threshold` is 5-of-5 and 180 days). `require_public_comment` and `require_rationale` are set on the rule and are not read. The webhook has no separate tier-5 path.
 
 ### Layer Hierarchy
 
