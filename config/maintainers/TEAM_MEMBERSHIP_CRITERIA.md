@@ -329,7 +329,7 @@ Team membership in the nested multisig structure (7 teams × 7 maintainers) foll
 ### 7.3 Community Oversight
 
 **Public Comment Periods:**
-- 30-day comment period for nominations
+- There is no nomination comment period in the source. `/governance-review-case` sets a 30-day response deadline on a case about an existing maintainer.
 - 30-day response period for removal concerns
 - Community can raise issues
 - Journalists can report on patterns
