@@ -87,9 +87,8 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 ### 2.3 Emergency Removal
 
 **Grounds:**
-- Key compromise (immediate security risk)
-- Gross violations **on-platform** (immediate security threat, active attack, ongoing fraud)
-- Network-threatening actions
+- `emergency_remove` stores the caller-supplied `reason` and writes `security_violation`. It does not classify key compromise, fraud, or a network threat.
+- `src` has no fraud string and no network-threat string. `ServerStatus::Compromised` is a server record.
 
 **Process:**
 - `emergency_remove` returns unless the caller passes at least 4 ids. It does not check that those ids are emergency keyholders, and it does not check a set of 5.
