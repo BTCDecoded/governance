@@ -8,8 +8,8 @@ The written design uses signatures on governance actions. That enforcement is no
 
 1. **Signatures**: The design asks for a signature on a governance action. The app does not require one before a merge.
 2. **Multisig Security**: Multiple maintainers must sign critical actions
-3. **Transparency**: All signatures and actions are publicly verifiable
-4. **Tamper Evidence**: Any attempt to modify governance state is detectable
+3. **Audit log**: A local hash-chained log can be written and checked. It is not a public copy of every action.
+4. **Tamper evidence**: Changing that log breaks the hash chain when someone verifies it. That check does not see every change to repository state.
 5. **Key Rotation**: Regular key rotation prevents long-term compromise
 
 ## Signature Schemes
