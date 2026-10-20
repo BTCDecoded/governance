@@ -177,16 +177,12 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 ### 4.2 Key Rotation
 
 **Scheduled Rotation:**
-- Every 2 years (recommended)
-- PR updating public key in `maintainers/teams.yml`
-- Requires **3-of-7 approval from team**
-- Governance app updates to use new key
+- `KeyType::Maintainer` expires after 180 days, not 2 years. `KeyType::Emergency` expires after 90 days.
+- `rotate_key` takes a key id and an optional owner. It does not take a team-approval count. `src` has no 3-of-7 count.
+- `maintainers/teams.yml` is not in this repository. `rotate_key` runs only from the `key_manager` binary. A maintainer key update writes the new public key into `maintainers`.
 
 **Emergency Rotation:**
-- If key compromise suspected
-- Immediate rotation via emergency keyholders
-- Requires **4-of-5 emergency keyholders**
-- New key must be verified before activation
+- `rotate_key` does not check emergency keyholders. `emergency_remove` counts caller-supplied ids and has no caller. It does not rotate a key.
 
 ### 4.3 Key Loss
 
