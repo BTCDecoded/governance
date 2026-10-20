@@ -245,22 +245,10 @@ Governance review cases are handled through a graduated sanction system, providi
 
 ## Rehabilitation
 
-**Reapplication Process:**
-- Removed maintainers may reapply after 2 years
-- Must demonstrate change and improvement
-- Requires 6-of-7 team approval + 4-of-7 teams approval
-- Same process as new maintainer (probation, etc.)
+`src` has no rehabilitation string and no reapplication path.
 
-**Conditions:**
-- Must address original violations
-- Must demonstrate understanding of what went wrong
-- Must show evidence of change
-- Must meet all normal maintainer requirements
-
-**Not Eligible:**
-- Removed for security issues (key compromise, active attack)
-- Removed for ongoing fraud or theft
-- Removed for malicious code submission
+- `review_appeal` sets `active` to true when the caller passes `granted`. Nothing calls it. It does not wait 2 years, and it does not count a 6-of-7 team.
+- `sign-pr` prints an `INSERT INTO maintainers` statement. It does not check a prior removal reason. `src` has no probation field.
 
 ---
 
