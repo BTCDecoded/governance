@@ -15,7 +15,7 @@
 2. Community discussion (GitHub Discussion in blvm-spec repo, present solution, engage feedback)
 3. Write BIP specification (draft BIP, include motivation/specification/rationale, submit to bitcoin-dev)
 4. Create test vectors (comprehensive test cases, edge cases, reference implementations)
-5. Write equivalence proof (prove mathematical correctness for blvm-consensus layer)
+5. An equivalence proof is not a merge check. `verify_behavioral_equivalence` returns success when `expected_result` is non-empty, and the comment says the check is simulated. It does not prove mathematical correctness.
 6. Security audit planning (identify auditors, define scope, budget, timeline, disclosure plan)
 
 ### Phase 2: Pull Request (Repository Approval)
