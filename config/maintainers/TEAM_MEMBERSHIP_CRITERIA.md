@@ -46,23 +46,7 @@ Team membership is not a 7-by-7 roster. `get_tier_requirements` returns `(4, 5)`
 
 ### 1.3 Approval Process
 
-**Team-Level Approval:**
-- PR to `maintainers/teams.yml` adding new maintainer
-- Requires **6-of-7 approval from the candidate's proposed team**
-- Each team member reviews and signs the PR
-- Team consensus required (86% of team)
-
-**Inter-Team Approval:**
-- After team approval, requires **4-of-7 teams to approve** (for team assignment)
-- Ensures cross-team coordination
-- Prevents single-team capture
-
-**Final Approval:**
-- Once both team and inter-team approval met:
-  - PR merges
-  - Governance app reloads configuration
-  - New maintainer activated
-  - Can now sign PRs
+There is no team-approval step for a new maintainer. `maintainers/teams.yml` is not in this repository. `sign-pr` prints an `INSERT INTO maintainers` statement. The 6 and 4 counts are `REMOVAL_TEAM_THRESHOLD` and `REMOVAL_TEAMS_THRESHOLD`. `ConfigCache::reload` has no caller.
 
 ### 1.4 Approval Criteria
 
