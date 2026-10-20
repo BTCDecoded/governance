@@ -77,13 +77,10 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 
 **Grounds for Removal:**
 1. **Inactivity**: The source has no inactivity check. `remove_maintainer` does not read participation. The 0.20 figure is `mining_pool_weight_cap` in the Growth phase. `RESOLUTION_DEADLINE_DAYS` is 180 for a review case, not a participation window.
-2. **Incompetence**: Repeated technical errors in reviews
-3. **Code of Conduct Violation**: Violation of code of conduct **on-platform** (only on-platform activity considered)
-   - Off-platform activity is disregarded
-   - Only violations related to maintainer role and governance activities
-   - Examples: Abuse in PR reviews, harassment in governance discussions, malicious code submissions
-4. **Conflicts of Interest**: Undisclosed conflicts affecting judgment
-5. **Security Concerns**: Key compromise or security violations
+2. **Incompetence**: `technical_errors` is a `CASE_TYPES` name. `remove_maintainer` does not read the case type and does not count review errors.
+3. **Code of Conduct Violation**: `src` has no code-of-conduct string. `abuse`, `harassment`, and `malicious_code` are case-type names. `create_case` returns if `on_platform` is false. `remove_maintainer` does not read that flag.
+4. **Conflicts of Interest**: `conflict_of_interest` is a `CASE_TYPES` name. `remove_maintainer` does not read it.
+5. **Security Concerns**: `emergency_remove` writes `security_violation` into a case row. Nothing in `src` calls it. `ServerStatus::Compromised` is a server record, not a maintainer key.
 
 **Process:**
 
