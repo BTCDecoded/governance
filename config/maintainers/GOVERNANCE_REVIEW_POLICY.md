@@ -264,23 +264,14 @@ Governance review cases are handled through a graduated sanction system, providi
 ## Rationale
 
 **Why Disregard Off-Platform Activity:**
-1. Focus on governance performance, not personal life
-2. Prevent abuse (no pretext for removal)
-3. Align with Bitcoin principles (code, not identity)
-4. Practical (often unverifiable or irrelevant)
-5. Fairness (judged on work, not personal life)
+- `create_case` returns if `on_platform` is false. `/governance-review-case` always passes `true`. It does not classify personal life.
 
 **Why Graduated Sanctions:**
-- Provides opportunities for correction
-- More fair than immediate removal
-- Allows for learning and improvement
-- Matches governance-app-spec graduated sanctions
+- `remove_maintainer` does not read a prior warning. `issue_public_warning` has no caller.
+- `docs/governance-app-spec.md` has no graduated-sanctions string.
 
 **Why Protections:**
-- Encourages reporting of violations
-- Prevents retaliation
-- Prevents false reports
-- Ensures due process
+- `report_retaliation`, `confirm_retaliation`, and `report_false_report` have no caller.
 
 ---
 
