@@ -206,9 +206,8 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 - Prevents single-perspective dominance
 
 **Employment Diversity:**
-- No single organization > 40% of team
-- Mix of independent contributors and organizational employees
-- Prevents organizational capture
+- `Maintainer` has no organization field. `src` has no 40% team-employment check.
+- The 40.0 defaults elsewhere are `ForkThresholds::minimum_economic_activity_percentage` and a test merge percentage. They do not count employers on a team.
 
 **Timezone Coverage:**
 - Teams should span multiple timezones
