@@ -198,9 +198,8 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 ### 5.1 Diversity Requirements
 
 **Geographic Distribution:**
-- No single jurisdiction > 30% of team
-- Minimum 3 jurisdictions represented per team
-- Multi-jurisdictional key ceremonies
+- `Maintainer` has no jurisdiction field. `src` has no 30% team cap and no key-ceremony path.
+- `operator.jurisdiction` is a non-empty string on a server record. The check rejects an empty string. It does not count jurisdictions on a team.
 
 **Role Diversity:**
 - Different expertise areas within team
