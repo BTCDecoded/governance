@@ -141,7 +141,7 @@
 | What if users want a change maintainers reject? | Users can fork BTCDecoded, use alternative implementations, or coordinate UASF. |
 | Why does the prose say 365 days for consensus changes? | `get_review_period_for_layer` returns 180 for layers 1 and 2. The only 365 in `blvm-commons` is a key lifetime. |
 | Can emergency mode bypass the coded review? | The webhook passes `emergency_mode: false`. If that flag is true, `get_review_period_for_layer` returns 30 for every layer, including 1 and 2. |
-| What about emergency bug fixes in consensus code? | Critical bugs use emergency tiers (0-30 days) but still require multi-signature approval. These restore *intended* consensus rules, not change them. |
+| What about emergency bug fixes in consensus code? | The schedule in `src/validation/emergency.rs` is Critical 0 days and 4-of-7, Urgent 7 days and 5-of-7, Elevated 30 days and 6-of-7. Production source does not call that module. The callers are tests. The merge webhook passes `emergency_mode: false`. |
 | How is this different from Bitcoin Core? | Bitcoin Core's CONTRIBUTING.md names repository maintainers who merge pull requests, run the release cycle in `doc/release-process.md`, and moderate. It also says there is no privileged class of Bitcoin Core developers. BTCDecoded writes multisig counts and posts a `governance/merge` status. That status does not stop a merge, and admin enforcement is left off. |
 
 ## Best Practices
