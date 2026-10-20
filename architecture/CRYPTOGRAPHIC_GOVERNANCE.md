@@ -7,7 +7,7 @@ The written design uses signatures on governance actions. That enforcement is no
 ## Core Principles
 
 1. **Signatures**: The design asks for a signature on a governance action. The app does not require one before a merge.
-2. **Multisig Security**: Multiple maintainers must sign critical actions
+2. **Multisig count**: The app can post a failing `governance/merge` status when the stored signature count is below the written threshold. That status does not by itself stop a merge.
 3. **Audit log**: A local hash-chained log can be written and checked. It is not a public copy of every action.
 4. **Tamper evidence**: Changing that log breaks the hash chain when someone verifies it. That check does not see every change to repository state.
 5. **Key rotation**: `key_manager rotate` can replace one stored key. The process does not rotate keys on a schedule. The timer in `main.rs` rotates the audit log file.
