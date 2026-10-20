@@ -26,7 +26,7 @@ This repository defines:
 
 ## Constitutional Governance Model
 
-Bitcoin Commons implements a **5-tier constitutional governance system** with complete transparency through cryptographic audit trails and user-protective mechanisms. That system operates under the [Bitcoin Commons Compact](COMPACT.md).
+Bitcoin Commons implements a **5-tier constitutional governance system** with user-protective mechanisms. `stamp()` writes a `MOCK_OTS_PROOF` string. `verify_proof_format` accepts that prefix and rejects other proofs. That system operates under the [Bitcoin Commons Compact](COMPACT.md).
 
 ### Action Tiers
 
