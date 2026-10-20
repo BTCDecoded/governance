@@ -285,20 +285,8 @@ Governance review cases are handled through a graduated sanction system, providi
 
 ### Invalid Off-Platform (Disregarded)
 
-**Example 1: Social Media Post**
-- Maintainer posts controversial opinion on Twitter
-- Criticizes another Bitcoin project
-- **Action**: NOT grounds for any sanction (off-platform, disregarded)
-
-**Example 2: Other Project Work**
-- Maintainer works on competing Bitcoin implementation
-- Contributes to other open source projects
-- **Action**: NOT grounds for any sanction (off-platform, disregarded)
-
-**Example 3: Personal Legal Issue**
-- Maintainer has personal legal dispute unrelated to Bitcoin Commons
-- Personal financial issues
-- **Action**: NOT grounds for any sanction (off-platform, disregarded)
+- `create_case` returns if `on_platform` is false. `/governance-review-case` always passes `true`.
+- `src` has no Twitter string, no social-media string, and no legal-dispute string. It does not classify those posts.
 
 ### False Reports and Retaliation
 
