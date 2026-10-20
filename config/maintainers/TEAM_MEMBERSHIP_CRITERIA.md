@@ -168,10 +168,8 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 - BIP32 HD wallet derivation
 
 **Key Distribution:**
-- No single jurisdiction holds majority
-- No single organization holds majority
-- Keys held by individuals, not companies
-- Geographic diversity enforced
+- `KeyMetadata` stores `owner` as a string. It has no jurisdiction field and no organization field.
+- `src` has no majority check and no geographic-diversity check.
 
 ### 4.2 Key Rotation
 
