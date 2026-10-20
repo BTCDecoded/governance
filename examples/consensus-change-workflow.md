@@ -138,7 +138,7 @@
 |----------|--------|
 | Can maintainers force a consensus change? | No. The app posts a `governance/merge` commit status. That status does not stop a merge. Branch-protection updates set `enforce_admins` to false, and a failed update still returns success. Maintainers do not control network adoption. |
 | What if maintainers approve a change users reject? | A stored signature row does not put the change into the repository. The app posts a status. It does not merge the pull request. A merge, if someone with GitHub write access makes one, is still not network activation. |
-| What if users want a change maintainers reject? | Users can fork BTCDecoded, use alternative implementations, or coordinate UASF. |
+| What if users want a change maintainers reject? | A public GitHub fork of these repositories is a GitHub feature, not a governance action. `ForkExecutor` switches a governance ruleset when its own adoption counters pass thresholds, and `execute_fork` is private. There is no user-activated soft fork coordinator in this tree. |
 | Why does the prose say 365 days for consensus changes? | `get_review_period_for_layer` returns 180 for layers 1 and 2. The only 365 in `blvm-commons` is a key lifetime. |
 | Can emergency mode bypass the coded review? | The webhook passes `emergency_mode: false`. If that flag is true, `get_review_period_for_layer` returns 30 for every layer, including 1 and 2. |
 | What about emergency bug fixes in consensus code? | The schedule in `src/validation/emergency.rs` is Critical 0 days and 4-of-7, Urgent 7 days and 5-of-7, Elevated 30 days and 6-of-7. Production source does not call that module. The callers are tests. The merge webhook passes `emergency_mode: false`. |
