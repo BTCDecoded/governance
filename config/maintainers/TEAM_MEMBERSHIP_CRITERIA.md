@@ -355,7 +355,7 @@ The source has no temporary-leave status. `load_teams_for_nested_multisig` retur
 - Verifies team approval thresholds
 - Tracks probation periods
 - Monitors participation levels
-- Enforces key rotation schedules
+- Does not enforce a key-rotation schedule. `auto_rotation` is never read, `key_manager` starts with an empty `rotation_policies` list, and `rotate_key` runs only from that binary. The timer in `src/main.rs` rotates the audit log file.
 
 **Manual Override:**
 - Emergency situations
