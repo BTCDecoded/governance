@@ -164,8 +164,8 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 **Cryptographic Standards:**
 - secp256k1 signature scheme (Bitcoin-compatible)
 - 256-bit private keys
-- Hardware security module (HSM) support for production
-- BIP32 HD wallet derivation
+- `hsm_enabled` is a field on `KeyManagementConfig`. `key_manager` sets it to false. Nothing in `src` reads it.
+- `generate_keypair` calls `GovernanceKeypair::generate`, which fills 32 random bytes. `src` does not call BIP32 derivation.
 
 **Key Distribution:**
 - `KeyMetadata` stores `owner` as a string. It has no jurisdiction field and no organization field.
