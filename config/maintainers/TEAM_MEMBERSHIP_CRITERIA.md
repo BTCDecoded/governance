@@ -372,7 +372,7 @@ The source has no temporary-leave status. `load_teams_for_nested_multisig` retur
 **Changes Require:**
 - PR to governance repository
 - Appropriate approval thresholds
-- Governance app reloads after merge
+- The app does not reload after merge. `handle_pr_merged` calls `publish_merge_action`. `ConfigCache::reload` has no caller, and `ConfigCache` is never constructed outside `src/config/loader.rs`.
 
 ---
 
