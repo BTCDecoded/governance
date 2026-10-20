@@ -76,7 +76,7 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 ### 2.2 Performance-Based Removal
 
 **Grounds for Removal:**
-1. **Inactivity**: < 20% participation over 180 days
+1. **Inactivity**: The source has no inactivity check. `remove_maintainer` does not read participation. The 0.20 figure is `mining_pool_weight_cap` in the Growth phase. `RESOLUTION_DEADLINE_DAYS` is 180 for a review case, not a participation window.
 2. **Incompetence**: Repeated technical errors in reviews
 3. **Code of Conduct Violation**: Violation of code of conduct **on-platform** (only on-platform activity considered)
    - Off-platform activity is disregarded
