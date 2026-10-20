@@ -290,15 +290,8 @@ Governance review cases are handled through a graduated sanction system, providi
 
 ### False Reports and Retaliation
 
-**Example 1: False Report**
-- Maintainer makes false report to harass another maintainer
-- Evidence shows report was knowingly false
-- **Action**: Level 2 (public warning) or Level 3 (removal) for false reporter
-
-**Example 2: Retaliation**
-- Maintainer reports a governance review case
-- Subject maintainer retaliates by excluding reporter from discussions
-- **Action**: Level 3 (removal) for subject maintainer (immediate grounds)
+- `report_false_report` inserts a row with `sanction_applied` set to `none`. It does not issue a warning or remove a maintainer. Nothing calls it.
+- `report_retaliation` inserts a row with status `open`. `confirm_retaliation` sets `active` to false if the caller passes at least 4 ids. Nothing calls either function.
 
 ---
 
