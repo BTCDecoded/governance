@@ -113,10 +113,9 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 - The unused `review_appeal` compares a caller-supplied integer with `APPEAL_OVERTURN_THRESHOLD` (5). It does not count teams.
 
 **Step 6: Final Removal**
-- After appeal period (or if appeal denied)
-- PR merges
-- Governance app deactivates key
-- Maintainer removed from team
+- `handle_pr_merged` does not set `active` to false.
+- `remove_maintainer` sets `active` to false and is called from tests.
+- `deactivate_maintainer` is called only from `emergency_remove` in the same file.
 
 ### 2.3 Emergency Removal
 
