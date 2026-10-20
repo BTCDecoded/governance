@@ -74,8 +74,8 @@ The governance crate does not merge a pull request into `blvm-node`, compile rel
 **Nature:** That timer is inside the governance process. It is not an advisory window, and it does not measure Bitcoin network adoption.
 
 **Steps:**
-1. Node operators evaluate (review BIP, read audit, test in dev environments, assess risks/benefits)
-2. Voluntary upgrade (operators choose independently, economic incentives influence choice)
+1. This phase does not ask node operators to read an audit. The merge path does not read one.
+2. `track_adoption` stores a caller-supplied `weight`. It does not read an economic incentive.
 3. Stored adoption weights, not BIP9 signaling
    - `calculate_adoption_metrics` divides weights in the `fork_decisions` table by the sum of weights in that same table. A row with `node_type` `mining_pool` is counted as the hashpower weight.
    - Default `ForkThresholds` are 50% adoption weight, 10 nodes, 30% mining-pool weight, and 40% other weight. They are not 75% of nodes or 90% of network hash power.
