@@ -35,10 +35,10 @@
    - Link to BIP, tests, proof, audit
 
 2. **Governance App Validation**
-   - Detects consensus rule change: ```blvm-commons/src/validation/tier_classification.rs:classify_tier()```
+   - Tier number: ```blvm-commons/src/validation/tier_classification.rs:classify_pr_tier()```. A database override can replace that tier. There is no `classify_tier` function.
    - Review period used: ```blvm-commons/src/validation/threshold.rs:get_review_period_for_layer()``` returns 180 for layers 1 and 2, not 365
-   - Requires 6-of-7 threshold: ```blvm-commons/src/validation/threshold.rs:get_threshold_for_layer()```
-   - Checks required artifacts: ```blvm-commons/src/validation/security_controls.rs:check_required_artifacts()```
+   - Layer threshold: ```blvm-commons/src/validation/threshold.rs:get_threshold_for_layer()``` returns 6-of-7 for layers 1 and 2
+   - There is no `check_required_artifacts`. `security_controls.rs` maps changed files to configured controls. The `security-gate` binary can call `analyze_security_impact`. The merge webhook does not.
 
 3. **Technical Review** (Ongoing)
    - Maintainers review code quality, test coverage, specification adherence, security implications, equivalence proof
