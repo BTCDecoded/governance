@@ -28,11 +28,10 @@ Team membership in the nested multisig structure (7 teams × 7 maintainers) foll
 
 ### 1.2 Probation Period
 
-**Duration**: 90 days
+**Duration**: The source has no probation period. `/governance-sign` verifies a signature for a registered maintainer. It does not check a 90-day probation flag.
 
 **Requirements During Probation:**
-- Can review and comment on PRs
-- Cannot sign PRs (not yet a maintainer)
+- A registered maintainer is not blocked from signing for 90 days.
 - Must demonstrate:
   - Technical competence through code reviews
   - Understanding of governance process
