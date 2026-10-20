@@ -14,7 +14,7 @@ BTCDecoded governance operates on two levels: **Repository Governance** (a `gove
 | `RemovalManager::remove_maintainer` sets `maintainers.active` false in SQLite when the caller supplies enough approval ids. Production code does not call it, and it does not change GitHub membership. There is no selection function. | Miner signaling and hash power |
 | `required_pull_request_reviews` is null. `check_signatures` counts stored signature rows and posts a status. | Which software users choose to run |
 | The webhook posts a review-period status from `get_combined_requirements`. `check_review_period` passes `emergency_mode: false`, so the 30-day emergency reduction in `validate_review_period` is not used. | Node operator configuration choices |
-| Technical standards (code style, testing, security) | Economic decisions and market behavior |
+| The pull-request webhook does not call `check_verification_status` or `security-gate`. `check_verification_status` looks for the GitHub check names `Unit & Property Tests` and `Clippy Linting` when another caller reaches it. | Economic decisions and market behavior |
 
 ## Protocol Governance (Advisory)
 
