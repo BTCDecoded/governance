@@ -126,12 +126,9 @@ Governance review cases are handled through a graduated sanction system, providi
 **Trigger:** Serious violations, failure to correct after warnings, or immediate security threat.
 
 **Process:**
-1. Issue created with evidence
-2. Team members review (6-of-7 excluding subject + 4-of-7 teams)
-3. Subject has 30 days to respond
-4. Evaluation against criteria
-5. Removal if warranted
-6. All documentation public
+- `remove_maintainer` counts a caller-supplied list against `REMOVAL_TEAM_THRESHOLD` (6) and a caller-supplied team count against `REMOVAL_TEAMS_THRESHOLD` (4). It does not exclude the subject. The tests are the only caller.
+- It does not read `RESPONSE_DEADLINE_DAYS`. It does not open a GitHub issue.
+- It sets `active` to false. The HTTP routes do not publish that row.
 
 **Consequence:** Removal from team, key deactivated.
 
