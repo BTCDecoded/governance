@@ -141,15 +141,12 @@ Governance review cases are handled through a graduated sanction system, providi
 ### Reporting Governance Review Cases
 
 **Who Can Report:**
-- Any maintainer
-- Any contributor (via maintainer)
-- Community members (via maintainer)
+- `/governance-review-case` returns an error unless the commenter is a registered maintainer. The subject must also be a registered maintainer.
+- `src` has no contributor-report path and no community-report path.
 
 **How to Report:**
-1. Create GitHub issue in governance repository
-2. Document the violation with evidence
-3. Include links, screenshots, or other proof
-4. Maintainer reviews and processes
+- The command calls `create_case`, which inserts a SQLite row. The handler returns JSON.
+- `create_case_issue` returns an error and has no caller. It does not open a GitHub issue.
 
 **Protection for Reporters:**
 - Retaliation against reporters is immediate grounds for removal
