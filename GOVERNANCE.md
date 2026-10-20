@@ -244,14 +244,14 @@ See `SCOPE.md` for detailed explanation of repository vs. protocol governance.
 
 ### Technical Prerequisites for Consensus Changes
 
-BTCDecoded implements **mathematical verification** of consensus code to prevent capture and ensure correctness. This creates an objective, non-negotiable technical barrier that complements social governance.
+BTCDecoded checks annotated consensus functions with Z3 in CI. That job can be skipped, and it is not a proof of every consensus path.
 
 #### Verification Stack
 
-1. **blvm-spec-lock Formal Verification** (required)
-   - Z3-based verification of `#[spec_locked]` functions
-   - Proves mathematical invariants against Orange Paper specifications
-   - Cannot be bypassed or overridden
+1. **blvm-spec-lock** (CI verify job)
+   - Z3 on `#[spec_locked]` functions against Orange Paper sections
+   - Three functions are mutation-validated. The other anchors are not formally verified by that gate
+   - A commit message containing `[skip ci]` or `[skip_verify]`, or a workflow dispatch with `skip_tests`, skips the job
 
 2. **Property-Based Testing** (required)
    - Randomized testing with `proptest`
@@ -265,11 +265,9 @@ BTCDecoded implements **mathematical verification** of consensus code to prevent
 
 #### Enforcement Levels
 
-**Level 1: CI Enforcement (Ostrom #4: Monitoring)**
-- Automated verification runs on every PR
-- Blocks merge if verification fails
-- No human override possible
-- Technical correctness is non-negotiable
+**Level 1: CI**
+- Tests and the verify job run on pull requests unless a commit message skips them
+- A failing job does not by itself block a merge. Merge enforcement is off
 
 **Level 2: Governance App (Ostrom #5: Graduated Sanctions)**
 - Validates verification passed before allowing signatures
