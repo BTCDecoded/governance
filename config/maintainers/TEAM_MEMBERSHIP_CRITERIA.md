@@ -191,11 +191,9 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 ### 4.3 Key Loss
 
 **Process:**
-- Maintainer reports key loss immediately
-- Key deactivated via emergency process
-- New key generated and verified
-- Requires **5-of-7 team approval** for new key activation
-- Social recovery available (high threshold)
+- `src` has no key-loss path and no social-recovery path.
+- `key_manager` can `Generate`, `Rotate`, or `Revoke` a key. Those commands do not take a team-approval count.
+- The 5-counts in source are `PUBLIC_WARNING_THRESHOLD` and `APPEAL_OVERTURN_THRESHOLD`. `emergency_remove` has no caller.
 
 ---
 
