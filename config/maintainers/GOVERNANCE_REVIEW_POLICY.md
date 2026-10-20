@@ -254,11 +254,10 @@ Governance review cases are handled through a graduated sanction system, providi
 
 ## Relationship to Code of Conduct
 
-**Code of Conduct:** Governs on-platform behavior in all Bitcoin Commons repositories, GitHub issues/PRs, governance meetings, and maintainer interactions.
+`src` has no code-of-conduct string. This repository has no code-of-conduct file.
 
-**This Policy:** Defines what activity is considered for governance review, graduated sanctions, and procedures.
-
-**Separate but Complementary:** Code of conduct violations are handled through this policy's graduated sanctions. Both apply to on-platform activity.
+- `gross_misconduct` is a `SEVERITY_LEVELS` name. `/governance-review-case` stores the caller-supplied severity. It does not read a code of conduct.
+- `issue_private_warning` is called from tests. The review-case command does not call `issue_public_warning` or `remove_maintainer`.
 
 ---
 
