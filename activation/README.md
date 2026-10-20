@@ -12,7 +12,7 @@ This directory contains documentation about the activation process for the BTCDe
 The BTCDecoded governance system is being activated in phases:
 
 1. **Phase 1 (Current)**: Infrastructure Building
-   - All core components implemented
+   - `stamp()` writes a `MOCK_OTS_PROOF` string. The comment says a production implementation should post the hash to a calendar server.
    - Test keys only
    - Not yet enforced
 
