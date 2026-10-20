@@ -322,7 +322,7 @@ Team membership in the nested multisig structure (7 teams × 7 maintainers) foll
 
 **Cryptographic Proof:**
 - A `pull_request_review` is stored by `handle_review_event` with the GitHub review state. That handler does not verify a signature.
-- Signatures publicly verifiable
+- The webhook verifies a signature with the public key stored for that maintainer. The HTTP routes do not publish that key or a verification result. `sign-pr verify` checks a signature only when the caller passes a local public-key file.
 - The audit logger appends a local JSONL file and links each entry to the previous hash. `rotate` renames that file. The module comment says the log is tamper-evident.
 - `stamp()` writes a `MOCK_OTS_PROOF` string. `OtsConfig::default` sets `enabled: false`.
 
