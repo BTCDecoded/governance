@@ -385,5 +385,5 @@ Team membership follows a rigorous but fair process:
 **Transparency**: A verified `/governance-sign` stores a row in `governance_events`. The HTTP routes do not publish that row. The audit log default path is `/var/lib/governance/audit-log.jsonl`. `NostrConfig::default` and `config/app.toml` set Nostr `enabled` to false.
 **Accountability**: Clear criteria and processes for all decisions
 
-The nested multisig structure ensures that team membership decisions require broad consensus, preventing capture while maintaining flexibility for legitimate changes.
+The nested multisig verifier does not decide team membership. `verify_nested_multisig` is reached only from `verify_multisig_threshold`, which the tests call. `maintainers/teams.yml` is absent, so `load_teams_for_nested_multisig` returns an empty list.
 
