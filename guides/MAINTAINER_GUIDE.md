@@ -5,7 +5,7 @@
 **This system is currently UNRELEASED and UNTESTED in production.**
 - ✅ Infrastructure Complete: All core components implemented
 - ⚠️ Not Yet Activated: Governance rules are not enforced
-- 🔧 Test Keys Only: No real cryptographic enforcement
+- 🔧 Test keys in `config/maintainers/layer-1-2.yml` are labeled `TEST KEY` or `PLACEHOLDER`. `/governance-sign` calls `verify_governance_signature` before `add_signature`. A failed check is not stored. That check does not change branch protection.
 
 ## Key Management
 
