@@ -269,10 +269,10 @@ BTCDecoded checks annotated consensus functions with Z3 in CI. That job can be s
 - Tests and the verify job run on pull requests unless a commit message skips them
 - A failing job does not by itself block a merge. Merge enforcement is off
 
-**Level 2: Governance App (Ostrom #5: Graduated Sanctions)**
-- Validates verification passed before allowing signatures
-- PRs without passing verification cannot progress
-- Prevents maintainers from signing unverified code
+**Level 2: Governance App**
+- `sign-pr` signs a message. It does not look at CI.
+- A `/governance-sign` comment is stored when the signature matches a registered maintainer. A missing GitHub review is logged and does not block.
+- `check_verification_status` can be posted as a status from `cross_layer_status`. It is not called before a signature is stored.
 
 **Level 3: Meta-Governance (Ostrom #3: Collective Choice)**
 - Verification requirements set by maintainers collectively
