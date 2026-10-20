@@ -104,11 +104,8 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 ### 3.1 Team Selection
 
 **Factors Considered:**
-1. **Expertise Match**: Candidate's skills align with team's focus
-2. **Team Balance**: Maintains diversity within team
-3. **Workload**: Team not already at capacity
-4. **Geographic Distribution**: Maintains multi-jurisdictional balance
-5. **Timezone Coverage**: Enables responsive reviews
+- `Maintainer` stores `layer` and `active`. It has no team, expertise, jurisdiction, or timezone field.
+- `src` has no workload check and no capacity check.
 
 ### 3.2 Team Transfer
 
@@ -117,10 +114,7 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 - `maintainers/teams.yml` is not in this repository.
 
 **Grounds for Transfer:**
-- Expertise better matches different team
-- Team workload rebalancing
-- Personal preference (with justification)
-- Team composition needs
+- `src` has no transfer path, so it does not match expertise, rebalance a workload, or record a preference.
 
 ---
 
