@@ -9,7 +9,7 @@ Central source of truth for governance rules across all Bitcoin Commons reposito
 **Current Status: Phase 1 (Infrastructure Building)**
 - ✅ Infrastructure Complete: All core components implemented
 - ⚠️ Not Yet Activated: Governance rules are not enforced
-- 🔧 Test Keys Only: No real cryptographic enforcement
+- 🔧 Test keys in `config/maintainers/layer-1-2.yml` are labeled `TEST KEY` or `PLACEHOLDER`. `/governance-sign` calls `verify_governance_signature` before `add_signature`. A failed check is not stored. That check does not change branch protection.
 - 📋 Development Phase: System is in rapid AI-assisted development
 
 **Timeline:** Phase 2 Activation: Governance enforcement begins | Phase 3 Full Operation: Mature, stable system
