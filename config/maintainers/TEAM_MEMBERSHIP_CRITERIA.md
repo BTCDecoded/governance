@@ -260,7 +260,7 @@ These rows are not separate votes in the source.
 
 **Public Comment Periods:**
 - There is no nomination comment period in the source. `/governance-review-case` sets a 30-day response deadline on a case about an existing maintainer.
-- 30-day response period for removal concerns
+- A removal does not start a 30-day response. `CASE_TYPES` has no removal type. `remove_maintainer` does not read `RESPONSE_DEADLINE_DAYS`.
 - Community can raise issues
 - Journalists can report on patterns
 
