@@ -136,7 +136,7 @@
 
 | Question | Answer |
 |----------|--------|
-| Can maintainers force a consensus change? | No. Maintainers control repository merge access, not network adoption. |
+| Can maintainers force a consensus change? | No. The app posts a `governance/merge` commit status. That status does not stop a merge. Branch-protection updates set `enforce_admins` to false, and a failed update still returns success. Maintainers do not control network adoption. |
 | What if maintainers approve a change users reject? | Change enters BTCDecoded code but doesn't activate on network. Unused code. |
 | What if users want a change maintainers reject? | Users can fork BTCDecoded, use alternative implementations, or coordinate UASF. |
 | Why does the prose say 365 days for consensus changes? | `get_review_period_for_layer` returns 180 for layers 1 and 2. The only 365 in `blvm-commons` is a key lifetime. |
