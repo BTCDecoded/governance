@@ -201,9 +201,8 @@ The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 
 - `operator.jurisdiction` is a non-empty string on a server record. The check rejects an empty string. It does not count jurisdictions on a team.
 
 **Role Diversity:**
-- Different expertise areas within team
-- Core developers, security researchers, protocol designers
-- Prevents single-perspective dominance
+- `Maintainer` has no role field. `src` has no expertise check.
+- `src` has no security-researcher string and no protocol-designer string.
 
 **Employment Diversity:**
 - `Maintainer` has no organization field. `src` has no 40% team-employment check.
