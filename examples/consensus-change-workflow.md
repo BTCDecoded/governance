@@ -41,7 +41,7 @@
    - There is no `check_required_artifacts`. `security_controls.rs` maps changed files to configured controls. The `security-gate` binary can call `analyze_security_impact`. The merge webhook does not.
 
 3. **Technical Review** (Ongoing)
-   - Maintainers review code quality, test coverage, specification adherence, security implications, equivalence proof
+   - Maintainers may read the diff. There is no equivalence proof to review. `verify_behavioral_equivalence` returns success when `expected_result` is non-empty, and the comment says the check is simulated.
 
 4. **Community Review** (Public)
    - Open to all developers and users, GitHub PR comments, mailing list discussion, independent implementations encouraged
