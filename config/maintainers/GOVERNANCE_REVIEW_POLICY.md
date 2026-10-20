@@ -106,7 +106,7 @@ Governance review cases are handled through a graduated sanction system, providi
 
 **Consequence:** Private warning, opportunity to correct behavior.
 
-**Appeal:** Subject can appeal to team (requires 5-of-7 to overturn).
+**Appeal:** `review_appeal` compares a caller-supplied integer with `APPEAL_OVERTURN_THRESHOLD` (5). It does not count a team of 7. Nothing calls it.
 
 ### Level 2: Public Warning
 
@@ -119,7 +119,7 @@ Governance review cases are handled through a graduated sanction system, providi
 
 **Consequence:** Public warning, 90-day improvement period, potential restrictions.
 
-**Appeal:** Subject can appeal (requires 6-of-7 team to overturn).
+**Appeal:** The overturn count is 5, not 6-of-7. `review_appeal` has no caller.
 
 ### Level 3: Removal
 
@@ -132,7 +132,7 @@ Governance review cases are handled through a graduated sanction system, providi
 
 **Consequence:** Removal from team, key deactivated.
 
-**Appeal:** 60-day appeal period, requires 5-of-7 teams to overturn.
+**Appeal:** `submit_appeal` sets the deadline to the earlier of 60 days from submission and the case resolution deadline. Nothing calls it. `review_appeal` does not count teams.
 
 ---
 
