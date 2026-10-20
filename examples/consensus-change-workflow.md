@@ -2,7 +2,7 @@
 
 ## Overview
 
-**Critical Distinction:** This workflow governs **repository approval** (what enters BTCDecoded code), not **network adoption** (what Bitcoin runs). Maintainers approve code for release. Users decide whether to run it.
+**Critical distinction:** This document describes a written review schedule. It does not decide what enters the repository. The app posts a `governance/merge` status and can ask GitHub whether a pull request is mergeable. It does not merge the pull request. Users decide whether to run a release.
 
 ## Phases
 
@@ -137,7 +137,7 @@
 | Question | Answer |
 |----------|--------|
 | Can maintainers force a consensus change? | No. The app posts a `governance/merge` commit status. That status does not stop a merge. Branch-protection updates set `enforce_admins` to false, and a failed update still returns success. Maintainers do not control network adoption. |
-| What if maintainers approve a change users reject? | Change enters BTCDecoded code but doesn't activate on network. Unused code. |
+| What if maintainers approve a change users reject? | A stored signature row does not put the change into the repository. The app posts a status. It does not merge the pull request. A merge, if someone with GitHub write access makes one, is still not network activation. |
 | What if users want a change maintainers reject? | Users can fork BTCDecoded, use alternative implementations, or coordinate UASF. |
 | Why does the prose say 365 days for consensus changes? | `get_review_period_for_layer` returns 180 for layers 1 and 2. The only 365 in `blvm-commons` is a key lifetime. |
 | Can emergency mode bypass the coded review? | The webhook passes `emergency_mode: false`. If that flag is true, `get_review_period_for_layer` returns 30 for every layer, including 1 and 2. |
