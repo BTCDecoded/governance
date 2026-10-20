@@ -20,7 +20,7 @@ This repository defines:
 1. **Repository Governance**: Posts a `governance/merge` status. It does not decide who can merge.
 2. **Protocol Governance** (Advisory): User signaling for consensus changes
 3. **Emergency Response**: Three-tiered system for critical issues
-4. **Maintainer Lifecycle**: Selection, removal, and rotation processes
+4. **Maintainer lifecycle**: There is no selection function. `RemovalManager` is constructed only in tests. `key_manager` rotates key records. It does not change GitHub membership.
 
 **Key Distinction:** The app posts a `governance/merge` status and does not control repository merge access. Protocol guidance is advisory. Users remain sovereign over Bitcoin's consensus rules.
 
