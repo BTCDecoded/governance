@@ -113,12 +113,9 @@ Governance review cases are handled through a graduated sanction system, providi
 **Trigger:** Moderate violations, pattern of minor violations, or failure to correct after private warning.
 
 **Process:**
-1. Issue created in governance repository
-2. Team members review (5-of-7 team approval)
-3. Public warning issued
-4. Warning logged in `governance/warnings/` directory
-5. Subject has 30 days to respond
-6. 90-day improvement period
+- `issue_public_warning` compares `approvals.len()` with `PUBLIC_WARNING_THRESHOLD` (5). It does not count a team of 7. Nothing calls it.
+- It stores a caller-supplied `warning_file_path`. `create_warning_file` returns a filename and does not write a file. `warnings/` contains `.gitkeep` only.
+- It sets `improvement_deadline` to now plus `IMPROVEMENT_PERIOD_DAYS` (90). It does not set a 30-day response.
 
 **Consequence:** Public warning, 90-day improvement period, potential restrictions.
 
