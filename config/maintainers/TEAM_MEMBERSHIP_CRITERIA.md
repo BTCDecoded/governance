@@ -358,9 +358,9 @@ The source has no temporary-leave status. `load_teams_for_nested_multisig` retur
 - Does not enforce a key-rotation schedule. `auto_rotation` is never read, `key_manager` starts with an empty `rotation_policies` list, and `rotate_key` runs only from that binary. The timer in `src/main.rs` rotates the audit log file.
 
 **Manual Override:**
-- Emergency situations
-- Requires emergency keyholder approval
-- Logged and publicly visible
+- The pull-request path passes `emergency_mode: false`. It does not ask an emergency keyholder.
+- `emergency_remove` returns unless the caller passes at least 4 ids. Nothing in `src/webhooks`, `src/main.rs`, or the tests calls it.
+- That function would insert a SQLite row. It does not publish the row. `NostrConfig::default` and `config/app.toml` both set Nostr `enabled` to false.
 
 ### 9.2 Configuration Files
 
