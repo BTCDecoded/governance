@@ -242,11 +242,11 @@ These rows are not separate votes in the source.
 ### 7.1 Public Documentation
 
 **All Actions Publicly Documented:**
-- Nominations: GitHub issues
-- Approvals: PRs with signatures
-- Removals: PRs with rationale
-- Warnings: Files in `governance/warnings/`
-- Appeals: GitHub discussions
+- `src` has no nomination string and no discussion string.
+- A verified `/governance-sign` stores a row in `governance_events`. The HTTP routes do not publish that row.
+- `remove_maintainer` sets `active` to false and is called from tests. It does not open a pull request.
+- `warnings/` contains `.gitkeep` only. `create_warning_file` returns a filename and has no caller.
+- `submit_appeal` inserts a SQLite row and has no caller.
 
 ### 7.2 Audit Trail
 
