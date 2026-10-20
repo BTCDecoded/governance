@@ -71,16 +71,7 @@ There is no team-approval step for a new maintainer. `maintainers/teams.yml` is 
 
 ### 2.1 Voluntary Exit
 
-**Process:**
-- Maintainer creates PR removing themselves from `maintainers/teams.yml`
-- 30-day notice period
-- Requires **3-of-7 approval from their team** (simple majority)
-- Governance app deactivates key after merge
-
-**Graceful Transition:**
-- Maintainer can complete in-progress reviews
-- 30-day period allows for knowledge transfer
-- Can transition to emeritus status (advisory role)
+The source has no voluntary-exit path. `src` has no notice period and no 3-of-7 count. `maintainers/teams.yml` is not in this repository. `handle_pr_merged` does not deactivate a key. `src` has no emeritus string.
 
 ### 2.2 Performance-Based Removal
 
