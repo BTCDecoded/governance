@@ -11,7 +11,7 @@ BTCDecoded governance operates on two levels: **Repository Governance** (a `gove
 | A `governance/merge` commit status. `can_merge_pull_request` only reads GitHub's `mergeable` flag. | Bitcoin's consensus rules (immutable) |
 | Code quality standards and review processes | Network upgrade activation mechanisms |
 | Release creation and versioning | User adoption decisions |
-| Maintainer selection and removal | Miner signaling and hash power |
+| `RemovalManager::remove_maintainer` sets `maintainers.active` false in SQLite when the caller supplies enough approval ids. Production code does not call it, and it does not change GitHub membership. There is no selection function. | Miner signaling and hash power |
 | PR review requirements and signature thresholds | Which software users choose to run |
 | Review periods and emergency procedures | Node operator configuration choices |
 | Technical standards (code style, testing, security) | Economic decisions and market behavior |
