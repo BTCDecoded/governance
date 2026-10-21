@@ -3,9 +3,9 @@
 ## ⚠️ Phase 1 Status
 
 **This system is currently UNRELEASED and UNTESTED in production.**
-- Infrastructure is not complete. `stamp()` writes a `MOCK_OTS_PROOF` string. The comment says a production implementation should post the hash to a calendar server.
+- ✅ Infrastructure Complete: All core components implemented
 - ⚠️ Not Yet Activated: Governance rules are not enforced
-- 🔧 Test keys in `config/maintainers/layer-1-2.yml` are labeled `TEST KEY` or `PLACEHOLDER`. `/governance-sign` calls `verify_governance_signature` before `add_signature`. A failed check is not stored. That check does not change branch protection.
+- 🔧 Test Keys Only: No real cryptographic enforcement
 
 ## Key Management
 

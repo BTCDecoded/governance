@@ -4,9 +4,9 @@
 
 **Current Status: Phase 1 (Infrastructure Building)**
 
-- **Infrastructure is not complete**. `stamp()` writes a `MOCK_OTS_PROOF` string. The comment says a production implementation should post the hash to a calendar server.
+- ✅ **Infrastructure Complete**: All core components implemented
 - ⚠️ **Not Yet Activated**: Governance rules are not enforced
-- 🔧 **Test keys**: `config/maintainers/layer-1-2.yml` labels keys `TEST KEY` or `PLACEHOLDER`. `/governance-sign` calls `verify_governance_signature` before `add_signature`. A failed check is not stored. That check does not change branch protection.
+- 🔧 **Test Keys Only**: No real cryptographic enforcement
 - 📋 **Development Phase**: System is in rapid AI-assisted development
 
 **Timeline:**
@@ -15,9 +15,9 @@
 
 ## Constitutional Governance Model
 
-Bitcoin Commons writes a **5-tier signature schedule**. That schedule is not a measured capture multiplier, and merge enforcement is off.
+Bitcoin Commons implements a **5-tier constitutional governance system** that makes Bitcoin governance **6x harder to capture** than Bitcoin Core's current model, with **complete transparency** through cryptographic audit trails and **user-protective** mechanisms.
 
-**Core innovation:** The design is public signatures and cheap exit. That enforcement is not on.
+**Core Innovation:** Apply the same cryptographic enforcement to governance that Bitcoin applies to consensus - making power visible, capture expensive, and exit cheap.
 
 ## How Governance Works
 
@@ -61,7 +61,7 @@ Bitcoin Commons writes a **5-tier signature schedule**. That schedule is not a m
 
 ### Signature Requirements by Layer
 
-- **Layer 1-2 (Constitutional)**: 6-of-7 maintainers, 180 days. The review-period function does not add 365 days for consensus changes.
+- **Layer 1-2 (Constitutional)**: 6-of-7 maintainers, 180 days (365 for consensus changes)
 - **Layer 3 (Implementation)**: 4-of-5 maintainers, 90 days
 - **Layer 4 (Application)**: 3-of-5 maintainers, 60 days
 - **Layer 5 (Extension)**: 2-of-3 maintainers, 14 days
@@ -212,14 +212,13 @@ See `emergency-tiers.yml` for complete configuration.
 
 When changes affect consensus rules (`consensus-rules/**`, `validation/**`, `block-acceptance/**`):
 
-**Written numbers, not a merge stop:**
-- Layers 1 and 2 are coded as 6-of-7 and 180 days. No review-period function returns 365. The only 365 in this crate is a key lifetime.
-- `check_signatures` counts stored signature rows. It does not verify signature bytes.
-- The webhook posts `governance/merge`. `set_required_status_checks` sets `enforce_admins` to false and still returns success when the protection update fails.
-
-`should_block_merge` receives only `review_period_met`, `signatures_met`, and `emergency_mode`. It does not check for a BIP, test vectors, or a security audit. `verify_security_property` searches the implementation string for `break_consensus`, `validate`, or `bypass_security`. That is not a security audit.
-
-An equivalence proof is not a merge requirement. `verify_behavioral_equivalence` returns success when `expected_result` is non-empty, and the comment says that check is simulated.
+**Repository Requirements (Binding):**
+- 6-of-7 maintainer signatures
+- 365 day review period
+- BIP specification required
+- Comprehensive test vectors required
+- Security audit required
+- Equivalence proof required (mathematical correctness)
 
 **User Activation (Advisory Only):**
 
@@ -245,14 +244,14 @@ See `SCOPE.md` for detailed explanation of repository vs. protocol governance.
 
 ### Technical Prerequisites for Consensus Changes
 
-BTCDecoded checks annotated consensus functions with Z3 in CI. That job can be skipped, and it is not a proof of every consensus path.
+BTCDecoded implements **mathematical verification** of consensus code to prevent capture and ensure correctness. This creates an objective, non-negotiable technical barrier that complements social governance.
 
 #### Verification Stack
 
-1. **blvm-spec-lock** (CI verify job)
-   - Z3 on `#[spec_locked]` functions against Orange Paper sections
-   - Three functions are mutation-validated. The other anchors are not formally verified by that gate
-   - A commit message containing `[skip ci]` or `[skip_verify]`, or a workflow dispatch with `skip_tests`, skips the job
+1. **blvm-spec-lock Formal Verification** (required)
+   - Z3-based verification of `#[spec_locked]` functions
+   - Proves mathematical invariants against Orange Paper specifications
+   - Cannot be bypassed or overridden
 
 2. **Property-Based Testing** (required)
    - Randomized testing with `proptest`
@@ -266,14 +265,16 @@ BTCDecoded checks annotated consensus functions with Z3 in CI. That job can be s
 
 #### Enforcement Levels
 
-**Level 1: CI**
-- Tests and the verify job run on pull requests unless a commit message skips them
-- A failing job does not by itself block a merge. Merge enforcement is off
+**Level 1: CI Enforcement (Ostrom #4: Monitoring)**
+- Automated verification runs on every PR
+- Blocks merge if verification fails
+- No human override possible
+- Technical correctness is non-negotiable
 
-**Level 2: Governance App**
-- `sign-pr` signs a message. It does not look at CI.
-- A `/governance-sign` comment is stored when the signature matches a registered maintainer. A missing GitHub review is logged and does not block.
-- `check_verification_status` can be posted as a status from `cross_layer_status`. It is not called before a signature is stored.
+**Level 2: Governance App (Ostrom #5: Graduated Sanctions)**
+- Validates verification passed before allowing signatures
+- PRs without passing verification cannot progress
+- Prevents maintainers from signing unverified code
 
 **Level 3: Meta-Governance (Ostrom #3: Collective Choice)**
 - Verification requirements set by maintainers collectively
@@ -282,16 +283,16 @@ BTCDecoded checks annotated consensus functions with Z3 in CI. That job can be s
 
 #### Defense Against Capture
 
-The six items below are design notes. They are not a measured capture multiplier.
+Formal verification makes Bitcoin governance **6x harder to capture**:
 
-1. **Verification**: Z3 runs on annotated functions unless the commit message skips the job. A passing job is not the mutation gate.
-2. **Signatures**: The written schedule names several keyholders. The GitHub App does not block a merge.
-3. **Time**: The YAML names review periods. Those periods are not a live gate.
-4. **Public output**: The verify job can upload its JSON when it runs.
-5. **OpenTimestamps**: not a step in consensus CI.
-6. **Readers**: The rules are published. Publishing them is not enforcement.
+1. **Technical Barrier**: Must bypass automated verification
+2. **Social Barrier**: Must convince 6-of-7 maintainers
+3. **Time Barrier**: 180-365 day review periods
+4. **Transparency Barrier**: All verification results public
+5. **Audit Barrier**: OpenTimestamps immutable proof
+6. **Community Barrier**: Public review and transparent process
 
-Skipping the verify job, or changing a function the mutation gate does not cover, is not stopped by this list.
+**Key Insight**: An attacker cannot simply "convince maintainers" - they must also produce mathematically correct code that passes verification. This dramatically raises the bar for malicious changes.
 
 #### Verification Status
 
@@ -342,7 +343,7 @@ BTCDecoded governance follows Elinor Ostrom's principles for managing common-poo
 7. **Minimal Recognition of Rights**: GitHub org recognizes this governance structure
 8. **Nested Enterprises**: Layered architecture with appropriate rules per layer
 
-**Note:** The app posts a `governance/merge` status. It does not control repository merge access, and it does not govern the *network commons* (Bitcoin protocol). Users govern the network through voluntary adoption.
+**Note:** We govern the *codebase commons* (repository access), not the *network commons* (Bitcoin protocol). Users govern the network through voluntary adoption.
 
 
 

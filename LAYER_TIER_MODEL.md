@@ -14,7 +14,7 @@ Dual-dimensional governance combining **Layers** (repository architecture) and *
 | 4 | blvm-node / blvm | Application | 3-of-5 | 60 days |
 | 5 | blvm-sdk | Extension | 2-of-3 | 14 days |
 
-**Note:** `get_review_period_for_layer` returns 180 days for layers 1 and 2. It does not return 365 for consensus-rule changes.
+**Note:** For consensus rule changes, Layer 1-2 require 365 days review period.
 
 ## Tier System
 

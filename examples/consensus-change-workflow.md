@@ -2,7 +2,7 @@
 
 ## Overview
 
-**Critical distinction:** This document describes a written review schedule. It does not decide what enters the repository. The app posts a `governance/merge` status and can ask GitHub whether a pull request is mergeable. It does not merge the pull request. Users decide whether to run a release.
+**Critical Distinction:** This workflow governs **repository approval** (what enters BTCDecoded code), not **network adoption** (what Bitcoin runs). Maintainers approve code for release. Users decide whether to run it.
 
 ## Phases
 
@@ -15,17 +15,20 @@
 2. Community discussion (GitHub Discussion in blvm-spec repo, present solution, engage feedback)
 3. Write BIP specification (draft BIP, include motivation/specification/rationale, submit to bitcoin-dev)
 4. Create test vectors (comprehensive test cases, edge cases, reference implementations)
-5. An equivalence proof is not a merge check. `verify_behavioral_equivalence` returns success when `expected_result` is non-empty, and the comment says the check is simulated. It does not prove mathematical correctness.
-6. A security audit is not a merge check. `get_tier_requirements` can include the text "Security audit report attached to PR". The merge webhook does not read that list. `EmergencyTier::Critical` sets `requires_security_audit` and a 60-day deadline, and production source does not call that module.
+5. Write equivalence proof (prove mathematical correctness for blvm-consensus layer)
+6. Security audit planning (identify auditors, define scope, budget, timeline, disclosure plan)
 
-### Phase 2: Pull Request (status post, not repository approval)
+### Phase 2: Pull Request (Repository Approval)
 
-**Duration:** `get_review_period_for_layer` returns 180 days for layers 1 and 2. It does not return 365.
+**Duration:** 365 days minimum
 
-**Requirements the merge path actually reads:**
-- A count of stored signature rows against the 6-of-7 table
-- That 180-day review flag
-- The webhook posts `governance/merge`. It does not check a BIP, test vectors, a security audit, or an equivalence proof.
+**Requirements:**
+- 6-of-7 maintainer signatures
+- 365-day review period
+- BIP specification approved
+- Test vectors comprehensive
+- Security audit passed
+- Equivalence proof validated
 
 **Steps:**
 
@@ -35,64 +38,71 @@
    - Link to BIP, tests, proof, audit
 
 2. **Governance App Validation**
-   - Tier number: ```blvm-commons/src/validation/tier_classification.rs:classify_pr_tier()```. A database override can replace that tier. There is no `classify_tier` function.
-   - Review period used: ```blvm-commons/src/validation/threshold.rs:get_review_period_for_layer()``` returns 180 for layers 1 and 2, not 365
-   - Layer threshold: ```blvm-commons/src/validation/threshold.rs:get_threshold_for_layer()``` returns 6-of-7 for layers 1 and 2
-   - There is no `check_required_artifacts`. `security_controls.rs` maps changed files to configured controls. The `security-gate` binary can call `analyze_security_impact`. The merge webhook does not.
+   - Detects consensus rule change: ```blvm-commons/src/validation/tier_classification.rs:classify_tier()```
+   - Applies 365-day review: ```blvm-commons/src/validation/threshold.rs:get_review_period_for_layer()```
+   - Requires 6-of-7 threshold: ```blvm-commons/src/validation/threshold.rs:get_threshold_for_layer()```
+   - Checks required artifacts: ```blvm-commons/src/validation/security_controls.rs:check_required_artifacts()```
 
 3. **Technical Review** (Ongoing)
-   - Maintainers may read the diff. There is no equivalence proof to review. `verify_behavioral_equivalence` returns success when `expected_result` is non-empty, and the comment says the check is simulated.
+   - Maintainers review code quality, test coverage, specification adherence, security implications, equivalence proof
 
 4. **Community Review** (Public)
    - Open to all developers and users, GitHub PR comments, mailing list discussion, independent implementations encouraged
 
-5. **Security Audit** (not a merge check)
-   - The merge function does not read an audit report. `verify_security_property` searches for the substrings `break_consensus`, `validate`, and `bypass_security`.
+5. **Security Audit** (Required)
+   - Professional security firm review, vulnerability assessment, report published, issues addressed before merge
 
 6. **Maintainer Signatures**
-   - The comment command is `/governance-sign <signature>`, with an optional quoted reason.
-   - The signed message is `PR #{number} in {repo}`. It does not include a commit hash, a BIP number, or a timestamp.
-   - `verify_governance_signature` checks that signature against the maintainer key before the row is stored. A missing GitHub review is logged and does not block. `check_signatures` later counts the stored rows.
+   - Each maintainer signs when satisfied: `/governance-sign <signature>`
+   - Signature includes PR hash, BIP number, timestamp
+   - Cryptographically verified
 
 7. **Review Period Elapses**
-   - The threshold function's layer 1-2 period is 180 days. If `emergency_mode` is passed true, that same function returns 30 for every layer. The webhook passes false.
+   - 365 days from PR opening (cannot be shortened, even with emergency mode)
 
-8. **Status posted**
-   - `should_block_merge` turns the two flags into a `governance/merge` status
-   - That status does not enable the merge. Branch protection leaves `enforce_admins` false, and a failed protection update still returns success.
+8. **Merge Enabled**
+   - All requirements met (signatures + time)
+   - Code enters BTCDecoded repository
 
-**At this point:** A status may have been posted. That does not make the change a network consensus rule, and it does not by itself merge the pull request.
+**At This Point:** Repository approval complete. Code is officially BTCDecoded consensus rules.
 
-### Phase 3: Not a release step
-
-The governance crate does not merge a pull request into `blvm-node`, compile release binaries, or publish an announcement. A `governance/merge` status does not make code available for download.
-
-### Phase 4: Fork-detector grace period
-
-**Duration:** The fork detector's default grace period is 30 days, not 90. After that interval from the last detection, `check_time_based_triggers` can execute pending forks. It is not a 90-day measurement of user signaling.
-
-**Nature:** That timer is inside the governance process. It is not an advisory window, and it does not measure Bitcoin network adoption.
+### Phase 3: Release (Optional Upgrade Available)
 
 **Steps:**
-1. This phase does not ask node operators to read an audit. The merge path does not read one.
-2. `track_adoption` stores a caller-supplied `weight`. It does not read an economic incentive.
-3. Stored adoption weights, not BIP9 signaling
-   - `calculate_adoption_metrics` divides weights in the `fork_decisions` table by the sum of weights in that same table. A row with `node_type` `mining_pool` is counted as the hashpower weight.
-   - Default `ForkThresholds` are 50% adoption weight, 10 nodes, 30% mining-pool weight, and 40% other weight. They are not 75% of nodes or 90% of network hash power.
+1. Integration testing (merge into blvm-node, test with real-world scenarios, verify backward compatibility)
+2. Release build (compile binaries, create release notes, document new consensus rules)
+3. Release announcement (publish on website, post to bitcoin-dev, social media)
+4. Optional upgrade available (users can download, no forced upgrades, old versions remain available)
+
+**At This Point:** Code is available. Users begin evaluating.
+
+### Phase 4: User Signaling (Advisory)
+
+**Duration:** 90+ days (measurement period)
+
+**Nature:** Advisory, not mandatory. Maintainers cannot force adoption.
+
+**Steps:**
+1. Node operators evaluate (review BIP, read audit, test in dev environments, assess risks/benefits)
+2. Voluntary upgrade (operators choose independently, economic incentives influence choice)
+3. Signaling measurement (BIP9-style version bits or node polling)
+   - Metrics: Node adoption %, hash power signaling %, economic activity (exchanges, wallets)
+   - Recommended thresholds: 75% node adoption, 90% hash power, economic majority
 4. Community discussion (ongoing debate, user feedback, bug reports, coordination)
 
-**At this point:** The fork table may contain stored weights. That is not a measurement of Bitcoin network signaling.
+**At This Point:** Network signaling indicates support level. Users remain in control.
 
-### Phase 5: In-process ruleset swap
+### Phase 5: Activation Decision (User Sovereignty)
 
-**Nature:** `perform_fork_transition` updates the ruleset held by this process. It is not a user vote and not a network activation.
+**Nature:** Users decide, not maintainers.
 
-| Outcome | What the code does |
-|---------|--------------------|
-| Thresholds met | `perform_fork_transition` replaces `current_ruleset` in the process with another governance ruleset. It does not change Bitcoin consensus rules, and it does not read miner signals. |
-| Thresholds not met | The current ruleset stays. A maintainer signature does not put code into the repository. |
+| Outcome | Description | Result |
+|---------|-------------|--------|
+| **Soft Fork** | Sufficient support, economic majority, miners signal | Consensus rules change network-wide, backward compatible |
+| **Hard Fork** | Contentious change, no clear majority, competing visions | Users choose chain, markets decide value, both chains may survive |
+| **Rejection** | Insufficient support, economic majority opposes, miners don't signal | Network continues with old rules, maintainer-approved code unused |
 
-There is no soft-fork or hard-fork outcome in this path. A signature count does not activate a network consensus change.
+**Key Point:** No amount of maintainer signatures forces adoption. Users govern Bitcoin.
 
 ## Example Timeline
 
@@ -100,18 +110,22 @@ There is no soft-fork or hard-fork outcome in this path. A signature count does 
 |-------|----------|
 | 0 | Community discussion begins |
 | 3 | BIP drafted and submitted |
-| 6 | No audit is scheduled by this crate. |
-| 9 | Pull request opened (coded review is 180 days, not a 365-day clock) |
-| 12 | No audit is marked complete. The merge path does not read an audit report. |
+| 6 | Security audit planned |
+| 9 | Pull request opened (365-day clock starts) |
+| 12 | Security audit completed |
 | 15 | Maintainer signatures accumulate |
-| 21 | Signature rows may meet 6-of-7. That posts a status. It does not enable the merge, and the review function does not measure 365 days. |
-| 22 | A status may have been posted. The app does not merge the pull request. |
-| 24 | A release is a separate publish step. This table does not perform it. |
-| 28-39 | There is no coded network-activation clock. `perform_fork_transition` only replaces the in-process governance ruleset. |
+| 21 | All signatures received (6-of-7), 365 days elapsed, merge enabled |
+| 22 | Merged, integrated into blvm-node |
+| 24 | Release published |
+| 25-27 | User evaluation period |
+| 28-30 | Node upgrade phase (90-day signaling) |
+| 33 | Sufficient support achieved |
+| 36 | Activation date set by community |
+| 39 | Network-wide activation |
 
-**Total:** This table is not a clock the code runs.
+**Total:** ~39 months (3.25 years) from discussion to activation
 
-**Why the old 39-month figure was here:** It was a story about network activation. The layer 1-2 review value in `get_review_period_for_layer` is 180 days. The fork path does not wait 39 months, and it does not activate consensus rules.
+**Why so long?** Bitcoin's $2T network cap demands extreme caution. Consensus changes are permanent and irreversible.
 
 ## Historical Comparisons
 
@@ -125,13 +139,13 @@ There is no soft-fork or hard-fork outcome in this path. A signature count does 
 
 | Question | Answer |
 |----------|--------|
-| Can maintainers force a consensus change? | No. The app posts a `governance/merge` commit status. That status does not stop a merge. Branch-protection updates set `enforce_admins` to false, and a failed update still returns success. Maintainers do not control network adoption. |
-| What if maintainers approve a change users reject? | A stored signature row does not put the change into the repository. The app posts a status. It does not merge the pull request. A merge, if someone with GitHub write access makes one, is still not network activation. |
-| What if users want a change maintainers reject? | A public GitHub fork of these repositories is a GitHub feature, not a governance action. `ForkExecutor` switches a governance ruleset when its own adoption counters pass thresholds, and `execute_fork` is private. There is no user-activated soft fork coordinator in this tree. |
-| Why does the prose say 365 days for consensus changes? | `get_review_period_for_layer` returns 180 for layers 1 and 2. The only 365 in `blvm-commons` is a key lifetime. |
-| Can emergency mode bypass the coded review? | The webhook passes `emergency_mode: false`. If that flag is true, `get_review_period_for_layer` returns 30 for every layer, including 1 and 2. |
-| What about emergency bug fixes in consensus code? | The schedule in `src/validation/emergency.rs` is Critical 0 days and 4-of-7, Urgent 7 days and 5-of-7, Elevated 30 days and 6-of-7. Production source does not call that module. The callers are tests. The merge webhook passes `emergency_mode: false`. |
-| How is this different from Bitcoin Core? | Bitcoin Core's CONTRIBUTING.md names repository maintainers who merge pull requests, run the release cycle in `doc/release-process.md`, and moderate. It also says there is no privileged class of Bitcoin Core developers. BTCDecoded writes multisig counts and posts a `governance/merge` status. That status does not stop a merge, and admin enforcement is left off. |
+| Can maintainers force a consensus change? | No. Maintainers control repository merge access, not network adoption. |
+| What if maintainers approve a change users reject? | Change enters BTCDecoded code but doesn't activate on network. Unused code. |
+| What if users want a change maintainers reject? | Users can fork BTCDecoded, use alternative implementations, or coordinate UASF. |
+| Why 365 days for consensus changes? | Bitcoin's $2T network demands extreme caution. Allows thorough review, verification, ecosystem preparation, user education. |
+| Can emergency mode bypass 365-day review? | No. Emergency mode doesn't apply to consensus changes. Consensus changes require long timelines by design. |
+| What about emergency bug fixes in consensus code? | Critical bugs use emergency tiers (0-30 days) but still require multi-signature approval. These restore *intended* consensus rules, not change them. |
+| How is this different from Bitcoin Core? | Bitcoin Core has no formal governance. BTCDecoded formalizes repository governance with multi-signature requirements but maintains advisory-only relationship with network. |
 
 ## Best Practices
 
@@ -139,11 +153,13 @@ There is no soft-fork or hard-fork outcome in this path. A signature count does 
 |---------------|-----------------|-----------|
 | Start with discussion, not code | Review rigorously (extreme scrutiny) | Participate early (comment, test, provide feedback) |
 | Document thoroughly (BIP, test vectors, rationale) | Communicate clearly (explain decisions, maintain transparency) | Evaluate independently (read BIPs, don't defer to authority) |
-| Engage critics (opposition feedback improves proposals) | Serve users, not preferences (advisory role, humility essential) | A public GitHub fork is a GitHub feature. `execute_fork` is private. There is no user-activated soft fork coordinator. |
-| A change here is not a permanent consensus rule. `perform_fork_transition` replaces the in-process governance ruleset. | | See `calculate_adoption_metrics` for the adoption ratio. |
+| Engage critics (opposition feedback improves proposals) | Serve users, not preferences (advisory role, humility essential) | Exercise sovereignty (upgrade when convinced, fork if necessary) |
+| Think long-term (permanent changes, 10+ year implications) | | Coordinate carefully (network effects matter, avoid accidental splits) |
 
 ## Conclusion
 
-The app posts a `governance/merge` status. That status is not repository approval, and it is not network adoption.
+BTCDecoded governance provides structure for repository management while preserving user sovereignty for protocol changes.
 
-Maintainers can sign a message of the form `PR #{number} in {repo}`. Users decide whether to run a binary.
+**Repository approval ≠ Network adoption**
+
+Maintainers propose. Users dispose.

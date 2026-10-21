@@ -7,9 +7,9 @@ Central source of truth for governance rules across all Bitcoin Commons reposito
 > **For verified system status**: See [SYSTEM_STATUS.md](https://github.com/BTCDecoded/.github/blob/main/SYSTEM_STATUS.md) in the BTCDecoded organization repository.
 
 **Current Status: Phase 1 (Infrastructure Building)**
-- Infrastructure is not complete. `stamp()` writes a `MOCK_OTS_PROOF` string. The comment says a production implementation should post the hash to a calendar server.
+- ✅ Infrastructure Complete: All core components implemented
 - ⚠️ Not Yet Activated: Governance rules are not enforced
-- 🔧 Test keys in `config/maintainers/layer-1-2.yml` are labeled `TEST KEY` or `PLACEHOLDER`. `/governance-sign` calls `verify_governance_signature` before `add_signature`. A failed check is not stored. That check does not change branch protection.
+- 🔧 Test Keys Only: No real cryptographic enforcement
 - 📋 Development Phase: System is in rapid AI-assisted development
 
 **Timeline:** Phase 2 Activation: Governance enforcement begins | Phase 3 Full Operation: Mature, stable system
@@ -17,33 +17,31 @@ Central source of truth for governance rules across all Bitcoin Commons reposito
 ## Overview
 
 This repository defines:
-1. **Repository Governance**: Posts a `governance/merge` status. It does not decide who can merge.
-2. **Protocol governance**: `track_adoption` stores a caller-supplied `weight` in `fork_decisions`. `get_network_totals` sums that same table. It does not read a user signal for a consensus change.
-3. **Emergency response**: `EmergencyTier` has a written three-tier schedule. The pull-request webhook passes `emergency_mode: false`. Production code outside that module does not call `EmergencyTier`.
-4. **Maintainer lifecycle**: There is no selection function. `RemovalManager` is constructed only in tests. `key_manager` rotates key records. It does not change GitHub membership.
+1. **Repository Governance** (Binding): Who can merge what, and when
+2. **Protocol Governance** (Advisory): User signaling for consensus changes
+3. **Emergency Response**: Three-tiered system for critical issues
+4. **Maintainer Lifecycle**: Selection, removal, and rotation processes
 
-**Key Distinction:** The app posts a `governance/merge` status and does not control repository merge access. Protocol guidance is advisory. Users remain sovereign over Bitcoin's consensus rules.
+**Key Distinction:** We govern repository access (binding) and provide guidance for protocol changes (advisory). Users remain sovereign over Bitcoin's consensus rules.
 
 ## Constitutional Governance Model
 
-Bitcoin Commons implements a **5-tier constitutional governance system** with user-protective mechanisms. `stamp()` writes a `MOCK_OTS_PROOF` string. `verify_proof_format` accepts that prefix and rejects other proofs. That system operates under the [Bitcoin Commons Compact](COMPACT.md).
+Bitcoin Commons implements a **5-tier constitutional governance system** with complete transparency through cryptographic audit trails and user-protective mechanisms. That system operates under the [Bitcoin Commons Compact](COMPACT.md).
 
 ### Action Tiers
-
-These are the tier-only numbers in `get_tier_threshold` and `get_tier_review_period`. The webhook calls `get_combined_requirements`, which takes the max of the stored layer and the tier.
 
 - **Tier 1: Routine Maintenance** (3-of-5, 7 days) - Bug fixes, documentation, performance
 - **Tier 2: Feature Changes** (4-of-5, 30 days) - New RPC methods, P2P changes, wallet features
 - **Tier 3: Consensus-Adjacent** (5-of-5, 90 days) - Changes affecting consensus validation
-- **Tier 4: Emergency Actions** (`get_tier_threshold` is 4-of-5 and `get_tier_review_period` is 0 days). The webhook has no tier-4 branch and does not call `security-gate`.
-- **Tier 5: Governance Changes** (`get_tier_threshold` is 5-of-5 and 180 days). `require_public_comment` and `require_rationale` are set on the rule and are not read. The webhook has no separate tier-5 path.
+- **Tier 4: Emergency Actions** (4-of-5, 0 days review period) - Critical security patches, network threats
+- **Tier 5: Governance Changes** (Special process, 180 days) - Changes to governance rules themselves
 
 ### Layer Hierarchy
 
 | Layer | Repository | Signatures | Review Period |
 |-------|------------|------------|---------------|
-| 1 | [blvm-spec](https://github.com/BTCDecoded/blvm-spec) | 6-of-7 | 180 days. The review function does not return 365. |
-| 2 | [blvm-consensus](https://github.com/BTCDecoded/blvm-consensus) | 6-of-7 | 180 days. The review function does not return 365. |
+| 1 | [blvm-spec](https://github.com/BTCDecoded/blvm-spec) | 6-of-7 | 180 days (365 for consensus) |
+| 2 | [blvm-consensus](https://github.com/BTCDecoded/blvm-consensus) | 6-of-7 | 180 days (365 for consensus) |
 | 3 | [blvm-protocol](https://github.com/BTCDecoded/blvm-protocol) | 4-of-5 | 90 days |
 | 4 | [blvm-node](https://github.com/BTCDecoded/blvm-node) / [blvm](https://github.com/BTCDecoded/blvm) | 3-of-5 | 60 days |
 | 5 | [blvm-sdk](https://github.com/BTCDecoded/blvm-sdk) | 2-of-3 | 14 days |

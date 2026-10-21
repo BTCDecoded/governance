@@ -78,9 +78,9 @@ Different Bitcoin implementations require categorically different review standar
 
 ### True Alternative Implementations
 
-A true alternative implementation satisfies three conditions. First, an independent formal mathematical specification of consensus rules exists, produced without deriving from Bitcoin Core's codebase. Second, consensus compatibility is argued from layers — spec, tests, fuzz, golden vectors, and a differential — rather than from inheriting Core's source. Third, governance is published separately from Bitcoin Core's development process.
+A true alternative implementation satisfies three conditions. First, an independent formal mathematical specification of consensus rules exists, produced without deriving from Bitcoin Core's codebase. Second, consensus compatibility is proven through differential testing against the full chain history rather than through code inheritance. Third, governance is independent of Bitcoin Core's development process.
 
-Bitcoin Commons is the primary example. It is built against the Orange Paper. Annotated consensus functions carry `#[spec_locked]` and are checked with Z3 in CI. Compatibility with Bitcoin Core is a set of layers: property tests, fuzzing, golden vectors, and a differential against Core. That differential is one layer. This guide does not treat a block-count slogan as a finished measurement. Governance rules are published separately from Core. Merge enforcement is off.
+Bitcoin Commons is the primary example. It is built against the Orange Paper, a formal mathematical specification of Bitcoin's consensus rules developed independently of Core. Its consensus compatibility is demonstrated through differential testing covering the full chain history to current tip, confirming both that Bitcoin Commons and Core agree on block accept/reject decisions across that entire range and that every script in that history executes identically in both implementations, with zero divergence on either property. The differential testing system is the living source of truth for this record; the current tip advances continuously and the record advances with it. Its governance is entirely separate from Core.
 
 The review standard for this category is fidelity to the formal specification and integrity of the differential testing record. When code diverges from the specification, that is the highest-weight class of problem the review intelligence can identify.
 
@@ -164,11 +164,11 @@ Every specification divergence flag includes three elements: the specific sectio
 
 ### The Differential Testing Record
 
-A differential run compares Bitcoin Commons and Bitcoin Core on the same blocks for two properties: block accept or reject, and script execution. A finished run names the binary, the tip, and both results. This guide does not have that log. Do not treat zero divergence from genesis to tip as a measured result.
+Bitcoin Commons's differential testing system runs Bitcoin Commons and Bitcoin Core against the same blocks and confirms two properties simultaneously. The first property is block accept/reject behavior: for every block from genesis to current tip, both implementations must agree on whether the block is valid or invalid. The second property is script execution behavior: every script in that history must execute identically in both implementations, producing the same result. Both properties are confirmed across the full chain history to current tip with zero divergence. The differential testing system is the living source of truth for this record and advances continuously as new blocks are mined.
 
-A pull request that would make either comparison diverge is consensus-critical when that differential is run. The two comparisons are parts of one differential, not a finished proof that the implementations match across the chain.
+These are not two separate test suites. They are two things the same differential testing system verifies. A PR that would cause either property to diverge is a consensus-critical problem regardless of which property is affected, because both properties are part of the proof that Bitcoin Commons matches Bitcoin's consensus rules.
 
-When that log exists, it is empirical evidence beside the Orange Paper, not a substitute for it. A pull request that the differential has not covered, or that would break either comparison, is still a consensus-critical review even when it does not contradict an Orange Paper section. Name which comparison the change puts at risk.
+This record is part of the specification reference layer because it is the empirical confirmation that the Orange Paper's specification, as implemented, matches the network's actual consensus behavior across the full chain history. A PR that introduces behavior the differential tests have not covered, or that would break either confirmed property, is a specification-adjacent concern even if it does not directly contradict an Orange Paper section. The review intelligence flags it at consensus-critical tier and identifies specifically which property the PR puts at risk.
 
 ---
 

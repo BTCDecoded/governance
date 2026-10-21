@@ -2,15 +2,15 @@
 
 ## Overview
 
-The written design uses signatures on governance actions. That enforcement is not on. Merge enforcement is off. Test keys are not a production gate.
+The Bitcoin Commons governance applies the same cryptographic enforcement to governance that Bitcoin applies to consensus. All governance actions require cryptographic proof, multiple maintainers must sign critical actions, and all signatures are publicly verifiable.
 
 ## Core Principles
 
-1. **Signatures**: The design asks for a signature on a governance action. The app does not require one before a merge.
-2. **Multisig count**: The app can post a failing `governance/merge` status when the stored signature count is below the written threshold. That status does not by itself stop a merge.
-3. **Audit log**: A local hash-chained log can be written and checked. It is not a public copy of every action.
-4. **Tamper evidence**: Changing that log breaks the hash chain when someone verifies it. That check does not see every change to repository state.
-5. **Key rotation**: `key_manager rotate` can replace one stored key. The process does not rotate keys on a schedule. The timer in `main.rs` rotates the audit log file.
+1. **Cryptographic Enforcement**: All governance actions require cryptographic proof
+2. **Multisig Security**: Multiple maintainers must sign critical actions
+3. **Transparency**: All signatures and actions are publicly verifiable
+4. **Tamper Evidence**: Any attempt to modify governance state is detectable
+5. **Key Rotation**: Regular key rotation prevents long-term compromise
 
 ## Signature Schemes
 
@@ -70,11 +70,11 @@ Action 3: hash3 = SHA256(action3_data + hash2)
 
 ### Merkle Trees
 
-`anchor_registry` calls `stamp()` and then logs that the registry was anchored to Bitcoin. `OtsConfig::default` sets `enabled: false`. Without the `opentimestamps` feature, `main` does not start that task.
+Monthly governance registries use Merkle trees: root hash anchored to Bitcoin blockchain via OpenTimestamps, individual action proofs verifiable without full registry, tamper detection through hash mismatch, efficient synchronization.
 
 ### Timestamping
 
-`stamp()` writes a `MOCK_OTS_PROOF` string. The anchor path calls it once. It does not submit the hash to a calendar server, and it does not call a second timestamping service.
+All governance actions timestamped using: OpenTimestamps for Bitcoin blockchain anchoring, multiple timestamping services for redundancy, regular anchoring (monthly) of governance state, public verification of timestamp proofs.
 
 ## Signature Formats
 

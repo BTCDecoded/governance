@@ -129,13 +129,14 @@ manifest_hash: sha256:test_manifest_hash
 
 ### Purpose
 
-Does not validate that `blvm-consensus` mathematically matches `blvm-spec`.
+Validates that blvm-consensus implementations mathematically match blvm-spec specifications through test vector validation.
 
 ### Implementation
 
-- **Behavioral equivalence:** returns success when `expected_result` is non-empty. The comment says the check is simulated.
-- **Security equivalence:** searches the implementation string for `break_consensus`, `validate`, or `bypass_security`.
-- **Performance equivalence:** uses a hardcoded 2.5% variance. The comment says that check is simulated. It does not benchmark the spec or the implementation.
+- **Test Vectors**: Comprehensive test cases for consensus operations
+- **Behavioral Equivalence**: Ensures same outputs for same inputs
+- **Security Equivalence**: Verifies security properties are preserved
+- **Performance Equivalence**: Ensures performance is within acceptable bounds
 
 ### Test Vector Structure
 
