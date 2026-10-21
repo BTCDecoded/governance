@@ -299,23 +299,13 @@ Governance review cases are handled through a graduated sanction system, providi
 
 ### Grounds for Sanctions
 
-1. **Inactivity**: < 20% participation over 180 days
-2. **Incompetence**: Repeated technical errors (3+ critical in 6 months)
-3. **Code of Conduct Violation**: Violation of code of conduct (on-platform only)
-4. **Conflicts of Interest**: Undisclosed conflicts affecting judgment
-5. **Security Concerns**: Key compromise or security violations
-6. **False Reports**: Knowingly false or malicious reports
-7. **Retaliation**: Retaliation against reporters
+`CASE_TYPES` in the governance app are: `abuse`, `harassment`, `malicious_code`, `collusion`, `conflict_of_interest`, `technical_errors`, `security_violation`, `false_report`, and `retaliation`. There is no `code_of_conduct` case type and no inactivity or six-month error-count string in `src`.
+
+`remove_maintainer` returns unless the caller passes at least 6 team approver ids and a teams count of at least 4. It does not read `case_type`, severity, participation, or a code-of-conduct flag. Its only caller is a test.
 
 ### Normal Process
 
-1. Determine if on-platform or off-platform
-2. If off-platform: Disregard entirely
-3. If on-platform: Determine severity
-4. Apply appropriate level (warning or removal)
-5. Follow graduated sanctions process
-6. Document all evidence and evaluation
-7. Allow appeals through normal process
+`/governance-review-case` requires the commenter and the subject to be registered maintainers, validates `case_type` and `severity` against those lists, and always passes `on_platform: true` into `create_case`. `create_case` rejects `on_platform == false` and sets 30-day response and 180-day resolution deadlines; it stores caller-supplied type, severity, description, and evidence. It does not choose a sanction level or run a graduated-sanctions workflow. `issue_private_warning`, `issue_public_warning`, and `remove_maintainer` are not called from the webhook path.
 
 ---
 
