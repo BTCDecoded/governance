@@ -420,6 +420,4 @@ Governance review cases are handled through a graduated sanction system, providi
 ## References
 
 - [Team Membership Criteria](TEAM_MEMBERSHIP_CRITERIA.md)
-- [Code of Conduct](../../../.github/CODE_OF_CONDUCT.md)
 - [Maintainer Guide](../../guides/MAINTAINER_GUIDE.md)
-- [Governance App Spec](../../../governance-app-spec.md)

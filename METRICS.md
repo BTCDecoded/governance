@@ -140,7 +140,6 @@ Human-readable format for documentation:
 
 - [GOVERNANCE.md](GOVERNANCE.md) - Complete governance model
 - [CONTRIBUTOR_GUIDE.md](CONTRIBUTOR_GUIDE.md) - Contributor paths and options
-- [HOW_TO.md](HOW_TO.md) - Step-by-step governance instructions
 
 ---
 

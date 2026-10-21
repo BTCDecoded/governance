@@ -57,8 +57,6 @@ Bitcoin Commons implements a **5-tier constitutional governance system** that ma
    - **Code**: `blvm-commons/src/enforcement/merge_block.rs:should_block_merge()`
 6. PR merged
 
-**See [HOW_TO.md](HOW_TO.md) for detailed step-by-step instructions.**
-
 ### Signature Requirements by Layer
 
 - **Layer 1-2 (Constitutional)**: 6-of-7 maintainers, 180 days (365 for consensus changes)
@@ -295,8 +293,6 @@ Formal verification makes Bitcoin governance **6x harder to capture**:
 **Key Insight**: An attacker cannot simply "convince maintainers" - they must also produce mathematically correct code that passes verification. This dramatically raises the bar for malicious changes.
 
 #### Verification Status
-
-Current verification coverage: [Link to docs/VERIFICATION.md]
 
 See [Cross-Layer Dependencies](architecture/CROSS_LAYER_DEPENDENCIES.md) for separation rules.
 

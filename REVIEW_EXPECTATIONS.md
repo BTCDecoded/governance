@@ -155,7 +155,6 @@ The governance system tracks whether maintainers reviewed before signing:
 - [GOVERNANCE.md](GOVERNANCE.md) - Complete governance model
 - [METRICS.md](METRICS.md) - Monthly governance reports with review statistics
 - [CONTRIBUTOR_GUIDE.md](CONTRIBUTOR_GUIDE.md) - Contributor paths and options
-- [HOW_TO.md](HOW_TO.md) - Step-by-step governance instructions
 
 ---
 

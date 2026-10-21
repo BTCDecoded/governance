@@ -241,7 +241,6 @@ If you have questions about contributing or becoming a maintainer:
 - [guides/REVIEW_INTELLIGENCE.md](guides/REVIEW_INTELLIGENCE.md) — AI-assisted Bitcoin implementation review (operating document)
 - [Contributing (BLVM docs)](https://docs.thebitcoincommons.org/development/contributing.html) — Technical contribution guide
 - [LAYER_TIER_MODEL.md](LAYER_TIER_MODEL.md) - Understanding governance tiers
-- [HOW_TO.md](HOW_TO.md) - Step-by-step governance instructions
 
 ---
 
