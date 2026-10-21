@@ -1,0 +1,6 @@
+# Used by the documented check in CONTRIBUTING.md: yamllint config/*.yml
+# The rule files use long prose values and no leading "---"; keep those as-is.
+extends: default
+rules:
+  line-length: disable
+  document-start: disable

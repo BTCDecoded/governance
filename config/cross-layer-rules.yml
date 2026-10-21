@@ -8,7 +8,7 @@ rules:
     validation: corresponding_file_exists
     bidirectional: true
     blocking: true
-  
+
   - name: protocol_engine_equivalence
     description: "blvm-protocol must reference specific blvm-spec version"
     source_repo: blvm-protocol
@@ -17,14 +17,10 @@ rules:
     validation: references_latest_version
     required_reference_format: "blvm-spec@v{VERSION}"
     blocking: true
-  
+
   - name: reference_node_no_consensus
     description: "blvm-node cannot modify consensus rules"
     source_repo: blvm-node
     validation: no_consensus_modifications
     allowed_imports_only: true
     blocking: true
-
-
-
-

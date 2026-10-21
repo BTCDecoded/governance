@@ -156,14 +156,14 @@ confidence_scoring:
   keyword_match: 0.3
   title_analysis: 0.2
   description_analysis: 0.1
-  
+
   # Boost factors
   boost_factors:
     multiple_file_matches: 0.1
     strong_keyword_matches: 0.1
     specification_present: 0.1
     audit_present: 0.1
-    
+
   # Penalty factors
   penalty_factors:
     conflicting_indicators: -0.2
