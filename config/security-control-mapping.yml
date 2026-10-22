@@ -261,22 +261,22 @@ categories:
     name: "Consensus Integrity"
     description: "Controls that ensure Bitcoin consensus validation is complete and secure"
     max_priority: P0
-    
+
   cryptographic:
     name: "Cryptographic"
     description: "Controls that handle keys, signatures, and cryptographic operations securely"
     max_priority: P0
-    
+
   governance:
     name: "Governance"
     description: "Controls required for governance system integrity and proper operation"
     max_priority: P0
-    
+
   data_integrity:
     name: "Data Integrity"
     description: "Controls that ensure data integrity, audit trails, and state synchronization"
     max_priority: P1
-    
+
   input_validation:
     name: "Input Validation"
     description: "Controls that validate inputs and enforce security boundaries"
@@ -288,17 +288,17 @@ priorities:
     name: "Critical"
     description: "Must fix before any audit - blocks production deployment"
     color: "red"
-    
+
   P1:
     name: "High"
     description: "Required for meaningful audit - should fix before production"
     color: "orange"
-    
+
   P2:
     name: "Medium"
     description: "Should fix before audit - operational security improvements"
     color: "yellow"
-    
+
   P3:
     name: "Low"
     description: "Can defer - non-critical features"
@@ -310,33 +310,20 @@ file_patterns:
   consensus_files:
     - "blvm-consensus/**/*.rs"
     - "blvm-protocol/**/*.rs"
-    
+
   # Cryptographic files
   crypto_files:
     - "governance-app/src/crypto/**/*.rs"
     - "governance-app/src/validation/signatures.rs"
     - "governance-app/src/validation/emergency.rs"
     - "governance/config/maintainers/**/*.yml"
-    
+
   # Database files
   database_files:
     - "governance-app/src/database/**/*.rs"
     - "governance-app/migrations/**/*.sql"
-    
+
   # Webhook files
   webhook_files:
     - "governance-app/src/webhooks/**/*.rs"
     - "governance-app/src/main.rs"
-
-
-
-
-
-
-
-
-
-
-
-
-

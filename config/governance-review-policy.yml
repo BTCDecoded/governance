@@ -48,10 +48,10 @@ time_limits:
   mediation_period_days: 30
   max_extension_days: 90
   extension_approval_threshold: "5-of-7 teams"
-  
+
   # Emergency cases
   emergency_initial_action_days: 7
-  
+
   # Warnings
   improvement_period_days: 90
   improvement_extension_days: 30
@@ -206,4 +206,3 @@ status_values:
   - "appealed"
   - "resolved"
   - "dismissed"
-

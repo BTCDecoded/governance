@@ -13,29 +13,29 @@ commons_contributor_thresholds:
   # Uses rolling window: sum of contributions within the period
   # Note: This is a rolling window (sum), not a rolling average (mean)
   measurement_period_days: 90
-  
+
   # Qualification logic: "OR" = any threshold met qualifies, "AND" = all thresholds must be met
   qualification_logic: "OR"
-  
+
   # Contribution type thresholds (in BTC over measurement period)
   merge_mining:
     enabled: true
     minimum_contribution_btc: 0.01  # Minimum merge mining contribution (1% of rewards)
     description: "Minimum merge mining revenue contributed to Commons"
     verification: "On-chain (coinbase signatures, secondary chain blocks)"
-    
+
   fee_forwarding:
     enabled: true
     minimum_contribution_btc: 0.1  # Minimum fee forwarding contribution
     description: "Minimum transaction fees forwarded to Commons address"
     verification: "On-chain (coinbase outputs to Commons address)"
-    
+
   zaps:
     enabled: true
     minimum_contribution_btc: 0.01  # Minimum zap contributions
     description: "Minimum Lightning zap contributions to Commons"
     verification: "Lightning (Nostr event verification, payment proofs)"
-    
+
   # Marketplace module sales (priced in BTC via BIP70 payments)
   marketplace:
     enabled: true
@@ -49,18 +49,18 @@ weight_calculation:
   formula: "sqrt(total_contribution_btc / normalization_factor)"
   normalization_factor: 1.0  # 1 BTC = 1.0 weight
   minimum_weight: 0.01  # Minimum weight to qualify (prevents dust)
-  
+
   # Note: All contributions are in BTC - no USD conversion needed!
   # This uses pure BTC calculation (already implemented in weight_calculator.rs)
   # No price fetching required - Bitcoin-native approach
-  
+
   # Contribution types included in total (all in BTC)
   contribution_types:
     - "merge_mining_btc"
     - "fee_forwarding_btc"
     - "zaps_btc"
     - "marketplace_sales_btc"  # BIP70 payments (native BTC)
-  
+
   # Total calculation: sum of all contribution types
   total_calculation: "sum(all_contribution_types)"
 
@@ -71,7 +71,7 @@ maintainer_notes: |
   1. Update this file in governance/config/
   2. Submit PR with appropriate tier classification (often Tier 5 for governance config)
   3. Follow maintainer signature and review requirements in effect for your repo
-  
+
   Rationale for thresholds:
   - Lower thresholds = more inclusive participation in metrics
   - Higher thresholds = stricter recognition tiers

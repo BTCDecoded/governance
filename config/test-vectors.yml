@@ -81,4 +81,3 @@ test_vectors:
     consensus_proof_test: "tests/pow.rs::test_get_next_work_required"
     expected_result: "valid"
     proof_type: "BehavioralEquivalence"
-

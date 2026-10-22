@@ -130,12 +130,12 @@ cross_layer_rules:
       description: "Constitutional changes may require implementation updates"
       notification_required: true
       review_period_extension: 30
-      
+
     layer_2_to_lower:
       description: "Consensus proof changes may require protocol updates"
       notification_required: true
       review_period_extension: 14
-      
+
     layer_3_to_lower:
       description: "Protocol changes may require application updates"
       notification_required: true
