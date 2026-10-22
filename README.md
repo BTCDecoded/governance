@@ -48,12 +48,6 @@ Bitcoin Commons implements a **5-tier constitutional governance system** with co
 
 ## Documentation
 
-### Quick Reference
-- [GETTING_STARTED.md](GETTING_STARTED.md) - Quick orientation
-- [QUICK_REFERENCE.md](QUICK_REFERENCE.md) - Lookup tables and commands
-- [HOW_TO.md](HOW_TO.md) - Task instructions
-- [DECISION_TREES.md](DECISION_TREES.md) - Decision flows
-
 ### Core Documentation
 - [docs/ACTION_TIERS.md](docs/ACTION_TIERS.md) - PR action tiers (`action-tiers.yml`) vs emergency tiers
 - [COMPACT.md](COMPACT.md) - Bitcoin Commons Compact

@@ -17,7 +17,7 @@
 
 | Days | Focus | Tasks | Deliverable |
 |------|-------|-------|-------------|
-| **1-2** | Project Overview | Read `README.md`, `governance/GOVERNANCE.md`, `governance/SUCCESSION_PLAN.md`, browse repo structure, read `blvm-consensus/README.md` | 1-page project summary |
+| **1-2** | Project Overview | Read `README.md`, `governance/GOVERNANCE.md`, browse repo structure, read `blvm-consensus/README.md` | 1-page project summary |
 | **3-4** | blvm-spec | Read `blvm-spec/THE_ORANGE_PAPER.md` (sections 1-5), review mathematical notation, understand state transitions | Notes on Orange Paper structure and key rules |
 | **5-7** | Consensus Implementation | Read `blvm-consensus/src/block.rs`, `transaction.rs`, `bip_validation.rs`, trace block validation, run tests | Diagram of block validation flow |
 
@@ -76,7 +76,7 @@
 
 | Category | Resources |
 |----------|-----------|
-| **Internal** | [Succession Plan](../SUCCESSION_PLAN.md), [Governance Guide](../GOVERNANCE.md), [Maintainer Guide](./MAINTAINER_GUIDE.md), [Emergency Response](../examples/emergency-response.md) |
+| **Internal** | [Governance Guide](../GOVERNANCE.md), [Maintainer Guide](./MAINTAINER_GUIDE.md), [Emergency Response](../examples/emergency-response.md) |
 | **External** | [Bitcoin Core Documentation](https://bitcoin.org/en/developer-documentation), [BIPs](https://github.com/bitcoin/bips), [Rust Book](https://doc.rust-lang.org/book/), [Kani Documentation](https://model-checking.github.io/kani/) |
 
 ## Next Steps

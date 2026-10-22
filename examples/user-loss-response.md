@@ -256,7 +256,7 @@ See [Emergency Response](./emergency-response.md) for consensus bug procedures.
 
 ### Example 2: Security Vulnerability
 
-See [Security Disclosure](./security-disclosure.md) for security vulnerability procedures.
+See [Security Policy](../SECURITY.md) for security vulnerability procedures.
 
 ### Example 3: Data Loss
 
@@ -269,8 +269,6 @@ Follow standard investigation process, but emphasize:
 
 ## Related Documents
 
-- [Liability Disclaimer](../../LIABILITY.md) - Main liability document
-- [Legal Framework](../LEGAL.md) - Legal framework
 - [Emergency Response](./emergency-response.md) - Emergency procedures
 
 ---

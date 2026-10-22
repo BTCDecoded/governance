@@ -278,7 +278,6 @@ Enforce compliance through:
 
 ## References
 
-- [Server Authorization Configuration](../config/server-authorization.yml)
 - [Emergency Procedures](../examples/emergency-response.md)
 - [Maintainer Guide](../guides/MAINTAINER_GUIDE.md)
 - [Security Guide](../SECURITY.md)
