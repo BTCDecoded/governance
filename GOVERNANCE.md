@@ -247,8 +247,8 @@ BTCDecoded implements **mathematical verification** of consensus code to prevent
 #### Verification Stack
 
 1. **blvm-spec-lock Formal Verification** (required)
-   - Z3-based verification of `#[spec_locked]` functions
-   - Proves mathematical invariants against Orange Paper specifications
+   - Z3 checks `#[spec_locked]` Rust functions against Orange Paper specifications
+   - Lean checks that an Orange Paper sentence is a theorem of the spec model. Lean does not check the Rust
    - Cannot be bypassed or overridden
 
 2. **Property-Based Testing** (required)

@@ -227,7 +227,7 @@ If you disagree with a governance decision or maintainer action:
 
 If you have questions about contributing or becoming a maintainer:
 
-1. **Check existing documentation**: See [GOVERNANCE.md](GOVERNANCE.md) and [Contributing (BLVM docs)](https://docs.thebitcoincommons.org/development/contributing.html)
+1. **Check existing documentation**: See [GOVERNANCE.md](GOVERNANCE.md) and [Contributing (BLVM docs)](https://docs.btcdecoded.org/blvm/development/contributing.html)
 2. **Open a discussion**: Use GitHub Discussions for questions
 3. **Contact maintainers**: Reach out privately for sensitive matters
 4. **Observe**: Watch how existing maintainers work and contribute
@@ -239,7 +239,7 @@ If you have questions about contributing or becoming a maintainer:
 - [GOVERNANCE.md](GOVERNANCE.md) - Complete governance model and process
 - [REVIEW_EXPECTATIONS.md](REVIEW_EXPECTATIONS.md) — Human maintainer review expectations
 - [guides/REVIEW_INTELLIGENCE.md](guides/REVIEW_INTELLIGENCE.md) — AI-assisted Bitcoin implementation review (operating document)
-- [Contributing (BLVM docs)](https://docs.thebitcoincommons.org/development/contributing.html) — Technical contribution guide
+- [Contributing (BLVM docs)](https://docs.btcdecoded.org/blvm/development/contributing.html) — Technical contribution guide
 - [LAYER_TIER_MODEL.md](LAYER_TIER_MODEL.md) - Understanding governance tiers
 
 ---

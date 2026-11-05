@@ -61,5 +61,5 @@ Bitcoin Commons implements a **5-tier constitutional governance system** with co
 - [REVIEW_EXPECTATIONS.md](REVIEW_EXPECTATIONS.md) — Human reviewer expectations (guidelines for maintainers)
 - [guides/REVIEW_INTELLIGENCE.md](guides/REVIEW_INTELLIGENCE.md) — AI-assisted code review intelligence (operating document; Compact, Orange Paper, differential testing)
 - [blvm-commons](https://github.com/BTCDecoded/blvm-commons) - Governance enforcement application
-- [blvm-docs](https://github.com/BTCDecoded/blvm-docs) - Unified mdBook site: [docs.thebitcoincommons.org](https://docs.thebitcoincommons.org/)
+- [blvm-docs](https://github.com/BTCDecoded/blvm-docs) - Unified mdBook site: [docs.btcdecoded.org/blvm](https://docs.btcdecoded.org/blvm/)
 - **Audit materials** — see security and disclosure policy in this repo (`SECURITY.md`, `guides/`) and organization-wide [SECURITY.md](https://github.com/BTCDecoded/.github/blob/main/SECURITY.md) where applicable
