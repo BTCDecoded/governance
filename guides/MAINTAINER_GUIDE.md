@@ -89,10 +89,11 @@ Merges are gated by **maintainer multisig** and **review periods**.
 
 ### Emergency Activation (Tier 4)
 
-1. Automatic classification as Tier 4
+1. Automatic classification as pull-request tier 4
 2. Immediate notification to all maintainers
-3. 4-of-5 signatures required within 24 hours
-4. Post-mortem required within 30 days
+3. 4-of-5 maintainer signatures. The tier review period is 0 days. A repository layer with a longer review still wins, so blvm-node stays at 60 days.
+4. Keyholder activation is a different count: 5-of-7 in `config/emergency-tiers.yml`
+5. Post-mortem required within 30 days
 
 ### Emergency Extension
 

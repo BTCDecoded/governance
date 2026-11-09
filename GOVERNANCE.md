@@ -80,7 +80,7 @@ When both apply, the system takes the most restrictive (highest) requirements:
 | Bug fix in blvm-protocol | 3 | 1 | 4-of-5 | 90 days | Layer 3 |
 | New feature in blvm-sdk | 5 | 2 | 4-of-5 | 30 days | Tier 2 |
 | Consensus change in blvm-spec | 1 | 3 | 6-of-7 | 180 days | Layer 1 |
-| Emergency fix in blvm-node | 4 | 4 | 4-of-5 | 0 days | Tier 4 |
+| Emergency fix in blvm-node | 4 | 4 | 4-of-5 | 60 days | Combined Layer 4 + Tier 4 |
 
 See [LAYER_TIER_MODEL.md](LAYER_TIER_MODEL.md) for the complete decision matrix.
 

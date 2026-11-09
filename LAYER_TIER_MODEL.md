@@ -65,7 +65,7 @@ When both apply, system takes **most restrictive** (highest) requirements:
 | Bug fix in blvm-protocol | 3 (4-of-5, 90d) | 1 (3-of-5, 7d) | 4-of-5, 90d | Layer 3 |
 | New feature in blvm-sdk | 5 (2-of-3, 14d) | 2 (4-of-5, 30d) | 4-of-5, 30d | Tier 2 |
 | Consensus change in blvm-spec | 1 (6-of-7, 180d) | 3 (5-of-5, 90d) | 6-of-7, 180d | Layer 1 |
-| Emergency fix in blvm-node | 4 (3-of-5, 60d) | 4 (4-of-5, 0d) | 4-of-5, 0d | Tier 4 |
+| Emergency fix in blvm-node | 4 (3-of-5, 60d) | 4 (4-of-5, 0d) | 4-of-5, 60d | Combined Layer 4 + Tier 4 |
 
 ## Implementation
 

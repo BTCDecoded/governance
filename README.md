@@ -33,8 +33,10 @@ Bitcoin Commons implements a **5-tier constitutional governance system** with co
 - **Tier 1: Routine Maintenance** (3-of-5, 7 days) - Bug fixes, documentation, performance
 - **Tier 2: Feature Changes** (4-of-5, 30 days) - New RPC methods, P2P changes, wallet features
 - **Tier 3: Consensus-Adjacent** (5-of-5, 90 days) - Changes affecting consensus validation
-- **Tier 4: Emergency Actions** (4-of-5, 0 days review period) - Critical security patches, network threats
+- **Tier 4: Emergency Actions** (4-of-5, 0 days review period) - Pull-request class for critical patches. This is the maintainer pool in `config/action-tiers.yml`, not the keyholder classes.
 - **Tier 5: Governance Changes** (Special process, 180 days) - Changes to governance rules themselves
+
+Combined with a repository layer, the longer review wins. An emergency-classed change in blvm-node is 4-of-5 and 60 days. Keyholder activation is `config/emergency-tiers.yml`: the critical class signs 4-of-7 and activates 5-of-7.
 
 ### Layer Hierarchy
 
