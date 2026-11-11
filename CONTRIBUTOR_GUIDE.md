@@ -4,6 +4,8 @@
 
 This guide describes **possible paths** for contributors in Bitcoin Commons. These are **documented options**, not rigid requirements. Merit-based selection emerges naturally through contributions and demonstrated competence.
 
+This guide's roles are Code Contributor, Reviewer, and Maintainer. It does not define Observer, Participant, Contributor, or Steward, and it does not grant crate-scoped votes or a no-self-merge rule.
+
 **Key Principle**: We document possibilities, not enforce a single path. The best path emerges spontaneously through contributions.
 
 ---

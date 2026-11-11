@@ -48,15 +48,17 @@ When both apply, system takes **most restrictive** (highest) requirements:
 | 3 | 4 | 4-of-5 | 90 days | Layer 3 |
 | 3 | 5 | 5-of-5 | 180 days | Tier 5 |
 | 4 | 1 | 3-of-5 | 60 days | Layer 4 |
-| 4 | 2 | 4-of-5 | 60 days | Tier 2 |
+| 4 | 2 | 4-of-5 | 60 days | Tier 2 signatures, Layer 4 review |
 | 4 | 3 | 5-of-5 | 90 days | Tier 3 |
-| 4 | 4 | 4-of-5 | 60 days | Layer 4 |
+| 4 | 4 | 4-of-5 | 60 days | Tier 4 signatures, Layer 4 review |
 | 4 | 5 | 5-of-5 | 180 days | Tier 5 |
 | 5 | 1 | 2-of-3 | 14 days | Layer 5 |
 | 5 | 2 | 4-of-5 | 30 days | Tier 2 |
 | 5 | 3 | 5-of-5 | 90 days | Tier 3 |
-| 5 | 4 | 4-of-5 | 14 days | Layer 5 |
+| 5 | 4 | 4-of-5 | 14 days | Tier 4 signatures, Layer 5 review |
 | 5 | 5 | 5-of-5 | 180 days | Tier 5 |
+
+Rows for layers 1 and 2 use the ordinary `review_period_days` of 180 days. A consensus rule change on those layers uses 365 days. Tier 3 is not only consensus-rule changes. The layer-1 tier-3 cell stays 180 days.
 
 ## Examples
 
@@ -64,7 +66,7 @@ When both apply, system takes **most restrictive** (highest) requirements:
 |---------|-------|------|--------|--------|
 | Bug fix in blvm-protocol | 3 (4-of-5, 90d) | 1 (3-of-5, 7d) | 4-of-5, 90d | Layer 3 |
 | New feature in blvm-sdk | 5 (2-of-3, 14d) | 2 (4-of-5, 30d) | 4-of-5, 30d | Tier 2 |
-| Consensus change in blvm-spec | 1 (6-of-7, 180d) | 3 (5-of-5, 90d) | 6-of-7, 180d | Layer 1 |
+| Consensus change in blvm-spec | 1 (6-of-7, 180d) | 3 (5-of-5, 90d) | 6-of-7, 180 days (consensus rule change: 365) | Layer 1 |
 | Emergency fix in blvm-node | 4 (3-of-5, 60d) | 4 (4-of-5, 0d) | 4-of-5, 60d | Combined Layer 4 + Tier 4 |
 
 ## Implementation

@@ -63,7 +63,7 @@ Server authorization serves as a **security boundary mechanism** by:
   "approval_requirements": {
     "add_server": "4-of-5 maintainers",
     "remove_server": "3-of-5 maintainers",
-    "compromise_server": "2-of-3 emergency keyholders"
+    "compromise_server": "2-of-3 emergency keyholders; server revocation, not emergency-tier activation"
   }
 }
 ```
@@ -104,7 +104,7 @@ Server authorization serves as a **security boundary mechanism** by:
 ### Emergency Revocation
 
 1. **Compromise Detection**: Identify compromised server
-2. **Immediate Revocation**: 2-of-3 emergency keyholders
+2. **Immediate Revocation**: 2-of-3 emergency keyholders. This is server revocation, not emergency-tier activation.
 3. **Server Isolation**: Block all operations immediately
 4. **Incident Response**: Investigate and contain breach
 5. **Recovery**: Restore operations on clean servers

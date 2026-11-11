@@ -278,7 +278,7 @@ governance_review_policy:
   # Emergency removal
   emergency_removal:
     enabled: true
-    threshold: "4-of-5"  # Emergency keyholders
+    threshold: "4-of-5"  # Emergency keyholders. Key deactivation, not emergency-tier activation (5-of-7 at activation_threshold).
     requires_formal_removal_within_days: 7
 
 # ============================================================================

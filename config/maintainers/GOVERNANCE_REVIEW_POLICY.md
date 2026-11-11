@@ -267,7 +267,7 @@ Governance review cases are handled through a graduated sanction system, providi
 - Active attack on the system
 
 **Process:**
-- Emergency keyholders (4-of-5) can immediately deactivate key
+- Emergency keyholders (4-of-5) can immediately deactivate a key. This is key deactivation, not emergency-tier activation. Emergency-tier activation remains 5-of-7.
 - Formal removal process follows within 7 days
 - Subject can appeal through normal process
 

@@ -102,7 +102,7 @@ tiers:
       requires_post_mortem: true
       post_mortem_deadline_days: 90
       requires_security_audit: false
-      requires_public_disclosure: false
+      requires_public_disclosure: false  # prose requires immediate public disclosure; operative value is unset
       disclosure_timing: "Immediate"
 
     extension:

@@ -15,11 +15,13 @@
 
 ## Constitutional Governance Model
 
-Bitcoin Commons implements a **5-tier constitutional governance system** that makes Bitcoin governance **6x harder to capture** than Bitcoin Core's current model, with **complete transparency** through cryptographic audit trails and **user-protective** mechanisms.
+Bitcoin Commons implements a **5-tier constitutional governance system** that makes Bitcoin governance **six barriers** to capture compared with Bitcoin Core's current model, with **complete transparency** through cryptographic audit trails and **user-protective** mechanisms. The list is not a multiple of Core's five merge keys or of the 81.1 percent top-three merge share.
 
-**Core Innovation:** Apply the same cryptographic enforcement to governance that Bitcoin applies to consensus - making power visible, capture expensive, and exit cheap.
+**Core Innovation:** Phase 2 applies the same cryptographic enforcement to governance that Bitcoin applies to consensus, making power visible, capture expensive, and exit cheap. Phase 1 does not enforce this yet.
 
 ## How Governance Works
+
+A change that acts contrary to the Compact's settlement purpose is outside this model. That purpose is transfer of value, settlement of obligations, and preservation of monetary integrity ([COMPACT.md](COMPACT.md)).
 
 ### Action Tiers (Constitutional Model)
 
@@ -38,21 +40,30 @@ Bitcoin Commons implements a **5-tier constitutional governance system** that ma
 **Tier 4: Emergency Actions** (4-of-5, 0 days review period)
 - Critical security patches, network-threatening bugs
 - Maintainer coordination, post-mortem required
+- This 4-of-5 row is the maintainer pool in `config/action-tiers.yml`, not the keyholder classes. Emergency Tier 1 below is 4-of-7 keyholder signatures, activated by 5-of-7.
 
-**Tier 5: Governance Changes** (Special process, 180 days)
+**Tier 5: Governance Changes** (two written pairs, neither chosen here: Meta-Governance is 5-of-7 plus 2-of-3 over 90 days; `tier_5_governance` is 5-of-5 over 180 days)
 - Changes to governance rules themselves
 - Extended public comment and maintainer unanimity per policy
+
+### Security-specific tiers
+
+These classes are in `config/action-tiers.yml`. This section copies them and does not change them.
+
+- **Security-Critical Changes** (`security_critical`): 7-of-7, 180 days
+- **Cryptographic Operations** (`cryptographic`): 6-of-7, 90 days
+- **Security Enhancement** (`security_enhancement`): 5-of-7, 30 days
 
 ### Pull Request Process
 
 1. Developer opens PR
-   - **Code**: `blvm-commons/src/webhooks/pull_request.rs:handle_pull_request()`
+   - **Code**: `blvm-commons/src/webhooks/pull_request.rs:handle_pull_request_event`
 2. Governance App classifies tier automatically (with temp. manual override)
-   - **Code**: `blvm-commons/src/validation/tier_classification.rs:classify_tier()`
+   - **Code**: `blvm-commons/src/validation/tier_classification.rs:classify_pr_tier`
 3. Maintainers review and sign: `/governance-sign <signature>`
-   - **Code**: `blvm-commons/src/webhooks/comment.rs:handle_governance_sign()`
+   - **Code**: `blvm-commons/src/webhooks/comment.rs:handle_comment_event`
 4. Review period elapses (tier-specific duration)
-   - **Code**: `blvm-commons/src/validation/review_period.rs:check_review_period()`
+   - **Code**: `blvm-commons/src/validation/review_period.rs:validate_review_period`
 5. Requirements met → merge enabled
    - **Code**: `blvm-commons/src/enforcement/merge_block.rs:should_block_merge()`
 6. PR merged
@@ -79,7 +90,7 @@ When both apply, the system takes the most restrictive (highest) requirements:
 |---------|-------|------|------------------|--------------|---------|
 | Bug fix in blvm-protocol | 3 | 1 | 4-of-5 | 90 days | Layer 3 |
 | New feature in blvm-sdk | 5 | 2 | 4-of-5 | 30 days | Tier 2 |
-| Consensus change in blvm-spec | 1 | 3 | 6-of-7 | 180 days | Layer 1 |
+| Consensus change in blvm-spec | 1 | 3 | 6-of-7 | 180 days (consensus rule change: 365) | Layer 1 |
 | Emergency fix in blvm-node | 4 | 4 | 4-of-5 | 60 days | Combined Layer 4 + Tier 4 |
 
 See [LAYER_TIER_MODEL.md](LAYER_TIER_MODEL.md) for the complete decision matrix.
@@ -99,8 +110,8 @@ Bitcoin Commons uses a three-tiered emergency response system for proportional h
 
 **Requirements:**
 - 0 day review period
-- 4-of-7 maintainer signatures
-- 5-of-7 emergency keyholders to activate
+- 4-of-7 keyholder signatures
+- 5-of-7 emergency keyholders to activate. This activation is not key deactivation, which is 4-of-5.
 - 7 day maximum duration
 - No extensions allowed
 
@@ -127,7 +138,7 @@ Bitcoin Commons uses a three-tiered emergency response system for proportional h
 **Requirements:**
 - 7 day review period
 - 5-of-7 maintainer signatures
-- 5-of-7 emergency keyholders to activate
+- 5-of-7 emergency keyholders to activate. This activation is not key deactivation, which is 4-of-5.
 - 30 day maximum duration
 - One extension allowed (30 days, requires 6-of-7)
 
@@ -150,13 +161,13 @@ Bitcoin Commons uses a three-tiered emergency response system for proportional h
 **Requirements:**
 - 30 day review period
 - 6-of-7 maintainer signatures
-- 5-of-7 emergency keyholders to activate
+- 5-of-7 emergency keyholders to activate. This activation is not key deactivation, which is 4-of-5.
 - 90 day maximum duration
 - Two extensions allowed (30 days each, requires 6-of-7)
 
 **Post-Activation:**
 - Post-mortem required within 90 days
-- Immediate public disclosure
+- Immediate public disclosure. The YAML boolean is false and the timing is Immediate. The operative value is unset.
 
 #### Emergency Activation Process
 
@@ -276,12 +287,12 @@ BTCDecoded implements **mathematical verification** of consensus code to prevent
 
 **Level 3: Meta-Governance**
 - Verification requirements set by maintainers collectively
-- Changes require 5-of-7 signatures + 90-day review
+- Changes require 5-of-7 signatures + 90-day review. This verification-requirement change is not Tier 5.
 - Community can propose improvements
 
 #### Defense Against Capture
 
-Formal verification makes Bitcoin governance **6x harder to capture**:
+Formal verification makes Bitcoin governance **six barriers** to capture:
 
 1. **Technical Barrier**: Must bypass automated verification
 2. **Social Barrier**: Must convince 6-of-7 maintainers
@@ -308,7 +319,7 @@ Changes to governance rules themselves require:
 
 **Adding Maintainers:**
 - Nominated by existing maintainer
-- 5-of-7 approval from current maintainers
+- 5-of-7 approval from current maintainers. The 5-of-7 and 6-of-7 counts apply where the roster lists 7 names, layers 1 and 2.
 - 30-day community comment period
 - Must demonstrate technical competence and alignment with Bitcoin principles
 
@@ -316,7 +327,7 @@ Changes to governance rules themselves require:
 See [CONTRIBUTOR_GUIDE.md](CONTRIBUTOR_GUIDE.md) for possible paths from contributor to maintainer. These are documented options, not rigid requirements. Merit-based selection emerges naturally through contributions.
 
 **Removing Maintainers:**
-- 6-of-7 vote (excluding subject maintainer)
+- 6-of-7 vote (excluding subject maintainer). Layers 3 and 4 list 5 names, and layer 5 lists 3.
 - Formal warning logged in `warnings/` directory
 - 14-day notice period
 - Reasons: inactivity (6+ months), code of conduct violations **on-platform only** (off-platform activity disregarded), competence concerns

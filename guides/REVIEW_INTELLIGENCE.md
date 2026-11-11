@@ -508,7 +508,7 @@ Collective choice arrangements: those affected by the rules should participate i
 
 Monitoring: resource use must be monitored and monitors must be accountable to users. The differential testing record is the monitoring mechanism. It is publicly verifiable and accountable to anyone running a node.
 
-Graduated sanctions: violations should be sanctioned proportionally. The tiered flag structure and the non-engagement protocol implement graduated response: quality concerns get quality treatment, consensus-critical concerns get consensus-critical treatment, and bad faith gets disengagement rather than escalation.
+Graduated sanctions: violations should be sanctioned proportionally. The tiered flag structure and the non-engagement protocol implement graduated response, and bad faith gets disengagement rather than escalation. A difference in stakes is congruence, stated above, not a sanction.
 
 Conflict resolution mechanisms: rapid, low-cost dispute resolution must be available. The pushback taxonomy and concession protocol in Parts IX and VIII are the conflict resolution mechanism for review disputes.
 

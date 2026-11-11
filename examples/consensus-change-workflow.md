@@ -38,7 +38,7 @@
    - Link to BIP, tests, proof, audit
 
 2. **Governance App Validation**
-   - Detects consensus rule change: ```blvm-commons/src/validation/tier_classification.rs:classify_tier()```
+   - Detects consensus rule change: ```blvm-commons/src/validation/tier_classification.rs:classify_pr_tier```
    - Applies 365-day review: ```blvm-commons/src/validation/threshold.rs:get_review_period_for_layer()```
    - Requires 6-of-7 threshold: ```blvm-commons/src/validation/threshold.rs:get_threshold_for_layer()```
    - Checks required artifacts: ```blvm-commons/src/validation/security_controls.rs:check_required_artifacts()```
