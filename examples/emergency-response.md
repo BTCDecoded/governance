@@ -110,7 +110,7 @@ Three-tiered emergency system enables rapid response to critical issues while ma
 
 ### When to Use
 
-**Important But Not Critical**: Competitive response, important bug fixes (non-security), performance degradation, ecosystem compatibility, user experience issues affecting adoption.
+**Important But Not Critical**: important non-security bug fixes and performance degradation of a running node. Competitive response, ecosystem compatibility, and user-experience work are not emergency criteria.
 
 ### Differences from Tier 2
 

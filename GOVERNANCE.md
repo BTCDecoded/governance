@@ -159,11 +159,10 @@ Bitcoin Commons uses a three-tiered emergency response system for proportional h
 #### Tier 3: Elevated Priority
 
 **Activation Criteria:**
-- Competitive response (other implementations advancing)
-- Important bug fixes (non-security)
-- Performance degradation issues
-- Ecosystem compatibility problems
-- User experience issues affecting adoption
+- Important bug fixes that are not security issues
+- Performance degradation of a running node
+
+A policy default and a change to these governance rules cannot use an emergency tier. Competitive response, ecosystem compatibility, and user-experience work stay on the ordinary tier. The signature count, the review period, the duration, and the activation threshold of this tier are unchanged.
 
 **Requirements:**
 - 30 day review period

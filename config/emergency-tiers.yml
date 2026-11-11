@@ -80,11 +80,9 @@ tiers:
     severity: "Important but not critical"
 
     activation_criteria:
-      - "Competitive response (other implementations advancing)"
       - "Important bug fixes (non-security)"
-      - "Performance degradation issues"
-      - "Ecosystem compatibility problems"
-      - "User experience issues affecting adoption"
+      - "Performance degradation of a running node"
+      # Competitive response, ecosystem compatibility, and user-experience work are ordinary changes. A policy default and a governance-rule change cannot use this tier. Signature counts and day counts below are unchanged.
 
     requirements:
       review_period_days: 30
