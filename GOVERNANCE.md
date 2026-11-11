@@ -330,7 +330,7 @@ Changes to governance rules themselves require:
 - Must demonstrate technical competence and alignment with Bitcoin principles
 
 **Contributor Progression:**
-See [CONTRIBUTOR_GUIDE.md](CONTRIBUTOR_GUIDE.md) for possible paths from contributor to maintainer. These are documented options, not rigid requirements. Merit-based selection emerges naturally through contributions.
+See [CONTRIBUTOR_GUIDE.md](CONTRIBUTOR_GUIDE.md) for possible paths from contributor to maintainer. These are documented options, not rigid requirements. Merit-based selection emerges naturally through contributions. Contribution volume does not grant standing to merge, and neither does a flag from the review guidance.
 
 **Removing Maintainers:**
 - 6-of-7 vote (excluding subject maintainer). Layers 3 and 4 list 5 names, and layer 5 lists 3.
