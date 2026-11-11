@@ -355,7 +355,7 @@ An informal practice that has held under pressure may be written down later, at 
 
 ### Reputation
 
-Signed, published governance actions are the reputation record in this design. The cost of breaking one, and the cost of operators leaving, is the commitment. It does not require a further veto. While enforcement is off, a direct push does not produce that record. This source is Designed, not Running.
+Signed, published governance actions are the reputation record in this design. The cost of breaking one, and the cost of operators leaving, is the commitment. It does not require a further veto. A later governance action that relies on a prior signed action cites that record. A record that no later action cites does not by itself raise the cost of breaking the undertaking. While enforcement is off, this source is Designed, not Running.
 
 ### Commons principles
 
