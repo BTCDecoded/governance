@@ -14,7 +14,7 @@ Tier 3 (consensus-adjacent, 5-of-5, 90 days): reasoning standards (Part VII), sc
 
 Tier 5 (governance/constitutional, 5-of-5, 180 days): philosophical foundations (Part XV), Compact legitimacy framework, any change that alters the relationship between this document and the Orange Paper or the Bitcoin Commons Compact.
 
-**Proposal process:** Any contributor may open a pull request. The tier of the most sensitive section touched determines the threshold for the entire PR.
+**Proposal process:** Any contributor may open a pull request. The tier of the most sensitive section touched determines the threshold for the entire PR. A change that alters which findings this guidance tells a reviewer to treat as blocking is a governance-rule change and uses the process already written for one. It does not add a signature count.
 
 ---
 
