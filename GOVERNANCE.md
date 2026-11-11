@@ -53,6 +53,7 @@ People can agree on what the code does and still disagree on whether that purpos
 **Tier 5: Governance Changes** (two written pairs, neither chosen here: Meta-Governance is 5-of-7 plus 2-of-3 over 90 days; `tier_5_governance` is 5-of-5 over 180 days)
 - Changes to governance rules themselves
 - Extended public comment and maintainer unanimity per policy
+- Before a change to these rules merges, comments in the public record receive a written response. The response says what was accepted, what was not, and why. The response is not a veto. A period that only adds days does not deliberate. This duty does not apply to routine code.
 
 ### Security-specific tiers
 
