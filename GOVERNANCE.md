@@ -15,7 +15,7 @@
 
 ## Constitutional Governance Model
 
-Bitcoin Commons implements a **5-tier constitutional governance system** that makes Bitcoin governance **six barriers** to capture compared with Bitcoin Core's current model, with **complete transparency** through cryptographic audit trails and **user-protective** mechanisms. The list is not a multiple of Core's five merge keys or of the 81.1 percent top-three merge share.
+Bitcoin Commons implements a **5-tier constitutional governance system** with a public record of governance actions. The barriers below are a list of checks the design wants in front of a rule change. They are not a measured multiple of any other project, and they are not in force while this file says enforcement is off.
 
 **Core Innovation:** Phase 2 applies the same cryptographic enforcement to governance that Bitcoin applies to consensus, making power visible, capture expensive, and exit cheap. Phase 1 does not enforce this yet.
 
@@ -292,7 +292,7 @@ BTCDecoded implements **mathematical verification** of consensus code to prevent
 
 #### Defense Against Capture
 
-Formal verification makes Bitcoin governance **six barriers** to capture:
+Formal verification is one check in front of a change to these rules. The design also relies on the following barriers. None of them is a measured multiple of another project, and none of them is enforced while Phase 1 is current.
 
 1. **Technical Barrier**: Must bypass automated verification
 2. **Social Barrier**: Must convince 6-of-7 maintainers

@@ -62,7 +62,7 @@ layers:
       defined in the constitutional layer. Changes here affect the core validation
       logic of Bitcoin. All changes MUST pass formal verification (blvm-spec-lock + Proptest)
       before maintainer signatures are allowed. This creates a technical barrier
-      that complements social governance, making Bitcoin governance 6x harder to capture.
+      that complements social governance. The check is a technical barrier. It is not a measured multiple of any other project.
 
   layer_3_implementation:
     name: "Implementation Layer"
