@@ -335,7 +335,7 @@ Changes to governance rules themselves require:
 - Must demonstrate technical competence and alignment with Bitcoin principles
 
 **Contributor Progression:**
-See [CONTRIBUTOR_GUIDE.md](CONTRIBUTOR_GUIDE.md) for possible paths from contributor to maintainer. These are documented options, not rigid requirements. Merit-based selection emerges naturally through contributions. Contribution volume does not grant standing to merge, and neither does a flag from the review guidance.
+See [CONTRIBUTOR_GUIDE.md](CONTRIBUTOR_GUIDE.md) for possible paths from contributor to maintainer. These are documented options, not rigid requirements. Merit-based selection emerges naturally through contributions. Contribution volume does not grant standing to merge, and neither does a flag from the review guidance. Closing a pull request, triaging it, or leaving it without a response requires a recorded reason that names `REVIEW_EXPECTATIONS.md` or `CONTRIBUTOR_GUIDE.md`. Those files state expectations, not a sanction list. The governance nodes check that the reason is present and that it names one of those files. They do not judge whether the patch deserved the outcome. A governance node reopens a pull request closed without that reason. A pull request that receives no response during the review period its tier already uses is flagged in the public record. The flag is not a duty to review the patch and it is not a merge. A flood of pull requests can produce a flood of flags. It cannot force a review of each one. This check is Designed. It is not Running.
 
 **Removing Maintainers:**
 - 6-of-7 vote (excluding subject maintainer). Layers 3 and 4 list 5 names, and layer 5 lists 3.
