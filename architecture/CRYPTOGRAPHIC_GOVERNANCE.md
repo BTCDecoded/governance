@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Bitcoin Commons governance applies the same cryptographic enforcement to governance that Bitcoin applies to consensus. All governance actions require cryptographic proof, multiple maintainers must sign critical actions, and all signatures are publicly verifiable.
+This file describes a design. Enforcement is off. Keys in use today are test keys. Phase 1 is current. The design is that governance actions carry cryptographic proof, that multiple maintainers sign critical actions, and that signatures are publicly verifiable. That design is not Running.
 
 ## Core Principles
 
