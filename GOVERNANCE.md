@@ -19,6 +19,12 @@ Bitcoin Commons implements a **5-tier constitutional governance system** with a 
 
 **Core Innovation:** Phase 2 applies the same cryptographic enforcement to governance that Bitcoin applies to consensus, making power visible, capture expensive, and exit cheap. Phase 1 does not enforce this yet.
 
+## Where these rules sit
+
+The schedule below is a collective-choice rule. It says how an operational rule, including a shipped default, is supposed to change. Standing to change that schedule is the constitutional rule, and it belongs to the maintainer and keyholder rosters written later in this file. Those rosters are placeholders, and the signature rules are Designed. They are not Running. Enforcement is off.
+
+Legitimacy is a further level. It rests on adoption and exit, not on a signature. The Compact says authority flows from users, and that the Compact means nothing until users adopt it. A signature cannot force an operator to run the result. This level is Designed. It connects this file to Compact sections II and VII. It does not amend the Compact.
+
 ## How Governance Works
 
 A change that acts contrary to the Compact's settlement purpose is outside this model. That purpose is transfer of value, settlement of obligations, and preservation of monetary integrity ([COMPACT.md](COMPACT.md)).
