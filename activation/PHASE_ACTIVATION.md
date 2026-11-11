@@ -6,11 +6,11 @@
 
 ## Phase Overview
 
-| Phase | Status | Duration | Timeline | Key Activities |
-|-------|--------|----------|----------|---------------|
-| **Phase 1: Infrastructure Building** | ✅ COMPLETED | 3-6 months | Dec 2024 - Mar 2025 | Core infrastructure, maintainer GitHub integration, testing, documentation |
-| **Phase 2: Governance Activation** | 🚧 PLANNED | 3-6 months | Mar 2025 - Sep 2025 | Real cryptographic keys, production deployment, security audit, community validation |
-| **Phase 3: Full Operation** | 📋 PLANNED | 12+ months | Sep 2025 - Sep 2026+ | Mature system, battle-tested, full adoption, advanced features |
+| Phase | Status | Timeline | Key Activities |
+|-------|--------|----------|---------------|
+| **Phase 1: Infrastructure Building** | Current. Infrastructure is built. Enforcement is not on. | No fixed date. This is the current phase. | Core infrastructure, maintainer GitHub integration, testing, documentation |
+| **Phase 2: Governance Activation** | Not started. | Activation begins as BLVM moves from alpha to beta, on no fixed timeline. | Real cryptographic keys, production deployment, security audit, community validation, and adoption |
+| **Phase 3: Full Operation** | Not started. | No fixed date. It follows Phase 2. | Later operation after adoption, not a calendar milestone |
 
 ## Phase 1: What's Complete vs. Not Active
 
@@ -34,12 +34,12 @@
 
 ## Phase 2 Activation Process
 
-| Step | Duration | Timeline | Activities |
-|------|----------|----------|------------|
-| **1. Security Audit** | 2-3 months | Mar - May 2025 | Audit firm selection, scope definition, execution, remediation, report |
-| **2. Community Validation** | 1-2 months | May - Jun 2025 | Community outreach, feedback collection, model refinement, documentation updates |
-| **3. Production Deployment** | 1-2 months | Jun - Jul 2025 | Production environment, key management, monitoring, testing, go live |
-| **4. Community Adoption** | 2-3 months | Jul - Sep 2025 | Maintainer onboarding, monitoring, stabilization |
+| Step | Timeline | Activities |
+|------|----------|------------|
+| **1. Security Audit** | No fixed date. | Audit firm selection, scope definition, execution, remediation, report |
+| **2. Community Validation** | No fixed date. Required before activation. | Community outreach, feedback collection, model refinement, documentation updates |
+| **3. Adoption** | No fixed date. Required before activation. | Operators and users choosing the software. A signature does not replace this. |
+| **4. Production Deployment** | Only after validation and adoption, as BLVM moves from alpha to beta. | Production environment, key management, monitoring, testing |
 
 ## Phase 3 Development
 
@@ -63,7 +63,7 @@
 |-------|---------|
 | **Phase 1** | ✅ Infrastructure complete, testing complete, documentation complete, community awareness |
 | **Phase 2** | Security audit completed, community approval, production deployment, initial adoption |
-| **Phase 3** | Stable operation (12+ months), significant community adoption, ecosystem integration, effective governance |
+| **Phase 3** | Stable operation after adoption, ecosystem integration, effective governance |
 
 ## ⚠️ Final Warning
 

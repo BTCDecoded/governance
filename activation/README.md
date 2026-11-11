@@ -16,12 +16,12 @@ The BTCDecoded governance system is being activated in phases:
    - Test keys only
    - Not yet enforced
 
-2. **Phase 2 (3-6 months)**: Stabilization
+2. **Phase 2**: Stabilization, beginning as BLVM moves from alpha to beta, on no fixed timeline, and only with community validation and adoption
    - Security audit completed
    - Production keys deployed
    - Governance rules enforced
 
-3. **Phase 3 (12+ months)**: Full Operation
+3. **Phase 3**: Full Operation, after Phase 2, on no fixed timeline
    - Mature, stable system
    - Community adoption
    - Continuous improvement

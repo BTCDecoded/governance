@@ -9,9 +9,7 @@
 - 🔧 **Test Keys Only**: No real cryptographic enforcement
 - 📋 **Development Phase**: System is in rapid AI-assisted development
 
-**Timeline:**
-- **Phase 2 Activation**: 3-6 months (governance enforcement begins)
-- **Phase 3 Full Operation**: 12+ months (mature, stable system)
+**Timeline:** Activation begins as BLVM moves from alpha to beta, on no fixed timeline. Phase 1 is current. Infrastructure is built, and governance rules are not enforced. Phase 2 begins with community validation and adoption, not on a calendar date. Phase 3 is later operation after that, with no fixed date.
 
 ## Constitutional Governance Model
 

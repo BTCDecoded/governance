@@ -12,7 +12,7 @@ Central source of truth for governance rules across all Bitcoin Commons reposito
 - 🔧 Test Keys Only: No real cryptographic enforcement
 - 📋 Development Phase: System is in rapid AI-assisted development
 
-**Timeline:** Phase 2 Activation: Governance enforcement begins | Phase 3 Full Operation: Mature, stable system
+**Timeline:** Activation begins as BLVM moves from alpha to beta, on no fixed timeline. Phase 1 is current, and enforcement is not on. Phase 2 waits on community validation and adoption.
 
 ## Overview
 

@@ -234,13 +234,17 @@ These determine when the system transitions between **Early → Growth → Matur
 - **Governance Enforcement**: Disabled (`feature_governance_enforcement = false`)
 - **Rationale**: System is being built and tested
 
-### Phase 2 (3-6 months): Governance Activation
+### Phase 2: Governance Activation
+
+Activation begins as BLVM moves from alpha to beta, on no fixed timeline, and only with community validation and adoption.
 - **Expected Changes**:
   - Enable `feature_governance_enforcement = true`
   - Adjust maintainer and review thresholds based on operational experience
   - Fine-tune Commons contributor thresholds based on actual contribution patterns
 
-### Phase 3 (12+ months): Full Operation
+### Phase 3: Full Operation
+
+Phase 3 follows Phase 2. It has no fixed date.
 - **Expected Changes**:
   - Optimize thresholds based on real-world experience
   - Adjust phase calculation thresholds if growth differs from projections
