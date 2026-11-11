@@ -346,6 +346,10 @@ See [CONTRIBUTOR_GUIDE.md](CONTRIBUTOR_GUIDE.md) for possible paths from contrib
 - Encouraged rotation every 3-5 years to prevent centralization
 - Emeritus status available for advisory role
 
+### Review of the numbers
+
+Before activation, the maintainers publish a review of the signature counts and the review periods against the hazards they were written for. They publish the same review when a change to these rules is proposed. The review does not change a number. A number changes only through the process already written for a governance-rule change. The review exists because a long period can freeze a default, and because a high threshold lets a minority stall a change.
+
 ### Customs and working groups
 
 An informal practice that has held under pressure may be written down later, at the tier of the rule it becomes. Writing it down is for people outside the group who cannot watch the practice. It is not a claim that an unwritten practice is weak. A working group may coordinate a topic without a signature threshold. The group does not merge code and does not change a rule. Forcing a practice into a threshold before it has held adds delay and can freeze a habit that was doing the work.
