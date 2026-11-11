@@ -263,18 +263,18 @@ BTCDecoded implements **mathematical verification** of consensus code to prevent
 
 #### Enforcement Levels
 
-**Level 1: CI Enforcement (Ostrom #4: Monitoring)**
+**Level 1: CI Enforcement**
 - Automated verification runs on every PR
 - Blocks merge if verification fails
 - No human override possible
 - Technical correctness is non-negotiable
 
-**Level 2: Governance App (Ostrom #5: Graduated Sanctions)**
+**Level 2: Governance App**
 - Validates verification passed before allowing signatures
 - PRs without passing verification cannot progress
 - Prevents maintainers from signing unverified code
 
-**Level 3: Meta-Governance (Ostrom #3: Collective Choice)**
+**Level 3: Meta-Governance**
 - Verification requirements set by maintainers collectively
 - Changes require 5-of-7 signatures + 90-day review
 - Community can propose improvements
@@ -326,18 +326,9 @@ See [CONTRIBUTOR_GUIDE.md](CONTRIBUTOR_GUIDE.md) for possible paths from contrib
 - Encouraged rotation every 3-5 years to prevent centralization
 - Emeritus status available for advisory role
 
-### Ostrom Principles Compliance
+### Commons principles
 
-BTCDecoded governance follows Elinor Ostrom's principles for managing common-pool resources:
-
-1. **Clearly Defined Boundaries**: Maintainer roles and repository scope defined
-2. **Proportional Equivalence**: Higher-layer (constitutional) changes require more consensus
-3. **Collective Choice**: Maintainers participate in rule-making that affects them
-4. **Monitoring**: Governance App enforces rules transparently on GitHub
-5. **Graduated Sanctions**: Warning system before maintainer removal
-6. **Conflict Resolution**: Meta-governance process for disputes
-7. **Minimal Recognition of Rights**: GitHub org recognizes this governance structure
-8. **Nested Enterprises**: Layered architecture with appropriate rules per layer
+The principles for this design are in the Bitcoin Commons white paper, [section 3, Theoretical Framework](https://thebitcoincommons.org/whitepaper.html#3-theoretical-framework-the-triple-foundation). That section states Ostrom's eight principles and the implementation account that follows. This file does not restate them.
 
 **Note:** We govern the *codebase commons* (repository access), not the *network commons* (Bitcoin protocol). Users govern the network through voluntary adoption.
 
