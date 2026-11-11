@@ -9,3 +9,5 @@
 **Published book:** [blvm-docs](https://github.com/BTCDecoded/blvm-docs) resolves `[[gov:…]]` placeholders from these YAML files at `mdbook build` time.
 
 **Layer + tier combination:** see [`LAYER_TIER_MODEL.md`](../LAYER_TIER_MODEL.md) and [`config/repository-layers.yml`](../config/repository-layers.yml).
+
+A change to a shipped policy default, including relay policy and spam-filter parameters, keeps the tier the change already has. It is not moved onto the consensus-adjacent row. The change carries a written rationale tied to the Compact and a statement of whether that purpose is contested. The YAML integers are unchanged.

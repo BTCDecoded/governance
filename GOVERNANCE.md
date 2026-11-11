@@ -34,6 +34,7 @@ People can agree on what the code does and still disagree on whether that purpos
 **Tier 1: Routine Maintenance** (3-of-5, 7 days)
 - Bug fixes, documentation, performance optimizations
 - Non-consensus changes only
+- A shipped policy default stays in the tier and layer it already has. Relay policy and spam-filter parameters are not moved to Tier 3. Moving them there would let one key stall a change. The change includes a written rationale tied to the Compact's settlement purpose and a statement of whether that purpose is contested. If it is contested, the authors publish the interpretation this file already requires. Operator override does not remove the weight of the shipped value. The tier numbers are unchanged.
 
 **Tier 2: Feature Changes** (4-of-5, 30 days)  
 - New RPC methods, P2P changes, wallet features

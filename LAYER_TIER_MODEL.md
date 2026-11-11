@@ -16,6 +16,8 @@ Dual-dimensional governance combining **Layers** (repository architecture) and *
 
 **Note:** For consensus rule changes, Layer 1-2 require 365 days review period.
 
+A shipped policy default, including relay policy and spam-filter parameters, stays on the tier and layer it already has. It is not reclassified as Tier 3. The change carries a written rationale tied to the Compact and a statement of whether that purpose is contested. No signature count and no review period in this table changes.
+
 ## Tier System
 
 | Tier | Type | Signatures | Review Period |
