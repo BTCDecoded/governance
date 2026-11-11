@@ -29,6 +29,8 @@ Legitimacy is a further level. It rests on adoption and exit, not on a signature
 
 A change that acts contrary to the Compact's settlement purpose is outside this model. That purpose is transfer of value, settlement of obligations, and preservation of monetary integrity ([COMPACT.md](COMPACT.md)).
 
+People can agree on what the code does and still disagree on whether that purpose requires a particular default. A review period does not settle the disagreement. When a change depends on a reading of that purpose, the authors publish a written interpretation in the public record and leave it open for the comment period the applicable tier already uses. The interpretation does not add a signature count, and it is not a veto. It does not amend the Compact. Silence is not a reading.
+
 ### Action Tiers (Constitutional Model)
 
 **Tier 1: Routine Maintenance** (3-of-5, 7 days)
