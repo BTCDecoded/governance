@@ -29,7 +29,9 @@ layers:
     name: "Constitutional Layer"
     repositories:
       - "blvm-consensus"
-    purpose: "Consensus proof implementations"
+      - "blvm-primitives"
+      - "blvm-secp256k1"
+    purpose: "Consensus proof implementations and the crates beneath them"
     signatures:
       required: 6
       total: 7
@@ -59,7 +61,9 @@ layers:
       meta_governance_required: true
     description: |
       The consensus proof layer contains implementations of the consensus rules
-      defined in the constitutional layer. Changes here affect the core validation
+      defined in the constitutional layer, plus blvm-primitives and blvm-secp256k1.
+      A change in those crates can diverge validation without a change to the
+      consensus crate. Changes here affect the core validation
       logic of Bitcoin. All changes MUST pass formal verification (blvm-spec-lock + Proptest)
       before maintainer signatures are allowed. This creates a technical barrier
       that complements social governance. The check is a technical barrier. It is not a measured multiple of any other project.

@@ -9,7 +9,7 @@ Dual-dimensional governance combining **Layers** (repository architecture) and *
 | Layer | Repository | Purpose | Signatures | Review Period |
 |-------|------------|---------|------------|---------------|
 | 1 | blvm-spec | Constitutional | 6-of-7 | 180 days |
-| 2 | blvm-consensus | Constitutional | 6-of-7 | 180 days |
+| 2 | blvm-consensus, blvm-primitives, blvm-secp256k1 | Constitutional | 6-of-7 | 180 days |
 | 3 | blvm-protocol | Implementation | 4-of-5 | 90 days |
 | 4 | blvm-node / blvm | Application | 3-of-5 | 60 days |
 | 5 | blvm-sdk | Extension | 2-of-3 | 14 days |
@@ -18,7 +18,7 @@ Dual-dimensional governance combining **Layers** (repository architecture) and *
 
 A shipped policy default, including relay policy and spam-filter parameters, stays on the tier and layer it already has. It is not reclassified as Tier 3. The change carries a written rationale tied to the Compact and a statement of whether that purpose is contested. No signature count and no review period in this table changes.
 
-Paths in `blvm-node` that build the state consensus is given are consensus-adjacent, not ordinary node code. The class is the UTXO store (`src/storage/utxostore.rs`, `src/storage/disk_utxo.rs`, `src/storage/ibd_utxo_store.rs`), reorg handling (`src/node/reorg_executor.rs` and undo data in `src/storage/blockstore.rs`), and block connection (`src/node/sync.rs`). They use the consensus-adjacent tier already written. Ordinary node changes stay on layer 4. No signature count and no review period changes. Consensus is pure, so it is only as correct as those inputs. A change above that class mostly risks liveness rather than a split. `blvm-primitives` and `blvm-secp256k1` are not named in `config/repository-layers.yml`. This paragraph does not assign them a number.
+Paths in `blvm-node` that build the state consensus is given are consensus-adjacent, not ordinary node code. The class is the UTXO store (`src/storage/utxostore.rs`, `src/storage/disk_utxo.rs`, `src/storage/ibd_utxo_store.rs`), reorg handling (`src/node/reorg_executor.rs` and undo data in `src/storage/blockstore.rs`), and block connection (`src/node/sync.rs`). They use the consensus-adjacent tier already written. Ordinary node changes stay on layer 4. No signature count and no review period changes. Consensus is pure, so it is only as correct as those inputs. A change above that class mostly risks liveness rather than a split. `blvm-primitives` and `blvm-secp256k1` are named on layer 2 with `blvm-consensus`. That classification does not change a signature count or a review period.
 
 ## Tier System
 
