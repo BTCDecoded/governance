@@ -102,7 +102,11 @@ layers:
     description: |
       The application layer contains the reference node implementation and other
       applications that use the protocol engine. Changes here affect user-facing
-      functionality.
+      functionality. Paths that build the state consensus is given are not ordinary
+      node code. They use the consensus-adjacent tier already written. The numbers
+      in this layer do not change. Those paths are src/storage/utxostore.rs,
+      src/storage/disk_utxo.rs, src/storage/ibd_utxo_store.rs,
+      src/node/reorg_executor.rs, src/storage/blockstore.rs, and src/node/sync.rs.
 
   layer_5_extension:
     name: "Extension Layer"
