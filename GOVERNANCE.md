@@ -345,6 +345,10 @@ See [CONTRIBUTOR_GUIDE.md](CONTRIBUTOR_GUIDE.md) for possible paths from contrib
 - Encouraged rotation every 3-5 years to prevent centralization
 - Emeritus status available for advisory role
 
+### Customs and working groups
+
+An informal practice that has held under pressure may be written down later, at the tier of the rule it becomes. Writing it down is for people outside the group who cannot watch the practice. It is not a claim that an unwritten practice is weak. A working group may coordinate a topic without a signature threshold. The group does not merge code and does not change a rule. Forcing a practice into a threshold before it has held adds delay and can freeze a habit that was doing the work.
+
 ### Commons principles
 
 The principles for this design are in the Bitcoin Commons white paper, [section 3, Theoretical Framework](https://thebitcoincommons.org/whitepaper.html#3-theoretical-framework-the-triple-foundation). That section states Ostrom's eight principles and the implementation account that follows. This file does not restate them.
