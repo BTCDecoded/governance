@@ -92,6 +92,8 @@ layers:
     repositories:
       - "blvm-node"
       - "blvm"
+      - "blvm-muhash"
+      - "blvm-spec-lock"
     purpose: "Reference implementation and applications"
     signatures:
       required: 3
@@ -105,9 +107,11 @@ layers:
       - "node-maintainer-5"
     description: |
       The application layer contains the reference node implementation and other
-      applications that use the protocol engine. Changes here affect user-facing
-      functionality. Paths that build the state consensus is given are not ordinary
-      node code. They use the consensus-adjacent tier already written. The numbers
+      applications that use the protocol engine. blvm-muhash is the MuHash UTXO
+      set hash. blvm-spec-lock is proof tooling and is off in the default binary.
+      Changes here affect user-facing functionality. Paths that build the state
+      consensus is given are not ordinary node code. They use the consensus-adjacent
+      tier already written. The numbers
       in this layer do not change. Those paths are src/storage/utxostore.rs,
       src/storage/disk_utxo.rs, src/storage/ibd_utxo_store.rs,
       src/node/reorg_executor.rs, src/storage/blockstore.rs, and src/node/sync.rs.
@@ -116,6 +120,14 @@ layers:
     name: "Extension Layer"
     repositories:
       - "blvm-sdk"
+      - "blvm-miniscript"
+      - "blvm-marketplace"
+      - "blvm-governance"
+      - "blvm-zmq"
+      - "blvm-index"
+      - "blvm-wallet-index"
+      - "blvm-payment"
+      - "blvm-selective-sync"
     purpose: "Developer tools and extensions"
     signatures:
       required: 2
@@ -127,8 +139,9 @@ layers:
       - "sdk-maintainer-3"
     description: |
       The extension layer contains developer tools, SDKs, and other extensions
-      that help developers build on top of Bitcoin. Changes here have the least
-      impact on core functionality.
+      that help developers build on top of Bitcoin. The registry modules sit here
+      with blvm-sdk. Each module depends on blvm-sdk. They are not in the default
+      binary. Changes here have the least impact on core functionality.
 
 # Cross-layer dependencies
 cross_layer_rules:
