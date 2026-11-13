@@ -2,17 +2,17 @@
 
 ## Overview
 
-The Cryptographic Layer Synchronization system ensures that blvm-spec (Layer 1) and blvm-consensus (Layer 2) repositories remain cryptographically synchronized. This prevents consensus rule divergence and maintains the integrity of Bitcoin's governance model.
+This file describes a design for keeping blvm-spec (Layer 1) and blvm-consensus (Layer 2) in correspondence. That synchronization is not running. Enforcement is off. A content hash, a version pin, and an equivalence proof are the checks the design names. They do not prove that the implementation matches the specification.
 
 ## Architecture
 
 ### Three-Layer Synchronization
 
-The system implements three complementary layers of cryptographic verification:
+The design names three checks. None of them is a running gate between the two repositories:
 
-1. **Content Hash Verification** - Ensures file correspondence through SHA256 hashes
-2. **Version Pinning** - Enforces explicit version references with signature verification
-3. **Equivalence Proofs** - Validates mathematical equivalence between specifications and implementations
+1. **Content Hash Verification** - Compare SHA256 hashes of corresponding files. That check is not running.
+2. **Version Pinning** - Name an explicit version and a signature. That check is not running.
+3. **Equivalence Proofs** - A proof that a named function matches a named sentence is a separate count. This file does not turn that count into a gate.
 
 ### Component Overview
 
@@ -235,10 +235,10 @@ cross_layer_rules:
 
 ### Cryptographic Guarantees
 
-1. **Tamper Evidence**: Any modification to synchronized files is cryptographically detectable
-2. **Version Integrity**: Version references cannot be tampered with due to signature verification
-3. **Implementation Correctness**: Equivalence proofs ensure implementations match specifications
-4. **Bidirectional Sync**: Prevents one-sided changes that could break synchronization
+1. **Tamper Evidence**: A content hash can show that a file changed. That check is not running.
+2. **Version Integrity**: A signature on a version pin is Designed. It is not checked on merge today.
+3. **Implementation Correctness**: An equivalence proof does not, by itself, show that the implementation matches the specification.
+4. **Bidirectional Sync**: The design wants a change on one side to meet a change on the other. That gate is not running.
 
 ### Attack Resistance
 
