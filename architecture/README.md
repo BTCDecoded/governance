@@ -15,13 +15,13 @@ The BTCDecoded governance system implements a **5-tier constitutional governance
 ### Core Principles
 
 1. **Cryptographic Enforcement**: The design applies the same kind of check to governance that Bitcoin applies to consensus. That check is Designed. It is not Running. Enforcement is off.
-2. **Transparency**: Complete transparency through cryptographic audit trails
+2. **Transparency**: Audit trails are part of the design. They are not a claim that every decision is already public.
 3. **User Protection**: User-protective mechanisms with forkable governance
 4. **Consensus Immutability**: Bitcoin's consensus rules are sacred and cannot be altered
 
 ### System Components
 
-- **Governance App**: GitHub App for enforcing governance rules
+- **Governance App**: GitHub App for the governance rules. Enforcement is off.
 - **Governance Fork**: Mechanism for users to choose between governance rulesets
 - **Developer SDK**: Cryptographic primitives for governance
 - **Audit System**: Comprehensive logging and monitoring
