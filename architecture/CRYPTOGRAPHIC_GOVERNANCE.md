@@ -9,14 +9,14 @@ This file describes a design. Enforcement is off. Keys in use today are test key
 1. **Cryptographic Enforcement**: The written schedule says a governance action carries cryptographic proof. That check is not on.
 2. **Multisig Security**: The written schedule says more than one maintainer signs a critical action. Those signatures are not collected.
 3. **Transparency**: A public signature record is Designed. It is not a claim that every action is already public.
-4. **Tamper Evidence**: Any attempt to modify governance state is detectable
-5. **Key Rotation**: Regular key rotation prevents long-term compromise
+4. **Tamper Evidence**: Tamper evidence is a property of the designed audit log. That log is not the public record today.
+5. **Key Rotation**: Rotation intervals are written below. Rotation is not running. The keys in use are test keys.
 
 ## Signature Schemes
 
 ### Maintainer Signatures
 
-Each maintainer has unique cryptographic keypair for: approving pull requests, adding/removing maintainers, emergency actions, governance rule changes.
+A maintainer key, when one is issued, is the key for approving pull requests, adding or removing maintainers, emergency actions, and governance rule changes. The roster in use is test keys and placeholders.
 
 **Key Requirements**: secp256k1 signature scheme (same curve as Bitcoin), 256-bit private keys, deterministic key derivation from seed phrases, HSM support for production.
 
@@ -55,13 +55,13 @@ Maintainer keys generated using: cryptographically secure random number generati
 
 ### Key Rotation
 
-Keys rotated: every 6 months (routine maintainers), every 3 months (emergency keyholders), immediately upon suspected compromise, before major governance changes.
+The intervals written here are every 6 months for routine maintainers, every 3 months for emergency keyholders, immediately on suspected compromise, and before a major governance change. Rotation is not running. The keys in use are test keys.
 
 ## Cryptographic Audit Trail
 
 ### Hash Chain
 
-All governance actions recorded in tamper-evident hash chain:
+The design records governance actions in a tamper-evident hash chain. That log is Designed. It is not the public record today.
 ```
 Action 1: hash1 = SHA256(action1_data + previous_hash)
 Action 2: hash2 = SHA256(action2_data + hash1)
