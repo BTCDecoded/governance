@@ -6,9 +6,9 @@ This file describes a design. Enforcement is off. Keys in use today are test key
 
 ## Core Principles
 
-1. **Cryptographic Enforcement**: All governance actions require cryptographic proof
-2. **Multisig Security**: Multiple maintainers must sign critical actions
-3. **Transparency**: All signatures and actions are publicly verifiable
+1. **Cryptographic Enforcement**: The written schedule says a governance action carries cryptographic proof. That check is not on.
+2. **Multisig Security**: The written schedule says more than one maintainer signs a critical action. Those signatures are not collected.
+3. **Transparency**: A public signature record is Designed. It is not a claim that every action is already public.
 4. **Tamper Evidence**: Any attempt to modify governance state is detectable
 5. **Key Rotation**: Regular key rotation prevents long-term compromise
 
