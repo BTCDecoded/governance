@@ -13,7 +13,7 @@
 
 implementations:
   - name: BTCDecoded
-    description: Complete 6-tier implementation stack with formal governance infrastructure. First implementation of Bitcoin Commons.
+    description: Six-layer stack. Governance is Phase 1, enforcement is off, and the keys are test keys. First implementation of Bitcoin Commons.
     website: https://btcdecoded.org
     downloads: https://btcdecoded.org#download
     github: https://github.com/BTCDecoded
